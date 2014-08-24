@@ -1,0 +1,12 @@
+{
+    "require": {
+        "twig/twig": ">=1.15",
+        "aptoma/twig-markdown": ">=0.2",
+        "michelf/php-markdown": ">=1.4"
+    },
+    "extra": {
+        "heroku": {
+            "newrelic": true
+        }
+    }
+}
