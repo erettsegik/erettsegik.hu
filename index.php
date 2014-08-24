@@ -4,7 +4,7 @@ ob_start('ob_gzhandler');
 
 session_start();
 
-require_once 'config.php';
+require_once 'inc/functions.php';
 require_once 'vendor/autoload.php';
 
 Twig_Autoloader::register();
@@ -19,19 +19,6 @@ $engine = new MarkdownEngine\MichelfMarkdownEngine();
 
 $twig->addExtension(new MarkdownExtension($engine));
 
-try {
-
-    $con = new PDO('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbname'] . ';charset=utf8', $config['db']['username'], $config['db']['password']);
-    $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $con->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-} catch (PDOException $e) {
-
-    die('Could not connect to the database.');
-
-}
-
 $getSubjects = $con->query('select * from subjects');
 
 $subjects = array();
@@ -42,4 +29,18 @@ while ($subject = $getSubjects->fetch()) {
 
 }
 
-echo $twig->render('index.html', array('subjects' => $subjects));
+if (isset($_GET['p'])) {
+
+    $p = $_GET['p'];
+
+    if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
+
+        require_once 'inc/' . $p . '.php';
+
+    }
+
+} else {
+
+    require_once 'inc/welcome.php';
+
+}
