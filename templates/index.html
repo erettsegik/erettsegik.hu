@@ -5,8 +5,9 @@
     <link rel='stylesheet' type='text/css' href='base.css'>
 </head>
 <body>
+<a href='?p=welcome'>Fő</a>
 {% for subject in subjects %}
-{{ subject.name }}
+<a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a>
 {% endfor %}
 {% block content %}
 {% endblock %}
