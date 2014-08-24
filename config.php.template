@@ -1,0 +1,9 @@
+<?php
+
+$config['db'] = array(
+    'host' => 'hostname',
+    'username' => 'user',
+    'password' => 'pass',
+    'dbname' => 'database',
+    'charset' => 'utf8'
+);
