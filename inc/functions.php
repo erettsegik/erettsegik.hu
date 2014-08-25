@@ -1,6 +1,24 @@
 <?php
 
-require_once 'config.php';
+$config_file = 'config.php';
+
+if (file_exists($config_file)) {
+
+    require_once $config_file;
+
+} else {
+
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $config['db'] = array(
+        'host' => $url['host'],
+        'username' => $url['user'],
+        'password' => $url['pass'],
+        'dbname' => substr($url['path'], 1),
+        'charset' => 'utf8'
+    );
+
+}
 
 try {
 
