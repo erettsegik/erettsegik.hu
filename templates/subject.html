@@ -1,5 +1,9 @@
 {% extends 'index.html' %}
 
 {% block content %}
-Tantárgy.
+Tantárgy: {{ subject.name }}.
+
+{% for note in notes %}
+    <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+{% endfor %}
 {% endblock %}

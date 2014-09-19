@@ -37,6 +37,10 @@ if (isset($_GET['p'])) {
 
         require_once 'inc/' . $p . '.php';
 
+    } else {
+
+        echo '404';
+
     }
 
 } else {
