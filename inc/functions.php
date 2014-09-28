@@ -1,6 +1,6 @@
 <?php
 
-$config_file = 'config.php';
+$config_file = str_repeat("../", $dir_level) . 'config.php';
 
 if (file_exists($config_file)) {
 
@@ -29,6 +29,21 @@ try {
 
 } catch (PDOException $e) {
 
-    die('Could not connect to the database.');
+    die('Nem sikerült csatlakozni az adatbázishoz. A jegyzetek biztonsági másolata megtekinthető a http://github.com/erettsegik címen.');
+
+}
+
+function initTwig() {
+
+    global $dir_level;
+
+    require_once str_repeat("../", $dir_level) . "vendor/autoload.php";
+
+    Twig_Autoloader::register();
+
+    $loader = new Twig_Loader_Filesystem(str_repeat("../", $dir_level) . "templates");
+    $twig = new Twig_Environment($loader);
+
+    return $twig;
 
 }

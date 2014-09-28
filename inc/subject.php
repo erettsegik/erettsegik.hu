@@ -5,7 +5,11 @@ require_once 'classes/subject.class.php';
 
 $subject = new subject($_GET['id']);
 
-$getNotesData = $con->prepare('select id from notes where subjectid = :subjectid');
+$getNotesData = $con->prepare('
+    select id
+    from notes
+    where subjectid = :subjectid
+');
 $getNotesData->bindValue('subjectid', $subject->getData()['id'], PDO::PARAM_INT);
 $getNotesData->execute();
 
@@ -16,4 +20,11 @@ while ($notesData = $getNotesData->fetch()) {
     $notes[] = $note->getData();
 }
 
-echo $twig->render('subject.html', array('subjects' => $subjects, 'subject' => $subject->getData(), 'notes' => $notes));
+echo $twig->render(
+    'subject.html',
+    array(
+        'subjects' => $subjects,
+        'subject' => $subject->getData(),
+        'notes' => $notes
+    )
+);

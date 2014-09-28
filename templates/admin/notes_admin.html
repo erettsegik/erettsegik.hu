@@ -1,0 +1,34 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+<h1>Notes admin</h1>
+
+{% if status == 'form' %}
+
+<form action='notes_admin.php' method='post'>
+<input type='text' name='title' placeholder='cím'>
+<br>
+<select name='subjectid'>
+    {% for subject in subjects %}
+    <option value='{{ subject.id }}'>{{ subject.name }}</option>
+    {% endfor %}
+</select>
+<br>
+<select name='level'>
+    <option value='0'>Közép és emelt</option>
+    <option value='1'>Közép</option>
+    <option value='2'>Emelt</option>
+</select>
+<br>
+<textarea name='text' placeholder='szöveg' rows='20' cols='40'></textarea>
+<br>
+<input type='submit' name='submit'>
+</form>
+
+{% else %}
+
+    <p>Sikeres mentés!</p>
+
+{% endif %}
+
+{% endblock %}

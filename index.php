@@ -4,6 +4,8 @@ ob_start('ob_gzhandler');
 
 session_start();
 
+$dir_level = 0;
+
 require_once 'inc/functions.php';
 require_once 'vendor/autoload.php';
 
