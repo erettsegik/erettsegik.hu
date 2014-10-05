@@ -1,6 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    {{ note.title }}
+    <h1>{{ note.title }}</h1>
     {{ note.text | markdown }}
+
+    <h2>Javaslatok</h2>
+    {% if modifications | length == 0 %}
+        <p>Nincsenek javaslatok. Valami nem tetszik?</p>
+    {% else %}
+        {% for modification in modifications %}
+            <div>{{ modification.title }}</div>
+        {% endfor %}
+    {% endif %}
+    <h2>Megjegyzések</h2>
 {% endblock %}

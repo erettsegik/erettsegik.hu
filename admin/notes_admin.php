@@ -9,24 +9,32 @@ require_once '../classes/note.class.php';
 
 $twig = initTwig();
 
-if (isset($_POST['submit'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
-    $status = 'submit';
+    if (isset($_POST['submit'])) {
 
-    $note = new note();
+        $status = 'submit';
 
-    $note->insertData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['level']);
+        $note = new note();
+
+        $note->insertData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['level']);
+
+    } else {
+
+        $status = 'form';
+
+        $subjects = array();
+        $getSubjects = $con->query('select id, name from subjects order by name asc');
+
+        while ($subject = $getSubjects->fetch()) {
+            $subjects[] = $subject;
+        }
+
+    }
+
+} else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
 } else {
-
-    $status = 'form';
-
-    $subjects = array();
-    $getSubjects = $con->query('select id, name from subjects order by name asc');
-
-    while ($subject = $getSubjects->fetch()) {
-        $subjects[] = $subject;
-    }
 
 }
 

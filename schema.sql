@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS `modifications` (
   `original_text` text NOT NULL,
   `new_text` text NOT NULL,
   `comment` text NOT NULL,
-  `date` date NOT NULL,
-  `updatedate` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
   `reply` text NOT NULL,
   PRIMARY KEY (`id`)
