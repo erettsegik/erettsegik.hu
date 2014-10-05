@@ -1,8 +1,30 @@
 body {
-  background-color: #123456;
-  color: #ffffff;
+  background-color: #dedede;
+  color: #000000;
+  text-align: center;
+  font-family: 'Arial';
 }
 
 a, a:visited {
-  color: #ffffff;
+  color: #000000;
+}
+
+nav {
+  margin: auto;
+}
+
+nav ul {
+  list-style-type: none;
+  background-color: #eeeeee;
+  width: auto;
+  margin: auto;
+}
+
+nav li {
+  display: inline;
+  border: 1px solid black;
+}
+
+#main {
+  background-color: #eeeeee;
 }

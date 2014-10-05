@@ -23,23 +23,64 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'form';
 
-        $subjects = array();
-        $getSubjects = $con->query('select id, name from subjects order by name asc');
-
-        while ($subject = $getSubjects->fetch()) {
-            $subjects[] = $subject;
-        }
-
     }
 
 } else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
+    $id = $_GET['id'];
+
+    if (isset($_POST['submit'])) {
+
+        $status = 'submit';
+
+        $note = new note($id);
+
+        $note->modifyData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['level']);
+
+    } else {
+
+        $status = 'form';
+
+        $note = new note($id);
+
+        $noteData = $note->getData();
+
+    }
+
 } else {
+
+    $status = 'list';
+
+    $notes = array();
+
+    $getNotes = $con->query('select id from notes order by subjectid asc');
+
+    while ($noteData = $getNotes->fetch()) {
+        $note = new note($noteData['id']);
+        $notes[] = $note->getData();
+    }
 
 }
 
 echo $twig->render('admin/notes_admin.html', array(
+    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'status' => $status,
-    'subjects' => (isset($subjects)) ? $subjects : null
+    'notedata' => (isset($noteData)) ? $noteData : null,
+    'notes' => (isset($notes) ? $notes : null),
+    'subjects' => getSubjects()
     )
 );
+
+function getSubjects() {
+
+    global $con;
+
+    $subjects = array();
+    $getSubjects = $con->query('select id, name from subjects order by name asc');
+
+    while ($subject = $getSubjects->fetch()) {
+        $subjects[] = $subject;
+    }
+
+    return $subjects;
+}
