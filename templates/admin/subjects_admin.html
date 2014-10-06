@@ -1,0 +1,31 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+<h1>Tárgyak szerkesztése</h1>
+
+<form action='subjects_admin.php' method='post'>
+<p>Tantárgy törléséhez hagyd a nevét üresen</p>
+<p>Szintek: 1 = közép, 2 = emelt, 0 = mindkettő</p>
+<table border>
+<tr><th>Név</th><th>Szint</th></tr>
+
+{% for subject in subjects %}
+<tr>
+<td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
+<td><input type='number' value='{{ subject.level }}' name='{{ subject.id }}level'></td>
+</tr>
+{% endfor %}
+
+</table>
+<p>
+<input type='submit' value='Frissítés' name='update'>
+</p>
+</form>
+<hr>
+<form action='subjects_admin.php' method='post'>
+<input type='text' name='name'>
+<input type='number' name='level' value='0'>
+<input type='submit' name='addnew' value='Hozzáadás'>
+</form>
+</ul>
+{% endblock %}

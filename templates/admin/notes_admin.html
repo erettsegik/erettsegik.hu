@@ -1,7 +1,7 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
-<h1>Notes admin</h1>
+<h1>Jegyzetek szerkesztése</h1>
 
 {% if action == 'add' %}
 
@@ -22,7 +22,7 @@
         <option value='2'>Emelt</option>
     </select>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='20' cols='40'></textarea>
+    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
     <br>
     <input type='submit' name='submit'>
     </form>
@@ -58,7 +58,7 @@
         <option value='2' {% if notedata.level == 2 %} selected {% endif %}>Emelt</option>
     </select>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='20' cols='40'>{{ notedata.text }}</textarea>
+    <textarea name='text' placeholder='szöveg' rows='40' cols='150' style='width: auto; height: auto;'>{{ notedata.text }}</textarea>
     <br>
     <input type='submit' name='submit'>
     </form>

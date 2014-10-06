@@ -80,7 +80,7 @@ class note {
 
         try {
 
-            $updateData = $con->prepare('
+            $modifyData = $con->prepare('
                 update notes
                 set title = :title,
                     text = :text,
@@ -88,12 +88,12 @@ class note {
                     level = :level
                 where id = :id
             ');
-            $updateData->bindValue('title', $title, PDO::PARAM_STR);
-            $updateData->bindValue('text', $text, PDO::PARAM_STR);
-            $updateData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
-            $updateData->bindValue('level', $level, PDO::PARAM_INT);
-            $updateData->bindValue('id', $this->id, PDO::PARAM_INT);
-            $updateData->execute();
+            $modifyData->bindValue('title', $title, PDO::PARAM_STR);
+            $modifyData->bindValue('text', $text, PDO::PARAM_STR);
+            $modifyData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
+            $modifyData->bindValue('level', $level, PDO::PARAM_INT);
+            $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
+            $modifyData->execute();
 
         } catch (PDOException $e) {
             die('Nem sikerült a jegyzetet frissíteni.');
