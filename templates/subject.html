@@ -1,7 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-Tantárgy: {{ subject.name }}.
+<h1>Tantárgy: {{ subject.name }}.</h1>
+
+{% for level in levels %}
+  {{ levelnames[loop.index-1] }}
+  <p>
+  {% for note in level %}
+    <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+  {% endfor %}
+  </p>
+{% endfor %}
 
 {% for note in notes %}
     <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>

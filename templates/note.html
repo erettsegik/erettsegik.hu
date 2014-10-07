@@ -6,10 +6,11 @@
 
     <h2>Javaslatok</h2>
     {% if modifications | length == 0 %}
-        <p>Nincsenek javaslatok. Valami nem tetszik?</p>
+        <p>Nincsenek javaslatok.
+        <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>Valami nem tetszik?</a></p>
     {% else %}
         {% for modification in modifications %}
-            <div>{{ modification.title }}</div>
+            <div><a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a></div>
         {% endfor %}
     {% endif %}
     <h2>Megjegyzések</h2>

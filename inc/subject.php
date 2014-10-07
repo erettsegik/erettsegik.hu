@@ -5,19 +5,18 @@ require_once 'classes/subject.class.php';
 
 $subject = new subject($_GET['id']);
 
+$levels = array();
+
 $getNotesData = $con->prepare('
-    select id
+    select id, title, level
     from notes
     where subjectid = :subjectid
 ');
 $getNotesData->bindValue('subjectid', $subject->getData()['id'], PDO::PARAM_INT);
 $getNotesData->execute();
 
-$notes = array();
-
 while ($notesData = $getNotesData->fetch()) {
-    $note = new note($notesData['id']);
-    $notes[] = $note->getData();
+    $levels[$notesData['level']][] = array('id' => $notesData['id'], 'title' => $notesData['title']);
 }
 
 echo $twig->render(
@@ -25,6 +24,7 @@ echo $twig->render(
     array(
         'subjects' => $subjects,
         'subject' => $subject->getData(),
-        'notes' => $notes
+        'levels' => $levels,
+        'levelnames' => array(0 => 'Közép és emelt', 1 => 'Közép', 2 => 'Emelt', )
     )
 );

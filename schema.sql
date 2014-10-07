@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `text` text NOT NULL,
   `subjectid` int(11) NOT NULL,
   `level` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

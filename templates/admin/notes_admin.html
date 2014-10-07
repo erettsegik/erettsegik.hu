@@ -75,10 +75,11 @@
 
 <a href='notes_admin.php?action=add'>új hozzáadása</a>
 
+<ul>
 {% for note in notes %}
-{{ note.title }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a>
+    <li>{{ note.title }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a></li>
 {% endfor %}
-
+</ul>
 {% endif %}
 
 {% endblock %}

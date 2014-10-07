@@ -72,7 +72,7 @@ class modification {
                     DEFAULT,
                     DEFAULT,
                     0,
-                    ''
+                    ""
                 )
             ');
             $insertData->bindValue('noteid', $noteid, PDO::PARAM_INT);
@@ -86,6 +86,32 @@ class modification {
 
         } catch (PDOException $e) {
             die('Nem sikerült elmenteni a javaslatot.');
+        }
+
+    }
+
+    function updateStatus($status, $reply) {
+
+        global $con;
+
+        $this->status = $status;
+        $this->reply = $reply;
+
+        try {
+
+            $updateStatus = $con->prepare('
+                update modifications
+                set status = :status,
+                    reply = :reply
+                where id = :id
+            ');
+            $updateStatus->bindValue('status', $status, PDO::PARAM_INT);
+            $updateStatus->bindValue('reply', $reply, PDO::PARAM_STR);
+            $updateStatus->bindValue('id', $this->id, PDO::PARAM_INT);
+            $updateStatus->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült a javaslatot frissíteni.');
         }
 
     }

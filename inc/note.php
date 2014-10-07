@@ -1,5 +1,6 @@
 <?php
 
+require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
 $note = new note($_GET['id']);
