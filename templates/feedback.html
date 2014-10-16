@@ -2,4 +2,17 @@
 
 {% block content %}
 <h1>Visszajelzés</h1>
+
+{% if status == 'submit' %}
+<p>Köszönjük a visszajelzést!</p>
+{% else %}
+<form action='?p=feedback' method='post'>
+    <input type='text' name='title'>
+    <br>
+    <textarea name='text'></textarea>
+    <br>
+    <input type='submit' name='submit'>
+</form>
+{% endif %}
+
 {% endblock %}

@@ -2,9 +2,11 @@
 
 class feedback {
 
-    protected $id   = null;
-    protected $text = null;
-    protected $date = null;
+    protected $id    = null;
+    protected $title = null;
+    protected $text  = null;
+    protected $date  = null;
+    protected $isnew = null;
 
     public function __construct($id = null) {
 
@@ -16,87 +18,59 @@ class feedback {
 
         $subjectData = $selectData->fetch();
 
-        $this->id   = $subjectData['id'];
-        $this->text = $subjectData['text'];
-        $this->date = $subjectData['date'];
+        $this->id    = $subjectData['id'];
+        $this->title = $subjectData['title'];
+        $this->text  = $subjectData['text'];
+        $this->date  = $subjectData['date'];
+        $this->isnew = $subjectData['isnew'];
 
     }
 
-    public function insertData($text) {
+    public function makeNotNew() {
 
         global $con;
 
+        try {
+
+            $modifyData = $con->prepare('
+                update feedback
+                set isnew = 0
+                where id = :id
+            ');
+            $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
+            $modifyData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült a frissítés.');
+        }
+
+    }
+
+    public function insertData($title, $text) {
+
+        global $con;
+
+        $this->title = $title;
         $this->text  = $text;
 
         try {
 
             $insertData = $con->prepare('
-                insert into subjects
+                insert into feedback
                 values(
                     DEFAULT,
-                    :name,
-                    :level
+                    :title,
+                    :text,
+                    DEFAULT,
+                    1
                 )
             ');
-            $insertData->bindValue('name', $name, PDO::PARAM_STR);
-            $insertData->bindValue('level', $level, PDO::PARAM_INT);
+            $insertData->bindValue('title', $title, PDO::PARAM_STR);
+            $insertData->bindValue('text', $text, PDO::PARAM_STR);
             $insertData->execute();
 
         } catch (PDOException $e) {
-            die('Nem sikerült a tárgy hozzáadása.');
-        }
-
-    }
-
-    public function modifyData($name, $level) {
-
-        global $con;
-
-        if ($name == '') {
-
-            $this->remove();
-
-        } else {
-
-            $this->name  = $name;
-            $this->level = $level;
-
-            try {
-
-                $insertData = $con->prepare('
-                    update subjects
-                    set name = :name,
-                        level = :level
-                    where id = :id
-                ');
-                $insertData->bindValue('name', $name, PDO::PARAM_STR);
-                $insertData->bindValue('level', $level, PDO::PARAM_INT);
-                $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
-                $insertData->execute();
-
-            } catch (PDOException $e) {
-                die('Nem sikerült a tárgy frissítése.');
-            }
-
-        }
-
-    }
-
-    public function remove() {
-
-        global $con;
-
-        try {
-
-            $removeSubject = $con->prepare('
-                delete from subjects
-                where id = :id
-            ');
-            $removeSubject->bindValue('id', $this->id, PDO::PARAM_INT);
-            $removeSubject->execute();
-
-        } catch (PDOException $e) {
-            die('Nem sikerült a tárgy törlése.');
+            die('Nem sikerült a visszajelzés elküldése.');
         }
 
     }
@@ -105,8 +79,10 @@ class feedback {
 
         return array(
             'id' => $this->id,
-            'name' => $this->name,
-            'level' => $this->level
+            'title' => $this->title,
+            'text' => $this->text,
+            'date' => $this->date,
+            'isnew' => $this->isnew
         );
 
     }
