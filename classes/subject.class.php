@@ -10,11 +10,17 @@ class subject {
 
         global $con;
 
-        $selectData = $con->prepare('select * from subjects where id = :id');
-        $selectData->bindValue('id', $id, PDO::PARAM_INT);
-        $selectData->execute();
+        try {
 
-        $subjectData = $selectData->fetch();
+            $selectData = $con->prepare('select * from subjects where id = :id');
+            $selectData->bindValue('id', $id, PDO::PARAM_INT);
+            $selectData->execute();
+
+            $subjectData = $selectData->fetch();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült a tárgy betöltése.');
+        }
 
         $this->id       = $subjectData['id'];
         $this->name     = $subjectData['name'];

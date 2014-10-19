@@ -31,7 +31,7 @@ class note {
         $this->id         = $noteData['id'];
         $this->title      = $noteData['title'];
         $this->text       = $noteData['text'];
-        $this->subjectid  = new subject($noteData['subjectid']);
+        $this->subject  = new subject($noteData['subjectid']);
         $this->category   = $noteData['category'];
         $this->date       = $noteData['date'];
         $this->updatedate = $noteData['updatedate'];
