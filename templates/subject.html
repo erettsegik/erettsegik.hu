@@ -3,10 +3,10 @@
 {% block content %}
 <h1>Tantárgy: {{ subject.name }}.</h1>
 
-{% for level in levels %}
-  {{ levelnames[loop.index-1] }}
+{% for category in categories %}
+  {{ category.name }}
   <p>
-  {% for note in level %}
+  {% for note in category.data %}
     <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
   {% endfor %}
   </p>

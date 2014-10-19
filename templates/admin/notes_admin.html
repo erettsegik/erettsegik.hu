@@ -16,7 +16,7 @@
         {% endfor %}
     </select>
     <br>
-    <select name='level'>
+    <select name='category'>
         <option value='0'>Közép és emelt</option>
         <option value='1'>Közép</option>
         <option value='2'>Emelt</option>
@@ -52,10 +52,10 @@
         {% endfor %}
     </select>
     <br>
-    <select name='level'>
-        <option value='0' {% if notedata.level == 0 %} selected {% endif %}>Közép és emelt</option>
-        <option value='1' {% if notedata.level == 1 %} selected {% endif %}>Közép</option>
-        <option value='2' {% if notedata.level == 2 %} selected {% endif %}>Emelt</option>
+    <select name='category'>
+        <option value='0' {% if notedata.category == 0 %} selected {% endif %}>Közép és emelt</option>
+        <option value='1' {% if notedata.category == 1 %} selected {% endif %}>Közép</option>
+        <option value='2' {% if notedata.category == 2 %} selected {% endif %}>Emelt</option>
     </select>
     <br>
     <textarea name='text' placeholder='szöveg' rows='40' cols='150' style='width: auto; height: auto;'>{{ notedata.text }}</textarea>

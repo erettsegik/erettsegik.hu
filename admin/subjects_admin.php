@@ -27,7 +27,7 @@ if (isset($_POST['update'])) {
 
         $subject = new subject($id);
 
-        $subject->modifyData($_POST[$id . 'name'], $_POST[$id . 'level']);
+        $subject->modifyData($_POST[$id . 'name'], $_POST[$id . 'category']);
 
     }
 
@@ -37,7 +37,7 @@ if (isset($_POST['addnew'])) {
 
     $subject = new subject();
 
-    $subject->insertData($_POST['name'], $_POST['level']);
+    $subject->insertData($_POST['name'], $_POST['category']);
 
 }
 

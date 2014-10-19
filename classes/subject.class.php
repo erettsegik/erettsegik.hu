@@ -4,7 +4,7 @@ class subject {
 
     protected $id    = null;
     protected $name  = null;
-    protected $level = null;
+    protected $category = null;
 
     public function __construct($id = null) {
 
@@ -18,16 +18,16 @@ class subject {
 
         $this->id    = $subjectData['id'];
         $this->name  = $subjectData['name'];
-        $this->level = $subjectData['level'];
+        $this->category = $subjectData['category'];
 
     }
 
-    public function insertData($name, $level) {
+    public function insertData($name, $category) {
 
         global $con;
 
         $this->name  = $name;
-        $this->level = $level;
+        $this->category = $category;
 
         try {
 
@@ -36,11 +36,11 @@ class subject {
                 values(
                     DEFAULT,
                     :name,
-                    :level
+                    :category
                 )
             ');
             $insertData->bindValue('name', $name, PDO::PARAM_STR);
-            $insertData->bindValue('level', $level, PDO::PARAM_INT);
+            $insertData->bindValue('category', $category, PDO::PARAM_INT);
             $insertData->execute();
 
         } catch (PDOException $e) {
@@ -49,7 +49,7 @@ class subject {
 
     }
 
-    public function modifyData($name, $level) {
+    public function modifyData($name, $category) {
 
         global $con;
 
@@ -60,18 +60,18 @@ class subject {
         } else {
 
             $this->name  = $name;
-            $this->level = $level;
+            $this->category = $category;
 
             try {
 
                 $insertData = $con->prepare('
                     update subjects
                     set name = :name,
-                        level = :level
+                        category = :category
                     where id = :id
                 ');
                 $insertData->bindValue('name', $name, PDO::PARAM_STR);
-                $insertData->bindValue('level', $level, PDO::PARAM_INT);
+                $insertData->bindValue('category', $category, PDO::PARAM_INT);
                 $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
                 $insertData->execute();
 
@@ -107,7 +107,7 @@ class subject {
         return array(
             'id' => $this->id,
             'name' => $this->name,
-            'level' => $this->level
+            'category' => $this->category
         );
 
     }

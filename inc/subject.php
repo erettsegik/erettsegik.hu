@@ -5,18 +5,31 @@ require_once 'classes/subject.class.php';
 
 $subject = new subject($_GET['id']);
 
-$levels = array();
+$categories = array();
 
 $getNotesData = $con->prepare('
-    select id, title, level
+    select notes.id, notes.title, categories.name
     from notes
-    where subjectid = :subjectid
+    left join categories on notes.category = categories.id
+    where notes.subjectid = :subjectid
 ');
 $getNotesData->bindValue('subjectid', $subject->getData()['id'], PDO::PARAM_INT);
 $getNotesData->execute();
 
 while ($notesData = $getNotesData->fetch()) {
-    $levels[$notesData['level']][] = array('id' => $notesData['id'], 'title' => $notesData['title']);
+
+    if (!isset($categories[$notesData['name']]))
+        $categories[$notesData['name']] = array();
+
+    if (!isset($categories[$notesData['name']]['data']))
+        $categories[$notesData['name']]['data'] = array();
+
+    $categories[$notesData['name']]['name'] = $notesData['name'];
+    $categories[$notesData['name']]['data'][] = array(
+        'id' => $notesData['id'],
+        'title' => $notesData['title']
+    );
+
 }
 
 echo $twig->render(
@@ -24,7 +37,6 @@ echo $twig->render(
     array(
         'subjects' => $subjects,
         'subject' => $subject->getData(),
-        'levels' => $levels,
-        'levelnames' => array(0 => 'Közép és emelt', 1 => 'Közép', 2 => 'Emelt', )
+        'categories' => $categories
     )
 );

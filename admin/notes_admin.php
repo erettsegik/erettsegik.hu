@@ -17,7 +17,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note();
 
-        $note->insertData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['level']);
+        $note->insertData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['category']);
 
     } else {
 
@@ -35,7 +35,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note($id);
 
-        $note->modifyData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['level']);
+        $note->modifyData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['category']);
 
     } else {
 

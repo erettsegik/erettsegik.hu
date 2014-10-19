@@ -12,7 +12,7 @@
 {% for subject in subjects %}
 <tr>
 <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
-<td><input type='number' value='{{ subject.level }}' name='{{ subject.id }}level'></td>
+<td><input type='number' value='{{ subject.category }}' name='{{ subject.id }}category'></td>
 </tr>
 {% endfor %}
 
@@ -24,7 +24,7 @@
 <hr>
 <form action='subjects_admin.php' method='post'>
 <input type='text' name='name'>
-<input type='number' name='level' value='0'>
+<input type='number' name='category' value='0'>
 <input type='submit' name='addnew' value='Hozzáadás'>
 </form>
 </ul>
