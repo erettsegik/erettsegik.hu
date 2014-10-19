@@ -4,12 +4,12 @@ require_once 'subject.class.php';
 
 class note {
 
-    protected $id      = null;
-    protected $title   = null;
-    protected $text    = null;
-    protected $subject = null;
+    protected $id         = null;
+    protected $title      = null;
+    protected $text       = null;
+    protected $subject    = null;
     protected $category   = null;
-    protected $date = null;
+    protected $date       = null;
     protected $updatedate = null;
 
     public function __construct($id = null) {
@@ -28,13 +28,13 @@ class note {
             die('Nem sikerült a jegyzet betöltése.');
         }
 
-        $this->id      = $noteData['id'];
-        $this->title   = $noteData['title'];
-        $this->text    = $noteData['text'];
-        $this->subject = new subject($noteData['subjectid']);
+        $this->id         = $noteData['id'];
+        $this->title      = $noteData['title'];
+        $this->text       = $noteData['text'];
+        $this->subjectid  = new subject($noteData['subjectid']);
         $this->category   = $noteData['category'];
-        $this->date   = $noteData['date'];
-        $this->updatedate   = $noteData['updatedate'];
+        $this->date       = $noteData['date'];
+        $this->updatedate = $noteData['updatedate'];
 
     }
 
@@ -42,10 +42,10 @@ class note {
 
         global $con;
 
-        $this->title   = $title;
-        $this->text    = $text;
-        $this->subject = new subject($subjectid);
-        $this->category   = $category;
+        $this->title    = $title;
+        $this->text     = $text;
+        $this->subject  = new subject($subjectid);
+        $this->category = $category;
 
         try {
 
@@ -79,10 +79,10 @@ class note {
 
         global $con;
 
-        $this->title   = $title;
-        $this->text    = $text;
-        $this->subject = new subject($subjectid);
-        $this->category   = $category;
+        $this->title    = $title;
+        $this->text     = $text;
+        $this->subject  = new subject($subjectid);
+        $this->category = $category;
 
         try {
 
@@ -114,7 +114,7 @@ class note {
             'title'     => $this->title,
             'text'      => $this->text,
             'subjectid' => $this->subject->getData()['id'],
-            'category'     => $this->category
+            'category'  => $this->category
         );
 
     }

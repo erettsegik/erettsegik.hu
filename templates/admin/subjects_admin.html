@@ -5,9 +5,9 @@
 
 <form action='subjects_admin.php' method='post'>
 <p>Tantárgy törléséhez hagyd a nevét üresen</p>
-<p>Szintek: 1 = közép, 2 = emelt, 0 = mindkettő</p>
+<p>Kategória: lásd a kategóriák menüpontban</p>
 <table border>
-<tr><th>Név</th><th>Szint</th></tr>
+<tr><th>Név</th><th>Kategória</th></tr>
 
 {% for subject in subjects %}
 <tr>
@@ -24,7 +24,7 @@
 <hr>
 <form action='subjects_admin.php' method='post'>
 <input type='text' name='name'>
-<input type='number' name='category' value='0'>
+<input type='number' name='category' value='1'>
 <input type='submit' name='addnew' value='Hozzáadás'>
 </form>
 </ul>

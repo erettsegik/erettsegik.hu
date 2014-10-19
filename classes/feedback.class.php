@@ -78,10 +78,10 @@ class feedback {
     public function getData() {
 
         return array(
-            'id' => $this->id,
+            'id'    => $this->id,
             'title' => $this->title,
-            'text' => $this->text,
-            'date' => $this->date,
+            'text'  => $this->text,
+            'date'  => $this->date,
             'isnew' => $this->isnew
         );
 

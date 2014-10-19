@@ -52,4 +52,9 @@ while ($subjectData = $getSubjects->fetch()) {
 
 }
 
-echo $twig->render('admin/subjects_admin.html', array('subjects' => $subjects));
+echo $twig->render(
+    'admin/subjects_admin.html',
+    array(
+        'subjects' => $subjects
+    )
+);

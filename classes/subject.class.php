@@ -2,8 +2,8 @@
 
 class subject {
 
-    protected $id    = null;
-    protected $name  = null;
+    protected $id       = null;
+    protected $name     = null;
     protected $category = null;
 
     public function __construct($id = null) {
@@ -16,8 +16,8 @@ class subject {
 
         $subjectData = $selectData->fetch();
 
-        $this->id    = $subjectData['id'];
-        $this->name  = $subjectData['name'];
+        $this->id       = $subjectData['id'];
+        $this->name     = $subjectData['name'];
         $this->category = $subjectData['category'];
 
     }
@@ -26,7 +26,7 @@ class subject {
 
         global $con;
 
-        $this->name  = $name;
+        $this->name     = $name;
         $this->category = $category;
 
         try {
@@ -59,7 +59,7 @@ class subject {
 
         } else {
 
-            $this->name  = $name;
+            $this->name     = $name;
             $this->category = $category;
 
             try {
@@ -105,8 +105,8 @@ class subject {
     public function getData() {
 
         return array(
-            'id' => $this->id,
-            'name' => $this->name,
+            'id'       => $this->id,
+            'name'     => $this->name,
             'category' => $this->category
         );
 

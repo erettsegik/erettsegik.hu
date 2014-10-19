@@ -52,4 +52,9 @@ while ($categoryData = $getCategories->fetch()) {
 
 }
 
-echo $twig->render('admin/categories_admin.html', array('categories' => $categories));
+echo $twig->render(
+    'admin/categories_admin.html',
+    array(
+        'categories' => $categories
+    )
+);

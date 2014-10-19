@@ -15,8 +15,8 @@ class category {
 
         $categoryData = $selectData->fetch();
 
-        $this->id    = $categoryData['id'];
-        $this->name  = $categoryData['name'];
+        $this->id   = $categoryData['id'];
+        $this->name = $categoryData['name'];
 
     }
 
@@ -54,7 +54,7 @@ class category {
 
         } else {
 
-            $this->name  = $name;
+            $this->name = $name;
 
             try {
 
@@ -97,7 +97,7 @@ class category {
     public function getData() {
 
         return array(
-            'id' => $this->id,
+            'id'   => $this->id,
             'name' => $this->name
         );
 

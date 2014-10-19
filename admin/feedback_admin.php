@@ -23,7 +23,11 @@ if (isset($_GET['id'])) {
 
     try {
 
-        $getFeedback = $con->prepare('select id from feedback order by id desc');
+        $getFeedback = $con->prepare('
+            select id
+            from feedback
+            order by id desc
+        ');
         $getFeedback->execute();
 
     } catch (PDOException $e) {

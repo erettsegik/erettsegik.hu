@@ -17,7 +17,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note();
 
-        $note->insertData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['category']);
+        $note->insertData(
+            $_POST['title'],
+            $_POST['text'],
+            $_POST['subjectid'],
+            $_POST['category']
+        );
 
     } else {
 
@@ -35,7 +40,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note($id);
 
-        $note->modifyData($_POST['title'], $_POST['text'], $_POST['subjectid'], $_POST['category']);
+        $note->modifyData(
+            $_POST['title'],
+            $_POST['text'],
+            $_POST['subjectid'],
+            $_POST['category']
+        );
 
     } else {
 
@@ -53,7 +63,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $notes = array();
 
-    $getNotes = $con->query('select id from notes order by subjectid asc');
+    $getNotes = $con->query('
+        select id
+        from notes
+        order by subjectid asc
+    ');
 
     while ($noteData = $getNotes->fetch()) {
         $note = new note($noteData['id']);
@@ -76,7 +90,11 @@ function getSubjects() {
     global $con;
 
     $subjects = array();
-    $getSubjects = $con->query('select id, name from subjects order by name asc');
+    $getSubjects = $con->query('
+        select id, name
+        from subjects
+        order by name asc
+    ');
 
     while ($subject = $getSubjects->fetch()) {
         $subjects[] = $subject;
