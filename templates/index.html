@@ -13,6 +13,7 @@
   <nav>
   <ul>
     <li><a href='?p=welcome'>[erettsegik.hu]</a></li>
+    <li><a href='?p=news'>hírek</a></li>
     {% for subject in subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}

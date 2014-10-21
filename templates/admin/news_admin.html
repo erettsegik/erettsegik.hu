@@ -1,0 +1,57 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+<h1>Hírek szerkesztése</h1>
+
+{% if action == 'add' %}
+
+    {% if status == 'form' %}
+
+    <form action='news_admin.php?action=add' method='post'>
+    <input type='text' name='title' placeholder='cím'>
+    <br>
+    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
+    <br>
+    <input type='submit' name='submit'>
+    </form>
+
+    {% else %}
+
+        <p>Sikeres mentés!</p>
+
+    {% endif %}
+
+{% endif %}
+
+{% if action == 'edit' %}
+
+    {% if status == 'form' %}
+
+    <form action='news_admin.php?action=edit&amp;id={{ newsdata.id }}' method='post'>
+    <input type='text' name='title' placeholder='cím' value='{{ newsdata.title }}'>
+    <br>
+    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'>{{ newsdata.text }}</textarea>
+    <br>
+    <input type='submit' name='submit'>
+    </form>
+
+    {% else %}
+
+        <p>Sikeres mentés!</p>
+
+    {% endif %}
+
+{% endif %}
+
+{% if status == 'list' %}
+
+<a href='news_admin.php?action=add'>új hozzáadása</a>
+
+<ul>
+{% for new in news %}
+    <li>{{ new.title }} - <a href='news_admin.php?action=edit&amp;id={{ new.id }}'>szerkesztés</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<h1>Hírek</h1>
+<section>
+{% for new in news %}
+    <h2>{{ new.title }}</h2>
+    {{ new.text | markdown }}
+{% endfor %}
+</section>
+{% endblock %}
