@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `modifications` (
   `new_text` text NOT NULL,
   `comment` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updatedate` timestamp NULL DEFAULT NULL,
   `status` int(11) NOT NULL,
   `reply` text NOT NULL,
   PRIMARY KEY (`id`)
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `subjectid` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updatedate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
