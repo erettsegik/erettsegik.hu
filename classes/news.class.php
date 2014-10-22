@@ -28,8 +28,8 @@ class news {
         $this->id         = $newsData['id'];
         $this->title      = $newsData['title'];
         $this->text       = $newsData['text'];
-        $this->date       = $newsData['date'];
-        $this->updatedate = $newsData['updatedate'];
+        $this->date       = new DateTime($newsData['date']);
+        $this->updatedate = ($newsData['updatedate'] != null) ? new DateTime($newsData['updatedate']) : null;
         $this->creatorid  = $newsData['creatorid'];
 
     }
@@ -76,7 +76,8 @@ class news {
             $insertData = $con->prepare('
                 update news
                 set title = :title,
-                    text = :text
+                    text = :text,
+                    updatedate = now()
                 where id = :id
             ');
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
@@ -111,12 +112,14 @@ class news {
 
     public function getData() {
 
+        global $config;
+
         return array(
              'id' => $this->id,
              'title' =>$this->title,
              'text' => $this->text,
-             'date' => $this->date,
-             'updatedate' => $this->updatedate,
+             'date' => $this->date->format($config['dateformat']),
+             'updatedate' => ($this->updatedate != null) ? $this->updatedate->format($config['dateformat']) : null,
              'creatorid' => $this->creatorid
         );
 

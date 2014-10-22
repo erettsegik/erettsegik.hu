@@ -1,6 +1,8 @@
 <?php
 
-$config_file = str_repeat("../", $dir_level) . 'config.php';
+$config_file = str_repeat('../', $dir_level) . 'config.php';
+
+require_once str_repeat('../', $dir_level) . 'classes/user.class.php';
 
 if (file_exists($config_file)) {
 
@@ -20,6 +22,10 @@ if (file_exists($config_file)) {
 
 }
 
+$config['dateformat'] = 'Y-m-d H:i';
+
+date_default_timezone_set('Europe/Budapest');
+
 try {
 
     $con = new PDO('mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['dbname'] . ';charset=utf8', $config['db']['username'], $config['db']['password']);
@@ -37,13 +43,24 @@ function initTwig() {
 
     global $dir_level;
 
-    require_once str_repeat("../", $dir_level) . "vendor/autoload.php";
+    require_once str_repeat('../', $dir_level) . 'vendor/autoload.php';
 
     Twig_Autoloader::register();
 
-    $loader = new Twig_Loader_Filesystem(str_repeat("../", $dir_level) . "templates");
+    $loader = new Twig_Loader_Filesystem(str_repeat('../', $dir_level) . 'templates');
     $twig = new Twig_Environment($loader);
 
     return $twig;
+
+}
+
+function checkRights($clearance_level = 0) {
+
+    if (!isset($_SESSION['userid']))
+        return false;
+
+    $user = new user($_SESSION['userid']);
+
+    return ($user->getData()['authority'] >= $clearance_level);
 
 }

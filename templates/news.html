@@ -6,6 +6,10 @@
 {% for new in news %}
     <h2>{{ new.title }}</h2>
     {{ new.text | markdown }}
+    {{ new.date }}
+    {% if new.updatedate %}
+    frissítve: {{ new.updatedate }}
+    {% endif %}
 {% endfor %}
 </section>
 {% endblock %}

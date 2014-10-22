@@ -21,7 +21,7 @@ class feedback {
         $this->id    = $subjectData['id'];
         $this->title = $subjectData['title'];
         $this->text  = $subjectData['text'];
-        $this->date  = $subjectData['date'];
+        $this->date  = new DateTime($subjectData['date']);
         $this->isnew = $subjectData['isnew'];
 
     }
@@ -77,11 +77,13 @@ class feedback {
 
     public function getData() {
 
+        global $config;
+
         return array(
             'id'    => $this->id,
             'title' => $this->title,
             'text'  => $this->text,
-            'date'  => $this->date,
+            'date'  => $this->date->format($config['dateformat']),
             'isnew' => $this->isnew
         );
 
