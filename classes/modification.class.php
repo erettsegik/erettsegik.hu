@@ -41,7 +41,7 @@ class modification {
         $this->original_text = $noteData['original_text'];
         $this->new_text      = $noteData['new_text'];
         $this->comment       = $noteData['comment'];
-        $this->date          = $noteData['date'];
+        $this->date          = new DateTime($noteData['date']);
         $this->updatedate    = $noteData['updatedate'];
         $this->status        = $noteData['status'];
         $this->reply         = $noteData['reply'];
@@ -57,6 +57,7 @@ class modification {
         $this->original_text = $original_text;
         $this->new_text      = $new_text;
         $this->comment       = $comment;
+        $this->date          = new DateTime();
 
         try {
 
@@ -90,7 +91,7 @@ class modification {
 
     }
 
-    function updateStatus($status, $reply) {
+    function updateStatus($status, $reply = null) {
 
         global $con;
 
@@ -102,7 +103,8 @@ class modification {
             $updateStatus = $con->prepare('
                 update modifications
                 set status = :status,
-                    reply = :reply
+                    reply = :reply,
+                    updatedate = now()
                 where id = :id
             ');
             $updateStatus->bindValue('status', $status, PDO::PARAM_INT);
@@ -118,6 +120,8 @@ class modification {
 
     public function getData() {
 
+        global $config;
+
         return array(
             'id'            => $this->id,
             'noteid'        => $this->note->getData()['id'],
@@ -125,7 +129,7 @@ class modification {
             'original_text' => $this->original_text,
             'new_text'      => $this->new_text,
             'comment'       => $this->comment,
-            'date'          => $this->date,
+            'date'          => $this->date->format($config['dateformat']),
             'updatedate'    => $this->updatedate,
             'status'        => $this->status,
             'reply'         => $this->reply

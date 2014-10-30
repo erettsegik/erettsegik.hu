@@ -1,0 +1,47 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+<h1>Javaslatok</h1>
+
+{% if status == 'all' %}
+
+    <table>
+    {% for modification in modifications %}
+
+    <tr>
+
+        <td><a href='modifications_admin.php?id={{ modification.id }}'>{{ modification.title }}</a></td>
+        <td>{{ modification.date }}</td>
+
+    </tr>
+
+    {% endfor %}
+    </table>
+
+{% endif %}
+{% if status == 'one' %}
+
+    <h2>{{ modificationdata.title }} - {{ modificationdata.date }}</h2>
+    <p>{{ modificationdata.original_text }}</p>
+    <hr>
+    <p>{{ modificationdata.new_text }}</p>
+    {% if modificationdata.status == 0 %}
+        <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=merge'>Jóváhagyás</a>
+        <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=reject'>Elutasítás</a>
+    {% else %}
+        Ez a javaslat már jóvá lett hagyva vagy el lett utasítva.
+    {% endif %}
+
+{% endif %}
+{% if status == 'merged' %}
+
+    Sikeresen jóvá lett hagyva.
+
+{% endif %}
+{% if status == 'rejected' %}
+
+    Sikeresen el lett utasítva.
+
+{% endif %}
+
+{% endblock %}
