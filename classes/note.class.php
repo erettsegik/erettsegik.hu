@@ -11,6 +11,7 @@ class note {
     protected $category   = null;
     protected $date       = null;
     protected $updatedate = null;
+    protected $live       = null;
 
     public function __construct($id = null) {
 
@@ -31,14 +32,15 @@ class note {
         $this->id         = $noteData['id'];
         $this->title      = $noteData['title'];
         $this->text       = $noteData['text'];
-        $this->subject  = new subject($noteData['subjectid']);
+        $this->subject    = new subject($noteData['subjectid']);
         $this->category   = $noteData['category'];
         $this->date       = $noteData['date'];
         $this->updatedate = $noteData['updatedate'];
+        $this->live       = $noteData['live'];
 
     }
 
-    public function insertData($title, $text, $subjectid, $category) {
+    public function insertData($title, $text, $subjectid, $category, $live) {
 
         global $con;
 
@@ -46,6 +48,7 @@ class note {
         $this->text     = $text;
         $this->subject  = new subject($subjectid);
         $this->category = $category;
+        $this->live     = $live;
 
         try {
 
@@ -58,13 +61,15 @@ class note {
                     :subjectid,
                     :category,
                     DEFAULT,
-                    DEFAULT
+                    DEFAULT,
+                    :live
                 )
             ');
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
             $insertData->bindValue('text', $text, PDO::PARAM_STR);
             $insertData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
             $insertData->bindValue('category', $category, PDO::PARAM_INT);
+            $insertData->bindValue('live', $live, PDO::PARAM_INT);
             $insertData->execute();
 
             $this->id = $con->lastInsertId();
@@ -75,7 +80,7 @@ class note {
 
     }
 
-    public function modifyData($title, $text, $subjectid, $category) {
+    public function modifyData($title, $text, $subjectid, $category, $live) {
 
         global $con;
 
@@ -83,6 +88,7 @@ class note {
         $this->text     = $text;
         $this->subject  = new subject($subjectid);
         $this->category = $category;
+        $this->live     = $live;
 
         try {
 
@@ -91,13 +97,15 @@ class note {
                 set title = :title,
                     text = :text,
                     subjectid = :subjectid,
-                    category = :category
+                    category = :category,
+                    live = :live
                 where id = :id
             ');
             $modifyData->bindValue('title', $title, PDO::PARAM_STR);
             $modifyData->bindValue('text', $text, PDO::PARAM_STR);
             $modifyData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
             $modifyData->bindValue('category', $category, PDO::PARAM_INT);
+            $modifyData->bindValue('live', $live, PDO::PARAM_INT);
             $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
             $modifyData->execute();
 
@@ -114,7 +122,8 @@ class note {
             'title'     => $this->title,
             'text'      => $this->text,
             'subjectid' => $this->subject->getData()['id'],
-            'category'  => $this->category
+            'category'  => $this->category,
+            'live'      => $this->live
         );
 
     }

@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
         select notes.id, notes.title, categories.name
         from notes
         left join categories on notes.category = categories.id
-        where notes.subjectid = :subjectid
+        where notes.subjectid = :subjectid and notes.live = 1
     ');
     $getNotesData->bindValue('subjectid', $subject->getData()['id'], PDO::PARAM_INT);
     $getNotesData->execute();

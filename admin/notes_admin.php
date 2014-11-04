@@ -23,11 +23,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note();
 
+        $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+
         $note->insertData(
             $_POST['title'],
             $_POST['text'],
             $_POST['subjectid'],
-            $_POST['category']
+            $_POST['category'],
+            $live
         );
 
     } else {
@@ -46,11 +49,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note($id);
 
+        $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+
         $note->modifyData(
             $_POST['title'],
             $_POST['text'],
             $_POST['subjectid'],
-            $_POST['category']
+            $_POST['category'],
+            $live
         );
 
     } else {
