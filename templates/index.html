@@ -17,7 +17,6 @@
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
     <li><a href='?p=subject'>összes tárgy</a></li>
-    <li><a href='?p=feedback'>feedback</a></li>
   </ul>
   </nav>
   <section id='main'>
@@ -25,6 +24,9 @@
     {% endblock %}
   </section>
 
+  <footer>
+    <a href='?p=feedback'>visszajelzés</a>
+  </footer>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

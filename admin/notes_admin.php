@@ -5,6 +5,7 @@ session_start();
 $dir_level = 1;
 
 require_once '../inc/functions.php';
+require_once '../classes/category.class.php';
 require_once '../classes/note.class.php';
 
 if (!checkRights(2)) {
@@ -81,12 +82,30 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
+try {
+
+    $getCategories = $con->query('select id from categories');
+
+} catch (PDOException $e) {
+    die('Nem sikerült a kategóriák kiválasztása.');
+}
+
+$categories = array();
+
+while ($categoryData = $getCategories->fetch()) {
+
+    $category = new category($categoryData['id']);
+    $categories[] = $category->getData();
+
+}
+
 echo $twig->render('admin/notes_admin.html', array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'status' => $status,
     'notedata' => (isset($noteData)) ? $noteData : null,
     'notes' => (isset($notes) ? $notes : null),
-    'subjects' => getSubjects()
+    'subjects' => getSubjects(),
+    'categories' => $categories
     )
 );
 

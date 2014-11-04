@@ -1,18 +1,32 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>Tantárgy: {{ subject.name }}.</h1>
 
-{% for category in categories %}
-  {{ category.name }}
-  <p>
-  {% for note in category.data %}
-    <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
-  {% endfor %}
-  </p>
-{% endfor %}
+{% if status == 'all' %}
 
-{% for note in notes %}
-    <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
-{% endfor %}
+    <h1>Összes tárgy.</h1>
+
+    {% for subject in allsubjects %}
+        <a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a>
+    {% endfor %}
+
+{% else %}
+
+    <h1>Tantárgy: {{ subject.name }}.</h1>
+
+    {% for category in categories %}
+      {{ category.name }}
+      <p>
+      {% for note in category.data %}
+        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+      {% endfor %}
+      </p>
+    {% endfor %}
+
+    {% for note in notes %}
+        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+    {% endfor %}
+
+{% endif %}
+
 {% endblock %}
