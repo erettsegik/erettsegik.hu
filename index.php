@@ -47,6 +47,6 @@ if (isset($_GET['p'])) {
 
 } else {
 
-    require_once 'inc/welcome.php';
+    require_once 'inc/news.php';
 
 }
