@@ -21,7 +21,7 @@ $engine = new MarkdownEngine\MichelfMarkdownEngine();
 
 $twig->addExtension(new MarkdownExtension($engine));
 
-$getSubjects = $con->query('select * from subjects');
+$getSubjects = $con->query('select * from subjects where mandatory = 1');
 
 $subjects = array();
 

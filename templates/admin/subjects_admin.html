@@ -7,12 +7,13 @@
 <p>Tantárgy törléséhez hagyd a nevét üresen</p>
 <p>Kategória: lásd a kategóriák menüpontban</p>
 <table border>
-<tr><th>Név</th><th>Kategória</th></tr>
+<tr><th>Név</th><th>Kategória</th><th>Kötelező</th></tr>
 
 {% for subject in subjects %}
 <tr>
 <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
 <td><input type='number' value='{{ subject.category }}' name='{{ subject.id }}category'></td>
+<td><input type='number' value='{{ subject.mandatory }}' name='{{ subject.id }}mandatory'></td>
 </tr>
 {% endfor %}
 
@@ -25,6 +26,7 @@
 <form action='subjects_admin.php' method='post'>
 <input type='text' name='name'>
 <input type='number' name='category' value='1'>
+<input type='number' name='mandatory' value='0'>
 <input type='submit' name='addnew' value='Hozzáadás'>
 </form>
 </ul>

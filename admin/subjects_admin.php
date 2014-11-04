@@ -32,7 +32,7 @@ if (isset($_POST['update'])) {
 
         $subject = new subject($id);
 
-        $subject->modifyData($_POST[$id . 'name'], $_POST[$id . 'category']);
+        $subject->modifyData($_POST[$id . 'name'], $_POST[$id . 'category'], $_POST[$id . 'mandatory']);
 
     }
 
@@ -42,7 +42,7 @@ if (isset($_POST['addnew'])) {
 
     $subject = new subject();
 
-    $subject->insertData($_POST['name'], $_POST['category']);
+    $subject->insertData($_POST['name'], $_POST['category'], $_POST['mandatory']);
 
 }
 
