@@ -75,11 +75,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $notes = array();
 
-    $getNotes = $con->query('
-        select id
-        from notes
-        order by subjectid asc
-    ');
+    try {
+
+        $getNotes = $con->query('
+            select id
+            from notes
+            order by subjectid asc
+        ');
+
+    } catch (PDOException $e) {
+        die('Nem sikerült a jegyzetek kiválasztása.');
+    }
 
     while ($noteData = $getNotes->fetch()) {
         $note = new note($noteData['id']);
@@ -120,11 +126,18 @@ function getSubjects() {
     global $con;
 
     $subjects = array();
-    $getSubjects = $con->query('
-        select id, name
-        from subjects
-        order by name asc
-    ');
+
+    try {
+
+        $getSubjects = $con->query('
+            select id, name
+            from subjects
+            order by name asc
+        ');
+
+    } catch (PDOException $e) {
+        die('Nem sikerült a tárgyak kiválasztása.');
+    }
 
     while ($subject = $getSubjects->fetch()) {
         $subjects[] = $subject;

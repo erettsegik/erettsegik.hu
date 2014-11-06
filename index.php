@@ -21,7 +21,13 @@ $engine = new MarkdownEngine\MichelfMarkdownEngine();
 
 $twig->addExtension(new MarkdownExtension($engine));
 
-$getSubjects = $con->query('select * from subjects where mandatory = 1');
+try {
+
+    $getSubjects = $con->query('select * from subjects where mandatory = 1');
+
+} catch (PDOException $e) {
+    die('Nem sikerült a tantárgyak kiválasztása.');
+}
 
 $subjects = array();
 

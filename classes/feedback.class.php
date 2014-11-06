@@ -12,9 +12,15 @@ class feedback {
 
         global $con;
 
-        $selectData = $con->prepare('select * from feedback where id = :id');
-        $selectData->bindValue('id', $id, PDO::PARAM_INT);
-        $selectData->execute();
+        try {
+
+            $selectData = $con->prepare('select * from feedback where id = :id');
+            $selectData->bindValue('id', $id, PDO::PARAM_INT);
+            $selectData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült az osztály adatait betölteni.');
+        }
 
         $subjectData = $selectData->fetch();
 

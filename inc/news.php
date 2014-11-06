@@ -4,7 +4,13 @@ require_once 'classes/news.class.php';
 
 $news = array();
 
-$getNewsData = $con->query('select id from news order by date desc');
+try {
+
+    $getNewsData = $con->query('select id from news order by date desc');
+
+} catch (PDOException $e) {
+    die('Nem sikerült a híreket betölteni.');
+}
 
 while ($newsData = $getNewsData->fetch()) {
 

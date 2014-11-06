@@ -64,11 +64,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $news = array();
 
-    $getNews = $con->query('
-        select id
-        from news
-        order by date desc
-    ');
+    try {
+
+        $getNews = $con->query('
+            select id
+            from news
+            order by date desc
+        ');
+
+    } catch (PDOException $e) {
+        die('Nem sikerült a hírek kiválasztása.');
+    }
 
     while ($noteData = $getNews->fetch()) {
         $note = new news($noteData['id']);

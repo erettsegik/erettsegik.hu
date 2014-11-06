@@ -9,9 +9,15 @@ class category {
 
         global $con;
 
-        $selectData = $con->prepare('select * from categories where id = :id');
-        $selectData->bindValue('id', $id, PDO::PARAM_INT);
-        $selectData->execute();
+        try {
+
+            $selectData = $con->prepare('select * from categories where id = :id');
+            $selectData->bindValue('id', $id, PDO::PARAM_INT);
+            $selectData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült az osztály adatait betölteni.');
+        }
 
         $categoryData = $selectData->fetch();
 

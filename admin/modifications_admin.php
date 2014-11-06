@@ -27,7 +27,12 @@ if (isset($_GET['id'])) {
         if ($_GET['action'] == 'merge') {
 
             $note = new note($modification->getData()['noteid']);
-            $note->modifyData($note->getData()['title'], $modification->getData()['new_text'], $note->getData()['subjectid'], $note->getData()['category']);
+            $note->modifyData(
+                $note->getData()['title'],
+                $modification->getData()['new_text'],
+                $note->getData()['subjectid'],
+                $note->getData()['category']
+            );
 
             $modification->updateStatus(1);
 

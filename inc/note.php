@@ -49,13 +49,19 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $note = new note($_GET['id']);
 
-    $getModificationsData = $con->prepare('
-        select id
-        from modifications
-        where noteid = :noteid
-    ');
-    $getModificationsData->bindValue('noteid', $note->getData()['id'], PDO::PARAM_INT);
-    $getModificationsData->execute();
+    try {
+
+        $getModificationsData = $con->prepare('
+            select id
+            from modifications
+            where noteid = :noteid
+        ');
+        $getModificationsData->bindValue('noteid', $note->getData()['id'], PDO::PARAM_INT);
+        $getModificationsData->execute();
+
+    } catch (PDOException $e) {
+        die('Nem sikerült a kategóriák kiválasztása.');
+    }
 
     $modifications = array();
 
