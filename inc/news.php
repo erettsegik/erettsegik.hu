@@ -2,6 +2,8 @@
 
 require_once 'classes/news.class.php';
 
+$index_var['location'][] = array('url' => '?p=news', 'name' => 'Hírek');
+
 $news = array();
 
 try {
@@ -22,7 +24,7 @@ while ($newsData = $getNewsData->fetch()) {
 echo $twig->render(
     'news.html',
     array(
-        'subjects' => $subjects,
+        'index_var' => $index_var,
         'news' => $news
     )
 );

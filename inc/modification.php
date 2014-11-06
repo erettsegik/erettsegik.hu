@@ -3,6 +3,8 @@
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
+$index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat');
+
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $note = new note($_GET['noteid']);
@@ -39,8 +41,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
     'modification.html',
     array(
+        'index_var' => $index_var,
         'modification' => isset($modification) ? $modification->getData() : null,
-        'subjects' => $subjects,
         'action' => isset($_GET['action']) ? $_GET['action'] : null,
         'note' => $note->getData(),
         'status' => $status

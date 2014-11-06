@@ -3,6 +3,7 @@
 require_once 'classes/category.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
+require_once 'classes/subject.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -43,11 +44,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     }
 
+    $index_var['location'][] = array('url' => '?p=note?action=&amp;add', 'name' => 'Jegyzet hozzáadása');
+
 } else {
 
     $status = 'display';
 
     $note = new note($_GET['id']);
+
+    $subject = new subject($note->getData()['subjectid']);
+
+    $category = new category($note->getData()['category']);
 
     try {
 
@@ -70,12 +77,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $modifications[] = $modification->getData();
     }
 
+    $index_var['location'][] = array('url' => '?p=subject', 'name' => 'Tantárgyak');
+
+    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['name'], 'name' => $subject->getData()['name']);
+
+    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['name'], 'name' => $category->getData()['name']);
+
+    $index_var['location'][] = array('url' => '?p=note&amp;id=' . $note->getData()['id'], 'name' => $note->getData()['title']);
+
+
 }
 
 echo $twig->render(
     'note.html',
     array(
-        'subjects' => $subjects,
+        'index_var' => $index_var,
         'note' => (isset($note)) ? $note->getData() : null,
         'modifications' => (isset($modifications)) ? $modifications : null,
         'status' => $status,

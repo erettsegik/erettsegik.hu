@@ -21,6 +21,8 @@ $engine = new MarkdownEngine\MichelfMarkdownEngine();
 
 $twig->addExtension(new MarkdownExtension($engine));
 
+$index_var = array();
+
 try {
 
     $getSubjects = $con->query('select * from subjects where mandatory = 1');
@@ -29,13 +31,15 @@ try {
     die('Nem sikerült a tantárgyak kiválasztása.');
 }
 
-$subjects = array();
+$index_var['subjects'] = array();
 
 while ($subject = $getSubjects->fetch()) {
 
-    $subjects[] = $subject;
+    $index_var['subjects'][] = $subject;
 
 }
+
+$index_var['location'][] = array('url' => '?', 'name' => 'Főoldal');
 
 if (isset($_GET['p'])) {
 

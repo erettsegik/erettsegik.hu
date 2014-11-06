@@ -2,6 +2,8 @@
 
 require_once 'classes/feedback.class.php';
 
+$index_var['location'][] = array('url' => '?p=feedback', 'name' => 'Visszajelzés küldése');
+
 if (isset($_POST['submit'])) {
 
         $status = 'submit';
@@ -19,7 +21,7 @@ if (isset($_POST['submit'])) {
 echo $twig->render(
     'feedback.html',
     array(
-        'subjects' => $subjects,
+        'index_var' => $index_var,
         'status' => $status
     )
 );

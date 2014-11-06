@@ -3,6 +3,8 @@
 require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
 
+$index_var['location'][] = array('url' => '?p=subject', 'name' => 'Tantárgyak');
+
 if (isset($_GET['id'])) {
 
     $status = 'one';
@@ -42,6 +44,8 @@ if (isset($_GET['id'])) {
 
     }
 
+    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['name'], 'name' => $subject->getData()['name']);
+
 } else {
 
     $status = 'all';
@@ -68,7 +72,7 @@ if (isset($_GET['id'])) {
 echo $twig->render(
     'subject.html',
     array(
-        'subjects' => $subjects,
+        'index_var' => $index_var,
         'subject' => $subject->getData(),
         'categories' => (isset($categories)) ? $categories :  null,
         'allsubjects' => (isset($allsubjects)) ? $allsubjects : null,

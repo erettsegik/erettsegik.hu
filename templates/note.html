@@ -12,7 +12,7 @@
         <input type='text' name='title' placeholder='cím'>
         <br>
         <select name='subjectid'>
-            {% for subject in subjects %}
+            {% for subject in index_var.subjects %}
             <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
         </select>

@@ -20,13 +20,22 @@
   <nav>
   <ul>
     <li><a href='?p=news'>[erettsegik.hu]</a></li>
-    {% for subject in subjects %}
+    {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
     <li><a href='?p=subject'>összes tárgy</a></li>
     <li><a href='?p=note&amp;action=add'>beküldés</a></li>
   </ul>
   </nav>
+  <section id='location'>
+    Itt jársz:
+    {% for element in index_var.location %}
+      <a href='{{ element.url }}'>{{ element.name }}</a>
+      {% if not loop.last %}
+        >>
+      {% endif %}
+    {% endfor %}
+  </section>
   <section id='main'>
     {% block content %}
     {% endblock %}
