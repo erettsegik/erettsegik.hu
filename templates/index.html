@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext' rel='stylesheet' type='text/css'> 
   <meta charset='utf-8'>
   <link rel='stylesheet' type='text/css' href='base.css'>
   <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
@@ -10,7 +11,7 @@
   </script>
   <script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
-  <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/zenburn.min.css'>
+  <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css'>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js'></script>
 
   <title>erettsegik.hu</title>
@@ -18,8 +19,8 @@
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
+    <span id='homeimage'><a href='?p=news'>[erettsegik.hu]</a></span>
   <ul>
-    <li><a href='?p=news'>[erettsegik.hu]</a></li>
     {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}

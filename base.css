@@ -5,9 +5,9 @@ html, body {
 
 body {
   background-color: #dedede;
-  color: #000000;
+  color: #35586E;
   text-align: center;
-  font-family: 'Arial';
+  font-family: 'Roboto';
 }
 
 img {
@@ -15,26 +15,53 @@ img {
 }
 
 a, a:visited {
-  color: #000000;
+  color: #35586E;
+  text-decoration: none;
 }
-
+#homeimage{
+  float: left;
+  margin-left: 10px;
+}
 nav {
   margin: auto;
+  height: 50px;
+  background-color: #123952;
+  font-size: 24px;
+  vertical-align: middle;
+  color: #dedede;
+  border-bottom: 3px solid #d7d7d7;
+}
+nav a, nav a:visited{
+  color: #dedede;
 }
 
 nav ul {
   list-style-type: none;
-  background-color: #eeeeee;
+
   width: auto;
   margin: auto;
 }
 
 nav li {
   display: inline;
-  border: 1px solid black;
+  height: 50px;
+  vertical-align: middle;
+  margin: 0 10px;
 }
 
 #main {
-  background-color: #eeeeee;
+  background-color: #fff;
   text-align: left;
+  margin: auto;
+  width: 1000px;
+  border: 3px solid #d7d7d7;
+  padding: 10px;
+}
+
+h1 {
+  margin-top: 0px;
+}
+
+code{
+  border: 3px solid #d7d7d7;
 }
