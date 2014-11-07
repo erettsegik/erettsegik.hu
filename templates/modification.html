@@ -7,12 +7,12 @@
 
     {% if status == 'form' %}
 
-        <form action='?p=modification&amp;action=add&amp;noteid={{ note.id }}' method='post'>
+        <form id='modification_form' action='?p=modification&amp;action=add&amp;noteid={{ note.id }}' method='post'>
         <input type='text' name='title' placeholder='Javaslat címe'><br>
-        Eredeti szöveg:
-        <textarea name='original_text' readonly>{{ note.text }}</textarea>
-        Új szöveg:
-        <textarea name='new_text'>{{ note.text }}</textarea><br>
+        <div class='modification_form_txt_ctnr'>Eredeti szöveg:<br>
+        <textarea name='original_text' readonly>{{ note.text }}</textarea></div>
+        <div class='modification_form_txt_ctnr'>Új szöveg:<br>
+        <textarea name='new_text'>{{ note.text }}</textarea></div><br>
         <input type='text' name='comment' placeholder='Megjegyzés'><br>
         <input type='submit' name='submit'>
         </form>

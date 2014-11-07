@@ -65,3 +65,12 @@ h1 {
 code{
   border: 3px solid #d7d7d7;
 }
+
+div.modification_form_txt_ctnr textarea {
+  width: 490px;
+  height: 600px;
+}
+div.modification_form_txt_ctnr{
+  display: inline;
+  float: left;
+}
