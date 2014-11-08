@@ -19,7 +19,9 @@
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
-    <span id='homeimage'><a href='?p=news'>[erettsegik.hu]</a></span>
+    <span id='homeimage'><a href='?p=news'><img src='img/logo.png' alt= 'erettsegik.hu'></a>
+	<iframe src='http://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;colorscheme=dark'>
+    </iframe></span>
   <ul>
     {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
