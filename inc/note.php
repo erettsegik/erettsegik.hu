@@ -44,7 +44,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     }
 
-    $index_var['location'][] = array('url' => '?p=note?action=&amp;add', 'name' => 'Jegyzet hozzáadása');
+    $index_var['location'][] = array('url' => '?p=note?action=&add', 'name' => 'Jegyzet hozzáadása');
 
 } else {
 
@@ -79,11 +79,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $index_var['location'][] = array('url' => '?p=subject', 'name' => 'Tantárgyak');
 
-    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['name'], 'name' => $subject->getData()['name']);
+    $index_var['location'][] = array('url' => '?p=subject&id=' . $subject->getData()['id'], 'name' => $subject->getData()['name']);
 
-    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['name'], 'name' => $category->getData()['name']);
+    $index_var['location'][] = array('url' => '?p=subject&id=' . $subject->getData()['id'] . '#' . $category->getData()['name'], 'name' => $category->getData()['name']);
 
-    $index_var['location'][] = array('url' => '?p=note&amp;id=' . $note->getData()['id'], 'name' => $note->getData()['title']);
+    $index_var['location'][] = array('url' => '?p=note&id=' . $note->getData()['id'], 'name' => $note->getData()['title']);
 
 
 }

@@ -8,8 +8,10 @@
 
     {% if status == 'addform' %}
 
-        <form action='?p=note&amp;action=add' method='post'>
-        <input type='text' name='title' placeholder='cím'>
+        <script type='text/JavaScript' src='js/editor.js'></script>
+
+        <form action='?p=note&action=add' method='post'>
+        <input type='text' name='title' placeholder='cím' required>
         <br>
         <select name='subjectid'>
             {% for subject in index_var.subjects %}
@@ -23,7 +25,9 @@
             {% endfor %}
         </select>
         <br>
-        <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
+        <a href='#' onclick='bold()'>félkövér</a>
+        <br>
+        <textarea id='note-txt' name='text' placeholder='szöveg'></textarea>
         <br>
         <input type='submit' name='submit'>
         </form>
@@ -38,10 +42,10 @@
         <h2>Javaslatok</h2>
         {% if modifications | length == 0 %}
             <p>Nincsenek javaslatok.
-            <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>Valami nem tetszik?</a></p>
+            <a href='?p=modification&action=add&noteid={{ note.id }}'>Valami nem tetszik?</a></p>
         {% else %}
             {% for modification in modifications %}
-                <div><a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a></div>
+                <div><a href='?p=modification&id={{ modification.id }}'>{{ modification.title }}</a></div>
             {% endfor %}
         {% endif %}
         <h2>Megjegyzések</h2>

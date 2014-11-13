@@ -7,7 +7,7 @@
 
     {% if status == 'form' %}
 
-        <form id='modification_form' action='?p=modification&amp;action=add&amp;noteid={{ note.id }}' method='post'>
+        <form id='modification_form' action='?p=modification&action=add&noteid={{ note.id }}' method='post'>
         <input type='text' name='title' placeholder='Javaslat címe'><br>
         <div class='modification_form_txt_ctnr'>Eredeti szöveg:<br>
         <textarea name='original_text' readonly>{{ note.text }}</textarea></div>

@@ -7,7 +7,7 @@
     <h1>Összes tárgy.</h1>
 
     {% for subject in allsubjects %}
-        <a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a>
+        <a href='?p=subject&id={{ subject.id }}'>{{ subject.name }}</a>
     {% endfor %}
 
 {% else %}
@@ -15,16 +15,16 @@
     <h1>{{ subject.name }}</h1>
 
     {% for category in categories %}
-      {{ category.name }}
-      <p>
+      <h2 id='{{ category.name }}'>{{ category.name }}</h2>
+      <ul>
       {% for note in category.data %}
-        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+        <li><a href='?p=note&id={{ note.id }}'>{{ note.title }}</a></li>
       {% endfor %}
-      </p>
+      </ul>
     {% endfor %}
 
     {% for note in notes %}
-        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
+        <a href='?p=note&id={{ note.id }}'>{{ note.title }}</a>
     {% endfor %}
 
 {% endif %}
