@@ -40,9 +40,9 @@
         {{ note.text | markdown }}
 
         <h2>Javaslatok</h2>
+            <a href='?p=modification&action=add&noteid={{ note.id }}'>+új javaslat</a></p>
         {% if modifications | length == 0 %}
             <p>Nincsenek javaslatok.
-            <a href='?p=modification&action=add&noteid={{ note.id }}'>Valami nem tetszik?</a></p>
         {% else %}
             {% for modification in modifications %}
                 <div><a href='?p=modification&id={{ modification.id }}'>{{ modification.title }}</a></div>

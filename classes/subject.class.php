@@ -4,7 +4,6 @@ class subject {
 
     protected $id        = null;
     protected $name      = null;
-    protected $category  = null;
     protected $mandatory = null;
 
     public function __construct($id = null) {
@@ -25,17 +24,15 @@ class subject {
 
         $this->id        = $subjectData['id'];
         $this->name      = $subjectData['name'];
-        $this->category  = $subjectData['category'];
         $this->mandatory = $subjectData['mandatory'];
 
     }
 
-    public function insertData($name, $category, $mandatory) {
+    public function insertData($name, $mandatory) {
 
         global $con;
 
         $this->name      = $name;
-        $this->category  = $category;
         $this->mandatory = $mandatory;
 
         try {
@@ -45,12 +42,10 @@ class subject {
                 values(
                     DEFAULT,
                     :name,
-                    :category,
                     :mandatory
                 )
             ');
             $insertData->bindValue('name', $name, PDO::PARAM_STR);
-            $insertData->bindValue('category', $category, PDO::PARAM_INT);
             $insertData->bindValue('mandatory', $mandatory, PDO::PARAM_INT);
             $insertData->execute();
 
@@ -60,7 +55,7 @@ class subject {
 
     }
 
-    public function modifyData($name, $category, $mandatory) {
+    public function modifyData($name, $mandatory) {
 
         global $con;
 
@@ -71,7 +66,6 @@ class subject {
         } else {
 
             $this->name      = $name;
-            $this->category  = $category;
             $this->mandatory = $mandatory;
 
             try {
@@ -79,12 +73,10 @@ class subject {
                 $insertData = $con->prepare('
                     update subjects
                     set name = :name,
-                        category = :category,
                         mandatory = :mandatory
                     where id = :id
                 ');
                 $insertData->bindValue('name', $name, PDO::PARAM_STR);
-                $insertData->bindValue('category', $category, PDO::PARAM_INT);
                 $insertData->bindValue('mandatory', $mandatory, PDO::PARAM_INT);
                 $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
                 $insertData->execute();
@@ -121,7 +113,6 @@ class subject {
         return array(
             'id'        => $this->id,
             'name'      => $this->name,
-            'category'  => $this->category,
             'mandatory' => $this->mandatory
         );
 

@@ -3,9 +3,9 @@
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
-$index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat');
-
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
+
+    $index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat hozzáadása');
 
     $note = new note($_GET['noteid']);
 
@@ -34,7 +34,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $status = 'display';
 
     $modification = new modification($_GET['id']);
+
+    $index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat: ' . $modification->getData()['title']);
+
     $note = new note($modification->getData()['noteid']);
+
+    $diff = formattedDiff($modification->getData()['original_text'], $modification->getData()['new_text']);
 
 }
 
@@ -45,6 +50,7 @@ echo $twig->render(
         'modification' => isset($modification) ? $modification->getData() : null,
         'action' => isset($_GET['action']) ? $_GET['action'] : null,
         'note' => $note->getData(),
-        'status' => $status
+        'status' => $status,
+        'diff' => isset($diff) ? $diff : null
     )
 );

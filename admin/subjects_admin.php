@@ -32,7 +32,9 @@ if (isset($_POST['update'])) {
 
         $subject = new subject($id);
 
-        $subject->modifyData($_POST[$id . 'name'], $_POST[$id . 'category'], $_POST[$id . 'mandatory']);
+        $mandatory = isset($_POST[$id . 'mandatory']) && $_POST[$id . 'mandatory'] == 'on';
+
+        $subject->modifyData($_POST[$id . 'name'], $mandatory);
 
     }
 
@@ -42,7 +44,9 @@ if (isset($_POST['addnew'])) {
 
     $subject = new subject();
 
-    $subject->insertData($_POST['name'], $_POST['category'], $_POST['mandatory']);
+    $mandatory = isset($_POST['mandatory']) && $_POST['mandatory'] == 'on';
+
+    $subject->insertData($_POST['name'], $mandatory);
 
 }
 

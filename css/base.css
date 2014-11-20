@@ -7,7 +7,7 @@ body {
   background-color: #dedede;
   color: #35586E;
   text-align: center;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 }
 
 img {
