@@ -9,7 +9,6 @@ class note {
     protected $text       = null;
     protected $subject    = null;
     protected $category   = null;
-    protected $date       = null;
     protected $updatedate = null;
     protected $live       = null;
 
@@ -34,8 +33,7 @@ class note {
         $this->text       = $noteData['text'];
         $this->subject    = new subject($noteData['subjectid']);
         $this->category   = $noteData['category'];
-        $this->date       = $noteData['date'];
-        $this->updatedate = $noteData['updatedate'];
+        $this->updatedate = new DateTime($noteData['updatedate']);
         $this->live       = $noteData['live'];
 
     }
@@ -60,7 +58,6 @@ class note {
                     :text,
                     :subjectid,
                     :category,
-                    DEFAULT,
                     DEFAULT,
                     :live
                 )
@@ -117,13 +114,16 @@ class note {
 
     public function getData() {
 
+        global $config;
+
         return array(
-            'id'        => $this->id,
-            'title'     => $this->title,
-            'text'      => $this->text,
-            'subjectid' => $this->subject->getData()['id'],
-            'category'  => $this->category,
-            'live'      => $this->live
+            'id'         => $this->id,
+            'title'      => $this->title,
+            'text'       => $this->text,
+            'subjectid'  => $this->subject->getData()['id'],
+            'category'   => $this->category,
+            'updatedate' => $this->updatedate->format($config['dateformat']),
+            'live'       => $this->live
         );
 
     }

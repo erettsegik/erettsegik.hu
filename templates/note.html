@@ -38,7 +38,7 @@
 
         <h1>{{ note.title }}</h1>
         {{ note.text | markdown }}
-
+        <p>Legutóbb frissítve: {{ note.updatedate }}</p>
         <h2>Javaslatok</h2>
             <a href='?p=modification&action=add&noteid={{ note.id }}'>+új javaslat</a></p>
         {% if modifications | length == 0 %}

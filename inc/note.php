@@ -85,7 +85,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $index_var['location'][] = array('url' => '?p=note&id=' . $note->getData()['id'], 'name' => $note->getData()['title']);
 
-
 }
 
 echo $twig->render(
