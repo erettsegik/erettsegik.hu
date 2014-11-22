@@ -91,12 +91,12 @@ div.modification_form_txt_ctnr textarea {
   height: 600px;
 }
 
-div.modification_form_txt_ctnr{
+div.modification_form_txt_ctnr {
   display: inline;
   float: left;
 }
 
-nav img{
+nav img {
   height: 46px;
   margin: 2px;
 }
@@ -114,4 +114,9 @@ em {
   color: #15384E;
   font-weight: bold;
   font-style: normal;
+}
+
+span.unchanged {
+  font-style: italic;
+  color: #969696;
 }

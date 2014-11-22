@@ -31,7 +31,8 @@
 
     {{ modification.original_text }}
 
-    {{ diff }}
+    <!-- this needs to be removed! -->
+    {% autoescape false %} {{ diff }} {% endautoescape %}
 
 {% endif %}
 
