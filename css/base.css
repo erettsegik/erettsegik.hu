@@ -78,11 +78,11 @@ h1 {
   margin-top: 0px;
 }
 
-h2{
+h2 {
   font-size: 20px;
 }
 
-code{
+code {
   border: 3px solid #d7d7d7;
 }
 
@@ -103,4 +103,15 @@ nav img{
 
 #note-txt {
   width: 980px;
+}
+
+p {
+  text-align: justify;
+  text-indent: 20px;
+}
+
+em {
+  color: #15384E;
+  font-weight: bold;
+  font-style: normal;
 }
