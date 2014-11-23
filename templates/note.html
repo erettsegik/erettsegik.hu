@@ -10,16 +10,16 @@
 
         <script type='text/JavaScript' src='js/editor.js'></script>
 
-        <form action='?p=note&action=add' method='post'>
-        <input type='text' name='title' placeholder='cím' required>
+        <form action='?p=note&action=add' method='post' id='add_note_form'>
+        <input type='text' name='title' placeholder='cím' required class='add_form_item'>
         <br>
-        <select name='subjectid'>
+        <select name='subjectid' class='add_form_item'>
             {% for subject in subjects %}
             <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
         </select>
         <br>
-        <select name='category'>
+        <select name='category' class='add_form_item'>
             {% for category in categories %}
               <option value='{{ category.id }}'>{{ category.name }}</option>
             {% endfor %}

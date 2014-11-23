@@ -71,7 +71,7 @@ nav li {
   margin: auto;
   width: 1000px;
   border: 3px solid #d7d7d7;
-  padding: 10px;
+  padding: 20px;
 }
 
 h1 {
@@ -107,7 +107,7 @@ nav img {
 
 p {
   text-align: justify;
-  text-indent: 20px;
+/*  text-indent: 20px;*/
 }
 
 em {
@@ -119,4 +119,36 @@ em {
 span.unchanged {
   font-style: italic;
   color: #969696;
+}
+
+blockquote {
+  border: 3px solid #d7d7d7;
+  margin: 0;
+  padding: 6.5px;
+  background-color: #f0f0f0;
+}
+
+blockquote p {
+  margin: 0px;
+}
+
+#subject_menu {
+  -moz-column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 20px;
+  column-count: 4;
+  column-gap: 20px;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+#add_note_form textarea{
+  height: 250px;
+  width: 993px;
+
+}
+
+.add_form_item{
+  margin-bottom: 10px;
 }
