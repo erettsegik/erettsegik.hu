@@ -29,6 +29,23 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     try {
 
+      $getSubjects = $con->query('select id from subjects');
+
+    } catch (PDOException $e) {
+        die('Nem sikerült a tantárgyak kiválasztása.');
+    }
+
+    $subjects = array();
+
+    while ($subjectData = $getSubjects->fetch()) {
+
+        $subject = new subject($subjectData['id']);
+        $subjects[] = $subject->getData();
+
+    }
+
+    try {
+
       $getCategories = $con->query('select id from categories');
 
     } catch (PDOException $e) {
@@ -94,6 +111,7 @@ echo $twig->render(
         'note' => (isset($note)) ? $note->getData() : null,
         'modifications' => (isset($modifications)) ? $modifications : null,
         'status' => $status,
-        'categories' => (isset($categories)) ? $categories : null
+        'categories' => (isset($categories)) ? $categories : null,
+        'subjects' => (isset($subjects)) ? $subjects : null
     )
 );

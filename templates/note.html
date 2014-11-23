@@ -14,7 +14,7 @@
         <input type='text' name='title' placeholder='cím' required>
         <br>
         <select name='subjectid'>
-            {% for subject in index_var.subjects %}
+            {% for subject in subjects %}
             <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
         </select>
@@ -25,7 +25,11 @@
             {% endfor %}
         </select>
         <br>
-        <a href='#' onclick='bold()'>félkövér</a>
+        <a href='#' onclick='emphasis();'>kiemelés</a>
+        <a href='#' onclick='header();'>alcím 1</a>
+        <a href='#' onclick='image();'>kép</a>
+        <a href='#' onclick='list("ordered");'>számozott lista</a>
+        <a href='#' onclick='list("unordered");'>felsorolás</a>
         <br>
         <textarea id='note-txt' name='text' placeholder='szöveg'></textarea>
         <br>
