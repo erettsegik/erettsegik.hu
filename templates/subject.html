@@ -6,9 +6,11 @@
 
     <h1>Összes tárgy.</h1>
 
+    <ul id='subject_menu'>
     {% for subject in allsubjects %}
-        <a href='?p=subject&id={{ subject.id }}'>{{ subject.name }}</a>
+        <li><a href='?p=subject&id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
+    </ul>
 
 {% else %}
 
