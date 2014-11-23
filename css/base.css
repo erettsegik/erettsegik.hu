@@ -19,7 +19,7 @@ a, a:visited {
   text-decoration: none;
 }
 
-#homeimage{
+#homeimage {
   float: left;
   margin-left: 10px;
 }
@@ -42,7 +42,7 @@ iframe {
   margin: 10px auto;
 }
 
-nav a, nav a:visited{
+nav a, nav a:visited {
   color: #dedede;
 }
 
@@ -143,12 +143,11 @@ blockquote p {
   list-style-position: inside;
 }
 
-#add_note_form textarea{
+#add_note_form textarea {
   height: 250px;
   width: 993px;
-
 }
 
-.add_form_item{
+.add_form_item {
   margin-bottom: 10px;
 }
