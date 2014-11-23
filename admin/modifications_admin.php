@@ -31,7 +31,8 @@ if (isset($_GET['id'])) {
                 $note->getData()['title'],
                 $modification->getData()['new_text'],
                 $note->getData()['subjectid'],
-                $note->getData()['category']
+                $note->getData()['category'],
+                $note->getData()['live']
             );
 
             $modification->updateStatus(1);
