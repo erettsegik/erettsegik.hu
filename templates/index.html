@@ -35,7 +35,7 @@
     {% for element in index_var.location %}
       <a href='{{ element.url }}'>{{ element.name }}</a>
       {% if not loop.last %}
-        >>
+        ▷
       {% endif %}
     {% endfor %}
   </section>
