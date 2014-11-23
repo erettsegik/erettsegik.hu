@@ -49,7 +49,11 @@
             <p>Nincsenek javaslatok.
         {% else %}
             {% for modification in modifications %}
-                <div><a href='?p=modification&id={{ modification.id }}'>{{ modification.title }}</a></div>
+                <div>
+                    <a href='?p=modification&id={{ modification.id }}'>{{ modification.title }}</a>
+                    {% if modification.status == 1 %} - elfogadva {% endif %}
+                    {% if modification.status == 2 %} - elutasítva {% endif %}
+                </div>
             {% endfor %}
         {% endif %}
         <h2>Megjegyzések</h2>

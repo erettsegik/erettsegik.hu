@@ -25,6 +25,8 @@
     <p>{{ modificationdata.original_text }}</p>
     <hr>
     <p>{{ modificationdata.new_text }}</p>
+    <hr>
+    <p>beküldő megjegyzése: {{ modificationdata.comment }}</p>
     {% if modificationdata.status == 0 %}
         <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=merge'>Jóváhagyás</a>
         <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=reject'>Elutasítás</a>

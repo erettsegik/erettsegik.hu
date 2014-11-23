@@ -34,6 +34,16 @@
     <!-- this needs to be removed! -->
     {% autoescape false %} {{ diff }} {% endautoescape %}
 
+    {% if modification.comment != '' %} beküldő megjegyzése: {{ modification.comment }} {% endif %}
+
+    {% if modification.status == 1 %}
+    <p>Ez a javaslat el lett fogadva.</p>
+    {% endif %}
+
+    {% if modification.status == 2 %}
+    <p>Ez a javaslat el lett utasítva.</p>
+    {% endif %}
+
 {% endif %}
 
 {% endblock %}
