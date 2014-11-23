@@ -31,11 +31,10 @@
   </ul>
   </nav>
   <section id='location'>
-    Itt jársz:
     {% for element in index_var.location %}
       <a href='{{ element.url }}'>{{ element.name }}</a>
       {% if not loop.last %}
-        ▷
+        &#x2192;
       {% endif %}
     {% endfor %}
   </section>
