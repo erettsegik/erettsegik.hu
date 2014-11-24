@@ -7,7 +7,7 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 
 if (!checkRights(2)) {
-    header('Location: admin_login.php');
+    header('Location: /?p=login');
     die('Kerlek jelentkezz be.');
 }
 

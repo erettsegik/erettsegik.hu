@@ -8,7 +8,7 @@ require_once '../inc/functions.php';
 require_once '../classes/news.class.php';
 
 if (!checkRights(2)) {
-    header('Location: admin_login.php');
+    header('Location: /?p=login');
     die('Kerlek jelentkezz be.');
 }
 

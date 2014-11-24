@@ -6,6 +6,7 @@ session_start();
 
 $dir_level = 0;
 
+require_once 'classes/user.class.php';
 require_once 'inc/functions.php';
 require_once 'vendor/autoload.php';
 
@@ -40,6 +41,13 @@ while ($subject = $getSubjects->fetch()) {
 }
 
 $index_var['location'][] = array('url' => '?', 'name' => 'Főoldal');
+
+if (isset($_SESSION['userid'])) {
+    $user = new user($_SESSION['userid']);
+    $username = $user->getData()['name'];
+}
+
+$index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 
 if (isset($_GET['p'])) {
 

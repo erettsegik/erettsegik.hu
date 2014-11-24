@@ -1,13 +1,11 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
-require_once '../classes/user.class.php';
+require_once 'inc/functions.php';
+require_once 'classes/user.class.php';
 
 $twig = initTwig();
+
+$index_var['location'][] = array('url' => '?p=login', 'name' => 'Bejelentkezés');
 
 if (!checkRights(0)) {
 
@@ -18,6 +16,10 @@ if (!checkRights(0)) {
         $user = new user();
         $status = ($user->login($_POST['name'], $_POST['password'])) ? 'success' : 'error';
 
+        if ($status == 'success') {
+            header("Location: /?p=login");
+        }
+
     }
 
 } else {
@@ -26,6 +28,7 @@ if (!checkRights(0)) {
 
         $status = 'logout';
         session_destroy();
+        header("Location: /?p=login");
 
     } else {
 
@@ -35,4 +38,4 @@ if (!checkRights(0)) {
 
 }
 
-echo $twig->render('admin/admin_login.html', array('status' => $status));
+echo $twig->render('login.html', array('index_var' => $index_var,'status' => $status));
