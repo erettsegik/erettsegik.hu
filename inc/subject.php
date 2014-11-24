@@ -73,7 +73,7 @@ echo $twig->render(
     'subject.html',
     array(
         'index_var' => $index_var,
-        'subject' => $subject->getData(),
+        'subject' => (isset($subject)) ? $subject->getData() : null,
         'categories' => (isset($categories)) ? $categories :  null,
         'allsubjects' => (isset($allsubjects)) ? $allsubjects : null,
         'status' => $status
