@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
 
     }
 
-    $index_var['location'][] = array('url' => '?p=subject&id=' . $subject->getData()['id'], 'name' => $subject->getData()['name']);
+    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['id'], 'name' => $subject->getData()['name']);
 
 } else {
 

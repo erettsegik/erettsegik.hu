@@ -10,7 +10,7 @@
 
         <script type='text/JavaScript' src='js/editor.js'></script>
 
-        <form action='?p=note&action=add' method='post' id='add_note_form'>
+        <form action='?p=note&amp;action=add' method='post' id='add_note_form'>
         <input type='text' name='title' placeholder='cím' required class='add_form_item'>
         <br>
         <select name='subjectid' class='add_form_item'>
@@ -44,13 +44,13 @@
         {{ note.text | markdown }}
         <p>Legutóbb frissítve: {{ note.updatedate }}</p>
         <h2>Javaslatok</h2>
-            <a href='?p=modification&action=add&noteid={{ note.id }}'>+új javaslat</a></p>
+            <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>+új javaslat</a>
         {% if modifications | length == 0 %}
-            <p>Nincsenek javaslatok.
+            <p>Nincsenek javaslatok.</p>
         {% else %}
             {% for modification in modifications %}
                 <div>
-                    <a href='?p=modification&id={{ modification.id }}'>{{ modification.title }}</a>
+                    <a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a>
                     {% if modification.status == 1 %} - elfogadva {% endif %}
                     {% if modification.status == 2 %} - elutasítva {% endif %}
                 </div>

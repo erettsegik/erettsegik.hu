@@ -8,7 +8,7 @@
 
     <ul id='subject_menu'>
     {% for subject in allsubjects %}
-        <li><a href='?p=subject&id={{ subject.id }}'>{{ subject.name }}</a></li>
+        <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
     </ul>
 
@@ -20,13 +20,13 @@
       <h2 id='{{ category.name }}'>{{ category.name }}</h2>
       <ul>
       {% for note in category.data %}
-        <li><a href='?p=note&id={{ note.id }}'>{{ note.title }}</a></li>
+        <li><a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a></li>
       {% endfor %}
       </ul>
     {% endfor %}
 
     {% for note in notes %}
-        <a href='?p=note&id={{ note.id }}'>{{ note.title }}</a>
+        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
     {% endfor %}
 
 {% endif %}

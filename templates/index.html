@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <link href='//fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <meta charset='utf-8'>
   <link rel='stylesheet' type='text/css' href='css/base.css'>
   <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
@@ -24,10 +24,10 @@
     </iframe></span>
   <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='?p=subject&id={{ subject.id }}'>{{ subject.name }}</a></li>
+      <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
     <li><a href='?p=subject'>összes tárgy</a></li>
-    <li><a href='?p=note&action=add'>beküldés</a></li>
+    <li><a href='?p=note&amp;action=add'>beküldés</a></li>
   </ul>
   </nav>
   <section id='location'>
