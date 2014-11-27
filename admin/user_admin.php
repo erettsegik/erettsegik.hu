@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
 
         $user = new user($id);
 
-        // $user->modifyData($_POST[$id . 'name'], $_POST[$id . 'authority'], $_POST[$id . 'password']);
+        $user->modifyData($_POST[$id . 'name'], $_POST[$id . 'authority'], $_POST[$id . 'password']);
 
     }
 

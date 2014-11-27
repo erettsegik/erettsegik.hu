@@ -105,6 +105,39 @@ class user {
 
     }
 
+    public function modifyData($name, $authority, $password) {
+
+        global $con;
+
+        if ($password != '') {
+
+            try {
+
+                $updatePassword = $con->prepare('update users set password = :password where id = :id');
+                $updatePassword->bindValue('password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $updatePassword->bindValue('id', $this->id, PDO::PARAM_INT);
+                $updatePassword->execute();
+
+            } catch (PDOException $e) {
+                die('Nem sikerült a jelszóváltoztatás.');
+            }
+
+        }
+
+        try {
+
+            $updateData = $con->prepare('update users set name = :name, authority = :authority where id = :id');
+            $updateData->bindValue('name', $name, PDO::PARAM_STR);
+            $updateData->bindValue('authority', $authority, PDO::PARAM_INT);
+            $updateData->bindValue('id', $this->id, PDO::PARAM_INT);
+            $updateData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült az adatok frissítése.');
+        }
+
+    }
+
     public function getData() {
 
         return array(
