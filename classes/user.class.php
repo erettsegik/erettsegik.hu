@@ -87,6 +87,24 @@ class user {
 
     }
 
+    public function register($name, $authority, $password) {
+
+        global $con;
+
+        try {
+
+            $insertData = $con->prepare('insert into users values(DEFAULT, :name, :authority, :password)');
+            $insertData->bindValue('name', $name, PDO::PARAM_STR);
+            $insertData->bindValue('authority', $authority, PDO::PARAM_INT);
+            $insertData->bindValue('password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+            $insertData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült a regisztráció.');
+        }
+
+    }
+
     public function getData() {
 
         return array(
