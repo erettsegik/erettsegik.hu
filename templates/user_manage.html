@@ -8,16 +8,26 @@
 Bejelentkezve, mint {{ index_var.username }}
 <ul>
     <li><a href='/admin/'>Tovább az admin felületre?</a></li>
-    <li><a href='?p=login&amp;action=logout'>Kijelentkezés?</a></li>
+    <li><a href='?p=user_manage&amp;action=change_password'>Jelszóváltoztatás?</a></li>
+    <li><a href='?p=user_manage&amp;action=logout'>Kijelentkezés?</a></li>
 </ul>
 {% endif %}
+
+{% if status == 'change_password' %}
+<form action='?p=user_manage&amp;action=change_password' method='post'>
+<input type='password' name='old_password' placeholder='régi jelszó'><br>
+<input type='password' name='new_password' placeholder='új jelszó'><br>
+<input type='submit' name='submit'>
+</form>
+{% endif %}
+
 {% if status == 'form' or status == 'error' %}
 
 {% if status == 'error' %}
 ezekkel az adatokkal nem sikerült bejelentkezni.
 {% endif %}
 
-<form action='?p=login&amp;action=login' method='post'>
+<form action='?p=user_manage&amp;action=login' method='post'>
 <input type='text' name='name' placeholder='felhasználónév'><br>
 <input type='password' name='password' placeholder='jelszó'><br>
 <input type='submit' name='submit'>

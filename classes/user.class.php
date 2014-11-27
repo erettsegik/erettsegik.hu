@@ -42,7 +42,7 @@ class user {
 
         $userData = $getUserData->fetch();
 
-        if ($userData['password'] == $password) {
+        if (password_verify($password, $userData['password'])) {
 
             $_SESSION['userid'] = $userData['id'];
             $this->__construct($userData['id']);
@@ -53,6 +53,37 @@ class user {
             return false;
 
         }
+
+    }
+
+    public function changePassword($oldPassword, $newPassword) {
+
+        global $con;
+
+        $selectData = $con->prepare('select password from users where id = :id');
+        $selectData->bindValue('id', $this->id, PDO::PARAM_INT);
+        $selectData->execute();
+
+        $userData = $selectData->fetch();
+
+        if (password_verify($oldPassword, $userData['password'])) {
+
+            try {
+
+                $updatePassword = $con->prepare('update users set password = :password where id = :id');
+                $updatePassword->bindValue('password', password_hash($newPassword, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $updatePassword->bindValue('id', $this->id, PDO::PARAM_INT);
+                $updatePassword->execute();
+
+            } catch (PDOException $e) {
+                die('Nem sikerült a jelszóváltoztatás.');
+            }
+
+        } else {
+            return false;
+        }
+
+        return true;
 
     }
 
