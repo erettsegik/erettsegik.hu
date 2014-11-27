@@ -9,7 +9,7 @@ require_once '../classes/modification.class.php';
 require_once '../classes/note.class.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=login');
+    header('Location: /?p=user_manage');
     die('Kerlek jelentkezz be.');
 }
 

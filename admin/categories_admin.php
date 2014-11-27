@@ -8,7 +8,7 @@ require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=login');
+    header('Location: /?p=user_manage');
     die('Kerlek jelentkezz be.');
 }
 
