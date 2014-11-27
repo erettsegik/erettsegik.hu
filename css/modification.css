@@ -1,0 +1,14 @@
+div.modification_form_txt_ctnr textarea {
+  width: 490px;
+  height: 600px;
+}
+
+div.modification_form_txt_ctnr {
+  display: inline;
+  float: left;
+}
+
+span.unchanged {
+  font-style: italic;
+  color: #969696;
+}

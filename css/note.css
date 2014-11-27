@@ -1,0 +1,42 @@
+code {
+  border: 3px solid #d7d7d7;
+}
+
+img {
+  max-width: 100%;
+}
+
+em {
+  color: #15384E;
+  font-weight: bold;
+  font-style: normal;
+}
+
+p {
+  text-align: justify;
+/*  text-indent: 20px;*/
+}
+
+blockquote {
+  border: 3px solid #d7d7d7;
+  margin: 0;
+  padding: 6.5px;
+  background-color: #f0f0f0;
+}
+
+blockquote p {
+  margin: 0px;
+}
+
+#note-txt {
+  width: 980px;
+}
+
+#add_note_form textarea {
+  height: 250px;
+  width: 993px;
+}
+
+.add_form_item {
+  margin-bottom: 10px;
+}
