@@ -1,0 +1,11 @@
+#leftside {
+  float: left;
+  display: inline;
+  width: 800px;
+}
+
+#rightside {
+  float: left;
+  display: inline;
+  width: 200px;
+}

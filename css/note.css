@@ -28,15 +28,43 @@ blockquote p {
   margin: 0px;
 }
 
-#note-txt {
-  width: 980px;
-}
-
 #add_note_form textarea {
   height: 250px;
   width: 993px;
 }
 
-.add_form_item {
+input, select, textarea {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+}
+
+input {
+  width: 194px;
+}
+
+input.submit {
+  width: auto;
+}
+
+select {
+  width: 200px;
+}
+
+td {
+  padding: 0px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+table {
   margin-bottom: 10px;
+}
+
+a.edit-button {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+  padding: 5px;
+  margin: 5px;
 }

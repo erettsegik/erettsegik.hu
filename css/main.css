@@ -20,16 +20,6 @@ nav {
   border-bottom: 3px solid #d7d7d7;
 }
 
-nav img {
-  height: 46px;
-  margin: 2px;
-}
-
-#homeimage {
-  float: left;
-  margin-left: 10px;
-}
-
 nav a, nav a:visited {
   color: #dedede;
 }
@@ -55,10 +45,32 @@ iframe {
   margin: 10px auto;
 }
 
+#wrapper {
+  width: 1046px;
+  margin: auto;
+}
+
 #location {
-  width: 1000px;
+  width: 866px;
+  height: 30px;
   margin: 10px auto;
   text-align: left;
+  display: inline;
+  float: left;
+  padding-left: 20px;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+#upload_button {
+  width: 140px;
+  margin: 10px auto;
+  padding-right: 20px;
+  height: 30px;
+  display: inline;
+  float: left;
+  vertical-align: middle;
+  line-height: 30px;
 }
 
 #main {
@@ -81,4 +93,17 @@ h2 {
 a, a:visited {
   color: #35586E;
   text-decoration: none;
+}
+
+nav a.unique, nav a.unique:visited {
+  color: #ffb938;
+}
+
+.unique {
+  color: #ffb938;
+}
+
+footer{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

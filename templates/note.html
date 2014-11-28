@@ -11,29 +11,41 @@
         <script type='text/JavaScript' src='js/editor.js'></script>
 
         <form action='?p=note&amp;action=add' method='post' id='add_note_form'>
-        <input type='text' name='title' placeholder='cím' required class='add_form_item'>
+        <table>
+            <tr>
+                <td>Cím:</td>
+                <td><input type='text' name='title' required class='add_form_item'></td>
+            </tr>
+            <tr>
+                <td>Tantárgy:</td>
+                <td>
+                    <select name='subjectid' class='add_form_item'>
+                        {% for subject in subjects %}
+                        <option value='{{ subject.id }}'>{{ subject.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Kategória:</td>
+                <td>
+                    <select name='category' class='add_form_item'>
+                        {% for category in categories %}
+                          <option value='{{ category.id }}'>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <a class='edit-button' href='#' onclick='emphasis();'>kiemelés</a>
+        <a class='edit-button' href='#' onclick='header();'>alcím 1</a>
+        <a class='edit-button' href='#' onclick='image();'>kép</a>
+        <a class='edit-button' href='#' onclick='list("ordered");'>számozott lista</a>
+        <a class='edit-button' href='#' onclick='list("unordered");'>felsorolás</a>
         <br>
-        <select name='subjectid' class='add_form_item'>
-            {% for subject in subjects %}
-            <option value='{{ subject.id }}'>{{ subject.name }}</option>
-            {% endfor %}
-        </select>
+        <textarea name='text' id='note-txt' placeholder='szöveg'></textarea>
         <br>
-        <select name='category' class='add_form_item'>
-            {% for category in categories %}
-              <option value='{{ category.id }}'>{{ category.name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <a href='#' onclick='emphasis();'>kiemelés</a>
-        <a href='#' onclick='header();'>alcím 1</a>
-        <a href='#' onclick='image();'>kép</a>
-        <a href='#' onclick='list("ordered");'>számozott lista</a>
-        <a href='#' onclick='list("unordered");'>felsorolás</a>
-        <br>
-        <textarea id='note-txt' name='text' placeholder='szöveg'></textarea>
-        <br>
-        <input type='submit' name='submit'>
+        <input type='submit' name='submit' class='submit'>
         </form>
 
     {% endif %}
