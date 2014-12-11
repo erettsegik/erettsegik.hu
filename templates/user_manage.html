@@ -7,7 +7,7 @@
 {% if status == 'loggedin' %}
 Bejelentkezve, mint {{ index_var.username }}
 <ul>
-    <li><a href='/admin/'>Tovább az admin felületre?</a></li>
+    <li><a href='/admin/' target='_blank'>Tovább az admin felületre?</a></li>
     <li><a href='?p=user_manage&amp;action=change_password'>Jelszóváltoztatás?</a></li>
     <li><a href='?p=user_manage&amp;action=logout'>Kijelentkezés?</a></li>
 </ul>
@@ -33,9 +33,6 @@ ezekkel az adatokkal nem sikerült bejelentkezni.
 <input type='submit' name='submit'>
 </form>
 {% endif%}
-{% if status == 'success' %}
-Bejelentkezve! <a href='admin/index.php'>Tovább az admin felületre.</a>
-{% endif %}
 {% if status == 'logout' %}
 Sikeresen kijeletnkezet.
 {% endif %}

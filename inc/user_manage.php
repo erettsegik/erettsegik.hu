@@ -3,8 +3,6 @@
 require_once 'inc/functions.php';
 require_once 'classes/user.class.php';
 
-$twig = initTwig();
-
 $index_var['location'][] = array('url' => '?p=user_manage', 'name' => 'Felhasználói oldal');
 
 if (!checkRights(0)) {

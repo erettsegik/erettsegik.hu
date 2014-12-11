@@ -20,7 +20,7 @@ function header() {
     var end = textarea.selectionEnd;
     var sel = textarea.value.substring(start, end);
 
-    var replace = '#' + ' ' + sel;
+    var replace = '##' + ' ' + sel;
 
     textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
@@ -57,7 +57,7 @@ function list(type) {
         if (sel == '') {
             var replace = '1. listaelem';
         } else {
-            var replace = '1. ' + sel + ')';
+            var replace = '1. ' + sel;
         }
 
     } else {
@@ -65,7 +65,7 @@ function list(type) {
         if (sel == '') {
             var replace = ' - listaelem';
         } else {
-            var replace = '![kép címe](' + sel + ')';
+            var replace = ' - ' + sel;
         }
 
     }

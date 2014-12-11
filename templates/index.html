@@ -27,7 +27,7 @@
     {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
-    <li><a href='?p=subject' class='unique'>összes tárgy</a></li>
+    <li><a href='?p=subject'>összes tárgy</a></li>
   </ul>
   </nav>
   <div id='wrapper'>
@@ -37,7 +37,7 @@
       {% if not loop.last %}
         &#x2192;
       {% endif %}
-    {% endfor %} 
+    {% endfor %}
   </section>
    <div id='upload_button'><a href='?p=note&amp;action=add' class='unique'>Jegyzet beküldése</a></div>
    <br style='clear: both;'>
