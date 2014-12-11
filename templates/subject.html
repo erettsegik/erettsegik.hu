@@ -4,11 +4,15 @@
 
 {% if status == 'all' %}
 
-    <h1>Összes tárgy.</h1>
+    <h1>Összes tárgy</h1>
 
     <ul id='subject_menu'>
     {% for subject in allsubjects %}
+      {% if subject.mandatory %}
+        <li class='mandatory'><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
+      {% else %}
         <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
+      {% endif %}
     {% endfor %}
     </ul>
 

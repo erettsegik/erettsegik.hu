@@ -1,6 +1,7 @@
 <?php
 
 require_once 'classes/news.class.php';
+require_once 'classes/user.class.php';
 
 $index_var['location'][] = array('url' => '?p=news', 'name' => 'Hírek');
 
@@ -17,7 +18,10 @@ try {
 while ($newsData = $getNewsData->fetch()) {
 
     $new = new news($newsData['id']);
-    $news[] = $new->getData();
+    $a = $new->getData();
+    $author = new user($new->getData()['creatorid']);
+    $a['creator'] = $author->getData()['name'];
+    $news[] = $a;
 
 }
 

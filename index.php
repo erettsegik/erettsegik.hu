@@ -49,9 +49,17 @@ if (isset($_SESSION['userid'])) {
 
 $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 
+$index_var['css'] = '';
+
 if (isset($_GET['p'])) {
 
     $p = $_GET['p'];
+
+    if (file_exists('css/' . $p . '.css')) {
+
+        $index_var['css'] = $p;
+
+    }
 
     if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
 
@@ -64,6 +72,8 @@ if (isset($_GET['p'])) {
     }
 
 } else {
+
+    $index_var['css'] = 'news';
 
     require_once 'inc/news.php';
 

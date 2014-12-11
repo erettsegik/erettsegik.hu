@@ -2,84 +2,84 @@
 
 {% block content %}
 
-    {% if status == 'addsubmit' %}
-        Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!
-    {% endif %}
+  {% if status == 'addsubmit' %}
+    Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!
+  {% endif %}
 
-    {% if status == 'addform' %}
+  {% if status == 'addform' %}
 
-        <script type='text/JavaScript' src='js/editor.js'></script>
+    <script type='text/JavaScript' src='js/editor.js'></script>
 
-        <form action='?p=note&amp;action=add' method='post' id='add_note_form'>
-        <table>
-            <tr>
-                <td>Cím:</td>
-                <td><input type='text' name='title' required class='add_form_item'></td>
-            </tr>
-            <tr>
-                <td>Tantárgy:</td>
-                <td>
-                    <select name='subjectid' class='add_form_item'>
-                        {% for subject in subjects %}
-                        <option value='{{ subject.id }}'>{{ subject.name }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Kategória:</td>
-                <td>
-                    <select name='category' class='add_form_item'>
-                        {% for category in categories %}
-                          <option value='{{ category.id }}'>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
-        <button type='button' class='edit-button' onclick='header();'>alcím</button>
-        <button type='button' class='edit-button' onclick='image();'>kép</button>
-        <button type='button' class='edit-button' onclick='list("ordered");'>számozott listaelem</button>
-        <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás elem</button>
-        <br>
-        <textarea name='text' id='note-txt' placeholder='szöveg'></textarea>
-        <br>
-        <input type='submit' name='submit' class='submit'>
-        </form>
-
-    {% endif %}
-
-    {% if status == 'display' %}
-
-        <h1>{{ note.title }}</h1>
-        {{ note.text | markdown }}
-        <p>Legutóbb frissítve: {{ note.updatedate }}</p>
-        <h2>Javaslatok</h2>
-            <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>+új javaslat</a>
-        {% if modifications | length == 0 %}
-            <p>Nincsenek javaslatok.</p>
-        {% else %}
-            {% for modification in modifications %}
-                <div>
-                    <a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a>
-                    {% if modification.status == 1 %} - elfogadva {% endif %}
-                    {% if modification.status == 2 %} - elutasítva {% endif %}
-                </div>
+    <form action='?p=note&amp;action=add' method='post' id='add_note_form'>
+    <table>
+      <tr>
+        <td>Cím:</td>
+        <td><input type='text' name='title' required class='add_form_item'></td>
+      </tr>
+      <tr>
+        <td>Tantárgy:</td>
+        <td>
+          <select name='subjectid' class='add_form_item'>
+            {% for subject in subjects %}
+            <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
-        {% endif %}
-        <h2>Megjegyzések</h2>
-        <div id='disqus_thread'></div>
-        <script type='text/javascript'>
-            var disqus_shortname = 'erettsegikhu';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Kategória:</td>
+        <td>
+          <select name='category' class='add_form_item'>
+            {% for category in categories %}
+              <option value='{{ category.id }}'>{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+    </table>
+    <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
+    <button type='button' class='edit-button' onclick='header();'>alcím</button>
+    <button type='button' class='edit-button' onclick='image();'>kép</button>
+    <button type='button' class='edit-button' onclick='list("ordered");'>számozott listaelem</button>
+    <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás elem</button>
+    <br>
+    <textarea name='text' id='note-txt' placeholder='szöveg'></textarea>
+    <br>
+    <input type='submit' name='submit' class='submit'>
+    </form>
 
+  {% endif %}
+
+  {% if status == 'display' %}
+
+    <h1>{{ note.title }}</h1>
+    {{ note.text | markdown }}
+    <p>Legutóbb frissítve: {{ note.updatedate }}</p>
+    <h2>Javaslatok</h2>
+      <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>+új javaslat</a>
+    {% if modifications | length == 0 %}
+      <p>Nincsenek javaslatok.</p>
+    {% else %}
+      {% for modification in modifications %}
+        <div>
+          <a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a>
+          {% if modification.status == 1 %} - elfogadva {% endif %}
+          {% if modification.status == 2 %} - elutasítva {% endif %}
+        </div>
+      {% endfor %}
     {% endif %}
+    <h2>Megjegyzések</h2>
+    <div id='disqus_thread'></div>
+    <script type='text/javascript'>
+      var disqus_shortname = 'erettsegikhu';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
+
+  {% endif %}
 
 {% endblock %}

@@ -8,3 +8,7 @@
   list-style-type: disc;
   list-style-position: inside;
 }
+
+li.mandatory {
+  background-color: #ff6785;
+}

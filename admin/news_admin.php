@@ -24,7 +24,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $new->insertData(
             $_POST['title'],
-            $_POST['text']
+            $_POST['text'],
+            $_SESSION['userid']
         );
 
     } else {

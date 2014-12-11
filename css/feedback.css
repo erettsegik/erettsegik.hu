@@ -1,0 +1,19 @@
+input, select, textarea {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+}
+
+input {
+  width: 200px;
+}
+
+input.submit {
+  width: auto;
+}
+
+textarea {
+  margin: 5px 0;
+  height: 250px;
+  width: 993px;
+}

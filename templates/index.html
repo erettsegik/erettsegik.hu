@@ -4,10 +4,9 @@
   <link href='//fonts.googleapis.com/css?family=Roboto&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <meta charset='utf-8'>
   <link rel='stylesheet' type='text/css' href='css/main.css'>
-  <link rel='stylesheet' type='text/css' href='css/modification.css'>
-  <link rel='stylesheet' type='text/css' href='css/news.css'>
-  <link rel='stylesheet' type='text/css' href='css/note.css'>
-  <link rel='stylesheet' type='text/css' href='css/subject.css'>
+  {% if index_var.css != '' %}
+    <link rel='stylesheet' type='text/css' href='css/{{ index_var.css }}.css'>
+  {% endif %}
   <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
 
   <script type='text/x-mathjax-config'>
@@ -27,7 +26,7 @@
     {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
-    <li><a href='?p=subject'>összes tárgy</a></li>
+    <li><a href='?p=subject' class='unique'>összes tárgy</a></li>
   </ul>
   </nav>
   <div id='wrapper'>
@@ -39,7 +38,7 @@
       {% endif %}
     {% endfor %}
   </section>
-   <div id='upload_button'><a href='?p=note&amp;action=add' class='unique'>Jegyzet beküldése</a></div>
+   <div id='upload_button'><a href='?p=note&amp;action=add'>Jegyzet beküldése</a></div>
    <br style='clear: both;'>
   <section id='main'>
     {% block content %}

@@ -54,7 +54,7 @@ if (isset($_GET['id'])) {
 
     try {
 
-        $getSubjectData = $con->query('select id from subjects order by name asc');
+        $getSubjectData = $con->query('select id from subjects order by mandatory desc, name asc');
 
     } catch (PDOException $e) {
         die('Nem sikerült a tantárgyak kiválasztása.');

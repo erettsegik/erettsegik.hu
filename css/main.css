@@ -108,3 +108,14 @@ footer{
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+blockquote {
+  border: 3px solid #d7d7d7;
+  margin: 0;
+  padding: 6.5px;
+  background-color: #f0f0f0;
+}
+
+blockquote p {
+  margin: 0px;
+}

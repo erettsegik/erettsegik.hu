@@ -9,3 +9,7 @@
   display: inline;
   width: 200px;
 }
+
+img {
+  max-width: 100%;
+}

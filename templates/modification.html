@@ -29,10 +29,14 @@
 
     <h2>{{ modification.title }}</h2>
 
-    {{ modification.original_text }}
+    <div>
+    {{ modification.original_text | markdown }}
+    </div>
 
     <!-- this needs to be removed! -->
+    <div>
     {% autoescape false %} {{ diff }} {% endautoescape %}
+    </div>
 
     {% if modification.comment != '' %} beküldő megjegyzése: {{ modification.comment }} {% endif %}
 

@@ -34,7 +34,7 @@ class news {
 
     }
 
-    public function insertData($title, $text) {
+    public function insertData($title, $text, $creatorid) {
 
         global $con;
 
@@ -51,11 +51,12 @@ class news {
                     :text,
                     DEFAULT,
                     DEFAULT,
-                    0
+                    :creatorid
                 )
             ');
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
             $insertData->bindValue('text', $text, PDO::PARAM_STR);
+            $insertData->bindValue('creatorid', $creatorid, PDO::PARAM_STR);
             $insertData->execute();
 
         } catch (PDOException $e) {

@@ -7,11 +7,15 @@
 <p>Köszönjük a visszajelzést!</p>
 {% else %}
 <form action='?p=feedback' method='post'>
-    <input type='text' name='title'>
-    <br>
-    <textarea name='text'></textarea>
-    <br>
-    <input type='submit' name='submit' class='submit'>
+  <table>
+    <tr>
+      <td>Cím:</td>
+      <td><input type='text' name='title' required></td>
+    </tr>
+  </table>
+  <textarea name='text' placeholder='szöveg' required></textarea>
+  <br>
+  <input type='submit' name='submit' class='submit'>
 </form>
 {% endif %}
 
