@@ -28,8 +28,8 @@ ezekkel az adatokkal nem sikerült bejelentkezni.
 {% endif %}
 
 <form action='?p=user_manage&amp;action=login' method='post'>
-<input type='text' name='name' placeholder='felhasználónév'><br>
-<input type='password' name='password' placeholder='jelszó'><br>
+<input type='text' name='name' placeholder='felhasználónév' required><br>
+<input type='password' name='password' placeholder='jelszó' required><br>
 <input type='submit' name='submit'>
 </form>
 {% endif%}

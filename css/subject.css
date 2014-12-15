@@ -5,10 +5,18 @@
   -webkit-column-gap: 20px;
   column-count: 4;
   column-gap: 20px;
-  list-style-type: disc;
   list-style-position: inside;
 }
 
-li.mandatory {
-  background-color: #ff6785;
+#subject_menu {
+  list-style-type: none;
+}
+
+#subject_menu li:before {
+  content: "•";
+  margin-right: 5px;
+}
+
+#subject_menu li.mandatory {
+  color: #ffb938;
 }
