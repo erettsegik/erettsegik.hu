@@ -17,3 +17,8 @@
 img {
   max-width: 100%;
 }
+
+.article-meta {
+  font-size: 0.7em;
+  color: #d7d7d7;
+}
