@@ -119,3 +119,10 @@ blockquote {
 blockquote p {
   margin: 0px;
 }
+
+input.submit {
+  width: auto;
+  margin-top: 5px;
+  border-color: #123952;
+  border-radius: 3px;
+}

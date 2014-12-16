@@ -1,13 +1,17 @@
 #leftside {
   float: left;
   display: inline;
-  width: 800px;
+  width: 790px;
+  padding-right: 10px;
 }
 
 #rightside {
   float: left;
   display: inline;
-  width: 200px;
+  width: 180px;
+  background-color: #111111;
+  padding: 8px;
+  border: 2px solid #123952;
 }
 
 img {
