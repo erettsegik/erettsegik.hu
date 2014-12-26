@@ -37,15 +37,6 @@ nav li {
   margin: 0 10px;
 }
 
-iframe {
-  background-color: transparent;
-  border-width: 0;
-  height: 30px;
-  width: 200px;
-  overflow: hidden;
-  margin: 10px auto;
-}
-
 #wrapper {
   width: 1046px;
   margin: auto;

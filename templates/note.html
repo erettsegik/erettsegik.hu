@@ -65,6 +65,7 @@
       {% for modification in modifications %}
         <div>
           <a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a>
+          {{ modification.comment }}
           {% if modification.status == 1 %} - elfogadva {% endif %}
           {% if modification.status == 2 %} - elutasítva {% endif %}
         </div>

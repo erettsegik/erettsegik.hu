@@ -14,11 +14,21 @@
   border: 2px solid #123952;
 }
 
+iframe {
+  background-color: transparent;
+  border-width: 0;
+  height: 60px;
+  width: 180px;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+
 img {
   max-width: 100%;
 }
 
 .article-meta {
   font-size: 0.7em;
-  color: #d7d7d7;
+  color: #8090aa;
 }
