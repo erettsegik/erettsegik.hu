@@ -111,16 +111,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.2",
+            "version": "v1.16.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Twig.git",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
                 "shasum": ""
             },
             "require": {
@@ -155,7 +155,7 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
                     "role": "Contributors"
                 }
             ],
@@ -164,7 +164,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-17 12:53:44"
+            "time": "2014-12-25 19:58:19"
         }
     ],
     "packages-dev": [],
@@ -172,6 +172,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
