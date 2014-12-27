@@ -95,7 +95,7 @@ nav a.unique, nav a.unique:visited {
   color: #ffb938;
 }
 
-footer{
+footer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -116,4 +116,9 @@ input.submit {
   margin-top: 5px;
   border-color: #123952;
   border-radius: 3px;
+}
+
+.article-meta {
+  font-size: 0.7em;
+  color: #8090aa;
 }

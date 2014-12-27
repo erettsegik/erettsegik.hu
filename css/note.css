@@ -57,3 +57,42 @@ button.edit-button {
   padding: 5px;
   margin: 5px 0;
 }
+
+#leftside {
+  float: left;
+  display: inline;
+  width: 790px;
+  padding-right: 10px;
+}
+
+#rightside {
+  float: left;
+  display: inline;
+  width: 180px;
+  padding: 10px;
+  padding-top: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.modifications-list {
+}
+
+li.status_0 {
+  list-style-image: url("/img/pending.png");
+  list-style-position: outside;
+}
+
+li.status_1 {
+  list-style-image: url("/img/merged.png");
+}
+
+li.status_2 {
+  list-style-image: url("/img/rejected.png");
+}
+
+li.add-modification {
+  list-style-image: url("/img/addnew.png");
+}

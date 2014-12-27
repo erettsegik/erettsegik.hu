@@ -12,3 +12,9 @@ span.unchanged {
   font-style: italic;
   color: #969696;
 }
+
+input, select, textarea {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+}

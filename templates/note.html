@@ -53,36 +53,37 @@
   {% endif %}
 
   {% if status == 'display' %}
-
+    <div id='leftside'>
     <h1>{{ note.title }}</h1>
     {{ note.text | markdown }}
-    <p>Legutóbb frissítve: {{ note.updatedate }}</p>
+    <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
+      
+    </div>
+    <div id='rightside'>
     <h2>Javaslatok</h2>
-      <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>+új javaslat</a>
-    {% if modifications | length == 0 %}
-      <p>Nincsenek javaslatok.</p>
-    {% else %}
-      {% for modification in modifications %}
-        <div>
-          <a href='?p=modification&amp;id={{ modification.id }}'>{{ modification.title }}</a>
-          {{ modification.comment }}
-          {% if modification.status == 1 %} - elfogadva {% endif %}
-          {% if modification.status == 2 %} - elutasítva {% endif %}
-        </div>
-      {% endfor %}
-    {% endif %}
-    <h2>Megjegyzések</h2>
-    <div id='disqus_thread'></div>
-    <script type='text/javascript'>
-      var disqus_shortname = 'erettsegikhu';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
+    <ul class='modifications-list'>
+    {% for modification in modifications %}
+        <li class='status_{{ modification.status }}'>
+          <a href='?p=modification&amp;id={{ modification.id }}' title='{{ modification.comment }}'>{{ modification.title }}</a>
+        </li>
+    {% endfor %}
+    <li class='add-modification'>
+      <a href='?p=modification&amp;action=add&amp;noteid={{ note.id }}'>új javaslat</a>
+    </li>
+  </ul>
+  </div>
+<br style='clear: both;'>
+<h2>Megjegyzések</h2>
+      <div id='disqus_thread'></div>
+      <script type='text/javascript'>
+        var disqus_shortname = 'erettsegikhu';
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
     <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
-
   {% endif %}
 
 {% endblock %}
