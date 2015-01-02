@@ -3,7 +3,10 @@
 require_once 'inc/functions.php';
 require_once 'classes/user.class.php';
 
-$index_var['location'][] = array('url' => '?p=user_manage', 'name' => 'Felhasználói oldal');
+$index_var['location'][] = array(
+    'url' => '?p=user_manage',
+    'name' => 'Felhasználói oldal'
+);
 
 if (!checkRights(0)) {
 
@@ -12,7 +15,9 @@ if (!checkRights(0)) {
     if (isset($_POST['submit'])) {
 
         $user = new user();
-        $status = ($user->login($_POST['name'], $_POST['password'])) ? 'success' : 'error';
+        $status = ($user->login($_POST['name'], $_POST['password']))
+            ? 'success'
+            : 'error';
 
         if ($status == 'success') {
             header('Location: /?p=user_manage');
@@ -50,4 +55,7 @@ if (!checkRights(0)) {
 
 }
 
-echo $twig->render('user_manage.html', array('index_var' => $index_var,'status' => $status));
+echo $twig->render(
+    'user_manage.html',
+    array('index_var' => $index_var,'status' => $status)
+);

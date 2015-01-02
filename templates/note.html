@@ -6,6 +6,10 @@
     Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!
   {% endif %}
 
+  {% if status == 'notvalid' %}
+    Valamelyik mező nem helyesen lett kitöltve, kérjük próbáld újra.
+  {% endif %}
+
   {% if status == 'addform' %}
 
     <script type='text/JavaScript' src='js/editor.js'></script>
@@ -57,7 +61,7 @@
     <h1>{{ note.title }}</h1>
     {{ note.text | markdown }}
     <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
-      
+
     </div>
     <div id='rightside'>
     <h2>Javaslatok</h2>

@@ -3,7 +3,10 @@
 require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
 
-$index_var['location'][] = array('url' => '?p=subject', 'name' => 'Tantárgyak');
+$index_var['location'][] = array(
+    'url' => '?p=subject',
+    'name' => 'Tantárgyak'
+);
 
 if (isset($_GET['id'])) {
 
@@ -21,7 +24,11 @@ if (isset($_GET['id'])) {
             left join categories on notes.category = categories.id
             where notes.subjectid = :subjectid and notes.live = 1
         ');
-        $getNotesData->bindValue('subjectid', $subject->getData()['id'], PDO::PARAM_INT);
+        $getNotesData->bindValue(
+            'subjectid',
+            $subject->getData()['id'],
+            PDO::PARAM_INT
+        );
         $getNotesData->execute();
 
     } catch (PDOException $e) {
@@ -44,7 +51,10 @@ if (isset($_GET['id'])) {
 
     }
 
-    $index_var['location'][] = array('url' => '?p=subject&amp;id=' . $subject->getData()['id'], 'name' => $subject->getData()['name']);
+    $index_var['location'][] = array(
+        'url' => '?p=subject&amp;id=' . $subject->getData()['id'],
+        'name' => $subject->getData()['name']
+    );
 
 } else {
 
@@ -54,7 +64,10 @@ if (isset($_GET['id'])) {
 
     try {
 
-        $getSubjectData = $con->query('select id from subjects order by mandatory desc, name asc');
+        $getSubjectData = $con->query('
+            select id from subjects
+            order by mandatory desc, name asc
+        ');
 
     } catch (PDOException $e) {
         die('Nem sikerült a tantárgyak kiválasztása.');

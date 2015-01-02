@@ -8,6 +8,7 @@ class news {
     protected $date       = null;
     protected $updatedate = null;
     protected $creatorid  = null;
+    protected $live       = null;
 
     public function __construct($id = null) {
 
@@ -29,17 +30,21 @@ class news {
         $this->title      = $newsData['title'];
         $this->text       = $newsData['text'];
         $this->date       = new DateTime($newsData['date']);
-        $this->updatedate = ($newsData['updatedate'] != null) ? new DateTime($newsData['updatedate']) : null;
+        $this->updatedate = ($newsData['updatedate'] != null)
+                                ? new DateTime($newsData['updatedate'])
+                                : null;
         $this->creatorid  = $newsData['creatorid'];
+        $this->live       = $newsData['live'];
 
     }
 
-    public function insertData($title, $text, $creatorid) {
+    public function insertData($title, $text, $creatorid, $live) {
 
         global $con;
 
         $this->title = $title;
         $this->text  = $text;
+        $this->live  = $live;
 
         try {
 
@@ -51,12 +56,14 @@ class news {
                     :text,
                     DEFAULT,
                     DEFAULT,
-                    :creatorid
+                    :creatorid,
+                    :live
                 )
             ');
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
             $insertData->bindValue('text', $text, PDO::PARAM_STR);
-            $insertData->bindValue('creatorid', $creatorid, PDO::PARAM_STR);
+            $insertData->bindValue('creatorid', $creatorid, PDO::PARAM_INT);
+            $insertData->bindValue('live', $live, PDO::PARAM_INT);
             $insertData->execute();
 
         } catch (PDOException $e) {
@@ -65,12 +72,13 @@ class news {
 
     }
 
-    public function modifyData($title, $text) {
+    public function modifyData($title, $text, $live) {
 
         global $con;
 
         $this->title = $title;
         $this->text  = $text;
+        $this->live  = $live;
 
         try {
 
@@ -78,11 +86,13 @@ class news {
                 update news
                 set title = :title,
                     text = :text,
-                    updatedate = now()
+                    updatedate = now(),
+                    live = :live
                 where id = :id
             ');
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
             $insertData->bindValue('text', $text, PDO::PARAM_STR);
+            $insertData->bindValue('live', $live, PDO::PARAM_INT);
             $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
             $insertData->execute();
 
@@ -111,17 +121,20 @@ class news {
 
     }
 
-    public function getData() {
+    public function getData($unsanitize = false) {
 
         global $config;
 
         return array(
              'id' => $this->id,
-             'title' =>$this->title,
-             'text' => $this->text,
+             'title' => ($unsanitize) ? unprepareText($this->title) : $this->title,
+             'text' => ($unsanitize) ? unprepareText($this->text) : $this->text,
              'date' => $this->date->format($config['dateformat']),
-             'updatedate' => ($this->updatedate != null) ? $this->updatedate->format($config['dateformat']) : null,
-             'creatorid' => $this->creatorid
+             'updatedate' => ($this->updatedate != null)
+                                 ? $this->updatedate->format($config['dateformat'])
+                                 : null,
+             'creatorid' => $this->creatorid,
+             'live' => $this->live
         );
 
     }

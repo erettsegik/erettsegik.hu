@@ -10,7 +10,10 @@ if (isset($_POST['submit'])) {
 
         $feedback = new feedback();
 
-        $feedback->insertData($_POST['title'], $_POST['text']);
+        $feedback->insertData(
+            prepareText($_POST['title']),
+            prepareText($_POST['text'])
+        );
 
 } else {
 

@@ -70,8 +70,16 @@ class user {
 
             try {
 
-                $updatePassword = $con->prepare('update users set password = :password where id = :id');
-                $updatePassword->bindValue('password', password_hash($newPassword, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $updatePassword = $con->prepare('
+                    update users
+                    set password = :password
+                    where id = :id
+                ');
+                $updatePassword->bindValue(
+                    'password',
+                    password_hash($newPassword, PASSWORD_DEFAULT),
+                    PDO::PARAM_STR
+                );
                 $updatePassword->bindValue('id', $this->id, PDO::PARAM_INT);
                 $updatePassword->execute();
 
@@ -93,10 +101,17 @@ class user {
 
         try {
 
-            $insertData = $con->prepare('insert into users values(DEFAULT, :name, :authority, :password)');
+            $insertData = $con->prepare('
+                insert into users
+                values(DEFAULT, :name, :authority, :password)
+            ');
             $insertData->bindValue('name', $name, PDO::PARAM_STR);
             $insertData->bindValue('authority', $authority, PDO::PARAM_INT);
-            $insertData->bindValue('password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+            $insertData->bindValue(
+                'password',
+                password_hash($password, PASSWORD_DEFAULT),
+                PDO::PARAM_STR
+            );
             $insertData->execute();
 
         } catch (PDOException $e) {
@@ -113,8 +128,16 @@ class user {
 
             try {
 
-                $updatePassword = $con->prepare('update users set password = :password where id = :id');
-                $updatePassword->bindValue('password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+                $updatePassword = $con->prepare('
+                    update users
+                    set password = :password
+                    where id = :id
+                ');
+                $updatePassword->bindValue(
+                    'password',
+                    password_hash($password, PASSWORD_DEFAULT),
+                    PDO::PARAM_STR
+                );
                 $updatePassword->bindValue('id', $this->id, PDO::PARAM_INT);
                 $updatePassword->execute();
 
@@ -126,7 +149,11 @@ class user {
 
         try {
 
-            $updateData = $con->prepare('update users set name = :name, authority = :authority where id = :id');
+            $updateData = $con->prepare('
+                update users
+                set name = :name, authority = :authority
+                where id = :id
+            ');
             $updateData->bindValue('name', $name, PDO::PARAM_STR);
             $updateData->bindValue('authority', $authority, PDO::PARAM_INT);
             $updateData->bindValue('id', $this->id, PDO::PARAM_INT);

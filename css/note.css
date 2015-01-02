@@ -14,7 +14,8 @@ em {
 
 p {
   text-align: justify;
-/*  text-indent: 20px;*/
+  text-indent: 20px;
+  line-height: 1.5;
 }
 
 #add_note_form textarea {

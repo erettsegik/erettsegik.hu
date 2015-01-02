@@ -11,15 +11,28 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'addsubmit';
 
-        $note = new note();
+        if (
+            !isValid('subject', $_POST['subjectid']) ||
+            !isValid('category', $_POST['category']) ||
+            trim($_POST['title']) == '' ||
+            trim($_POST['text']) == ''
+        ) {
 
-        $note->insertData(
-            $_POST['title'],
-            $_POST['text'],
-            $_POST['subjectid'],
-            $_POST['category'],
-            0
-        );
+            $status = 'notvalid';
+
+        } else {
+
+            $note = new note();
+
+            $note->insertData(
+                prepareText($_POST['title']),
+                prepareText($_POST['text']),
+                $_POST['subjectid'],
+                $_POST['category'],
+                0
+            );
+
+        }
 
     } else {
 
@@ -61,7 +74,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     }
 
-    $index_var['location'][] = array('url' => '?p=note?action=&amp;add', 'name' => 'Jegyzet hozzáadása');
+    $index_var['location'][] = array(
+        'url' => '?p=note?action=&amp;add',
+        'name' => 'Jegyzet hozzáadása'
+    );
 
 } else {
 
@@ -80,7 +96,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
             from modifications
             where noteid = :noteid
         ');
-        $getModificationsData->bindValue('noteid', $note->getData()['id'], PDO::PARAM_INT);
+        $getModificationsData->bindValue(
+            'noteid',
+            $note->getData()['id'],
+            PDO::PARAM_INT
+        );
         $getModificationsData->execute();
 
     } catch (PDOException $e) {
@@ -94,13 +114,25 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $modifications[] = $modification->getData();
     }
 
-    $index_var['location'][] = array('url' => '?p=subject', 'name' => 'Tantárgyak');
+    $index_var['location'][] = array(
+        'url' => '?p=subject',
+        'name' => 'Tantárgyak'
+    );
 
-    $index_var['location'][] = array('url' => '?p=subject&id=' . $subject->getData()['id'], 'name' => $subject->getData()['name']);
+    $index_var['location'][] = array(
+        'url' => '?p=subject&id=' . $subject->getData()['id'],
+        'name' => $subject->getData()['name']
+    );
 
-    $index_var['location'][] = array('url' => '?p=subject&id=' . $subject->getData()['id'] . '#' . $category->getData()['name'], 'name' => $category->getData()['name']);
+    $index_var['location'][] = array(
+        'url' => '?p=subject&id=' . $subject->getData()['id'] . '#' . $category->getData()['name'],
+        'name' => $category->getData()['name']
+    );
 
-    $index_var['location'][] = array('url' => '?p=note&id=' . $note->getData()['id'], 'name' => $note->getData()['title']);
+    $index_var['location'][] = array(
+        'url' => '?p=note&id=' . $note->getData()['id'],
+        'name' => $note->getData()['title']
+    );
 
 }
 

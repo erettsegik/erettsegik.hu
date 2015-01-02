@@ -20,12 +20,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'submit';
 
+        $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+
         $new = new news();
 
         $new->insertData(
-            $_POST['title'],
-            $_POST['text'],
-            $_SESSION['userid']
+            prepareText($_POST['title']),
+            prepareText($_POST['text']),
+            $_SESSION['userid'],
+            $live
         );
 
     } else {
@@ -42,11 +45,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'submit';
 
+        $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+
         $new = new news($id);
 
         $new->modifyData(
-            $_POST['title'],
-            $_POST['text']
+            prepareText($_POST['title']),
+            prepareText($_POST['text']),
+            $live
         );
 
     } else {
@@ -55,7 +61,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $new = new news($id);
 
-        $newsData = $new->getData();
+        $newsData = $new->getData(true);
 
     }
 

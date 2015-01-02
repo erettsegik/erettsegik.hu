@@ -5,7 +5,10 @@ require_once 'classes/note.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
-    $index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat hozzáadása');
+    $index_var['location'][] = array(
+        'url' => '?p=modification',
+        'name' => 'Javaslat hozzáadása'
+    );
 
     $note = new note($_GET['noteid']);
 
@@ -35,11 +38,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $modification = new modification($_GET['id']);
 
-    $index_var['location'][] = array('url' => '?p=modification', 'name' => 'Javaslat: ' . $modification->getData()['title']);
+    $index_var['location'][] = array(
+        'url' => '?p=modification',
+        'name' => 'Javaslat: ' . $modification->getData()['title']
+    );
 
     $note = new note($modification->getData()['noteid']);
 
-    $diff = formattedDiff($modification->getData()['original_text'], $modification->getData()['new_text']);
+    $diff = formattedDiff(
+        $modification->getData()['original_text'],
+        $modification->getData()['new_text']
+    );
 
 }
 

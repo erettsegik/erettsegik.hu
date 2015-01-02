@@ -78,3 +78,5 @@ if (isset($_GET['p'])) {
     require_once 'inc/news.php';
 
 }
+
+ob_end_flush();

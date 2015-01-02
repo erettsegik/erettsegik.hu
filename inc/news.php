@@ -9,7 +9,12 @@ $news = array();
 
 try {
 
-    $getNewsData = $con->query('select id from news order by date desc');
+    $getNewsData = $con->query('
+        select id
+        from news
+        where live = 1
+        order by date desc
+    ');
 
 } catch (PDOException $e) {
     die('Nem sikerült a híreket betölteni.');

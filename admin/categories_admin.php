@@ -32,7 +32,7 @@ if (isset($_POST['update'])) {
 
         $category = new category($id);
 
-        $category->modifyData($_POST[$id . 'name']);
+        $category->modifyData(prepareText($_POST[$id . 'name']));
 
     }
 
@@ -42,7 +42,7 @@ if (isset($_POST['addnew'])) {
 
     $category = new category();
 
-    $category->insertData($_POST['name']);
+    $category->insertData(prepareText($_POST['name']));
 
 }
 

@@ -12,6 +12,7 @@
     <br>
     <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
     <br>
+    <input type='checkbox' name='live'> élő
     <input type='submit' name='submit'>
     </form>
 
@@ -32,6 +33,7 @@
     <br>
     <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'>{{ newsdata.text }}</textarea>
     <br>
+    <input type='checkbox' name='live' {% if newsdata.live %} checked {% endif %}> élő
     <input type='submit' name='submit'>
     </form>
 
