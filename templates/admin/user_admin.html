@@ -5,7 +5,7 @@
 
 <form action='user_admin.php' method='post'>
 <p>Jelszóváltoztatáshoz írd be a jelszó mezőbe</p>
-<table border>
+<table>
 <tr><th>Id</th><th>Név</th><th>Jogosultság</th><th>Jelszó</th></tr>
 
 {% for user in users %}
@@ -19,7 +19,7 @@
 
 </table>
 <p>
-<input type='submit' value='Frissítés' name='update'>
+<input type='submit' value='Frissítés' name='update' class='submit'>
 </p>
 </form>
 <hr>
@@ -27,7 +27,8 @@
 <input type='text' name='name'>
 <input type='number' name='authority'>
 <input type='password' name='password'>
-<input type='submit' name='addnew' value='Hozzáadás'>
+<br>
+<input type='submit' name='addnew' value='Hozzáadás' class='submit'>
 </form>
 </ul>
 {% endblock %}

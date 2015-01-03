@@ -3,9 +3,12 @@
 <head>
   <meta charset='utf-8'>
   <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon'>
+  <link rel='stylesheet' type='text/css' href='/css/admin.css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <title>erettsegik.hu admin</title>
 </head>
 <body>
+<nav>
 <ul>
 <li><a href='user_admin.php'>Felhasználók</a></li>
 <li><a href='news_admin.php'>Hírek</a></li>
@@ -14,9 +17,12 @@
 <li><a href='categories_admin.php'>Kategóriák</a></li>
 <li><a href='subjects_admin.php'>Tárgyak</a></li>
 <li><a href='feedback_admin.php'>Visszajelzések</a></li>
-<li><a href='/?p=user_manage&amp;action=logout'>Kijelentkezés</a></li>
+<li><a href='/?p=user_manage&amp;action=logout' class='unique'>Kijelentkezés</a></li>
 </ul>
+</nav>
+<div id='main'>
 {% block content %}
 {% endblock %}
+</div>
 </body>
 </html>

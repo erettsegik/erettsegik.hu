@@ -8,12 +8,13 @@
     {% if status == 'form' %}
 
     <form action='news_admin.php?action=add' method='post'>
-    <input type='text' name='title' placeholder='cím'>
+    <input type='text' name='title' placeholder='Cím'>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
+    <textarea name='text' placeholder='Szöveg' rows='50' cols='150'></textarea>
     <br>
-    <input type='checkbox' name='live'> élő
-    <input type='submit' name='submit'>
+    <input type='checkbox' name='live' style='width: auto;'> élő
+    <br>
+    <input type='submit' name='submit' class='submit'>
     </form>
 
     {% else %}
@@ -31,10 +32,11 @@
     <form action='news_admin.php?action=edit&amp;id={{ newsdata.id }}' method='post'>
     <input type='text' name='title' placeholder='cím' value='{{ newsdata.title | raw }}'>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'>{{ newsdata.text | raw }}</textarea>
+    <textarea name='text' placeholder='szöveg' rows='50' cols='150'>{{ newsdata.text | raw }}</textarea>
     <br>
-    <input type='checkbox' name='live' {% if newsdata.live %} checked {% endif %}> élő
-    <input type='submit' name='submit'>
+    <input type='checkbox' style='width: auto;' name='live' {% if newsdata.live %} checked {% endif %}> élő
+    <br>
+    <input type='submit' name='submit' class='submit'>
     </form>
 
     {% else %}

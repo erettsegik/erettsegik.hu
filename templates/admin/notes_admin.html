@@ -8,7 +8,7 @@
     {% if status == 'form' %}
 
     <form action='notes_admin.php?action=add' method='post'>
-    <input type='text' name='title' placeholder='cím'>
+    <input type='text' name='title' placeholder='Cím' class='shorter'>
     <br>
     <select name='subjectid'>
         {% for subject in subjects %}
@@ -22,10 +22,11 @@
         {% endfor %}
     </select>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='50' cols='150' style='width: auto; height: auto;'></textarea>
+    <textarea name='text' placeholder='Szöveg' rows='50' cols='150'></textarea>
     <br>
-    <input type='checkbox' name='live'> élő
-    <input type='submit' name='submit'>
+    <input type='checkbox' name='live' style='width: auto;'> élő
+    <br>
+    <input type='submit' name='submit' class='submit'>
     </form>
 
     {% else %}
@@ -41,7 +42,7 @@
     {% if status == 'form' %}
 
     <form action='notes_admin.php?action=edit&amp;id={{ notedata.id }}' method='post'>
-    <input type='text' name='title' placeholder='cím' value='{{ notedata.title | raw }}'>
+    <input type='text' name='title' placeholder='cím' value='{{ notedata.title | raw }}' class='shorter'>
     <br>
     <select name='subjectid'>
         {% for subject in subjects %}
@@ -61,10 +62,11 @@
         {% endfor %}
     </select>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='40' cols='150' style='width: auto; height: auto;'>{{ notedata.text | raw }}</textarea>
+    <textarea name='text' placeholder='Szöveg' rows='40' cols='150'>{{ notedata.text | raw }}</textarea>
     <br>
-    <input type='checkbox' name='live' {% if notedata.live %} checked {% endif %}> élő
-    <input type='submit' name='submit'>
+    <input type='checkbox' style='width: auto;' name='live' {% if notedata.live %} checked {% endif %}> élő
+    <br>
+    <input type='submit' name='submit' class='submit'>
     </form>
 
     {% else %}

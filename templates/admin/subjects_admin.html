@@ -5,28 +5,29 @@
 
 <form action='subjects_admin.php' method='post'>
 <p>Tantárgy törléséhez hagyd a nevét üresen</p>
-<table border>
+<table>
 <tr><th>Név</th><th>Kötelező</th></tr>
 
 {% for subject in subjects %}
 <tr>
 <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
-<td style='text-align: center;'>
-<input type='checkbox' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
+<td>
+<input type='checkbox' style='width: auto;' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
 </td>
 </tr>
 {% endfor %}
 
 </table>
 <p>
-<input type='submit' value='Frissítés' name='update'>
+<input type='submit' value='Frissítés' name='update' class='submit'>
 </p>
 </form>
 <hr>
 <form action='subjects_admin.php' method='post'>
 <input type='text' name='name' autofocus>
-<input type='checkbox' name='mandatory'>
-<input type='submit' name='addnew' value='Hozzáadás'>
+<input type='checkbox' name='mandatory' style='width: auto;'>
+<br>
+<input type='submit' name='addnew' value='Hozzáadás' class='submit'>
 </form>
 </ul>
 {% endblock %}
