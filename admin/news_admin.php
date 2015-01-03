@@ -90,8 +90,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
-echo "<pre>";print_r($newsData);echo "</pre>";
-
 echo $twig->render('admin/news_admin.html', array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'status' => $status,

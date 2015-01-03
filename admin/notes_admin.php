@@ -26,8 +26,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
         $note->insertData(
-            $_POST['title'],
-            $_POST['text'],
+            prepareText($_POST['title']),
+            prepareText($_POST['text']),
             $_POST['subjectid'],
             $_POST['category'],
             $live
@@ -52,8 +52,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
         $note->modifyData(
-            $_POST['title'],
-            $_POST['text'],
+            prepareText($_POST['title']),
+            prepareText($_POST['text']),
             $_POST['subjectid'],
             $_POST['category'],
             $live
@@ -65,7 +65,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note($id);
 
-        $noteData = $note->getData();
+        $noteData = $note->getData(true);
 
     }
 

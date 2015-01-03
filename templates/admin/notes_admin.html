@@ -41,7 +41,7 @@
     {% if status == 'form' %}
 
     <form action='notes_admin.php?action=edit&amp;id={{ notedata.id }}' method='post'>
-    <input type='text' name='title' placeholder='cím' value='{{ notedata.title }}'>
+    <input type='text' name='title' placeholder='cím' value='{{ notedata.title | raw }}'>
     <br>
     <select name='subjectid'>
         {% for subject in subjects %}
@@ -61,7 +61,7 @@
         {% endfor %}
     </select>
     <br>
-    <textarea name='text' placeholder='szöveg' rows='40' cols='150' style='width: auto; height: auto;'>{{ notedata.text }}</textarea>
+    <textarea name='text' placeholder='szöveg' rows='40' cols='150' style='width: auto; height: auto;'>{{ notedata.text | raw }}</textarea>
     <br>
     <input type='checkbox' name='live' {% if notedata.live %} checked {% endif %}> élő
     <input type='submit' name='submit'>
@@ -81,7 +81,7 @@
 
 <ul>
 {% for note in notes %}
-    <li>{{ note.title }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a></li>
+    <li>{{ note.title | raw }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a></li>
 {% endfor %}
 </ul>
 {% endif %}

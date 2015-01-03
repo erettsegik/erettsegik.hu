@@ -32,7 +32,7 @@
   <div id='wrapper'>
   <section id='location'>
     {% for element in index_var.location %}
-      <a href='{{ element.url }}'>{{ element.name }}</a>
+      <a href='{{ element.url }}'>{{ element.name | raw }}</a>
       {% if not loop.last %}
         &#x2192;
       {% endif %}

@@ -112,14 +112,14 @@ class note {
 
     }
 
-    public function getData() {
+    public function getData($unsanitize = false) {
 
         global $config;
 
         return array(
             'id'         => $this->id,
-            'title'      => $this->title,
-            'text'       => $this->text,
+            'title'      => ($unsanitize) ? unprepareText($this->title) : $this->title,
+            'text'       => ($unsanitize) ? unprepareText($this->text) : $this->text,
             'subjectid'  => $this->subject->getData()['id'],
             'category'   => $this->category,
             'updatedate' => $this->updatedate->format($config['dateformat']),

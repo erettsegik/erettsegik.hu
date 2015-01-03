@@ -24,13 +24,9 @@
       <h2 id='{{ category.name }}'>{{ category.name }}</h2>
       <ul>
       {% for note in category.data %}
-        <li><a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a></li>
+        <li><a href='?p=note&amp;id={{ note.id }}'>{{ note.title | raw }}</a></li>
       {% endfor %}
       </ul>
-    {% endfor %}
-
-    {% for note in notes %}
-        <a href='?p=note&amp;id={{ note.id }}'>{{ note.title }}</a>
     {% endfor %}
 
 {% endif %}
