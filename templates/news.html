@@ -5,7 +5,7 @@
 <h1>Hírek</h1>
 <section>
 {% for new in news %}
-    <h2>{{ new.title }}</h2>
+    <h2>{{ new.title | raw }}</h2>
     {{ new.text | markdown }}
     <div class='article-meta'>
     {{ new.creator }} &#8226; {{ new.date }}
