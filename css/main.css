@@ -111,6 +111,16 @@ blockquote p {
   margin: 0px;
 }
 
+input, select, textarea {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+}
+
+input {
+  width: 200px;
+}
+
 input.submit {
   width: auto;
   margin-top: 5px;
@@ -118,7 +128,21 @@ input.submit {
   border-radius: 3px;
 }
 
+select {
+  width: 200px;
+}
+
+textarea {
+  margin-top: 5px;
+  height: 250px;
+  width: 993px;
+}
+
 .article-meta {
   font-size: 0.7em;
   color: #8090aa;
+}
+
+img {
+  max-width: 100%;
 }

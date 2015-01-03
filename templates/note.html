@@ -16,16 +16,16 @@
 
     <h1>Jegyzet beküldése</h1>
 
-    <form action='?p=note&amp;action=add' method='post' id='add_note_form'>
+    <form action='?p=note&amp;action=add' method='post'>
     <table>
       <tr>
         <td>Cím:</td>
-        <td><input type='text' name='title' required class='add_form_item'></td>
+        <td><input type='text' name='title' required class='shorter'></td>
       </tr>
       <tr>
         <td>Tantárgy:</td>
         <td>
-          <select name='subjectid' class='add_form_item'>
+          <select name='subjectid'>
             {% for subject in subjects %}
             <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
@@ -35,7 +35,7 @@
       <tr>
         <td>Kategória:</td>
         <td>
-          <select name='category' class='add_form_item'>
+          <select name='category'>
             {% for category in categories %}
               <option value='{{ category.id }}'>{{ category.name }}</option>
             {% endfor %}
@@ -49,7 +49,7 @@
     <button type='button' class='edit-button' onclick='list("ordered");'>számozott listaelem</button>
     <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás elem</button>
     <br>
-    <textarea name='text' id='note-txt' placeholder='szöveg'></textarea>
+    <textarea name='text' id='note-txt' placeholder='Szöveg'></textarea>
     <br>
     <input type='submit' name='submit' class='submit'>
     </form>

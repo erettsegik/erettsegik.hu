@@ -2,10 +2,6 @@ code {
   border: 3px solid #d7d7d7;
 }
 
-img {
-  max-width: 100%;
-}
-
 em {
   color: #15384E;
   font-weight: bold;
@@ -18,27 +14,8 @@ p {
   line-height: 1.5;
 }
 
-#add_note_form textarea {
-  height: 250px;
-  width: 993px;
-}
-
-input, select, textarea {
-  border: 2px solid #d7d7d7;
-  background-color: #f8f8f8;
-  color: #35586E;
-}
-
-input {
-  width: 194px;
-}
-
-input.submit {
-  width: auto;
-}
-
-select {
-  width: 200px;
+input.shorter {
+  width: 196px;
 }
 
 td {
@@ -77,9 +54,6 @@ button.edit-button {
 
 h2 {
   margin-top: 0;
-}
-
-.modifications-list {
 }
 
 li.status_0 {

@@ -1,6 +1,3 @@
-input {
-  border: 2px solid #d7d7d7;
-  background-color: #f8f8f8;
-  color: #35586E;
-  width: 150px;
+input.login {
+    width: 150px;
 }

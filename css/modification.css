@@ -1,9 +1,9 @@
-div.modification_form_txt_ctnr textarea {
+div.modification textarea {
   width: 490px;
   height: 600px;
 }
 
-div.modification_form_txt_ctnr {
+div.modification {
   display: inline;
   float: left;
 }
@@ -11,10 +11,4 @@ div.modification_form_txt_ctnr {
 span.unchanged {
   font-style: italic;
   color: #969696;
-}
-
-input, select, textarea {
-  border: 2px solid #d7d7d7;
-  background-color: #f8f8f8;
-  color: #35586E;
 }
