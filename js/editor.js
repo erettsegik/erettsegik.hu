@@ -57,7 +57,13 @@ function list(type) {
         if (sel == '') {
             var replace = '1. listaelem';
         } else {
-            var replace = '1. ' + sel;
+            var lines = sel.split('\n');
+            var replace = '';
+
+            for (var i = 0; i < lines.length; i++) {
+                var index = i + 1;
+                replace += index + '. ' + lines[i] + '\n';
+            }
         }
 
     } else {
@@ -65,7 +71,12 @@ function list(type) {
         if (sel == '') {
             var replace = ' - listaelem';
         } else {
-            var replace = ' - ' + sel;
+            var lines = sel.split('\n');
+            var replace = '';
+
+            for (var i = 0; i < lines.length; i++) {
+                replace += ' - ' + lines[i] + '\n';
+            }
         }
 
     }
