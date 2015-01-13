@@ -45,11 +45,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $note = new note($modification->getData()['noteid']);
 
-    $diff = formattedDiff(
-        $modification->getData()['original_text'],
-        $modification->getData()['new_text']
-    );
-
 }
 
 echo $twig->render(

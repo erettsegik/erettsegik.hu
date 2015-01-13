@@ -80,7 +80,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $getNotes = $con->query('
             select id
             from notes
-            order by subjectid asc
+            order by subjectid asc, category asc
         ');
 
     } catch (PDOException $e) {

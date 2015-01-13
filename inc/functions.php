@@ -108,24 +108,3 @@ function unprepareText($text) {
     return htmlspecialchars_decode($text);
 
 }
-
-function formattedDiff($original_text, $new_text) {
-
-    $i = 0;
-    while ($original_text[$i] == $new_text[$i]) {
-        $i++;
-    }
-
-    $o_i = strlen($original_text);
-    $n_i = strlen($new_text);
-
-    while ($original_text[$o_i] == $new_text[$n_i]) {
-        $o_i--;
-        $n_i--;
-    }
-
-    $temp = $new_text;
-
-    return '<span class="unchanged">' . substr($temp, 0, $i) . '</span>' . substr($temp, $i, $n_i - $i + 1) . '<span class="unchanged">' . substr($temp, $n_i + 1) . '</span>';
-
-}

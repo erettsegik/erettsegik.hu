@@ -25,18 +25,11 @@
 
 {% else %}
 
-    <h1>Tétel címe: {{ note.title }}</h1>
+    <h1>Tétel címe: {{ note.title | raw }}</h1>
 
     <h2>{{ modification.title }}</h2>
 
-    <div>
-    {{ modification.original_text | markdown }}
-    </div>
-
-    <!-- this needs to be removed! -->
-    <div>
-    {% autoescape false %} {{ diff }} {% endautoescape %}
-    </div>
+    <span class='unchanged'>{{ modification.start_text }}</span>{{ modification.difference }}<span class='unchanged'>{{ modification.end_text }}</span>
 
     {% if modification.comment != '' %} beküldő megjegyzése: {{ modification.comment }} {% endif %}
 
