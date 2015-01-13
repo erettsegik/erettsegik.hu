@@ -8,22 +8,24 @@
     "packages": [
         {
             "name": "aptoma/twig-markdown",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aptoma/twig-markdown.git",
-                "reference": "088abf151a227efb5461a14481d0e07c55612914"
+                "reference": "f547fd717d46e60ca6008d1acae7eebfd054fc29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aptoma/twig-markdown/zipball/088abf151a227efb5461a14481d0e07c55612914",
-                "reference": "088abf151a227efb5461a14481d0e07c55612914",
+                "url": "https://api.github.com/repos/aptoma/twig-markdown/zipball/f547fd717d46e60ca6008d1acae7eebfd054fc29",
+                "reference": "f547fd717d46e60ca6008d1acae7eebfd054fc29",
                 "shasum": ""
             },
             "require": {
                 "twig/twig": "~1"
             },
             "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "league/commonmark": "~0.5",
                 "michelf/php-markdown": "~1",
                 "phpunit/phpunit": "~4.0",
                 "satooshi/php-coveralls": "~0.6"
@@ -56,7 +58,7 @@
                 "markdown",
                 "twig"
             ],
-            "time": "2014-07-24 14:19:42"
+            "time": "2015-01-06 14:13:18"
         },
         {
             "name": "michelf/php-markdown",
