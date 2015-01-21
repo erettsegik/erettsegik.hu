@@ -14,7 +14,7 @@
         <div class='modification'>Új szöveg:<br>
         <textarea name='new_text' required>{{ note.text }}</textarea></div><br>
         Megjegyzés (opcionális): <input type='text' name='comment'><br>
-        <input type='submit' name='submit' class='submit'>
+        <input type='submit' name='submit' class='submit' value='Elküldés'>
         </form>
 
     {% else %}
@@ -40,6 +40,17 @@
     {% if modification.status == 2 %}
     <p>Ez a javaslat el lett utasítva.</p>
     {% endif %}
+<h2>Megjegyzések</h2>
+      <div id='disqus_thread'></div>
+      <script type='text/javascript'>
+        var disqus_shortname = 'erettsegikhu';
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
 
 {% endif %}
 

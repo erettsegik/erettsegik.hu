@@ -12,14 +12,15 @@
     {% if new.updatedate %}
         <br>Legutóbb frissítve: {{ new.updatedate }}
     {% endif %}
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
     </div>
 {% endfor %}
 </section>
 </div>
 <div id='rightside'>
-<img src='img/logo.png'>
-<iframe src='//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;colorscheme=dark'>
-</iframe>
+<iframe src='//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width=230&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:230px; height:258px;' allowTransparency='true'></iframe>
 </div>
 <br style='clear: both;'>
 {% endblock %}

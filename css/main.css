@@ -17,7 +17,9 @@ nav {
   font-size: 24px;
   vertical-align: middle;
   color: #dedede;
-  border-bottom: 3px solid #d7d7d7;
+  width: 100%;
+  position: fixed;
+  top: 0px;
 }
 
 nav a, nav a:visited {
@@ -40,6 +42,7 @@ nav li {
 #wrapper {
   width: 1046px;
   margin: auto;
+  margin-top: 50px;
 }
 
 #location {
@@ -141,8 +144,18 @@ textarea {
 .article-meta {
   font-size: 0.7em;
   color: #8090aa;
+  margin: 16px auto;
 }
 
 img {
   max-width: 100%;
+}
+
+hr {
+  border-color: #dedede;
+  background-color: #dedede;
+  height: 2px;
+  border-width: 0px;
+  width: 95%;
+  margin: 16px auto;
 }

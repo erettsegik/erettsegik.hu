@@ -1,24 +1,22 @@
 #leftside {
   float: left;
   display: inline;
-  width: 790px;
+  width: 740px;
   padding-right: 10px;
+  border-right: 2px solid #dedede;
 }
 
 #rightside {
   float: left;
   display: inline;
-  width: 180px;
-  background-color: #111111;
-  padding: 8px;
-  border: 2px solid #123952;
+  width: 230px;
+  padding: 9px;
 }
 
 iframe {
   background-color: transparent;
   border-width: 0;
-  height: 60px;
-  width: 180px;
+  width: 230px;
   overflow: hidden;
   margin: 10px auto;
 }
