@@ -79,6 +79,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'name' => 'Jegyzet hozzáadása'
     );
 
+    $index_var['title'] = 'Jegyzet hozzáadása';
+
 } else {
 
     $status = 'display';
@@ -133,6 +135,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'url' => '?p=note&id=' . $note->getData()['id'],
         'name' => $note->getData()['title']
     );
+
+    $index_var['title'] = $note->getData()['title'];
 
 }
 

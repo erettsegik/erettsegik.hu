@@ -56,6 +56,8 @@ if (isset($_GET['id'])) {
         'name' => $subject->getData()['name']
     );
 
+    $index_var['title'] = $subject->getData()['name'];
+
 } else {
 
     $status = 'all';
@@ -79,6 +81,8 @@ if (isset($_GET['id'])) {
         $allsubjects[] = $subject->getData();
 
     }
+
+    $index_var['title'] = 'Tantárgyak';
 
 }
 

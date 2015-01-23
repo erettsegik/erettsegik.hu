@@ -8,6 +8,8 @@ $index_var['location'][] = array(
     'name' => 'Felhasználói oldal'
 );
 
+$index_var['title'] = 'Felhasználói oldal';
+
 if (!checkRights(0)) {
 
     $status = 'form';

@@ -5,6 +5,8 @@ require_once 'classes/note.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
+    $index_var['title'] = 'Javaslat hozzáadása';
+
     $index_var['location'][] = array(
         'url' => '?p=modification',
         'name' => 'Javaslat hozzáadása'
@@ -42,6 +44,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'url' => '?p=modification',
         'name' => 'Javaslat: ' . $modification->getData()['title']
     );
+
+    $index_var['title'] = $modification->getData()['title'];
 
     $note = new note($modification->getData()['noteid']);
 

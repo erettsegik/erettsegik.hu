@@ -5,6 +5,8 @@ require_once 'classes/user.class.php';
 
 $index_var['location'][] = array('url' => '?p=news', 'name' => 'Hírek');
 
+$index_var['title'] = 'Hírek';
+
 $news = array();
 
 try {
