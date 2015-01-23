@@ -8,7 +8,9 @@ $index_var['title'] = 'Visszajelzés';
 
 if (isset($_POST['submit'])) {
 
-        $status = 'submit';
+    $status = 'submit';
+
+    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['text'])) {
 
         $feedback = new feedback();
 
@@ -17,9 +19,15 @@ if (isset($_POST['submit'])) {
             prepareText($_POST['text'])
         );
 
+    } else {
+
+        $status = 'empty';
+
+    }
+
 } else {
 
-        $status = 'form';
+    $status = 'form';
 
 }
 

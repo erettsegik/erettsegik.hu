@@ -18,15 +18,23 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'submit';
 
-        $modification = new modification();
+        if (isValid('note', $_GET['noteid'])) {
 
-        $modification->insertData(
-            $_GET['noteid'],
-            $_POST['title'],
-            $_POST['original_text'],
-            $_POST['new_text'],
-            $_POST['comment']
-        );
+            $modification = new modification();
+
+            $modification->insertData(
+                $_GET['noteid'],
+                $_POST['title'],
+                $_POST['original_text'],
+                $_POST['new_text'],
+                $_POST['comment']
+            );
+
+        } else {
+
+            die('Érvénytelen!');
+
+        }
 
     } else {
 

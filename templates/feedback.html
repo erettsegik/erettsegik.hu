@@ -5,7 +5,13 @@
 
 {% if status == 'submit' %}
 <p>Köszönjük a visszajelzést!</p>
-{% else %}
+{% endif %}
+
+{% if status == 'empty' %}
+<p>Nem küldheted el üresen az űrlapot!</p>
+{% endif %}
+
+{% if status == 'form' %}
 <form action='?p=feedback' method='post'>
   <table>
     <tr>

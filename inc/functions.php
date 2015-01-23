@@ -71,6 +71,12 @@ function checkRights($clearance_level = 0) {
 
 }
 
+function isNotEmpty($text) {
+
+    return trim($text) != '';
+
+}
+
 function isValid($type, $id) {
 
     global $con;

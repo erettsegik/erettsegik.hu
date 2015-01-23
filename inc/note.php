@@ -14,8 +14,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         if (
             !isValid('subject', $_POST['subjectid']) ||
             !isValid('category', $_POST['category']) ||
-            trim($_POST['title']) == '' ||
-            trim($_POST['text']) == ''
+            !isNotEmpty($_POST['title']) ||
+            !isNotEmpty($_POST['text'])
         ) {
 
             $status = 'notvalid';

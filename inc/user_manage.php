@@ -47,9 +47,17 @@ if (!checkRights(0)) {
 
         if (isset($_POST['submit'])) {
 
-            $user = new user($_SESSION['userid']);
-            $user->changePassword($_POST['old_password'], $_POST['new_password']);
-            header('Location: /?p=user_manage');
+            if (isNotEmpty($_POST['new_password'])) {
+
+                $user = new user($_SESSION['userid']);
+                $user->changePassword($_POST['old_password'], $_POST['new_password']);
+                header('Location: /?p=user_manage');
+
+            } else {
+
+                die('Érvénytelen!');
+
+            }
 
         }
 
