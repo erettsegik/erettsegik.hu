@@ -1,13 +1,32 @@
 <?php
 
+require_once 'classes/category.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
-if (!isValid('note', $_GET['noteid'])) {
+if (isset($_GET['id'])) {
+
+    if (isValid('modification', $_GET['id'])) {
+
+        $modification = new modification($_GET['id']);
+
+        $noteid = $modification->getData()['noteid'];
+
+    } else {
+        die('Érvénytelen');
+    }
+
+}
+
+if (!isValid('note', $_GET['noteid']) && !isset($_GET['id'])) {
     die('Érvénytelen!');
 }
 
-$note = new note($_GET['id']);
+if (!isset($noteid)) {
+    $noteid = $_GET['noteid'];
+}
+
+$note = new note($noteid);
 
 $subject = new subject($note->getData()['subjectid']);
 

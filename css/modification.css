@@ -8,7 +8,26 @@ div.modification {
   float: left;
 }
 
-span.unchanged {
-  font-style: italic;
-  color: #969696;
+#modification-title {
+  display: inline;
+  width: auto;
+}
+
+div.modification-container {
+  display: inline;
+  float: left;
+  width: 480px;
+  padding: 10px;
+}
+
+p {
+  text-align: justify;
+}
+
+span.difference-original {
+  color: #AA0000;
+}
+
+span.difference-modified {
+  color: #00AA00;
 }

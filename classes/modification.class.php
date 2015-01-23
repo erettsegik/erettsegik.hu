@@ -8,7 +8,8 @@ class modification {
     protected $note          = null;
     protected $title         = null;
     protected $start_text    = null;
-    protected $difference    = null;
+    protected $old_text      = null;
+    protected $new_text      = null;
     protected $end_text      = null;
     protected $comment       = null;
     protected $date          = null;
@@ -40,7 +41,8 @@ class modification {
         $this->note          = new note($noteData['noteid']);
         $this->title         = $noteData['title'];
         $this->start_text    = $noteData['start_text'];
-        $this->difference    = $noteData['difference'];
+        $this->old_text      = $noteData['old_text'];
+        $this->new_text      = $noteData['new_text'];
         $this->end_text      = $noteData['end_text'];
         $this->comment       = $noteData['comment'];
         $this->date          = new DateTime($noteData['date']);
@@ -50,7 +52,7 @@ class modification {
 
     }
 
-    public function insertData($noteid, $title, $original_text, $new_text, $comment) {
+    public function insertData($noteid, $title, $original, $modified, $comment) {
 
         global $con;
 
@@ -60,21 +62,22 @@ class modification {
         $this->date    = new DateTime();
 
         $i = 0;
-        while ($original_text[$i] == $new_text[$i]) {
+        while ($original[$i] == $modified[$i]) {
             $i++;
         }
 
-        $o_i = strlen($original_text);
-        $n_i = strlen($new_text);
+        $o_i = strlen($original);
+        $n_i = strlen($modified);
 
-        while ($original_text[$o_i] == $new_text[$n_i]) {
+        while ($original[$o_i] == $modified[$n_i]) {
             $o_i--;
             $n_i--;
         }
 
-        $this->start_text = substr($new_text, max(0, $i-200), min($i, 200));
-        $this->difference = substr($new_text, $i, $n_i - $i + 1);
-        $this->end_text   = substr($new_text, $n_i + 1, min(strlen($new_text) - $n_i, 200));
+        $this->start_text = substr($modified, max(0, $i-200), min($i, 200));
+        $this->old_text   = substr($original, $i, $o_i - $i + 1);
+        $this->new_text   = substr($modified, $i, $n_i - $i + 1);
+        $this->end_text   = substr($modified, $n_i + 1, min(strlen($modified) - $n_i, 200));
 
         try {
 
@@ -85,7 +88,8 @@ class modification {
                     :noteid,
                     :title,
                     :start_text,
-                    :difference,
+                    :old_text,
+                    :new_text,
                     :end_text,
                     :comment,
                     DEFAULT,
@@ -97,7 +101,8 @@ class modification {
             $insertData->bindValue('noteid', $noteid, PDO::PARAM_INT);
             $insertData->bindValue('title', $title, PDO::PARAM_STR);
             $insertData->bindValue('start_text', $this->start_text, PDO::PARAM_STR);
-            $insertData->bindValue('difference', $this->difference, PDO::PARAM_STR);
+            $insertData->bindValue('old_text', $this->old_text, PDO::PARAM_STR);
+            $insertData->bindValue('new_text', $this->new_text, PDO::PARAM_STR);
             $insertData->bindValue('end_text', $this->end_text, PDO::PARAM_STR);
             $insertData->bindValue('comment', $comment, PDO::PARAM_STR);
             $insertData->execute();
@@ -146,7 +151,8 @@ class modification {
             'noteid'        => $this->note->getData()['id'],
             'title'         => $this->title,
             'start_text'    => $this->start_text,
-            'difference'    => $this->difference,
+            'old_text'      => $this->old_text,
+            'new_text'      => $this->new_text,
             'end_text'      => $this->end_text,
             'comment'       => $this->comment,
             'date'          => $this->date->format($config['dateformat']),

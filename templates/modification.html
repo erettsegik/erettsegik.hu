@@ -25,22 +25,39 @@
 
 {% else %}
 
-    <h1>Tétel címe: {{ note.title | raw }}</h1>
+    <h1 id='modification-title'>{{ modification.title }}</h1>
 
-    <h2>{{ modification.title }}</h2>
-
-    <span class='unchanged'>{{ modification.start_text }}</span>{{ modification.difference }}<span class='unchanged'>{{ modification.end_text }}</span>
-
-    {% if modification.comment != '' %} beküldő megjegyzése: {{ modification.comment }} {% endif %}
+    {% if modification.status == 0 %}
+    <img src='/img/pending.png' alt='pending' id='modification-status'>
+    {% endif %}
 
     {% if modification.status == 1 %}
-    <p>Ez a javaslat el lett fogadva.</p>
+    <img src='/img/merged.png' alt='merged' id='modification-status'>
     {% endif %}
 
     {% if modification.status == 2 %}
-    <p>Ez a javaslat el lett utasítva.</p>
+    <img src='/img/rejected.png' alt='rejected' id='modification-status'>
     {% endif %}
-<h2>Megjegyzések</h2>
+
+    <br>
+
+    <span class='article-meta'>
+        Tétel címe: {{ note.title | raw }}
+        {% if modification.comment != '' %}
+        <br>beküldő megjegyzése: {{ modification.comment }}
+        {% endif %}
+        <br>
+        beküldve: {{ modification.date }}
+    </span>
+    <br>
+
+    <div class='modification-container'><p>{{ modification.start_text }}<span class='difference-original'>{{ modification.old_text }}</span>{{ modification.end_text }}</p></div>
+
+    <div class='modification-container'><p>{{ modification.start_text }}<span class='difference-modified'>{{ modification.new_text }}</span>{{ modification.end_text }}</p></div>
+
+    <br style='clear: both;'>
+
+    <h2>Megjegyzések</h2>
       <div id='disqus_thread'></div>
       <script type='text/javascript'>
         var disqus_shortname = 'erettsegikhu';
