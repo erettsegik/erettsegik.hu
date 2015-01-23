@@ -13,6 +13,7 @@ body {
 nav {
   margin: auto;
   height: 50px;
+  line-height: 50px;
   background-color: #123952;
   font-size: 24px;
   vertical-align: middle;
@@ -27,9 +28,11 @@ nav a, nav a:visited {
 }
 
 nav ul {
+  display: inline;
   list-style-type: none;
   text-align: center;
   margin: auto;
+  padding-right: 120px;
 }
 
 nav li {
@@ -37,6 +40,18 @@ nav li {
   height: 50px;
   vertical-align: middle;
   margin: 0 10px;
+}
+
+#search_form {
+  display: inline;
+}
+
+#search_form input {
+  height: 16px;
+  width: 120px;
+  /*margin-top: 14px;*/
+  margin-bottom: 15px;
+  background-color: #dedede;
 }
 
 #wrapper {

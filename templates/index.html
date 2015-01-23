@@ -22,11 +22,15 @@
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
+    <form id='search_form'>
+      <input type='text'>
+    </form>
   <ul>
     {% for subject in index_var.subjects %}
       <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
     {% endfor %}
     <li><a href='?p=subject' class='unique'>Összes tárgy</a></li>
+
   </ul>
   </nav>
   <div id='wrapper'>
