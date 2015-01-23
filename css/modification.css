@@ -13,6 +13,10 @@ div.modification {
   width: auto;
 }
 
+#modification-status {
+  height: 20px;
+}
+
 div.modification-container {
   display: inline;
   float: left;
@@ -24,10 +28,10 @@ p {
   text-align: justify;
 }
 
-span.difference-original {
+.difference-original {
   color: #AA0000;
 }
 
-span.difference-modified {
+.difference-modified {
   color: #00AA00;
 }
