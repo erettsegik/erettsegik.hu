@@ -3,6 +3,36 @@
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
+if (!isValid('note', $_GET['noteid'])) {
+    die('Érvénytelen!');
+}
+
+$note = new note($_GET['id']);
+
+$subject = new subject($note->getData()['subjectid']);
+
+$category = new category($note->getData()['category']);
+
+$index_var['location'][] = array(
+    'url' => '?p=subject',
+    'name' => 'Tantárgyak'
+);
+
+$index_var['location'][] = array(
+    'url' => '?p=subject&id=' . $subject->getData()['id'],
+    'name' => $subject->getData()['name']
+);
+
+$index_var['location'][] = array(
+    'url' => '?p=subject&id=' . $subject->getData()['id'] . '#' . $category->getData()['name'],
+    'name' => $category->getData()['name']
+);
+
+$index_var['location'][] = array(
+    'url' => '?p=note&id=' . $note->getData()['id'],
+    'name' => $note->getData()['title']
+);
+
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $index_var['title'] = 'Javaslat hozzáadása';
@@ -18,23 +48,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $status = 'submit';
 
-        if (isValid('note', $_GET['noteid'])) {
+        $modification = new modification();
 
-            $modification = new modification();
-
-            $modification->insertData(
-                $_GET['noteid'],
-                $_POST['title'],
-                $_POST['original_text'],
-                $_POST['new_text'],
-                $_POST['comment']
-            );
-
-        } else {
-
-            die('Érvénytelen!');
-
-        }
+        $modification->insertData(
+            $_GET['noteid'],
+            $_POST['title'],
+            $_POST['original_text'],
+            $_POST['new_text'],
+            $_POST['comment']
+        );
 
     } else {
 
