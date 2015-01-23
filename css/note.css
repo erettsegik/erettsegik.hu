@@ -57,18 +57,18 @@ h2 {
 }
 
 li.status_0 {
-  list-style-image: url("/img/pending.png");
+  list-style-image: url("/img/pending_icon.png");
   list-style-position: outside;
 }
 
 li.status_1 {
-  list-style-image: url("/img/merged.png");
+  list-style-image: url("/img/merged_icon.png");
 }
 
 li.status_2 {
-  list-style-image: url("/img/rejected.png");
+  list-style-image: url("/img/rejected_icon.png");
 }
 
 li.add-modification {
-  list-style-image: url("/img/addnew.png");
+  list-style-image: url("/img/addnew_icon.png");
 }
