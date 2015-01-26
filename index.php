@@ -18,7 +18,7 @@ $twig = new Twig_Environment($loader);
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
-$engine = new MarkdownEngine\MichelfMarkdownEngine();
+$engine = new MarkdownEngine\PHPLeagueCommonMarkEngine();
 
 $twig->addExtension(new MarkdownExtension($engine));
 
