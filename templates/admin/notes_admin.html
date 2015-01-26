@@ -22,12 +22,21 @@
         {% endfor %}
     </select>
     <br>
-    <textarea name='text' placeholder='Szöveg' rows='50' cols='150'></textarea>
+    <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
+    <button type='button' class='edit-button' onclick='header();'>alcím</button>
+    <button type='button' class='edit-button' onclick='image();'>kép</button>
+    <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
+    <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
+    <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
+    <br style='clear: both;'>
+    <textarea name='text' placeholder='Szöveg' rows='50' cols='150' id='note-txt'></textarea>
     <br>
     <input type='checkbox' name='live' style='width: auto;'> élő
     <br>
     <input type='submit' name='submit' class='submit'>
     </form>
+
+    <script type='text/JavaScript' src='/js/editor.js'></script>
 
     {% else %}
 
@@ -62,13 +71,22 @@
         {% endfor %}
     </select>
     <br>
-    <textarea name='text' placeholder='Szöveg' rows='40' cols='150'>{{ notedata.text | raw }}</textarea>
+    <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
+    <button type='button' class='edit-button' onclick='header();'>alcím</button>
+    <button type='button' class='edit-button' onclick='image();'>kép</button>
+    <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
+    <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
+    <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
+    <br style='clear: both;'>
+    <textarea name='text' placeholder='Szöveg' rows='40' cols='150' id='note-txt'>{{ notedata.text | raw }}</textarea>
     <br>
     <input type='checkbox' style='width: auto;' name='live' {% if notedata.live %} checked {% endif %}> élő
     <span class='delete-box'><input type='checkbox' style='width: auto;' name='delete'> TÖRLÉS</span>
     <br style='clear: both;'>
     <input type='submit' name='submit' class='submit'>
     </form>
+
+    <script type='text/JavaScript' src='/js/editor.js'></script>
 
     {% else %}
 
@@ -87,6 +105,7 @@
     <li>{{ note.title | raw }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a></li>
 {% endfor %}
 </ul>
+
 {% endif %}
 
 {% endblock %}
