@@ -65,7 +65,8 @@
     <textarea name='text' placeholder='Szöveg' rows='40' cols='150'>{{ notedata.text | raw }}</textarea>
     <br>
     <input type='checkbox' style='width: auto;' name='live' {% if notedata.live %} checked {% endif %}> élő
-    <br>
+    <span class='delete-box'><input type='checkbox' style='width: auto;' name='delete'> TÖRLÉS</span>
+    <br style='clear: both;'>
     <input type='submit' name='submit' class='submit'>
     </form>
 

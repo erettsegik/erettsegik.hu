@@ -112,6 +112,22 @@ class note {
 
     }
 
+    public function remove() {
+
+        global $con;
+
+        try {
+
+            $remove = $con->prepare('delete from notes where id = :id');
+            $remove->bindValue('id', $this->id, PDO::PARAM_INT);
+            $remove->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült kitörölni a jegyzetet.');
+        }
+
+    }
+
     public function getData($unsanitize = false) {
 
         global $config;

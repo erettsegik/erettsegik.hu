@@ -49,15 +49,23 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         $note = new note($id);
 
-        $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+        if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
-        $note->modifyData(
-            prepareText($_POST['title']),
-            prepareText($_POST['text']),
-            $_POST['subjectid'],
-            $_POST['category'],
-            $live
-        );
+            $note->remove();
+
+        } else {
+
+            $live = (isset($_POST['live']) && $_POST['live'] == 'on');
+
+            $note->modifyData(
+                prepareText($_POST['title']),
+                prepareText($_POST['text']),
+                $_POST['subjectid'],
+                $_POST['category'],
+                $live
+            );
+
+        }
 
     } else {
 

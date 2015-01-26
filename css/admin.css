@@ -106,3 +106,8 @@ th, td {
 td {
   text-align: center;
 }
+
+.delete-box {
+  float: right;
+  color: red;
+}
