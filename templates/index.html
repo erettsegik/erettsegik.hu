@@ -22,8 +22,8 @@
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
-    <form id='search_form'>
-      <input type='text'>
+    <form id='search_form' action='/?p=search' method='get'>
+      <input type='text' name='q'>
     </form>
   <ul>
     {% for subject in index_var.subjects %}
