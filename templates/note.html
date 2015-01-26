@@ -12,8 +12,6 @@
 
   {% if status == 'addform' %}
 
-    <script type='text/JavaScript' src='js/editor.js'></script>
-
     <h1>Jegyzet beküldése</h1>
 
     <form action='?p=note&amp;action=add' method='post'>
@@ -48,11 +46,14 @@
     <button type='button' class='edit-button' onclick='image();'>kép</button>
     <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
     <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
-    <br>
+    <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
+    <br style='clear: both;'>
     <textarea name='text' id='note-txt' placeholder='Szöveg'></textarea>
     <br>
     <input type='submit' name='submit' class='submit' value='Elküldés'>
     </form>
+
+    <script type='text/JavaScript' src='js/editor.js'></script>
 
   {% endif %}
 
@@ -76,8 +77,8 @@
     </li>
   </ul>
   </div>
-<br style='clear: both;'>
-<h2>Megjegyzések</h2>
+  <br style='clear: both;'>
+  <h2>Megjegyzések</h2>
       <div id='disqus_thread'></div>
       <script type='text/javascript'>
         var disqus_shortname = 'erettsegikhu';

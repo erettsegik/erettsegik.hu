@@ -140,7 +140,7 @@ function getSubjects() {
         $getSubjects = $con->query('
             select id, name
             from subjects
-            order by name asc
+            order by mandatory desc, name asc
         ');
 
     } catch (PDOException $e) {

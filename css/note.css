@@ -56,6 +56,10 @@ h2 {
   margin-top: 0;
 }
 
+#notes-help {
+  float: right;
+}
+
 li.status_0 {
   list-style-image: url("/img/pending_icon.png");
   list-style-position: outside;

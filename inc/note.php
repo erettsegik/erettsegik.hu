@@ -42,7 +42,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     try {
 
-      $getSubjects = $con->query('select id from subjects');
+      $getSubjects = $con->query('select id from subjects order by mandatory desc, name asc');
 
     } catch (PDOException $e) {
         die('Nem sikerült a tantárgyak kiválasztása.');
