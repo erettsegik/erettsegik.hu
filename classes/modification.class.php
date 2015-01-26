@@ -52,9 +52,13 @@ class modification {
 
     }
 
-    public function insertData($noteid, $title, $original, $modified, $comment) {
+    public function insertData($noteid, $title, $modified, $comment) {
 
         global $con;
+
+        $note = new note($noteid);
+
+        $original = $note->getData()['text'];
 
         $this->note    = new note($noteid);
         $this->title   = $title;
@@ -66,8 +70,8 @@ class modification {
             $i++;
         }
 
-        $o_i = strlen($original);
-        $n_i = strlen($modified);
+        $o_i = strlen($original) - 1;
+        $n_i = strlen($modified) - 1;
 
         while ($original[$o_i] == $modified[$n_i]) {
             $o_i--;
@@ -75,9 +79,9 @@ class modification {
         }
 
         $this->start_text = substr($modified, max(0, $i-200), min($i, 200));
-        $this->old_text   = substr($original, $i, $o_i - $i + 1);
-        $this->new_text   = substr($modified, $i, $n_i - $i + 1);
-        $this->end_text   = substr($modified, $n_i + 1, min(strlen($modified) - $n_i, 200));
+        $this->old_text   = substr($original, $i, max(0, $o_i - $i + 1));
+        $this->new_text   = substr($modified, $i, max(0, $n_i - $i + 1));
+        $this->end_text   = substr($modified, $n_i + 1, 200);
 
         try {
 
@@ -110,7 +114,7 @@ class modification {
             $this->id = $con->lastInsertId();
 
         } catch (PDOException $e) {
-            die('Nem sikerült elmenteni a javaslatot.');
+            die('Nem sikerült elmenteni a javaslatot.' . $e->getMessage());
         }
 
     }
