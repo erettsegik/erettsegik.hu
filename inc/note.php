@@ -85,6 +85,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $status = 'display';
 
+    if (!isValid('note', $_GET['id'])) {
+
+        die('Érvénytelen!');
+
+    }
+
     $note = new note($_GET['id']);
 
     $subject = new subject($note->getData()['subjectid']);

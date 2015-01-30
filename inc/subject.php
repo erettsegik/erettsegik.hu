@@ -8,7 +8,7 @@ $index_var['location'][] = array(
     'name' => 'Tantárgyak'
 );
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 
     $status = 'one';
 
