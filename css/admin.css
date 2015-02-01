@@ -111,3 +111,18 @@ td {
   float: right;
   color: red;
 }
+
+div.modification-container {
+  display: inline;
+  float: left;
+  width: 480px;
+  padding: 10px;
+}
+
+.difference-original {
+  color: #AA0000;
+}
+
+.difference-modified {
+  color: #00AA00;
+}

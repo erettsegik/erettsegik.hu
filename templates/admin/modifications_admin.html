@@ -21,28 +21,35 @@
 {% endif %}
 {% if status == 'one' %}
 
-    <h2>{{ modificationdata.title }} - {{ modificationdata.date }}</h2>
-    <p>{{ modificationdata.original_text }}</p>
-    <hr>
-    <p>{{ modificationdata.new_text }}</p>
-    <hr>
-    <p>beküldő megjegyzése: {{ modificationdata.comment }}</p>
-    {% if modificationdata.status == 0 %}
-        <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=merge'>Jóváhagyás</a>
-        <a href='modifications_admin.php?id={{ modificationdata.id }}&amp;action=reject'>Elutasítás</a>
-    {% else %}
-        Ez a javaslat már jóvá lett hagyva vagy el lett utasítva.
-    {% endif %}
+    <h2>{{ modificationdata.title }}</h2>
 
-{% endif %}
-{% if status == 'merged' %}
+    <span class='article-meta'>
+        Tétel címe: {{ notedata.title | raw }}
+        {% if modification.comment != '' %}
+        <br>beküldő megjegyzése: {{ modificationdata.comment }}
+        {% endif %}
+        <br>
+        beküldve: {{ modificationdata.date }}
+    </span>
+    <br>
 
-    Sikeresen jóvá lett hagyva.
+    <div class='modification-container'><h3>Eredeti:</h3><p>{{ modificationdata.start_text }}<span class='difference-original'>{{ modificationdata.old_text }}</span>{{ modificationdata.end_text }}</p></div>
 
-{% endif %}
-{% if status == 'rejected' %}
+    <div class='modification-container'><h3>Módosított:</h3><p>{{ modificationdata.start_text }}<span class='difference-modified'>{{ modificationdata.new_text }}</span>{{ modificationdata.end_text }}</p></div>
 
-    Sikeresen el lett utasítva.
+    <br style='clear: both;'>
+
+    <form method='post' action='modifications_admin.php?id={{ modificationdata.id }}'>
+    <select name='status'>
+        <option value='0' {% if modificationdata.status == 0 %} selected {% endif %}>Jóváhagyásra vár</option>
+        <option value='1' {% if modificationdata.status == 1 %} selected {% endif %}>Elfogadva</option>
+        <option value='2' {% if modificationdata.status == 2 %} selected {% endif %}>Elutasítva</option>
+    </select>
+
+    <input type='text' placeholder='tanári válasz' name='reply' value='{{ modificationdata.reply }}'>
+    <input type='submit' name='submit' class='submit'>
+
+    </form>
 
 {% endif %}
 

@@ -119,7 +119,7 @@ class modification {
 
     }
 
-    function updateStatus($status, $reply = null) {
+    function updateStatus($status, $reply) {
 
         global $con;
 

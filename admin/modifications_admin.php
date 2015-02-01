@@ -20,36 +20,16 @@ if (isset($_GET['id'])) {
     $status = 'one';
 
     $modification = new modification($_GET['id']);
-    $modificationData = $modification->getData();
 
-    if (isset($_GET['action'])) {
+    if (isset($_POST['submit'])) {
 
-        if ($_GET['action'] == 'merge') {
-
-            $note = new note($modification->getData()['noteid']);
-            $note->modifyData(
-                $note->getData()['title'],
-                $modification->getData()['new_text'],
-                $note->getData()['subjectid'],
-                $note->getData()['category'],
-                $note->getData()['live']
-            );
-
-            $modification->updateStatus(1);
-
-            $status = 'merged';
-
-        }
-
-        if ($_GET['action'] == 'reject') {
-
-            $modification->updateStatus(2);
-
-            $status = 'rejected';
-
-        }
+        $modification->updateStatus($_POST['status'], $_POST['reply']);
 
     }
+
+    $modificationData = $modification->getData();
+    $note = new note($modificationData['noteid']);
+    $noteData = $note->getData();
 
 } else {
 
@@ -84,6 +64,7 @@ echo $twig->render(
     array(
         'modificationdata' => (isset($modificationData)) ? $modificationData : null,
         'modifications' => (isset($modifications)) ? $modifications : null,
+        'notedata' => (isset($noteData)) ? $noteData : null,
         'status' => $status
     )
 );
