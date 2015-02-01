@@ -11,7 +11,7 @@
     <input type='text' name='title' placeholder='Cím' class='shorter'>
     <br>
     <select name='subjectid'>
-        {% for subject in subjects %}
+        {% for subject in subjectlist %}
         <option value='{{ subject.id }}'>{{ subject.name }}</option>
         {% endfor %}
     </select>
@@ -54,7 +54,7 @@
     <input type='text' name='title' placeholder='cím' value='{{ notedata.title | raw }}' class='shorter'>
     <br>
     <select name='subjectid'>
-        {% for subject in subjects %}
+        {% for subject in subjectlist %}
         {% if subject.id == notedata.subjectid %}
             <option value='{{ subject.id }}' selected>{{ subject.name }}</option>
         {% else %}
@@ -100,11 +100,14 @@
 
 <a href='notes_admin.php?action=add'>új hozzáadása</a>
 
-<ul>
-{% for note in notes %}
-    <li>{{ note.title | raw }} - <a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>szerkesztés</a></li>
+{% for subject in subjects %}
+    <h2>{{ subject.name }}</h2>
+    <ul>
+    {% for note in subject.data %}
+    <li><a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>{{ note.title | raw }}</a></li>
+    {% endfor %}
+    </ul>
 {% endfor %}
-</ul>
 
 {% endif %}
 

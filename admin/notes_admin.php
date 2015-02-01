@@ -86,9 +86,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     try {
 
         $getNotes = $con->query('
-            select id
+            select notes.id, notes.title, subjects.name
             from notes
-            order by subjectid asc, category asc
+            left join subjects on notes.subjectid = subjects.id
+            order by notes.category asc
         ');
 
     } catch (PDOException $e) {
@@ -96,8 +97,22 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     }
 
     while ($noteData = $getNotes->fetch()) {
-        $note = new note($noteData['id']);
-        $notes[] = $note->getData();
+
+        if (!isset($subjects[$noteData['name']])) {
+
+            $subjects[$noteData['name']] = array();
+
+        }
+
+        if (!isset($subjects[$noteData['name']]['data']))
+            $subjects[$noteData['name']]['data'] = array();
+
+        $subjects[$noteData['name']]['name'] = $noteData['name'];
+        $subjects[$noteData['name']]['data'][] = array(
+            'id' => $noteData['id'],
+            'title' => $noteData['title']
+        );
+
     }
 
 }
@@ -123,8 +138,8 @@ echo $twig->render('admin/notes_admin.html', array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'status' => $status,
     'notedata' => (isset($noteData)) ? $noteData : null,
-    'notes' => (isset($notes) ? $notes : null),
-    'subjects' => getSubjects(),
+    'subjects' => (isset($subjects) ? $subjects : null),
+    'subjectlist' => getSubjects(),
     'categories' => $categories
     )
 );
