@@ -20,8 +20,8 @@
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
-    <form id='search_form' action='/search/' method='get'>
-      <input type='text' name='q'>
+    <form id='search_form' onsubmit='searchRedirect();'>
+      <input type='text' id='searchbox'>
     </form>
   <ul>
     {% for subject in index_var.subjects %}
@@ -59,6 +59,12 @@
 
     ga('create', 'UA-54150979-1', 'auto');
     ga('send', 'pageview');
+  </script>
+  <script type='text/javascript'>
+    function searchRedirect() {
+      event.preventDefault();
+      window.location = '/search/?q=' + document.getElementById('searchbox').value;
+    }
   </script>
 </body>
 </html>
