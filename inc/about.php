@@ -1,6 +1,6 @@
 <?php
 
-$index_var['location'][] = array('url' => '?p=about', 'name' => 'Rólunk');
+$index_var['location'][] = array('url' => '/about/', 'name' => 'Rólunk');
 
 $index_var['title'] = 'Rólunk';
 

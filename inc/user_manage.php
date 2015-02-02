@@ -4,7 +4,7 @@ require_once 'inc/functions.php';
 require_once 'classes/user.class.php';
 
 $index_var['location'][] = array(
-    'url' => '?p=user_manage',
+    'url' => '/user_manage/',
     'name' => 'Felhasználói oldal'
 );
 
@@ -22,7 +22,7 @@ if (!checkRights(0)) {
             : 'error';
 
         if ($status == 'success') {
-            header('Location: /?p=user_manage');
+            header('Location: /user_manage/');
         }
 
     }
@@ -33,7 +33,7 @@ if (!checkRights(0)) {
 
         $status = 'logout';
         session_destroy();
-        header('Location: /?p=user_manage');
+        header('Location: /user_manage/');
 
     } else {
 
@@ -51,7 +51,7 @@ if (!checkRights(0)) {
 
                 $user = new user($_SESSION['userid']);
                 $user->changePassword($_POST['old_password'], $_POST['new_password']);
-                header('Location: /?p=user_manage');
+                header('Location: /user_manage/');
 
             } else {
 

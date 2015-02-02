@@ -33,22 +33,22 @@ $subject = new subject($note->getData()['subjectid']);
 $category = new category($note->getData()['category']);
 
 $index_var['location'][] = array(
-    'url' => '?p=subject',
+    'url' => '/subject/',
     'name' => 'Tantárgyak'
 );
 
 $index_var['location'][] = array(
-    'url' => '?p=subject&id=' . $subject->getData()['id'],
+    'url' => '/subject/' . $subject->getData()['id'] . '/',
     'name' => $subject->getData()['name']
 );
 
 $index_var['location'][] = array(
-    'url' => '?p=subject&id=' . $subject->getData()['id'] . '#' . $category->getData()['name'],
+    'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
     'name' => $category->getData()['name']
 );
 
 $index_var['location'][] = array(
-    'url' => '?p=note&id=' . $note->getData()['id'],
+    'url' => '/note/' . $note->getData()['id'] . '/',
     'name' => $note->getData()['title']
 );
 
@@ -57,7 +57,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $index_var['title'] = 'Javaslat hozzáadása';
 
     $index_var['location'][] = array(
-        'url' => '?p=modification',
+        'url' => '/modification/',
         'name' => 'Javaslat hozzáadása'
     );
 
@@ -95,7 +95,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $modification = new modification($_GET['id']);
 
     $index_var['location'][] = array(
-        'url' => '?p=modification',
+        'url' => '/modification/',
         'name' => 'Javaslat: ' . $modification->getData()['title']
     );
 

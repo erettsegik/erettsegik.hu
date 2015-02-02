@@ -60,6 +60,13 @@ h2 {
   float: right;
 }
 
+#note-help {
+  border: 2px solid #d7d7d7;
+  background-color: #f8f8f8;
+  color: #35586E;
+  padding: 10px;
+}
+
 li.status_0 {
   list-style-image: url("/img/pending_icon.png");
   list-style-position: outside;

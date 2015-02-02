@@ -3,7 +3,7 @@
 require_once 'classes/news.class.php';
 require_once 'classes/user.class.php';
 
-$index_var['location'][] = array('url' => '?p=news', 'name' => 'Hírek');
+$index_var['location'][] = array('url' => '/news/', 'name' => 'Hírek');
 
 $index_var['title'] = 'Hírek';
 

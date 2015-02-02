@@ -4,7 +4,7 @@ require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
 
 $index_var['location'][] = array(
-    'url' => '?p=subject',
+    'url' => '/subject/',
     'name' => 'Tantárgyak'
 );
 
@@ -52,7 +52,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
     }
 
     $index_var['location'][] = array(
-        'url' => '?p=subject&amp;id=' . $subject->getData()['id'],
+        'url' => '/subject/' . $subject->getData()['id'] . '/',
         'name' => $subject->getData()['name']
     );
 

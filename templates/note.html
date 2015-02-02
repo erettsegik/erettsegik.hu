@@ -49,7 +49,22 @@
     <button type='button' class='edit-button' onclick='togglehelp();' id='notes-help'>Segítség</button>
     <br style='clear: both;'>
     <div id='note-help' style='display: none;'>
-      Jegyzet segítség
+      {% markdown %}
+      ### Általános
+
+      Kérjük, hogy jegyzetet csak akkor küldjetek be, ha az a saját szellemi terméketek, azaz nem más engedély nélkül feltöltött jegyzete, vagy egy könyvből egy az egyben kimásolt részlet.
+      Jegyzetet nem csak ezen az űrlapon keresztül küldhettek be nekünk, hanem például a [Facebook oldalunkon](https://facebook.com/erettsegik) keresztül is (lehetőleg üzenetben, csatolva).
+      Ha maradtok ennél a megoldásnál, akkor a jegyzetet át kell írnotok markdown formátumba, amelyről a következőkben olvashattok.
+
+      ### A markdownról
+
+      A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható.
+      A teljes specifikáció [itt](http://daringfireball.net/projects/markdown) megtalálható, de a legfontosabb elemek a szerkesztőnkkel is előállíthatók (megjegyezni sem nehéz őket).
+
+      ### A szerkesztőről
+
+      A jegyzetírást megkönnyítendő írtunk egy kis szerkesztőt, mely lényegében a fenti pár gombot jelenti. Működése felettébb egyszerű, először ki kell jelölni a szövegmezőben a kívánt szövegrészletet (felsorolás esetén akár több sort is), majd valamelyik gombra kattintani. (A szerkesztő javascriptet használ, egyes bővítmények esetleg akadályozhatják a működését).
+      {% endmarkdown %}
     </div>
     <textarea name='text' id='note-txt' placeholder='Szöveg'></textarea>
     <br>

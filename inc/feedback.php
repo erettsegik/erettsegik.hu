@@ -2,7 +2,7 @@
 
 require_once 'classes/feedback.class.php';
 
-$index_var['location'][] = array('url' => '?p=feedback', 'name' => 'Visszajelzés küldése');
+$index_var['location'][] = array('url' => '/feedback/', 'name' => 'Visszajelzés küldése');
 
 $index_var['title'] = 'Visszajelzés';
 
