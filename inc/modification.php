@@ -4,7 +4,19 @@ require_once 'classes/category.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 
-if (isset($_GET['id'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'add') {
+
+    if (isset($_GET['id']) && isValid('note', $_GET['id'])) {
+
+        $noteid = $_GET['id'];
+
+    } else {
+        die('Érvénytelen!');
+    }
+
+}
+
+if (isset($_GET['id']) && !isset($_GET['action'])) {
 
     if (isValid('modification', $_GET['id'])) {
 
@@ -16,14 +28,6 @@ if (isset($_GET['id'])) {
         die('Érvénytelen');
     }
 
-}
-
-if (!isValid('note', $_GET['noteid']) && !isset($_GET['id'])) {
-    die('Érvénytelen!');
-}
-
-if (!isset($noteid)) {
-    $noteid = $_GET['noteid'];
 }
 
 $note = new note($noteid);
@@ -61,7 +65,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'name' => 'Javaslat hozzáadása'
     );
 
-    $note = new note($_GET['noteid']);
+    $note = new note($_GET['id']);
 
     if (isset($_POST['submit'])) {
 
@@ -72,7 +76,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
             $modification = new modification();
 
             $modification->insertData(
-                $_GET['noteid'],
+                $_GET['id'],
                 $_POST['title'],
                 $_POST['new_text'],
                 $_POST['comment']
