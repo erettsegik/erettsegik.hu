@@ -32,6 +32,7 @@ nav ul {
   list-style-type: none;
   text-align: center;
   margin: auto;
+  margin-left: 124px;
   padding-right: 120px;
 }
 
@@ -44,14 +45,20 @@ nav li {
 
 #search_form {
   display: inline;
+
 }
 
 #search_form input {
-  height: 16px;
-  width: 120px;
-  /*margin-top: 14px;*/
-  margin-bottom: 15px;
-  background-color: #dedede;
+  height: 15px;
+  width: 103px;
+  background-repeat: no-repeat;
+  color: #dedede;
+  background-image: url('/img/search_form_background.png');
+  position: fixed;
+  margin-top: 17px;
+  padding: 0px;
+  padding-left: 17px;
+  border-color: #688292;
 }
 
 #wrapper {
