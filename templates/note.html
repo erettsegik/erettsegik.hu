@@ -46,8 +46,11 @@
     <button type='button' class='edit-button' onclick='image();'>kép</button>
     <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
     <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
-    <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
+    <button type='button' class='edit-button' onclick='togglehelp();' id='notes-help'>Segítség</button>
     <br style='clear: both;'>
+    <div id='note-help' style='display: none;'>
+      Jegyzet segítség
+    </div>
     <textarea name='text' id='note-txt' placeholder='Szöveg'></textarea>
     <br>
     <input type='submit' name='submit' class='submit' value='Elküldés'>

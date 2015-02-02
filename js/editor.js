@@ -84,3 +84,14 @@ function list(type) {
     textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
 }
+
+function togglehelp() {
+
+    var div = document.getElementById('note-help');
+    if (div.style.display == 'none') {
+        div.style.display = 'block';
+    } else {
+        div.style.display = 'none';
+    }
+
+}
