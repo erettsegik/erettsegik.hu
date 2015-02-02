@@ -24,7 +24,7 @@
     <h2>{{ modificationdata.title }}</h2>
 
     <span class='article-meta'>
-        Tétel címe: {{ notedata.title | raw }}
+        Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&action=edit'>{{ notedata.title | raw }}</a>
         {% if modification.comment != '' %}
         <br>beküldő megjegyzése: {{ modificationdata.comment }}
         {% endif %}
@@ -50,6 +50,9 @@
     <input type='submit' name='submit' class='submit'>
 
     </form>
+
+    <p>Fontos: a jegyzetek egyelőre nem módosulnak automatikusan, a változtatásokat kézzel kell
+    <a href='notes_admin.php?id={{ notedata.id }}&action=edit'>ITT</a> végrehajtani.</p>
 
 {% endif %}
 

@@ -89,7 +89,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
             select notes.id, notes.title, subjects.name
             from notes
             left join subjects on notes.subjectid = subjects.id
-            order by notes.category asc
+            order by notes.category asc, notes.id asc
         ');
 
     } catch (PDOException $e) {
