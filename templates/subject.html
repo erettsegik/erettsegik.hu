@@ -4,30 +4,30 @@
 
 {% if status == 'all' %}
 
-    <h1>Összes tárgy</h1>
+  <h1>Összes tárgy</h1>
 
-    <ul id='subject_menu'>
-    {% for subject in allsubjects %}
-      {% if subject.mandatory %}
-        <li class='mandatory'><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
-      {% else %}
-        <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
-      {% endif %}
-    {% endfor %}
-    </ul>
+  <ul id='subject_menu'>
+  {% for subject in allsubjects %}
+    {% if subject.mandatory %}
+      <li class='mandatory'><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+    {% else %}
+      <li><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
 
 {% else %}
 
-    <h1>{{ subject.name }}</h1>
+  <h1>{{ subject.name }}</h1>
 
-    {% for category in categories %}
-      <h2 id='{{ category.name }}'>{{ category.name }}</h2>
-      <ul>
-      {% for note in category.data %}
-        <li><a href='?p=note&amp;id={{ note.id }}'>{{ note.title | raw }}</a></li>
-      {% endfor %}
-      </ul>
+  {% for category in categories %}
+    <h2 id='{{ category.name }}'>{{ category.name }}</h2>
+    <ul>
+    {% for note in category.data %}
+      <li><a href='/note/{{ note.id }}/'>{{ note.title | raw }}</a></li>
     {% endfor %}
+    </ul>
+  {% endfor %}
 
 {% endif %}
 

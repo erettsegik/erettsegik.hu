@@ -3,34 +3,31 @@
 <head>
   <link href='//fonts.googleapis.com/css?family=Roboto&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <meta charset='utf-8'>
-  <link rel='stylesheet' type='text/css' href='css/main.css'>
+  <link rel='stylesheet' type='text/css' href='/css/main.css'>
   {% if index_var.css != '' %}
-    <link rel='stylesheet' type='text/css' href='css/{{ index_var.css }}.css'>
+    <link rel='stylesheet' type='text/css' href='/css/{{ index_var.css }}.css'>
   {% endif %}
-  <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
-
+  <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon'>
   <script type='text/x-mathjax-config'>
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
-  <script data-cfasync='false' src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-
+  <script data-cfasync='false' src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'>
+  </script>
   <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css'>
   <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js'></script>
-
   <title>{{ index_var.title }} - erettsegik.hu</title>
 </head>
 <body>
   <script>hljs.initHighlightingOnLoad();</script>
   <nav>
-    <form id='search_form' action='/?p=search' method='get'>
+    <form id='search_form' action='/search/' method='get'>
       <input type='text' name='q'>
     </form>
   <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='?p=subject&amp;id={{ subject.id }}'>{{ subject.name }}</a></li>
+      <li><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
     {% endfor %}
-    <li><a href='?p=subject' class='unique'>Összes tárgy</a></li>
-
+    <li><a href='/subject/' class='unique'>Összes tárgy</a></li>
   </ul>
   </nav>
   <div id='wrapper'>
@@ -42,17 +39,16 @@
       {% endif %}
     {% endfor %}
   </section>
-   <div id='upload_button'><a href='?p=note&amp;action=add'>Jegyzet beküldése</a></div>
-   <br style='clear: both;'>
+  <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
+  <br style='clear: both;'>
   <section id='main'>
     {% block content %}
     {% endblock %}
   </section>
-
   <footer>
-    <a href='?p=feedback'>visszajelzés</a> |
-    <a href='?p=user_manage'> {% if index_var.username == '' %} tanári bejelentkezés {% else %} bejelentkezve, mint {{ index_var.username }} {% endif %} </a>
-    | <a href='?p=about'>rólunk</a>
+    <a href='/feedback/'>visszajelzés</a> |
+    <a href='/user_manage/'> {% if index_var.username == '' %} tanári bejelentkezés {% else %} bejelentkezve, mint {{ index_var.username }} {% endif %} </a>
+    | <a href='/about/'>rólunk</a>
   </footer>
 </div>
   <script>

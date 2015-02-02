@@ -1,21 +1,22 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
 <div id='leftside'>
 <h1>Hírek</h1>
 <section>
 {% for new in news %}
-    <h2>{{ new.title | raw }}</h2>
-    {{ new.text | markdown }}
-    <div class='article-meta'>
-    {{ new.creator }} &#8226; {{ new.date }}
-    {% if new.updatedate %}
-        <br>Legutóbb frissítve: {{ new.updatedate }}
-    {% endif %}
-    {% if not loop.last %}
-      <hr>
-    {% endif %}
-    </div>
+  <h2>{{ new.title | raw }}</h2>
+  {{ new.text | markdown }}
+  <div class='article-meta'>
+  {{ new.creator }} &#8226; {{ new.date }}
+  {% if new.updatedate %}
+      <br>Legutóbb frissítve: {{ new.updatedate }}
+  {% endif %}
+  {% if not loop.last %}
+    <hr>
+  {% endif %}
+  </div>
 {% endfor %}
 </section>
 </div>
@@ -23,4 +24,5 @@
 <iframe src='//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width=230&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:230px; height:258px;' allowTransparency='true'></iframe>
 </div>
 <br style='clear: both;'>
+
 {% endblock %}
