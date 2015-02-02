@@ -101,10 +101,15 @@ nav li {
 
 h1 {
   margin-top: 0px;
+  font-size: 24;
 }
 
 h2 {
   font-size: 20px;
+}
+
+h3{
+  font-size: 16px; 
 }
 
 a, a:visited {
