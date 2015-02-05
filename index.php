@@ -51,6 +51,8 @@ $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 
 $index_var['css'] = '';
 
+$index_var['canonical'] = getCanonicalUrl();
+
 if (isset($_GET['p'])) {
 
     $p = $_GET['p'];
@@ -76,6 +78,26 @@ if (isset($_GET['p'])) {
     $index_var['css'] = 'news';
 
     require_once 'inc/news.php';
+
+}
+
+function getCanonicalUrl() {
+
+    $url = 'https://erettsegik.hu/';
+
+    if (isset($_GET['p'])) {
+        $url .= $_GET['p'] . '/';
+    }
+
+    if (isset($_GET['action'])) {
+        $url .= $_GET['action'] . '/';
+    }
+
+    if (isset($_GET['id'])) {
+        $url .= $_GET['id'] . '/';
+    }
+
+    return $url;
 
 }
 
