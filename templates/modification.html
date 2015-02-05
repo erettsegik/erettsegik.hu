@@ -49,12 +49,12 @@
     {% endif %}
     <br>
     beküldve: {{ modification.date }}
-    {% if modification.reply != '' %}
-    <br>tanár megjegyzése: {{ modification.reply }}
-    {% endif %}
     {% if modification.updatedate %}
     <br>
     frissítve: {{ modification.updatedate }}
+    {% endif %}
+    {% if modification.reply != '' %}
+    <br>tanár megjegyzése: {{ modification.reply }}
     {% endif %}
   </span>
   <br>
