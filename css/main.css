@@ -117,6 +117,10 @@ a, a:visited {
   text-decoration: none;
 }
 
+a:focus {
+  outline: none;
+}
+
 nav a.unique, nav a.unique:visited {
   color: #ffb938;
 }
