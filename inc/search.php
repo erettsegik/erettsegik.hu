@@ -16,7 +16,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
 
     try {
 
-        $titleSearch = $con->prepare('select id from notes where title like :term');
+        $titleSearch = $con->prepare('select id from notes where title like :term order by subjectid asc, id asc');
         $titleSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
         $titleSearch->execute();
 
@@ -28,7 +28,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
 
     try {
 
-        $textSearch = $con->prepare('select id from notes where text like :term');
+        $textSearch = $con->prepare('select id from notes where text like :term order by subjectid asc, id asc');
         $textSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
         $textSearch->execute();
 
