@@ -3,18 +3,24 @@
 {% block content %}
 <h1>Keresés</h1>
 
-<script>
-  (function() {
-    var cx = '005446476610201544426:yvmpc2zvxve';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
+<form onsubmit='searchRedirect("main");'>
+  <input type='text' id='mainsearch' value='{{ term }}'>
+  <input type='submit' class='submit' value='Keresés'>
+</form>
+
+{% if status == 'results' %}
+
+<div class='article-meta'>{{ resultcount }} találat a következőre: {{ term }}.</div>
+
+<hr>
+
+{% for result in results %}
+
+<a href='/note/{{ result.id }}'><h2 class='result-header'>{{ result.title }}</h2></a>
+<div class='article-meta'>{{ result.subject }} &#8226; {{ result.category }}</div>
+
+{% endfor %}
+
+{% endif %}
 
 {% endblock %}
