@@ -4,13 +4,14 @@ require_once 'subject.class.php';
 
 class note {
 
-    protected $id         = null;
-    protected $title      = null;
-    protected $text       = null;
-    protected $subject    = null;
-    protected $category   = null;
-    protected $updatedate = null;
-    protected $live       = null;
+    protected $id          = null;
+    protected $title       = null;
+    protected $text        = null;
+    protected $subject     = null;
+    protected $category    = null;
+    protected $updatedate  = null;
+    protected $ordernumber = null;
+    protected $live        = null;
 
     public function __construct($id = null) {
 
@@ -28,13 +29,14 @@ class note {
             die('Nem sikerült a jegyzet betöltése.');
         }
 
-        $this->id         = $noteData['id'];
-        $this->title      = $noteData['title'];
-        $this->text       = $noteData['text'];
-        $this->subject    = new subject($noteData['subjectid']);
-        $this->category   = $noteData['category'];
-        $this->updatedate = new DateTime($noteData['updatedate']);
-        $this->live       = $noteData['live'];
+        $this->id          = $noteData['id'];
+        $this->title       = $noteData['title'];
+        $this->text        = $noteData['text'];
+        $this->subject     = new subject($noteData['subjectid']);
+        $this->category    = $noteData['category'];
+        $this->updatedate  = new DateTime($noteData['updatedate']);
+        $this->ordernumber = $noteData['ordernumber'];
+        $this->live        = $noteData['live'];
 
     }
 
@@ -59,6 +61,7 @@ class note {
                     :subjectid,
                     :category,
                     DEFAULT,
+                    0,
                     :live
                 )
             ');
@@ -133,13 +136,14 @@ class note {
         global $config;
 
         return array(
-            'id'         => $this->id,
-            'title'      => ($unsanitize) ? unprepareText($this->title) : $this->title,
-            'text'       => ($unsanitize) ? unprepareText($this->text) : $this->text,
-            'subjectid'  => $this->subject->getData()['id'],
-            'category'   => $this->category,
-            'updatedate' => $this->updatedate->format($config['dateformat']),
-            'live'       => $this->live
+            'id'          => $this->id,
+            'title'       => ($unsanitize) ? unprepareText($this->title) : $this->title,
+            'text'        => ($unsanitize) ? unprepareText($this->text) : $this->text,
+            'subjectid'   => $this->subject->getData()['id'],
+            'category'    => $this->category,
+            'updatedate'  => $this->updatedate->format($config['dateformat']),
+            'ordernumber' => $this->ordernumber,
+            'live'        => $this->live
         );
 
     }

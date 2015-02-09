@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `subjectid` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ordernumber` int(11) NOT NULL,
   `live` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
