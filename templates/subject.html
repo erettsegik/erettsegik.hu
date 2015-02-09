@@ -29,6 +29,10 @@
     </ul>
   {% endfor %}
 
+  {% if categories|length == 0 %}
+    <p>Még egy jegyzet sincs ehhez a tárgyhoz. <a href='/note/add/'>Beküldesz egyet?</a></p>
+  {% endif %}
+
 {% endif %}
 
 {% endblock %}
