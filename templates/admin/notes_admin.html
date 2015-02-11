@@ -1,7 +1,7 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
-<h1>Jegyzetek szerkesztése</h1>
+<h1>Jegyzetek szerkesztése{% if selectedsubject.id != 0 %}: {{ selectedsubject.name }}{% endif %}</h1>
 
 {% if action == 'add' %}
 
@@ -12,7 +12,7 @@
     <br>
     <select name='subjectid'>
         {% for subject in subjectlist %}
-        <option value='{{ subject.id }}'>{{ subject.name }}</option>
+        <option value='{{ subject.id }}'{% if subject.id == selectedsubject.id %} selected {% endif %}>{{ subject.name }}</option>
         {% endfor %}
     </select>
     <br>
@@ -96,18 +96,32 @@
 
 {% endif %}
 
-{% if status == 'list' %}
+{% if status == 'notelist' %}
+
+<a href='notes_admin.php?action=add&subjectid={{ selectedsubject.id }}'>új hozzáadása</a>
+
+{% for note in notelist %}
+  <h2>{{ note.name }}</h2>
+  <ul>
+  {% for item in note.data %}
+    <li><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></li>
+  {% endfor %}
+  </ul>
+{% endfor %}
+
+{% endif %}
+
+{% if status == 'subjectlist' %}
 
 <a href='notes_admin.php?action=add'>új hozzáadása</a>
 
-{% for subject in subjects %}
-    <h2>{{ subject.name }}</h2>
-    <ul>
-    {% for note in subject.data %}
-    <li><a href='notes_admin.php?action=edit&amp;id={{ note.id }}'>{{ note.title | raw }}</a></li>
-    {% endfor %}
-    </ul>
+<ul>
+{% for subject in subjectlist %}
+
+  <li><a href='notes_admin.php?subjectid={{ subject.id }}'>{{ subject.name }}</a></li>
+
 {% endfor %}
+</ul>
 
 {% endif %}
 

@@ -79,39 +79,52 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 } else {
 
-    $status = 'list';
+    if (isset($_GET['subjectid'])) { // show subject specific notes
 
-    $notes = array();
+        $status = 'notelist';
 
-    try {
+        $notes = array();
 
-        $getNotes = $con->query('
-            select notes.id, notes.title, subjects.name
-            from notes
-            left join subjects on notes.subjectid = subjects.id
-            order by notes.category asc, notes.id asc
-        ');
+        try {
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a jegyzetek kiválasztása.');
-    }
+            $getNotes = $con->prepare('
+                select notes.id, notes.title, notes.ordernumber, notes.live, categories.name
+                from notes
+                left join categories on notes.category = categories.id
+                where notes.subjectid = :subjectid
+                order by notes.ordernumber asc
+            ');
+            $getNotes->bindValue('subjectid', $_GET['subjectid'], PDO::PARAM_INT);
+            $getNotes->execute();
 
-    while ($noteData = $getNotes->fetch()) {
+        } catch (PDOException $e) {
+            die('Nem sikerült a jegyzetek kiválasztása.');
+        }
 
-        if (!isset($subjects[$noteData['name']])) {
+        while ($noteData = $getNotes->fetch()) {
 
-            $subjects[$noteData['name']] = array();
+            if (!isset($noteList[$noteData['name']])) {
+
+                $noteList[$noteData['name']] = array();
+
+            }
+
+            if (!isset($noteList[$noteData['name']]['data']))
+                $noteList[$noteData['name']]['data'] = array();
+
+            $noteList[$noteData['name']]['name'] = $noteData['name'];
+            $noteList[$noteData['name']]['data'][] = array(
+                'id' => $noteData['id'],
+                'title' => $noteData['title'],
+                'ordernumber' => $noteData['ordernumber'],
+                'live' => $noteData['live']
+            );
 
         }
 
-        if (!isset($subjects[$noteData['name']]['data']))
-            $subjects[$noteData['name']]['data'] = array();
+    } else { // show subject list
 
-        $subjects[$noteData['name']]['name'] = $noteData['name'];
-        $subjects[$noteData['name']]['data'][] = array(
-            'id' => $noteData['id'],
-            'title' => $noteData['title']
-        );
+        $status = 'subjectlist';
 
     }
 
@@ -134,13 +147,21 @@ while ($categoryData = $getCategories->fetch()) {
 
 }
 
+if (isset($_GET['subjectid'])) {
+
+    $subject = new subject($_GET['subjectid']);
+    $selectedSubject = $subject->getData();
+
+}
+
 echo $twig->render('admin/notes_admin.html', array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'status' => $status,
     'notedata' => (isset($noteData)) ? $noteData : null,
-    'subjects' => (isset($subjects) ? $subjects : null),
+    'notelist' => (isset($noteList) ? $noteList : null),
     'subjectlist' => getSubjects(),
-    'categories' => $categories
+    'categories' => $categories,
+    'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0)
     )
 );
 
