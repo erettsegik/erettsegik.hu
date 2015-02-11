@@ -115,6 +115,29 @@ class note {
 
     }
 
+    public function modifyOrder($ordernumber) {
+
+        global $con;
+
+        $this->ordernumber = $ordernumber;
+
+        try {
+
+            $modifyData = $con->prepare('
+                update notes
+                set ordernumber = :ordernumber
+                where id = :id
+            ');
+            $modifyData->bindValue('ordernumber', $ordernumber, PDO::PARAM_INT);
+            $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
+            $modifyData->execute();
+
+        } catch (PDOException $e) {
+            die('Nem sikerült a jegyzetet frissíteni.');
+        }
+
+    }
+
     public function remove() {
 
         global $con;

@@ -126,3 +126,7 @@ div.modification-container {
 .difference-modified {
   color: #00AA00;
 }
+
+input.ordernumber {
+  width: 40px;
+}

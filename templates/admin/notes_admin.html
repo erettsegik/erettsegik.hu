@@ -100,14 +100,26 @@
 
 <a href='notes_admin.php?action=add&subjectid={{ selectedsubject.id }}'>új hozzáadása</a>
 
+<form action='notes_admin.php?subjectid={{ selectedsubject.id }}' method='post'>
 {% for note in notelist %}
   <h2>{{ note.name }}</h2>
-  <ul>
+  <table>
+  <tr>
+    <th>Rendezési szám</th>
+    <th>Jegyzet neve</th>
+    <th>Élő státusz</th>
+  </tr>
   {% for item in note.data %}
-    <li><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></li>
+    <tr>
+      <td><input type='number' name='{{ item.id }}order' value='{{ item.ordernumber }}' class='ordernumber'></td>
+      <td><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></td>
+      <td>{{ item.live }}</td>
+    </tr>
   {% endfor %}
-  </ul>
+  </table>
 {% endfor %}
+<input type='submit' name='updateorder' class='submit' value='Frissítés'>
+</form>
 
 {% endif %}
 

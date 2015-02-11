@@ -79,7 +79,28 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 } else {
 
-    if (isset($_GET['subjectid'])) { // show subject specific notes
+    if (isset($_GET['subjectid'])) {
+
+        if (isset($_POST['updateorder'])) {
+
+            try {
+
+                $getNotes = $con->prepare('select id from notes where subjectid = :subjectid');
+                $getNotes->bindValue('subjectid', $_GET['subjectid'], PDO::PARAM_INT);
+                $getNotes->execute();
+
+            } catch (PDOException $e) {
+                die('Nem sikerült a jegyzetek frissítése.');
+            }
+
+            while ($noteData = $getNotes->fetch()) {
+
+                $note = new note($noteData['id']);
+                $note->modifyOrder($_POST[$noteData['id'] . 'order']);
+
+            }
+
+        }
 
         $status = 'notelist';
 
@@ -122,7 +143,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
         }
 
-    } else { // show subject list
+    } else {
 
         $status = 'subjectlist';
 
