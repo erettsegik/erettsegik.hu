@@ -113,7 +113,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
                 from notes
                 left join categories on notes.category = categories.id
                 where notes.subjectid = :subjectid
-                order by notes.ordernumber asc
+                order by notes.ordernumber asc, notes.id asc
             ');
             $getNotes->bindValue('subjectid', $_GET['subjectid'], PDO::PARAM_INT);
             $getNotes->execute();

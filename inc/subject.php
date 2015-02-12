@@ -23,7 +23,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
             from notes
             left join categories on notes.category = categories.id
             where notes.subjectid = :subjectid and notes.live = 1
-            order by ordernumber asc
+            order by ordernumber asc, id asc
         ');
         $getNotesData->bindValue(
             'subjectid',
