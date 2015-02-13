@@ -76,10 +76,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $index_var['location'][] = array(
         'url' => '/note/add/',
-        'name' => 'Jegyzet hozzáadása'
+        'name' => 'Jegyzet beküldése'
     );
 
-    $index_var['title'] = 'Jegyzet hozzáadása';
+    $index_var['title'] = 'Jegyzet beküldése';
 
 } else {
 

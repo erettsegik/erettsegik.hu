@@ -4,7 +4,7 @@ require_once 'classes/feedback.class.php';
 
 $index_var['location'][] = array('url' => '/feedback/', 'name' => 'Visszajelzés küldése');
 
-$index_var['title'] = 'Visszajelzés';
+$index_var['title'] = 'Visszajelzés küldése';
 
 if (isset($_POST['submit'])) {
 
