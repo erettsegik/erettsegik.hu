@@ -83,3 +83,8 @@ li.status_2 {
 li.add-modification {
   list-style-image: url("/img/addnew_icon.png");
 }
+
+#leftside ul {
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+}
