@@ -89,6 +89,10 @@ li.add-modification {
   font-family: 'Roboto', sans-serif;
 }
 
+#leftside ul a, #leftside ul a:visited {
+  color: #EE7600;
+}
+
 #leftside h2 {
   font-family: 'Roboto', sans-serif;
 }

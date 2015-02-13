@@ -127,7 +127,7 @@ nav a.unique, nav a.unique:visited {
 }
 
 .unique {
-  color: #ffb938;
+  color: #EE7600;
 }
 
 footer {
@@ -137,6 +137,10 @@ footer {
 
 p {
   font-family: 'Roboto', sans-serif;
+}
+
+p a, p a:visited {
+  color: #EE7600;
 }
 
 blockquote {

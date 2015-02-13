@@ -53,7 +53,7 @@
 
 <ul>
 {% for new in news %}
-    <li>{{ new.title }} - <a href='news_admin.php?action=edit&amp;id={{ new.id }}'>szerkesztés</a></li>
+    <li><a href='news_admin.php?action=edit&amp;id={{ new.id }}'>{{ new.title }}</a> - {{ new.live }}</li>
 {% endfor %}
 </ul>
 {% endif %}
