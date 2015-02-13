@@ -7,7 +7,7 @@ body {
   background-color: #dedede;
   color: #35586E;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 nav {
@@ -109,7 +109,7 @@ h2 {
 }
 
 h3{
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 a, a:visited {
