@@ -11,7 +11,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $noteid = $_GET['id'];
 
     } else {
-        die('Érvénytelen!');
+        header('Location: /404/');
     }
 
 }
@@ -25,7 +25,7 @@ if (isset($_GET['id']) && !isset($_GET['action'])) {
         $noteid = $modification->getData()['noteid'];
 
     } else {
-        die('Érvénytelen');
+      header('Location: /404/');
     }
 
 }

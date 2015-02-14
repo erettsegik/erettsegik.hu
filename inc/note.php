@@ -87,7 +87,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     if (!isValid('note', $_GET['id'])) {
 
-        die('Érvénytelen!');
+      header('Location: /404/');
 
     }
 

@@ -3,11 +3,11 @@
 {% block content %}
 
   {% if status == 'addsubmit' %}
-    Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!
+    <p>Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!</p>
   {% endif %}
 
   {% if status == 'notvalid' %}
-    Valamelyik mező nem helyesen lett kitöltve, kérjük próbáld újra.
+    <p>Valamelyik mező nem helyesen lett kitöltve, kérjük próbáld újra.</p>
   {% endif %}
 
   {% if status == 'addform' %}
