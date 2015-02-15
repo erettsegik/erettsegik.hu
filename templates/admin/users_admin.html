@@ -4,33 +4,38 @@
 
 <h1>Felhasználók szerkesztése</h1>
 
-<form action='users_admin.php' method='post'>
+
 <p>Jelszóváltoztatáshoz írd be a jelszó mezőbe</p>
 <table>
 <tr><th>Id</th><th>Név</th><th>Jogosultság</th><th>Jelszó</th></tr>
 
+<tr>
+<form action='users_admin.php' method='post'>
+<td>új</td>
+<td><input type='text' name='name'></td>
+<td><input type='number' name='authority'></td>
+<td><input type='password' name='password'></td>
+<td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
+</form>
+</tr>
+
+<form action='users_admin.php' method='post'>
 {% for user in users %}
   <tr>
   <td>{{ user.id }}</td>
   <td><input type='text' value='{{ user.name }}' name='{{ user.id }}name'></td>
   <td><input type='number' value='{{ user.authority }}' name='{{ user.id }}authority'></td>
   <td><input type='text' value='' name='{{ user.id }}password'></td>
+  <td>
+  	{% if loop.last %}
+      <input type='submit' value='Frissítés' name='update' class='submit'>
+    {% endif %}
+  </td>
   </tr>
 {% endfor %}
 
+</form>
 </table>
-<p>
-<input type='submit' value='Frissítés' name='update' class='submit'>
-</p>
-</form>
-<hr>
-<form action='users_admin.php' method='post'>
-<input type='text' name='name'>
-<input type='number' name='authority'>
-<input type='password' name='password'>
-<br>
-<input type='submit' name='addnew' value='Hozzáadás' class='submit'>
-</form>
-</ul>
+
 
 {% endblock %}
