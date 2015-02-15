@@ -10,7 +10,7 @@ $index_var['location'][] = array(
 
 $index_var['title'] = 'Felhasználói oldal';
 
-if (!checkRights(0)) {
+if (!isset($_SESSION['userid'])) {
 
   $status = 'form';
 

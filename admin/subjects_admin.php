@@ -7,10 +7,9 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 require_once '../classes/subject.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['subjects']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -64,6 +63,7 @@ while ($subjectData = $getSubjects->fetch()) {
 echo $twig->render(
   'admin/subjects_admin.html',
   array(
-    'subjects' => $subjects
+    'subjects' => $subjects,
+    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );

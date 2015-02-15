@@ -7,10 +7,9 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['categories']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -60,6 +59,7 @@ while ($categoryData = $getCategories->fetch()) {
 echo $twig->render(
   'admin/categories_admin.html',
   array(
-    'categories' => $categories
+    'categories' => $categories,
+    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );

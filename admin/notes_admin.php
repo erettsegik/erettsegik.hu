@@ -8,10 +8,9 @@ require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 require_once '../classes/note.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['notes']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -185,7 +184,8 @@ echo $twig->render('admin/notes_admin.html', array(
   'notelist' => (isset($noteList) ? $noteList : null),
   'subjectlist' => getSubjects(),
   'categories' => $categories,
-  'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0)
+  'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0),
+  'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );
 

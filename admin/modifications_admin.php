@@ -8,10 +8,9 @@ require_once '../inc/functions.php';
 require_once '../classes/modification.class.php';
 require_once '../classes/note.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['modifications']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -65,6 +64,7 @@ echo $twig->render(
     'modificationdata' => (isset($modificationData)) ? $modificationData : null,
     'modifications' => (isset($modifications)) ? $modifications : null,
     'notedata' => (isset($noteData)) ? $noteData : null,
-    'status' => $status
+    'status' => $status,
+    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );

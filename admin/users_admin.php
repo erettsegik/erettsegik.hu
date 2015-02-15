@@ -7,14 +7,9 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 require_once '../classes/user.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['users']);
 
-if (!checkRights(4)) {
-  die('Nem elég nagy a jogosultságod ennek az oldalnak a megtekintéséhez.');
-}
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -66,8 +61,9 @@ while ($userData = $getUsers->fetch()) {
 }
 
 echo $twig->render(
-  'admin/user_admin.html',
+  'admin/users_admin.html',
   array(
-    'users' => $users
+    'users' => $users,
+    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );

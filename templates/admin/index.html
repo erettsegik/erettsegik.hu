@@ -11,13 +11,11 @@
 
 <nav>
 <ul>
-  <li><a href='user_admin.php'>Felhasználók</a></li>
-  <li><a href='news_admin.php'>Hírek</a></li>
-  <li><a href='modifications_admin.php'>Javaslatok</a></li>
-  <li><a href='notes_admin.php'>Jegyzetek</a></li>
-  <li><a href='categories_admin.php'>Kategóriák</a></li>
-  <li><a href='subjects_admin.php'>Tárgyak</a></li>
-  <li><a href='feedback_admin.php'>Visszajelzések</a></li>
+  {% for item in index_var.menu %}
+    {% if index_var.user_authority >= item.clearance %}
+      <li><a href='{{ item.url }}'>{{ item.name }}</a></li>
+    {% endif %}
+  {% endfor %}
   <li><a href='/' class='unique'>Vissza az oldalra</a></li>
 </ul>
 </nav>

@@ -7,10 +7,9 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 require_once '../classes/feedback.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['feedback']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -55,6 +54,7 @@ echo $twig->render(
   array(
     'status' => $status,
     'feedbackdata' => (isset($feedbackData)) ? $feedbackData : null,
-    'feedbackarray' => (isset($feedbackArray)) ? $feedbackArray : null
+    'feedbackarray' => (isset($feedbackArray)) ? $feedbackArray : null,
+    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );
