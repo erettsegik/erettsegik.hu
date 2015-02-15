@@ -30,8 +30,7 @@ nav a, nav a:visited {
 nav ul {
   display: inline;
   list-style-type: none;
-  margin-left: 133px;
-  margin: auto;
+  margin: auto auto auto 133px;
   padding-right: 120px;
   text-align: center;
 }
@@ -55,15 +54,13 @@ nav li {
   color: #dedede;
   height: 15px;
   margin-top: 17px;
-  padding-left: 17px;
-  padding: 0px;
+  padding: 0px 0px 0px 17px;
   position: fixed;
   width: 103px;
 }
 
 #wrapper {
-  margin-top: 50px;
-  margin: auto;
+  margin: 50px auto auto auto;
   width: 1046px;
 }
 

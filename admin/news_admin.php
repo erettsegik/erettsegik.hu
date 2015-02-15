@@ -7,10 +7,9 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 require_once '../classes/news.class.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights($config['clearance']['news']);
+
+$user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
@@ -94,6 +93,7 @@ echo $twig->render('admin/news_admin.html', array(
   'action' => (isset($_GET['action']) ? $_GET['action'] : null),
   'status' => $status,
   'newsdata' => (isset($newsData)) ? $newsData : null,
-  'news' => (isset($news) ? $news : null)
+  'news' => (isset($news) ? $news : null),
+  'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
 );

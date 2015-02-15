@@ -6,11 +6,10 @@ $dir_level = 1;
 
 require_once '../inc/functions.php';
 
-if (!checkRights(2)) {
-  header('Location: /user_manage/');
-  die('Kérlek jelentkezz be.');
-}
+checkRights(1);
 
 $twig = initTwig();
 
-echo $twig->render('admin/index.html');
+$user = new user($_SESSION['userid']);
+
+echo $twig->render('admin/index.html', array('index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])));

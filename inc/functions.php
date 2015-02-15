@@ -22,6 +22,16 @@ if (file_exists($config_file)) {
 
 }
 
+$config['clearance'] = array(
+  'categories'    => 2,
+  'feedback'      => 2,
+  'modifications' => 1,
+  'news'          => 2,
+  'notes'         => 1,
+  'subjects'      => 2,
+  'users'         => 4
+);
+
 $config['dateformat'] = 'Y-m-d H:i';
 
 date_default_timezone_set('Europe/Budapest');
@@ -42,7 +52,7 @@ try {
 
   die('Nem sikerült csatlakozni az adatbázishoz.
     A jegyzetek biztonsági másolata megtekinthető a
-    http://github.com/erettsegik címen.');
+    http://github.com/erettsegik/notes-backup címen.');
 
 }
 
@@ -62,12 +72,16 @@ function initTwig() {
 
 function checkRights($clearance_level = 0) {
 
-  if (!isset($_SESSION['userid']))
-    return false;
+  if (!isset($_SESSION['userid'])) {
+    header('Location: /user_manage/');
+    die('Kérlek jelentkezz be.');
+  }
 
   $user = new user($_SESSION['userid']);
 
-  return ($user->getData()['authority'] >= $clearance_level);
+  if ($user->getData()['authority'] < $clearance_level) {
+    die('Nincs jogod az oldal megtekintéséhez!');
+  }
 
 }
 
@@ -112,5 +126,21 @@ function prepareText($text) {
 function unprepareText($text) {
 
   return htmlspecialchars_decode($text);
+
+}
+
+function getAdminMenuItems() {
+
+  global $config;
+
+  return array(
+    array('url' => 'users_admin.php', 'name' => 'Felhasználók', 'clearance' => $config['clearance']['users']),
+    array('url' => 'news_admin.php', 'name' => 'Hírek', 'clearance' => $config['clearance']['news']),
+    array('url' => 'modifications_admin.php', 'name' => 'Javaslatok', 'clearance' => $config['clearance']['modifications']),
+    array('url' => 'notes_admin.php', 'name' => 'Jegyzetek', 'clearance' => $config['clearance']['notes']),
+    array('url' => 'categories_admin.php', 'name' => 'Kategóriák', 'clearance' => $config['clearance']['categories']),
+    array('url' => 'subjects_admin.php', 'name' => 'Tárgyak', 'clearance' => $config['clearance']['subjects']),
+    array('url' => 'feedback_admin.php', 'name' => 'Visszajelzések', 'clearance' => $config['clearance']['feedback'])
+  );
 
 }
