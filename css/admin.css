@@ -6,18 +6,20 @@ html, body {
 body {
   background-color: #dedede;
   color: #35586e;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   text-align: center;
 }
 
 nav {
   background-color: #123952;
-  border-bottom: 3px solid #d7d7d7;
   color: #dedede;
   font-size: 24px;
   height: 50px;
+  line-height: 50px;
   margin: auto;
+  top: 0px;
   vertical-align: middle;
+  width: 100%;
 }
 
 nav a, nav a:visited {
