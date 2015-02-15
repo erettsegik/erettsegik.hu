@@ -7,13 +7,14 @@ body {
   background-color: #dedede;
   color: #35586e;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 100%;
   text-align: center;
 }
 
 nav {
   background-color: #123952;
   color: #dedede;
-  font-size: 24px;
+  font-size: 2em;
   height: 50px;
   line-height: 50px;
   margin: auto;
@@ -97,16 +98,16 @@ nav li {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 2em;
   margin-top: 0px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.75em;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 1.3em;
 }
 
 a, a:visited {
