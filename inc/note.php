@@ -7,153 +7,157 @@ require_once 'classes/subject.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
-    if (isset($_POST['submit'])) {
+  if (isset($_POST['submit'])) {
 
-        $status = 'addsubmit';
+    $status = 'addsubmit';
 
-        if (
-            !isValid('subject', $_POST['subjectid']) ||
-            !isValid('category', $_POST['category']) ||
-            !isNotEmpty($_POST['title']) ||
-            !isNotEmpty($_POST['text'])
-        ) {
+    if (
+      !isValid('subject', $_POST['subjectid']) ||
+      !isValid('category', $_POST['category']) ||
+      !isNotEmpty($_POST['title']) ||
+      !isNotEmpty($_POST['text'])
+    ) {
 
-            $status = 'notvalid';
-
-        } else {
-
-            $note = new note();
-
-            $note->insertData(
-                prepareText($_POST['title']),
-                prepareText($_POST['text']),
-                $_POST['subjectid'],
-                $_POST['category'],
-                0
-            );
-
-        }
+      $status = 'notvalid';
 
     } else {
 
-        $status = 'addform';
+      $note = new note();
+
+      $note->insertData(
+        prepareText($_POST['title']),
+        prepareText($_POST['text']),
+        $_POST['subjectid'],
+        $_POST['category'],
+        0
+      );
 
     }
 
-    try {
+  } else {
 
-      $getSubjects = $con->query('select id from subjects order by mandatory desc, name asc');
+    $status = 'addform';
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a tantárgyak kiválasztása.');
-    }
+  }
 
-    $subjects = array();
+  try {
 
-    while ($subjectData = $getSubjects->fetch()) {
+    $getSubjects = $con->query('
+      select id
+      from subjects
+      order by mandatory desc, name asc
+    ');
 
-        $subject = new subject($subjectData['id']);
-        $subjects[] = $subject->getData();
+  } catch (PDOException $e) {
+    die('Nem sikerült a tantárgyak kiválasztása.');
+  }
 
-    }
+  $subjects = array();
 
-    try {
+  while ($subjectData = $getSubjects->fetch()) {
 
-      $getCategories = $con->query('select id from categories');
+    $subject = new subject($subjectData['id']);
+    $subjects[] = $subject->getData();
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a kategóriák kiválasztása.');
-    }
+  }
 
-    $categories = array();
+  try {
 
-    while ($categoryData = $getCategories->fetch()) {
+    $getCategories = $con->query('select id from categories');
 
-        $category = new category($categoryData['id']);
-        $categories[] = $category->getData();
+  } catch (PDOException $e) {
+    die('Nem sikerült a kategóriák kiválasztása.');
+  }
 
-    }
+  $categories = array();
 
-    $index_var['location'][] = array(
-        'url' => '/note/add/',
-        'name' => 'Jegyzet beküldése'
-    );
+  while ($categoryData = $getCategories->fetch()) {
 
-    $index_var['title'] = 'Jegyzet beküldése';
+    $category = new category($categoryData['id']);
+    $categories[] = $category->getData();
+
+  }
+
+  $index_var['location'][] = array(
+    'url' => '/note/add/',
+    'name' => 'Jegyzet beküldése'
+  );
+
+  $index_var['title'] = 'Jegyzet beküldése';
 
 } else {
 
-    $status = 'display';
+  $status = 'display';
 
-    if (!isValid('note', $_GET['id'])) {
+  if (!isValid('note', $_GET['id'])) {
 
-      header('Location: /404/');
+    header('Location: /404/');
 
-    }
+  }
 
-    $note = new note($_GET['id']);
+  $note = new note($_GET['id']);
 
-    $subject = new subject($note->getData()['subjectid']);
+  $subject = new subject($note->getData()['subjectid']);
 
-    $category = new category($note->getData()['category']);
+  $category = new category($note->getData()['category']);
 
-    try {
+  try {
 
-        $getModificationsData = $con->prepare('
-            select id
-            from modifications
-            where noteid = :noteid
-        ');
-        $getModificationsData->bindValue(
-            'noteid',
-            $note->getData()['id'],
-            PDO::PARAM_INT
-        );
-        $getModificationsData->execute();
-
-    } catch (PDOException $e) {
-        die('Nem sikerült a kategóriák kiválasztása.');
-    }
-
-    $modifications = array();
-
-    while ($modificationData = $getModificationsData->fetch()) {
-        $modification = new modification($modificationData['id']);
-        $modifications[] = $modification->getData();
-    }
-
-    $index_var['location'][] = array(
-        'url' => '/subject/',
-        'name' => 'Tantárgyak'
+    $getModificationsData = $con->prepare('
+      select id
+      from modifications
+      where noteid = :noteid
+    ');
+    $getModificationsData->bindValue(
+      'noteid',
+      $note->getData()['id'],
+      PDO::PARAM_INT
     );
+    $getModificationsData->execute();
 
-    $index_var['location'][] = array(
-        'url' => '/subject/' . $subject->getData()['id'] . '/',
-        'name' => $subject->getData()['name']
-    );
+  } catch (PDOException $e) {
+    die('Nem sikerült a kategóriák kiválasztása.');
+  }
 
-    $index_var['location'][] = array(
-        'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
-        'name' => $category->getData()['name']
-    );
+  $modifications = array();
 
-    $index_var['location'][] = array(
-        'url' => '/note/' . $note->getData()['id'] . '/',
-        'name' => $note->getData()['title']
-    );
+  while ($modificationData = $getModificationsData->fetch()) {
+    $modification = new modification($modificationData['id']);
+    $modifications[] = $modification->getData();
+  }
 
-    $index_var['title'] = $note->getData()['title'];
+  $index_var['location'][] = array(
+    'url' => '/subject/',
+    'name' => 'Tantárgyak'
+  );
+
+  $index_var['location'][] = array(
+    'url' => '/subject/' . $subject->getData()['id'] . '/',
+    'name' => $subject->getData()['name']
+  );
+
+  $index_var['location'][] = array(
+    'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
+    'name' => $category->getData()['name']
+  );
+
+  $index_var['location'][] = array(
+    'url' => '/note/' . $note->getData()['id'] . '/',
+    'name' => $note->getData()['title']
+  );
+
+  $index_var['title'] = $note->getData()['title'];
 
 }
 
 echo $twig->render(
-    'note.html',
-    array(
-        'index_var' => $index_var,
-        'note' => (isset($note)) ? $note->getData() : null,
-        'modifications' => (isset($modifications)) ? $modifications : null,
-        'status' => $status,
-        'categories' => (isset($categories)) ? $categories : null,
-        'subjects' => (isset($subjects)) ? $subjects : null
-    )
+  'note.html',
+  array(
+    'index_var'     => $index_var,
+    'note'          => (isset($note)) ? $note->getData() : null,
+    'modifications' => (isset($modifications)) ? $modifications : null,
+    'status'        => $status,
+    'categories'    => (isset($categories)) ? $categories : null,
+    'subjects'      => (isset($subjects)) ? $subjects : null
+  )
 );

@@ -2,97 +2,97 @@
 
 class feedback {
 
-    protected $id    = null;
-    protected $title = null;
-    protected $text  = null;
-    protected $date  = null;
-    protected $isnew = null;
+  protected $id    = null;
+  protected $title = null;
+  protected $text  = null;
+  protected $date  = null;
+  protected $isnew = null;
 
-    public function __construct($id = null) {
+  public function __construct($id = null) {
 
-        global $con;
+    global $con;
 
-        try {
+    try {
 
-            $selectData = $con->prepare('select * from feedback where id = :id');
-            $selectData->bindValue('id', $id, PDO::PARAM_INT);
-            $selectData->execute();
+      $selectData = $con->prepare('select * from feedback where id = :id');
+      $selectData->bindValue('id', $id, PDO::PARAM_INT);
+      $selectData->execute();
 
-        } catch (PDOException $e) {
-            die('Nem sikerült az osztály adatait betölteni.');
-        }
-
-        $subjectData = $selectData->fetch();
-
-        $this->id    = $subjectData['id'];
-        $this->title = $subjectData['title'];
-        $this->text  = $subjectData['text'];
-        $this->date  = new DateTime($subjectData['date']);
-        $this->isnew = $subjectData['isnew'];
-
+    } catch (PDOException $e) {
+      die('Nem sikerült az osztály adatait betölteni.');
     }
 
-    public function makeNotNew() {
+    $subjectData = $selectData->fetch();
 
-        global $con;
+    $this->id    = $subjectData['id'];
+    $this->title = $subjectData['title'];
+    $this->text  = $subjectData['text'];
+    $this->date  = new DateTime($subjectData['date']);
+    $this->isnew = $subjectData['isnew'];
 
-        try {
+  }
 
-            $modifyData = $con->prepare('
-                update feedback
-                set isnew = 0
-                where id = :id
-            ');
-            $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
-            $modifyData->execute();
+  public function makeNotNew() {
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a frissítés.');
-        }
+    global $con;
 
+    try {
+
+      $modifyData = $con->prepare('
+        update feedback
+        set isnew = 0
+        where id = :id
+      ');
+      $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $modifyData->execute();
+
+    } catch (PDOException $e) {
+      die('Nem sikerült a frissítés.');
     }
 
-    public function insertData($title, $text) {
+  }
 
-        global $con;
+  public function insertData($title, $text) {
 
-        $this->title = $title;
-        $this->text  = $text;
+    global $con;
 
-        try {
+    $this->title = $title;
+    $this->text  = $text;
 
-            $insertData = $con->prepare('
-                insert into feedback
-                values(
-                    DEFAULT,
-                    :title,
-                    :text,
-                    DEFAULT,
-                    1
-                )
-            ');
-            $insertData->bindValue('title', $title, PDO::PARAM_STR);
-            $insertData->bindValue('text', $text, PDO::PARAM_STR);
-            $insertData->execute();
+    try {
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a visszajelzés elküldése.');
-        }
+      $insertData = $con->prepare('
+        insert into feedback
+        values(
+          DEFAULT,
+          :title,
+          :text,
+          DEFAULT,
+          1
+        )
+      ');
+      $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
+      $insertData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $insertData->execute();
 
+    } catch (PDOException $e) {
+      die('Nem sikerült a visszajelzés elküldése.');
     }
 
-    public function getData() {
+  }
 
-        global $config;
+  public function getData() {
 
-        return array(
-            'id'    => $this->id,
-            'title' => $this->title,
-            'text'  => $this->text,
-            'date'  => $this->date->format($config['dateformat']),
-            'isnew' => $this->isnew
-        );
+    global $config;
 
-    }
+    return array(
+      'id'    => $this->id,
+      'title' => $this->title,
+      'text'  => $this->text,
+      'date'  => $this->date->format($config['dateformat']),
+      'isnew' => $this->isnew
+    );
+
+  }
 
 }

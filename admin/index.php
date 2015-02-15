@@ -7,8 +7,8 @@ $dir_level = 1;
 require_once '../inc/functions.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=user_manage');
-    die('Kerlek jelentkezz be.');
+  header('Location: /user_manage/');
+  die('Kérlek jelentkezz be.');
 }
 
 $twig = initTwig();

@@ -20,7 +20,7 @@
 
   {% else %}
 
-  <p>Siker!</p>
+    <p>Siker!</p>
 
   {% endif %}
 
@@ -29,33 +29,38 @@
   <h1 id='modification-title'>{{ modification.title }}</h1>
 
   {% if modification.status == 0 %}
-  <img src='/img/pending.png' alt='pending' id='modification-status'>
+    <img src='/img/pending.png' alt='pending' id='modification-status'>
   {% endif %}
 
   {% if modification.status == 1 %}
-  <img src='/img/merged.png' alt='merged' id='modification-status'>
+    <img src='/img/merged.png' alt='merged' id='modification-status'>
   {% endif %}
 
   {% if modification.status == 2 %}
-  <img src='/img/rejected.png' alt='rejected' id='modification-status'>
+    <img src='/img/rejected.png' alt='rejected' id='modification-status'>
   {% endif %}
 
   <br>
 
   <span class='article-meta'>
     Tétel címe: {{ note.title | raw }}
+
     {% if modification.comment != '' %}
-    <br>beküldő megjegyzése: {{ modification.comment }}
+      <br>beküldő megjegyzése: {{ modification.comment }}
     {% endif %}
+
     <br>
     beküldve: {{ modification.date }}
+
     {% if modification.updatedate %}
-    <br>
-    frissítve: {{ modification.updatedate }}
+      <br>
+      frissítve: {{ modification.updatedate }}
     {% endif %}
+
     {% if modification.reply != '' %}
-    <br>tanár megjegyzése: {{ modification.reply }}
+      <br>tanár megjegyzése: {{ modification.reply }}
     {% endif %}
+
   </span>
   <br>
 

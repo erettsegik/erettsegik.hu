@@ -1,11 +1,12 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
+
 <h1>Hírek szerkesztése</h1>
 
 {% if action == 'add' %}
 
-    {% if status == 'form' %}
+  {% if status == 'form' %}
 
     <form action='news_admin.php?action=add' method='post'>
     <input type='text' name='title' placeholder='Cím'>
@@ -17,17 +18,17 @@
     <input type='submit' name='submit' class='submit'>
     </form>
 
-    {% else %}
+  {% else %}
 
-        <p>Sikeres mentés!</p>
+    <p>Sikeres mentés!</p>
 
-    {% endif %}
+  {% endif %}
 
 {% endif %}
 
 {% if action == 'edit' %}
 
-    {% if status == 'form' %}
+  {% if status == 'form' %}
 
     <form action='news_admin.php?action=edit&amp;id={{ newsdata.id }}' method='post'>
     <input type='text' name='title' placeholder='cím' value='{{ newsdata.title | raw }}'>
@@ -39,23 +40,26 @@
     <input type='submit' name='submit' class='submit'>
     </form>
 
-    {% else %}
+  {% else %}
 
-        <p>Sikeres mentés!</p>
+    <p>Sikeres mentés!</p>
 
-    {% endif %}
+  {% endif %}
 
 {% endif %}
 
 {% if status == 'list' %}
 
-<a href='news_admin.php?action=add'>új hozzáadása</a>
+  <a href='news_admin.php?action=add'>új hozzáadása</a>
 
-<ul>
-{% for new in news %}
+  <ul>
+
+  {% for new in news %}
     <li><a href='news_admin.php?action=edit&amp;id={{ new.id }}'>{{ new.title }}</a> - {{ new.live }}</li>
-{% endfor %}
-</ul>
+  {% endfor %}
+
+  </ul>
+
 {% endif %}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 div.modification textarea {
-  width: 490px;
   height: 600px;
+  width: 490px;
 }
 
 div.modification {
@@ -20,8 +20,8 @@ div.modification {
 div.modification-container {
   display: inline;
   float: left;
-  width: 480px;
   padding: 10px;
+  width: 480px;
 }
 
 p {
@@ -29,9 +29,9 @@ p {
 }
 
 .difference-original {
-  color: #AA0000;
+  color: #aa0000;
 }
 
 .difference-modified {
-  color: #00AA00;
+  color: #00aa00;
 }

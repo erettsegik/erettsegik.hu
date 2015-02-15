@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
 <h1>Keresés</h1>
 
 <form onsubmit='searchRedirect("main");'>
@@ -10,16 +11,16 @@
 
 {% if status == 'results' %}
 
-<div class='article-meta'>{{ resultcount }} találat a következőre: {{ term }}.</div>
+  <div class='article-meta'>{{ resultcount }} találat a következőre: {{ term }}.</div>
 
-<hr>
+  <hr>
 
-{% for result in results %}
+  {% for result in results %}
 
-<a href='/note/{{ result.id }}'><h2 class='result-header'>{{ result.title }}</h2></a>
-<div class='article-meta'>{{ result.subject }} &#8226; {{ result.category }}</div>
+  <a href='/note/{{ result.id }}'><h2 class='result-header'>{{ result.title }}</h2></a>
+  <div class='article-meta'>{{ result.subject }} &#8226; {{ result.category }}</div>
 
-{% endfor %}
+  {% endfor %}
 
 {% endif %}
 

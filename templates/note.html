@@ -76,6 +76,7 @@
   {% endif %}
 
   {% if status == 'display' %}
+
     <div id='leftside'>
     <h1>{{ note.title | raw }}</h1>
     {{ note.text | markdown }}
@@ -85,11 +86,13 @@
     <div id='rightside'>
     <h2>Javaslatok</h2>
     <ul class='modifications-list'>
+
     {% for modification in modifications %}
         <li class='status_{{ modification.status }}'>
           <a href='/modification/{{ modification.id }}/' title='{{ modification.comment }}'>{{ modification.title }}</a>
         </li>
     {% endfor %}
+
     <li class='add-modification'>
       <a href='/modification/add/{{ note.id }}/'>új javaslat</a>
     </li>
@@ -108,6 +111,7 @@
       })();
     </script>
   <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
+
   {% endif %}
 
 {% endblock %}

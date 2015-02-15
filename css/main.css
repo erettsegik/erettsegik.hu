@@ -5,22 +5,22 @@ html, body {
 
 body {
   background-color: #dedede;
-  color: #35586E;
-  text-align: center;
+  color: #35586e;
   font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
 }
 
 nav {
-  margin: auto;
+  background-color: #123952;
+  color: #dedede;
+  font-size: 24px;
   height: 50px;
   line-height: 50px;
-  background-color: #123952;
-  font-size: 24px;
-  vertical-align: middle;
-  color: #dedede;
-  width: 100%;
+  margin: auto;
   position: fixed;
   top: 0px;
+  vertical-align: middle;
+  width: 100%;
 }
 
 nav a, nav a:visited {
@@ -30,79 +30,78 @@ nav a, nav a:visited {
 nav ul {
   display: inline;
   list-style-type: none;
-  text-align: center;
-  margin: auto;
   margin-left: 133px;
+  margin: auto;
   padding-right: 120px;
+  text-align: center;
 }
 
 nav li {
   display: inline;
   height: 50px;
   line-height: 50px;
-  vertical-align: middle;
   margin: 0 10px;
+  vertical-align: middle;
 }
 
 #search_form {
   display: inline;
-
 }
 
 #search_form input {
-  height: 15px;
-  width: 103px;
-  background-repeat: no-repeat;
-  color: #dedede;
   background-image: url('/img/search_form_background.png');
-  position: fixed;
-  margin-top: 17px;
-  padding: 0px;
-  padding-left: 17px;
+  background-repeat: no-repeat;
   border-color: #688292;
+  color: #dedede;
+  height: 15px;
+  margin-top: 17px;
+  padding-left: 17px;
+  padding: 0px;
+  position: fixed;
+  width: 103px;
 }
 
 #wrapper {
-  width: 1046px;
-  margin: auto;
   margin-top: 50px;
+  margin: auto;
+  width: 1046px;
 }
 
 #location {
-  width: 866px;
-  height: 30px;
-  margin: 10px auto;
-  text-align: left;
   display: inline;
   float: left;
-  padding-left: 20px;
-  vertical-align: middle;
+  height: 30px;
   line-height: 30px;
+  margin: 10px auto;
+  padding-left: 20px;
+  text-align: left;
+  vertical-align: middle;
+  width: 866px;
 }
 
 #upload_button {
-  width: 140px;
-  margin: 10px auto;
-  padding-right: 20px;
-  height: 30px;
   display: inline;
   float: left;
-  vertical-align: middle;
+  height: 30px;
   line-height: 30px;
+  margin: 10px auto;
+  padding-right: 20px;
+  vertical-align: middle;
+  width: 140px;
 }
 
 #main {
-  background-color: #fff;
-  text-align: left;
-  margin: auto;
-  width: 1000px;
+  background-color: #ffffff;
   border: 3px solid #d7d7d7;
+  margin: auto;
   padding: 20px;
+  text-align: left;
+  width: 1000px;
 }
 
 h1 {
+  font-size: 24px;
   margin-top: 0px;
-  font-size: 24;
 }
 
 h2 {
@@ -114,7 +113,7 @@ h3 {
 }
 
 a, a:visited {
-  color: #35586E;
+  color: #35586e;
   text-decoration: none;
 }
 
@@ -127,12 +126,12 @@ nav a.unique, nav a.unique:visited {
 }
 
 .unique {
-  color: #EE7600;
+  color: #ee7600;
 }
 
 footer {
-  margin-top: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 p {
@@ -144,10 +143,10 @@ p a, p a:visited {
 }
 
 blockquote {
+  background-color: #f0f0f0;
   border: 3px solid #d7d7d7;
   margin: 0;
   padding: 6.5px;
-  background-color: #f0f0f0;
 }
 
 blockquote p {
@@ -155,9 +154,9 @@ blockquote p {
 }
 
 input, select, textarea {
-  border: 2px solid #d7d7d7;
   background-color: #f8f8f8;
-  color: #35586E;
+  border: 2px solid #d7d7d7;
+  color: #35586e;
 }
 
 input {
@@ -165,10 +164,10 @@ input {
 }
 
 input.submit {
-  width: auto;
-  margin-top: 5px;
   border-color: #123952;
   border-radius: 3px;
+  margin-top: 5px;
+  width: auto;
 }
 
 select {
@@ -176,14 +175,14 @@ select {
 }
 
 textarea {
-  margin-top: 5px;
   height: 250px;
+  margin-top: 5px;
   width: 993px;
 }
 
 .article-meta {
-  font-size: 0.7em;
   color: #8090aa;
+  font-size: 0.7em;
   margin: 16px auto;
 }
 
@@ -192,10 +191,10 @@ img {
 }
 
 hr {
-  border-color: #dedede;
   background-color: #dedede;
-  height: 1px;
+  border-color: #dedede;
   border-width: 0px;
-  width: 98%;
+  height: 1px;
   margin: 16px auto;
+  width: 98%;
 }

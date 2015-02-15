@@ -26,25 +26,25 @@ $index_var = array();
 
 try {
 
-    $getSubjects = $con->query('select * from subjects where mandatory = 1');
+  $getSubjects = $con->query('select * from subjects where mandatory = 1');
 
 } catch (PDOException $e) {
-    die('Nem sikerült a tantárgyak kiválasztása.');
+  die('Nem sikerült a tantárgyak kiválasztása.');
 }
 
 $index_var['subjects'] = array();
 
 while ($subject = $getSubjects->fetch()) {
 
-    $index_var['subjects'][] = $subject;
+  $index_var['subjects'][] = $subject;
 
 }
 
 $index_var['location'][] = array('url' => '/', 'name' => 'Főoldal');
 
 if (isset($_SESSION['userid'])) {
-    $user = new user($_SESSION['userid']);
-    $username = $user->getData()['name'];
+  $user = new user($_SESSION['userid']);
+  $username = $user->getData()['name'];
 }
 
 $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
@@ -55,49 +55,49 @@ $index_var['canonical'] = getCanonicalUrl();
 
 if (isset($_GET['p'])) {
 
-    $p = $_GET['p'];
+  $p = $_GET['p'];
 
-    if (file_exists('css/' . $p . '.css')) {
+  if (file_exists('css/' . $p . '.css')) {
 
-        $index_var['css'] = $p;
+    $index_var['css'] = $p;
 
-    }
+  }
 
-    if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
+  if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
 
-        require_once 'inc/' . $p . '.php';
+    require_once 'inc/' . $p . '.php';
 
-    } else {
+  } else {
 
-        echo '404';
+    header('Location: /404/');
 
-    }
+  }
 
 } else {
 
-    $index_var['css'] = 'news';
+  $index_var['css'] = 'news';
 
-    require_once 'inc/news.php';
+  require_once 'inc/news.php';
 
 }
 
 function getCanonicalUrl() {
 
-    $url = 'https://erettsegik.hu/';
+  $url = 'https://erettsegik.hu/';
 
-    if (isset($_GET['p'])) {
-        $url .= $_GET['p'] . '/';
-    }
+  if (isset($_GET['p'])) {
+    $url .= $_GET['p'] . '/';
+  }
 
-    if (isset($_GET['action'])) {
-        $url .= $_GET['action'] . '/';
-    }
+  if (isset($_GET['action'])) {
+    $url .= $_GET['action'] . '/';
+  }
 
-    if (isset($_GET['id'])) {
-        $url .= $_GET['id'] . '/';
-    }
+  if (isset($_GET['id'])) {
+    $url .= $_GET['id'] . '/';
+  }
 
-    return $url;
+  return $url;
 
 }
 

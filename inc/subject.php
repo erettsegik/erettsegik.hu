@@ -4,96 +4,96 @@ require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
 
 $index_var['location'][] = array(
-    'url' => '/subject/',
-    'name' => 'Tantárgyak'
+  'url' => '/subject/',
+  'name' => 'Tantárgyak'
 );
 
 if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 
-    $status = 'one';
+  $status = 'one';
 
-    $subject = new subject($_GET['id']);
+  $subject = new subject($_GET['id']);
 
-    $categories = array();
+  $categories = array();
 
-    try {
+  try {
 
-        $getNotesData = $con->prepare('
-            select notes.id, notes.title, categories.name
-            from notes
-            left join categories on notes.category = categories.id
-            where notes.subjectid = :subjectid and notes.live = 1
-            order by ordernumber asc, id asc
-        ');
-        $getNotesData->bindValue(
-            'subjectid',
-            $subject->getData()['id'],
-            PDO::PARAM_INT
-        );
-        $getNotesData->execute();
+    $getNotesData = $con->prepare('
+      select notes.id, notes.title, categories.name
+      from notes
+      left join categories on notes.category = categories.id
+      where notes.subjectid = :subjectid and notes.live = 1
+      order by ordernumber asc, id asc
+    ');
+    $getNotesData->bindValue(
+      'subjectid',
+      $subject->getData()['id'],
+      PDO::PARAM_INT
+    );
+    $getNotesData->execute();
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a jegyzetek kiválasztása.');
-    }
+  } catch (PDOException $e) {
+    die('Nem sikerült a jegyzetek kiválasztása.');
+  }
 
-    while ($notesData = $getNotesData->fetch()) {
+  while ($notesData = $getNotesData->fetch()) {
 
-        if (!isset($categories[$notesData['name']]))
-            $categories[$notesData['name']] = array();
+    if (!isset($categories[$notesData['name']]))
+      $categories[$notesData['name']] = array();
 
-        if (!isset($categories[$notesData['name']]['data']))
-            $categories[$notesData['name']]['data'] = array();
+    if (!isset($categories[$notesData['name']]['data']))
+      $categories[$notesData['name']]['data'] = array();
 
-        $categories[$notesData['name']]['name'] = $notesData['name'];
-        $categories[$notesData['name']]['data'][] = array(
-            'id' => $notesData['id'],
-            'title' => $notesData['title']
-        );
-
-    }
-
-    $index_var['location'][] = array(
-        'url' => '/subject/' . $subject->getData()['id'] . '/',
-        'name' => $subject->getData()['name']
+    $categories[$notesData['name']]['name'] = $notesData['name'];
+    $categories[$notesData['name']]['data'][] = array(
+      'id' => $notesData['id'],
+      'title' => $notesData['title']
     );
 
-    $index_var['title'] = $subject->getData()['name'];
+  }
+
+  $index_var['location'][] = array(
+    'url' => '/subject/' . $subject->getData()['id'] . '/',
+    'name' => $subject->getData()['name']
+  );
+
+  $index_var['title'] = $subject->getData()['name'];
 
 } else {
 
-    $status = 'all';
+  $status = 'all';
 
-    $allsubjects = array();
+  $allsubjects = array();
 
-    try {
+  try {
 
-        $getSubjectData = $con->query('
-            select id from subjects
-            order by mandatory desc, name asc
-        ');
+    $getSubjectData = $con->query('
+      select id from subjects
+      order by mandatory desc, name asc
+    ');
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a tantárgyak kiválasztása.');
-    }
+  } catch (PDOException $e) {
+    die('Nem sikerült a tantárgyak kiválasztása.');
+  }
 
-    while($subjectData = $getSubjectData->fetch()) {
+  while($subjectData = $getSubjectData->fetch()) {
 
-        $subject = new subject($subjectData['id']);
-        $allsubjects[] = $subject->getData();
+    $subject = new subject($subjectData['id']);
+    $allsubjects[] = $subject->getData();
 
-    }
+  }
 
-    $index_var['title'] = 'Tantárgyak';
+  $index_var['title'] = 'Tantárgyak';
 
 }
 
 echo $twig->render(
-    'subject.html',
-    array(
-        'index_var' => $index_var,
-        'subject' => ($status == 'one') ? $subject->getData() : null,
-        'categories' => (isset($categories)) ? $categories :  null,
-        'allsubjects' => (isset($allsubjects)) ? $allsubjects : null,
-        'status' => $status
-    )
+  'subject.html',
+  array(
+    'index_var'   => $index_var,
+    'subject'     => ($status == 'one') ? $subject->getData() : null,
+    'categories'  => (isset($categories)) ? $categories :  null,
+    'allsubjects' => (isset($allsubjects)) ? $allsubjects : null,
+    'status'      => $status
+  )
 );

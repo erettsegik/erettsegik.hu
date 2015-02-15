@@ -8,41 +8,41 @@ require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=user_manage');
-    die('Kerlek jelentkezz be.');
+  header('Location: /user_manage/');
+  die('Kérlek jelentkezz be.');
 }
 
 $twig = initTwig();
 
 try {
 
-    $getCategories = $con->prepare('select id from categories');
+  $getCategories = $con->prepare('select id from categories');
 
 } catch (PDOException $e) {
-    die('Nem sikerült a kategóriák kiválasztása.');
+  die('Nem sikerült a kategóriák kiválasztása.');
 }
 
 $getCategories->execute();
 
 if (isset($_POST['update'])) {
 
-    while ($categoryData = $getCategories->fetch()) {
+  while ($categoryData = $getCategories->fetch()) {
 
-        $id = $categoryData['id'];
+    $id = $categoryData['id'];
 
-        $category = new category($id);
+    $category = new category($id);
 
-        $category->modifyData(prepareText($_POST[$id . 'name']));
+    $category->modifyData(prepareText($_POST[$id . 'name']));
 
-    }
+  }
 
 }
 
 if (isset($_POST['addnew'])) {
 
-    $category = new category();
+  $category = new category();
 
-    $category->insertData(prepareText($_POST['name']));
+  $category->insertData(prepareText($_POST['name']));
 
 }
 
@@ -52,14 +52,14 @@ $categories = array();
 
 while ($categoryData = $getCategories->fetch()) {
 
-    $category = new category($categoryData['id']);
-    $categories[] = $category->getData();
+  $category = new category($categoryData['id']);
+  $categories[] = $category->getData();
 
 }
 
 echo $twig->render(
-    'admin/categories_admin.html',
-    array(
-        'categories' => $categories
-    )
+  'admin/categories_admin.html',
+  array(
+    'categories' => $categories
+  )
 );

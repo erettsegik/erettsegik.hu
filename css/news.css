@@ -1,22 +1,22 @@
 #leftside {
-  float: left;
-  display: inline;
-  width: 740px;
-  padding-right: 10px;
   border-right: 2px solid #dedede;
+  display: inline;
+  float: left;
+  padding-right: 10px;
+  width: 740px;
 }
 
 #rightside {
-  float: left;
   display: inline;
-  width: 230px;
+  float: left;
   padding: 9px;
+  width: 230px;
 }
 
 iframe {
   background-color: transparent;
   border-width: 0;
-  width: 230px;
-  overflow: hidden;
   margin: 10px auto;
+  overflow: hidden;
+  width: 230px;
 }

@@ -1,6 +1,7 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
+
 <h1>Felhasználók szerkesztése</h1>
 
 <form action='user_admin.php' method='post'>
@@ -9,12 +10,12 @@
 <tr><th>Id</th><th>Név</th><th>Jogosultság</th><th>Jelszó</th></tr>
 
 {% for user in users %}
-<tr>
-<td>{{ user.id }}</td>
-<td><input type='text' value='{{ user.name }}' name='{{ user.id }}name'></td>
-<td><input type='number' value='{{ user.authority }}' name='{{ user.id }}authority'></td>
-<td><input type='text' value='' name='{{ user.id }}password'></td>
-</tr>
+  <tr>
+  <td>{{ user.id }}</td>
+  <td><input type='text' value='{{ user.name }}' name='{{ user.id }}name'></td>
+  <td><input type='number' value='{{ user.authority }}' name='{{ user.id }}authority'></td>
+  <td><input type='text' value='' name='{{ user.id }}password'></td>
+  </tr>
 {% endfor %}
 
 </table>
@@ -31,4 +32,5 @@
 <input type='submit' name='addnew' value='Hozzáadás' class='submit'>
 </form>
 </ul>
+
 {% endblock %}

@@ -8,45 +8,45 @@ require_once '../inc/functions.php';
 require_once '../classes/subject.class.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=user_manage');
-    die('Kerlek jelentkezz be.');
+  header('Location: /user_manage/');
+  die('Kérlek jelentkezz be.');
 }
 
 $twig = initTwig();
 
 try {
 
-    $getSubjects = $con->prepare('select id from subjects');
+  $getSubjects = $con->prepare('select id from subjects');
 
 } catch (PDOException $e) {
-    die('Nem sikerült a tárgyak kiválasztása.');
+  die('Nem sikerült a tárgyak kiválasztása.');
 }
 
 $getSubjects->execute();
 
 if (isset($_POST['update'])) {
 
-    while ($subjectData = $getSubjects->fetch()) {
+  while ($subjectData = $getSubjects->fetch()) {
 
-        $id = $subjectData['id'];
+    $id = $subjectData['id'];
 
-        $subject = new subject($id);
+    $subject = new subject($id);
 
-        $mandatory = isset($_POST[$id . 'mandatory']) && $_POST[$id . 'mandatory'] == 'on';
+    $mandatory = isset($_POST[$id . 'mandatory']) && $_POST[$id . 'mandatory'] == 'on';
 
-        $subject->modifyData($_POST[$id . 'name'], $mandatory);
+    $subject->modifyData($_POST[$id . 'name'], $mandatory);
 
-    }
+  }
 
 }
 
 if (isset($_POST['addnew'])) {
 
-    $subject = new subject();
+  $subject = new subject();
 
-    $mandatory = isset($_POST['mandatory']) && $_POST['mandatory'] == 'on';
+  $mandatory = isset($_POST['mandatory']) && $_POST['mandatory'] == 'on';
 
-    $subject->insertData($_POST['name'], $mandatory);
+  $subject->insertData($_POST['name'], $mandatory);
 
 }
 
@@ -56,14 +56,14 @@ $subjects = array();
 
 while ($subjectData = $getSubjects->fetch()) {
 
-    $subject = new subject($subjectData['id']);
-    $subjects[] = $subject->getData();
+  $subject = new subject($subjectData['id']);
+  $subjects[] = $subject->getData();
 
 }
 
 echo $twig->render(
-    'admin/subjects_admin.html',
-    array(
-        'subjects' => $subjects
-    )
+  'admin/subjects_admin.html',
+  array(
+    'subjects' => $subjects
+  )
 );

@@ -9,62 +9,62 @@ require_once '../classes/modification.class.php';
 require_once '../classes/note.class.php';
 
 if (!checkRights(2)) {
-    header('Location: /?p=user_manage');
-    die('Kerlek jelentkezz be.');
+  header('Location: /user_manage/');
+  die('Kérlek jelentkezz be.');
 }
 
 $twig = initTwig();
 
 if (isset($_GET['id'])) {
 
-    $status = 'one';
+  $status = 'one';
 
-    $modification = new modification($_GET['id']);
+  $modification = new modification($_GET['id']);
 
-    if (isset($_POST['submit'])) {
+  if (isset($_POST['submit'])) {
 
-        $modification->updateStatus($_POST['status'], $_POST['reply']);
+    $modification->updateStatus($_POST['status'], $_POST['reply']);
 
-    }
+  }
 
-    $modificationData = $modification->getData();
-    $note = new note($modificationData['noteid']);
-    $noteData = $note->getData();
+  $modificationData = $modification->getData();
+  $note = new note($modificationData['noteid']);
+  $noteData = $note->getData();
 
 } else {
 
-    $status = 'all';
+  $status = 'all';
 
-    try {
+  try {
 
-        $getModifications = $con->prepare('
-            select id
-            from modifications
-            order by id desc
-        ');
-        $getModifications->execute();
+    $getModifications = $con->prepare('
+      select id
+      from modifications
+      order by id desc
+    ');
+    $getModifications->execute();
 
-    } catch (PDOException $e) {
-        die('Nem sikerült a javaslatok kiválasztása.');
-    }
+  } catch (PDOException $e) {
+    die('Nem sikerült a javaslatok kiválasztása.');
+  }
 
-    $modifications = array();
+  $modifications = array();
 
-    while ($modificationData = $getModifications->fetch()) {
+  while ($modificationData = $getModifications->fetch()) {
 
-        $modification = new modification($modificationData['id']);
-        $modifications[] = $modification->getData();
+    $modification = new modification($modificationData['id']);
+    $modifications[] = $modification->getData();
 
-    }
+  }
 
 }
 
 echo $twig->render(
-    'admin/modifications_admin.html',
-    array(
-        'modificationdata' => (isset($modificationData)) ? $modificationData : null,
-        'modifications' => (isset($modifications)) ? $modifications : null,
-        'notedata' => (isset($noteData)) ? $noteData : null,
-        'status' => $status
-    )
+  'admin/modifications_admin.html',
+  array(
+    'modificationdata' => (isset($modificationData)) ? $modificationData : null,
+    'modifications' => (isset($modifications)) ? $modifications : null,
+    'notedata' => (isset($noteData)) ? $noteData : null,
+    'status' => $status
+  )
 );

@@ -2,141 +2,142 @@
 
 class news {
 
-    protected $id         = null;
-    protected $title      = null;
-    protected $text       = null;
-    protected $date       = null;
-    protected $updatedate = null;
-    protected $creatorid  = null;
-    protected $live       = null;
+  protected $id         = null;
+  protected $title      = null;
+  protected $text       = null;
+  protected $date       = null;
+  protected $updatedate = null;
+  protected $creatorid  = null;
+  protected $live       = null;
 
-    public function __construct($id = null) {
+  public function __construct($id = null) {
 
-        global $con;
+    global $con;
 
-        try {
+    try {
 
-            $selectData = $con->prepare('select * from news where id = :id');
-            $selectData->bindValue('id', $id, PDO::PARAM_INT);
-            $selectData->execute();
+      $selectData = $con->prepare('select * from news where id = :id');
+      $selectData->bindValue('id', $id, PDO::PARAM_INT);
+      $selectData->execute();
 
-            $newsData = $selectData->fetch();
+      $newsData = $selectData->fetch();
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a hír betöltése.');
-        }
-
-        $this->id         = $newsData['id'];
-        $this->title      = $newsData['title'];
-        $this->text       = $newsData['text'];
-        $this->date       = new DateTime($newsData['date']);
-        $this->updatedate = ($newsData['updatedate'] != null)
-                                ? new DateTime($newsData['updatedate'])
-                                : null;
-        $this->creatorid  = $newsData['creatorid'];
-        $this->live       = $newsData['live'];
-
+    } catch (PDOException $e) {
+      die('Nem sikerült a hír betöltése.');
     }
 
-    public function insertData($title, $text, $creatorid, $live) {
+    $this->id         = $newsData['id'];
+    $this->title      = $newsData['title'];
+    $this->text       = $newsData['text'];
+    $this->date       = new DateTime($newsData['date']);
+    $this->updatedate = ($newsData['updatedate'] != null)
+                      ? new DateTime($newsData['updatedate'])
+                      : null;
+    $this->creatorid  = $newsData['creatorid'];
+    $this->live       = $newsData['live'];
 
-        global $con;
+  }
 
-        $this->title = $title;
-        $this->text  = $text;
-        $this->live  = $live;
+  public function insertData($title, $text, $creatorid, $live) {
 
-        try {
+    global $con;
 
-            $insertData = $con->prepare('
-                insert into news
-                values(
-                    DEFAULT,
-                    :title,
-                    :text,
-                    DEFAULT,
-                    DEFAULT,
-                    :creatorid,
-                    :live
-                )
-            ');
-            $insertData->bindValue('title', $title, PDO::PARAM_STR);
-            $insertData->bindValue('text', $text, PDO::PARAM_STR);
-            $insertData->bindValue('creatorid', $creatorid, PDO::PARAM_INT);
-            $insertData->bindValue('live', $live, PDO::PARAM_INT);
-            $insertData->execute();
+    $this->title     = $title;
+    $this->text      = $text;
+    $this->live      = $live;
+    $this->creatorid = $creatorid;
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a hír hozzáadása.');
-        }
+    try {
 
+      $insertData = $con->prepare('
+        insert into news
+        values(
+          DEFAULT,
+          :title,
+          :text,
+          DEFAULT,
+          DEFAULT,
+          :creatorid,
+          :live
+        )
+      ');
+      $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
+      $insertData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $insertData->bindValue('creatorid', $this->creatorid, PDO::PARAM_INT);
+      $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
+      $insertData->execute();
+
+    } catch (PDOException $e) {
+      die('Nem sikerült a hír hozzáadása.');
     }
 
-    public function modifyData($title, $text, $live) {
+  }
 
-        global $con;
+  public function modifyData($title, $text, $live) {
 
-        $this->title = $title;
-        $this->text  = $text;
-        $this->live  = $live;
+    global $con;
 
-        try {
+    $this->title = $title;
+    $this->text  = $text;
+    $this->live  = $live;
 
-            $insertData = $con->prepare('
-                update news
-                set title = :title,
-                    text = :text,
-                    updatedate = now(),
-                    live = :live
-                where id = :id
-            ');
-            $insertData->bindValue('title', $title, PDO::PARAM_STR);
-            $insertData->bindValue('text', $text, PDO::PARAM_STR);
-            $insertData->bindValue('live', $live, PDO::PARAM_INT);
-            $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
-            $insertData->execute();
+    try {
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a hír frissítése.');
-        }
+      $insertData = $con->prepare('
+        update news
+        set title = :title,
+          text = :text,
+          updatedate = now(),
+          live = :live
+        where id = :id
+      ');
+      $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
+      $insertData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
+      $insertData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $insertData->execute();
 
+    } catch (PDOException $e) {
+      die('Nem sikerült a hír frissítése.');
     }
 
-    public function remove() {
+  }
 
-        global $con;
+  public function remove() {
 
-        try {
+    global $con;
 
-            $removeData = $con->prepare('
-                delete from news
-                where id = :id
-            ');
-            $removeData->bindValue('id', $this->id, PDO::PARAM_INT);
-            $removeData->execute();
+    try {
 
-        } catch (PDOException $e) {
-            die('Nem sikerült a hír törlése.');
-        }
+      $removeData = $con->prepare('
+        delete from news
+        where id = :id
+      ');
+      $removeData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $removeData->execute();
 
+    } catch (PDOException $e) {
+      die('Nem sikerült a hír törlése.');
     }
 
-    public function getData($unsanitize = false) {
+  }
 
-        global $config;
+  public function getData($unsanitize = false) {
 
-        return array(
-             'id' => $this->id,
-             'title' => ($unsanitize) ? unprepareText($this->title) : $this->title,
-             'text' => ($unsanitize) ? unprepareText($this->text) : $this->text,
-             'date' => $this->date->format($config['dateformat']),
-             'updatedate' => ($this->updatedate != null)
-                                 ? $this->updatedate->format($config['dateformat'])
-                                 : null,
-             'creatorid' => $this->creatorid,
-             'live' => $this->live
-        );
+    global $config;
 
-    }
+    return array(
+       'id'         => $this->id,
+       'title'      => ($unsanitize) ? unprepareText($this->title) : $this->title,
+       'text'       => ($unsanitize) ? unprepareText($this->text) : $this->text,
+       'date'       => $this->date->format($config['dateformat']),
+       'updatedate' => ($this->updatedate != null)
+                     ? $this->updatedate->format($config['dateformat'])
+                     : null,
+       'creatorid'  => $this->creatorid,
+       'live'       => $this->live
+    );
+
+  }
 
 }

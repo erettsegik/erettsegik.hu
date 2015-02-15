@@ -8,33 +8,33 @@ $index_var['title'] = 'Visszajelzés küldése';
 
 if (isset($_POST['submit'])) {
 
-    $status = 'submit';
+  $status = 'submit';
 
-    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['text'])) {
+  if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['text'])) {
 
-        $feedback = new feedback();
+    $feedback = new feedback();
 
-        $feedback->insertData(
-            prepareText($_POST['title']),
-            prepareText($_POST['text'])
-        );
+    $feedback->insertData(
+      prepareText($_POST['title']),
+      prepareText($_POST['text'])
+    );
 
-    } else {
+  } else {
 
-        $status = 'empty';
+    $status = 'empty';
 
-    }
+  }
 
 } else {
 
-    $status = 'form';
+  $status = 'form';
 
 }
 
 echo $twig->render(
-    'feedback.html',
-    array(
-        'index_var' => $index_var,
-        'status' => $status
-    )
+  'feedback.html',
+  array(
+    'index_var' => $index_var,
+    'status'    => $status
+  )
 );

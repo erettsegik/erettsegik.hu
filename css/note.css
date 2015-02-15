@@ -3,15 +3,15 @@ code {
 }
 
 em {
-  color: #15384E;
-  font-weight: bold;
+  color: #15384e;
   font-style: normal;
+  font-weight: bold;
 }
 
 p {
+  line-height: 1.5;
   text-align: justify;
   text-indent: 20px;
-  line-height: 1.5;
 }
 
 input.shorter {
@@ -19,8 +19,8 @@ input.shorter {
 }
 
 td {
-  padding: 0px;
   padding-right: 10px;
+  padding: 0px;
   vertical-align: middle;
 }
 
@@ -29,27 +29,27 @@ table {
 }
 
 button.edit-button {
-  border: 2px solid #d7d7d7;
   background-color: #f8f8f8;
-  color: #35586E;
-  padding: 5px;
+  border: 2px solid #d7d7d7;
+  color: #35586e;
   margin: 5px 0;
+  padding: 5px;
 }
 
 #leftside {
-  float: left;
-  display: inline;
   border-right: 2px solid #dedede;
-  width: 788px;
+  display: inline;
+  float: left;
   padding-right: 10px;
+  width: 788px;
 }
 
 #rightside {
-  float: left;
   display: inline;
-  width: 180px;
-  padding: 10px;
+  float: left;
   padding-top: 0;
+  padding: 10px;
+  width: 180px;
 }
 
 h2 {
@@ -61,9 +61,9 @@ h2 {
 }
 
 #note-help {
-  border: 2px solid #d7d7d7;
   background-color: #f8f8f8;
-  color: #35586E;
+  border: 2px solid #d7d7d7;
+  color: #35586e;
   padding: 10px;
 }
 
@@ -85,12 +85,12 @@ li.add-modification {
 }
 
 #leftside ul {
-  line-height: 1.5;
   font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
 }
 
 #leftside ul a, #leftside ul a:visited {
-  color: #EE7600;
+  color: #ee7600;
 }
 
 #leftside h2 {

@@ -5,19 +5,19 @@ html, body {
 
 body {
   background-color: #dedede;
-  color: #35586E;
-  text-align: center;
+  color: #35586e;
   font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 nav {
-  margin: auto;
-  height: 50px;
   background-color: #123952;
-  font-size: 24px;
-  vertical-align: middle;
-  color: #dedede;
   border-bottom: 3px solid #d7d7d7;
+  color: #dedede;
+  font-size: 24px;
+  height: 50px;
+  margin: auto;
+  vertical-align: middle;
 }
 
 nav a, nav a:visited {
@@ -26,30 +26,29 @@ nav a, nav a:visited {
 
 nav ul {
   list-style-type: none;
-  text-align: center;
   margin: auto;
+  text-align: center;
 }
 
 nav li {
   display: inline;
   height: 50px;
-  vertical-align: middle;
   margin: 0 10px;
+  vertical-align: middle;
 }
 
 #wrapper {
-  width: 1046px;
   margin: auto;
+  width: 1046px;
 }
 
 #main {
-  background-color: #fff;
-  text-align: left;
-  margin: auto;
-  width: 1000px;
+  background-color: #ffffff;
   border: 3px solid #d7d7d7;
+  margin: auto;
   padding: 20px;
-  height: ;
+  text-align: left;
+  width: 1000px;
 }
 
 h1 {
@@ -61,7 +60,7 @@ h2 {
 }
 
 a, a:visited {
-  color: #35586E;
+  color: #35586e;
   text-decoration: none;
 }
 
@@ -70,9 +69,9 @@ nav a.unique, nav a.unique:visited {
 }
 
 input, select, textarea {
-  border: 2px solid #d7d7d7;
   background-color: #f8f8f8;
-  color: #35586E;
+  border: 2px solid #d7d7d7;
+  color: #35586e;
 }
 
 input {
@@ -80,10 +79,10 @@ input {
 }
 
 input.submit {
-  width: auto;
-  margin-top: 5px;
   border-color: #123952;
   border-radius: 3px;
+  margin-top: 5px;
+  width: auto;
 }
 
 input.shorter {
@@ -95,8 +94,8 @@ select {
 }
 
 textarea {
-  margin-top: 5px;
   height: 250px;
+  margin-top: 5px;
   width: 993px;
 }
 
@@ -109,23 +108,23 @@ td {
 }
 
 .delete-box {
-  float: right;
   color: red;
+  float: right;
 }
 
 div.modification-container {
   display: inline;
   float: left;
-  width: 480px;
   padding: 10px;
+  width: 480px;
 }
 
 .difference-original {
-  color: #AA0000;
+  color: #aa0000;
 }
 
 .difference-modified {
-  color: #00AA00;
+  color: #00aa00;
 }
 
 input.ordernumber {

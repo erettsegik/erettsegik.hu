@@ -1,28 +1,27 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
+
 <h1>Visszajelzések</h1>
 
 {% if status == 'all' %}
 
-    <table>
-    {% for feedback in feedbackarray %}
+  <table>
 
+  {% for feedback in feedbackarray %}
     <tr>
-
-        <td><a href='feedback_admin.php?id={{ feedback.id }}'>{{ feedback.title }}</a></td>
-        <td>{{ feedback.date }}</td>
-        <td>{% if feedback.isnew %} ! {% endif %}</td>
-
+      <td><a href='feedback_admin.php?id={{ feedback.id }}'>{{ feedback.title }}</a></td>
+      <td>{{ feedback.date }}</td>
+      <td>{% if feedback.isnew %} ! {% endif %}</td>
     </tr>
+  {% endfor %}
 
-    {% endfor %}
-    </table>
+  </table>
 
 {% else %}
 
-    <h2>{{ feedbackdata.title }} - {{ feedbackdata.date }}</h2>
-    <p>{{ feedbackdata.text }}</p>
+  <h2>{{ feedbackdata.title }} - {{ feedbackdata.date }}</h2>
+  <p>{{ feedbackdata.text }}</p>
 
 {% endif %}
 

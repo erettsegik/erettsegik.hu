@@ -1,6 +1,7 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
+
 <h1>Tárgyak szerkesztése</h1>
 
 <form action='subjects_admin.php' method='post'>
@@ -9,12 +10,12 @@
 <tr><th>Név</th><th>Kötelező</th></tr>
 
 {% for subject in subjects %}
-<tr>
-<td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
-<td>
-<input type='checkbox' style='width: auto;' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
-</td>
-</tr>
+  <tr>
+  <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
+  <td>
+  <input type='checkbox' style='width: auto;' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
+  </td>
+  </tr>
 {% endfor %}
 
 </table>
@@ -30,4 +31,5 @@
 <input type='submit' name='addnew' value='Hozzáadás' class='submit'>
 </form>
 </ul>
+
 {% endblock %}

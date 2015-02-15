@@ -1,29 +1,34 @@
 {% extends 'admin/index.html' %}
 
 {% block content %}
+
 <h1>Kategóriák szerkesztése</h1>
 
 <form action='categories_admin.php' method='post'>
 <p>Kategória törléséhez hagyd a nevét üresen</p>
+
 <table>
 <tr><th>Id</th><th>Név</th></tr>
 
 {% for category in categories %}
-<tr>
-<td>{{ category.id }}</td>
-<td><input type='text' value='{{ category.name }}' name='{{ category.id }}name'></td>
-</tr>
+  <tr>
+  <td>{{ category.id }}</td>
+  <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name'></td>
+  </tr>
 {% endfor %}
 
 </table>
+
 <p>
 <input type='submit' value='Frissítés' name='update' class='submit'>
 </p>
 </form>
+
 <hr>
+
 <form action='categories_admin.php' method='post'>
 <input type='text' name='name'>
 <input type='submit' name='addnew' value='Hozzáadás' class='submit'>
 </form>
-</ul>
+
 {% endblock %}
