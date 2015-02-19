@@ -2,11 +2,50 @@
 
 {% block content %}
 
-{{ eventtime }}
+<h1>Események szerkesztése</h1>
 
-<form method='post' action='events_admin.php'>
-<input type='datetime-local' name='eventtime'>
-<input type='submit'>
-</form>
+{% if action == 'add' %}
+
+  {% if status == 'form' %}
+
+    <form action='events_admin.php?action=add' method='post'>
+    <input type='text' name='name' placeholder='Név'>
+    <br>
+    Kezdés: <input type='datetime-local' name='startdate' value='{{ current_dt }}'>
+    <br>
+    Vég: <input type='datetime-local' name='enddate' value='{{ current_dt }}'>
+    <br>
+    <input type='submit' name='submit' class='submit'>
+    </form>
+
+  {% else %}
+
+    <p>Sikeres mentés!</p>
+
+  {% endif %}
+
+{% endif %}
+
+{% if action == 'edit' %}
+
+  {% if status == 'form' %}
+
+  {% else %}
+
+    <p>Sikeres mentés!</p>
+
+  {% endif %}
+
+{% endif %}
+
+{% if status == 'list' %}
+
+  <a href='events_admin.php?action=add'>új hozzáadása</a>
+
+  <ul>
+
+  </ul>
+
+{% endif %}
 
 {% endblock %}

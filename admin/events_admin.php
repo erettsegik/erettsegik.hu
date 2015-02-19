@@ -5,7 +5,7 @@ session_start();
 $dir_level = 1;
 
 require_once '../inc/functions.php';
-require_once '../classes/feedback.class.php';
+require_once '../classes/event.class.php';
 
 checkRights($config['clearance']['events']);
 
@@ -13,12 +13,15 @@ $user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
-
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
     $status = 'submit';
+
+    $event = new event();
+
+    $event->insertData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
 
   } else {
 
@@ -49,6 +52,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
   'admin/events_admin.html',
   array(
+    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
+    'current_dt' => str_replace(' ', 'T', date('Y-m-d H:i')),
     'status' => $status,
     'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )
