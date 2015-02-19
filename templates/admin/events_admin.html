@@ -1,0 +1,12 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+
+{{ eventtime }}
+
+<form method='post' action='events_admin.php'>
+<input type='datetime-local' name='eventtime'>
+<input type='submit'>
+</form>
+
+{% endblock %}

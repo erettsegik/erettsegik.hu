@@ -24,6 +24,7 @@ if (file_exists($config_file)) {
 
 $config['clearance'] = array(
   'categories'    => 2,
+  'events'        => 2,
   'feedback'      => 2,
   'modifications' => 1,
   'news'          => 2,
@@ -134,6 +135,7 @@ function getAdminMenuItems() {
   global $config;
 
   return array(
+    array('url' => 'events_admin.php', 'name' => 'Események', 'clearance' => $config['clearance']['events']),
     array('url' => 'users_admin.php', 'name' => 'Felhasználók', 'clearance' => $config['clearance']['users']),
     array('url' => 'news_admin.php', 'name' => 'Hírek', 'clearance' => $config['clearance']['news']),
     array('url' => 'modifications_admin.php', 'name' => 'Javaslatok', 'clearance' => $config['clearance']['modifications']),
