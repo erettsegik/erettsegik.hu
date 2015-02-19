@@ -51,7 +51,7 @@ $index_var['location'][] = array(
 
 $index_var['location'][] = array(
   'url' => '/note/' . $note->getData()['id'] . '/',
-  'name' => $note->getData()['title']
+  'name' => (strlen($note->getData()['title']) > 17) ? substr($note->getData()['title'], 0, 17) . '...' : $note->getData()['title']
 );
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
@@ -98,7 +98,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   $index_var['location'][] = array(
     'url' => '/modification/',
-    'name' => 'Javaslat: ' . $modification->getData()['title']
+    'name' => (strlen($modification->getData()['title']) > 17) ? 'Javaslat: ' . substr($modification->getData()['title'], 0, 17) . '...' : 'Javaslat: ' . $modification->getData()['title']
   );
 
   $index_var['title'] = $modification->getData()['title'];
