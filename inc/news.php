@@ -1,5 +1,6 @@
 <?php
 
+require_once 'classes/event.class.php';
 require_once 'classes/news.class.php';
 require_once 'classes/user.class.php';
 
@@ -34,10 +35,58 @@ while ($newsData = $getNewsData->fetch()) {
 
 }
 
+$current_events = array();
+
+try {
+
+  $getEvents = $con->query('
+    select id
+    from events
+    where startdate <= now() and enddate > now()
+    order by startdate asc
+    limit 0, 5
+  ');
+
+} catch (PDOException $e) {
+  die('Nem sikerült az események betöltése.');
+}
+
+while ($eventData = $getEvents->fetch()) {
+
+  $event = new event($eventData['id']);
+  $current_events[] = $event->getData();
+
+}
+
+$upcoming_events = array();
+
+try {
+
+  $getEvents = $con->query('
+    select id
+    from events
+    where startdate >= now()
+    order by startdate asc
+    limit 0, 5
+  ');
+
+} catch (PDOException $e) {
+  die('Nem sikerült az események betöltése.');
+}
+
+while ($eventData = $getEvents->fetch()) {
+
+  $event = new event($eventData['id']);
+  $upcoming_events[] = $event->getData();
+
+}
+
 echo $twig->render(
   'news.html',
   array(
     'index_var' => $index_var,
-    'news'      => $news
+    'news'      => $news,
+    'current_events' => $current_events,
+    'upcoming_events' => $upcoming_events
   )
 );
