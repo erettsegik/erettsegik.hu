@@ -17,7 +17,8 @@ nav {
   font-size: 2em;
   height: 50px;
   line-height: 50px;
-  margin: auto;
+  margin: 0px;
+  padding: 0px;
   position: fixed;
   top: 0px;
   vertical-align: middle;
@@ -29,19 +30,30 @@ nav a, nav a:visited {
 }
 
 nav ul {
-  display: inline;
+  display: inline-block;
   list-style-type: none;
-  margin: auto auto auto 133px;
-  padding-right: 120px;
+  margin: 0px 0px 0px 133px;
+  padding: 0px 120px 0px 0px;
   text-align: center;
+  height: 50px;
 }
 
 nav li {
-  display: inline;
-  height: 50px;
+  display: inline-block;
   line-height: 50px;
-  margin: 0 10px;
-  vertical-align: middle;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+}
+
+nav ul a {
+  display: inline-block;
+  height: 50px;
+  padding: 0 10px;
+}
+
+nav ul a:hover {
+  background-color: #688292;
 }
 
 #search_form {
