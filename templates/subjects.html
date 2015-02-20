@@ -11,9 +11,9 @@
   {% for subject in allsubjects %}
 
     {% if subject.mandatory %}
-      <li class='mandatory'><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li class='mandatory'><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
     {% else %}
-      <li><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
     {% endif %}
 
   {% endfor %}

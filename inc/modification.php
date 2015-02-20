@@ -35,17 +35,17 @@ $subject = new subject($note->getData()['subjectid']);
 $category = new category($note->getData()['category']);
 
 $index_var['location'][] = array(
-  'url' => '/subject/',
+  'url' => '/subjects/',
   'name' => 'Tantárgyak'
 );
 
 $index_var['location'][] = array(
-  'url' => '/subject/' . $subject->getData()['id'] . '/',
+  'url' => '/subjects/' . $subject->getData()['id'] . '/',
   'name' => $subject->getData()['name']
 );
 
 $index_var['location'][] = array(
-  'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
+  'url' => '/subjects/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
   'name' => $category->getData()['name']
 );
 

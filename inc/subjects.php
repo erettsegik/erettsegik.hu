@@ -4,7 +4,7 @@ require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
 
 $index_var['location'][] = array(
-  'url' => '/subject/',
+  'url' => '/subjects/',
   'name' => 'Tantárgyak'
 );
 
@@ -53,7 +53,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
   }
 
   $index_var['location'][] = array(
-    'url' => '/subject/' . $subject->getData()['id'] . '/',
+    'url' => '/subjects/' . $subject->getData()['id'] . '/',
     'name' => $subject->getData()['name']
   );
 
@@ -88,7 +88,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 }
 
 echo $twig->render(
-  'subject.html',
+  'subjects.html',
   array(
     'index_var'   => $index_var,
     'subject'     => ($status == 'one') ? $subject->getData() : null,
