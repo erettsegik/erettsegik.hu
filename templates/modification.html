@@ -11,7 +11,7 @@
     <form action='/modification/add/{{ note.id }}/' method='post'>
     Javaslat címe: <input type='text' name='title' required><br>
     <div class='modification'>Eredeti szöveg:<br>
-    <textarea name='original_text' readonly>{{ note.text }}</textarea></div>
+    <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
     <div class='modification'>Új szöveg:<br>
     <textarea name='new_text' required>{{ note.text }}</textarea></div><br>
     Megjegyzés (opcionális): <input type='text' name='comment'><br>

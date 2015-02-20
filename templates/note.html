@@ -23,7 +23,7 @@
       <tr>
         <td>Tantárgy:</td>
         <td>
-          <select name='subjectid'>
+          <select name='subjectid' required>
             {% for subject in subjects %}
             <option value='{{ subject.id }}'>{{ subject.name }}</option>
             {% endfor %}
@@ -33,7 +33,7 @@
       <tr>
         <td>Kategória:</td>
         <td>
-          <select name='category'>
+          <select name='category' required>
             {% for category in categories %}
               <option value='{{ category.id }}'>{{ category.name }}</option>
             {% endfor %}
@@ -66,7 +66,7 @@
       A jegyzetírást megkönnyítendő írtunk egy kis szerkesztőt, mely lényegében a fenti pár gombot jelenti. Működése felettébb egyszerű, először ki kell jelölni a szövegmezőben a kívánt szövegrészletet (felsorolás esetén akár több sort is), majd valamelyik gombra kattintani. (A szerkesztő javascriptet használ, egyes bővítmények esetleg akadályozhatják a működését).
       {% endmarkdown %}
     </div>
-    <textarea name='text' id='note-txt' placeholder='Szöveg'></textarea>
+    <textarea name='text' id='note-txt' placeholder='Szöveg' required></textarea>
     <br>
     <input type='submit' name='submit' class='submit' value='Elküldés'>
     </form>
