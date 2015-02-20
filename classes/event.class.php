@@ -95,6 +95,22 @@ class event {
 
   }
 
+  public function remove() {
+
+    global $con;
+
+    try {
+
+      $remove = $con->prepare('delete from events where id = :id');
+      $remove->bindValue('id', $this->id, PDO::PARAM_INT);
+      $remove->execute();
+
+    } catch (PDOException $e) {
+      die('Nem sikerült kitörölni az eseményt.');
+    }
+
+  }
+
   public function getData() {
 
     global $config;

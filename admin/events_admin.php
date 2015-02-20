@@ -31,7 +31,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $event->modifyData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
+    if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
+
+      $event->remove();
+
+      header('Location: /admin/events_admin.php');
+
+    } else {
+
+      $event->modifyData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
+
+    }
 
   }
 
