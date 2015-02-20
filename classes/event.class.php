@@ -55,7 +55,36 @@ class event {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az esemény hozzáadása.' . $e->getMessage());
+      die('Nem sikerült az esemény hozzáadása.');
+    }
+
+  }
+
+  public function modifyData($name, $startdate, $enddate) {
+
+    global $con;
+
+    $this->name      = $name;
+    $this->startdate = $startdate;
+    $this->enddate   = $enddate;
+
+    try {
+
+      $modifyData = $con->prepare('
+        update events
+        set name = :name,
+            startdate = :startdate,
+            enddate = :enddate
+        where id = :id
+      ');
+      $modifyData->bindValue('name', $this->name, PDO::PARAM_STR);
+      $modifyData->bindValue('startdate', $this->startdate, PDO::PARAM_STR);
+      $modifyData->bindValue('enddate', $this->enddate, PDO::PARAM_STR);
+      $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $modifyData->execute();
+
+    } catch (PDOException $e) {
+      die('Nem sikerült az esemény módosítása.');
     }
 
   }

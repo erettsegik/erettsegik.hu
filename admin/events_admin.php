@@ -37,15 +37,40 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $status = 'submit';
 
+    $event = new event($id);
+
+    $event->modifyData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
+
   } else {
 
     $status = 'form';
+
+    $event = new event($id);
+
+    $eventdata = $event->getData();
+
+    $eventdata['startdate'] = str_replace(' ', 'T', $eventdata['startdate']);
+    $eventdata['enddate'] = str_replace(' ', 'T', $eventdata['enddate']);
 
   }
 
 } else {
 
   $status = 'list';
+
+  $events = array();
+
+  try {
+
+    $selectEvents = $con->query('select id, name from events order by startdate asc');
+
+  } catch (PDOException $e) {
+    die('Hiba.');
+  }
+
+  while ($event = $selectEvents->fetch()) {
+    $events[] = array('id' => $event['id'], 'name' => $event['name']);
+  }
 
 }
 
@@ -54,6 +79,8 @@ echo $twig->render(
   array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
     'current_dt' => str_replace(' ', 'T', date('Y-m-d H:i')),
+    'eventdata' => (isset($eventdata)) ? $eventdata : null,
+    'events' => (isset($events)) ? $events : null,
     'status' => $status,
     'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
   )

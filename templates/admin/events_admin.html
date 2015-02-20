@@ -30,6 +30,16 @@
 
   {% if status == 'form' %}
 
+    <form action='events_admin.php?action=edit&id={{ eventdata.id }}' method='post'>
+    <input type='text' name='name' placeholder='Név' value='{{ eventdata.name }}'>
+    <br>
+    Kezdés: <input type='datetime-local' name='startdate' value='{{ eventdata.startdate }}'>
+    <br>
+    Vég: <input type='datetime-local' name='enddate' value='{{ eventdata.enddate }}'>
+    <br>
+    <input type='submit' name='submit' class='submit'>
+    </form>
+
   {% else %}
 
     <p>Sikeres mentés!</p>
@@ -43,6 +53,10 @@
   <a href='events_admin.php?action=add'>új hozzáadása</a>
 
   <ul>
+
+  {% for event in events %}
+    <li><a href='events_admin.php?action=edit&id={{ event.id }}'>{{ event.name }}</li>
+  {% endfor %}
 
   </ul>
 
