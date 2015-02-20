@@ -39,10 +39,10 @@ $current_events = array();
 
 try {
 
-  $getEvents = $con->query('
+  $getCurrentEvents = $con->query('
     select id
     from events
-    where startdate <= now() and enddate > now()
+    where startdate <= now() and enddate >= now()
     order by startdate asc
     limit 0, 5
   ');
@@ -51,7 +51,7 @@ try {
   die('Nem sikerült az események betöltése.');
 }
 
-while ($eventData = $getEvents->fetch()) {
+while ($eventData = $getCurrentEvents->fetch()) {
 
   $event = new event($eventData['id']);
   $current_events[] = $event->getData();
@@ -62,7 +62,7 @@ $upcoming_events = array();
 
 try {
 
-  $getEvents = $con->query('
+  $getUpcomingEvents = $con->query('
     select id
     from events
     where startdate >= now()
@@ -74,7 +74,7 @@ try {
   die('Nem sikerült az események betöltése.');
 }
 
-while ($eventData = $getEvents->fetch()) {
+while ($eventData = $getUpcomingEvents->fetch()) {
 
   $event = new event($eventData['id']);
   $upcoming_events[] = $event->getData();
