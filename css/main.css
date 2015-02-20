@@ -48,12 +48,13 @@ nav li {
   display: inline;
 }
 
-#search_form input {
+#searchbox {
   background-image: url('/img/search_form_background.png');
   background-repeat: no-repeat;
   border-color: #688292;
+  border-width: 2px;
   color: #dedede;
-  height: 15px;
+  height: 19px;
   margin-top: 17px;
   padding: 0px 0px 0px 17px;
   position: fixed;
