@@ -17,42 +17,28 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     $event = new event();
 
     $event->insertData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
 
-  } else {
-
-    $status = 'form';
+    header('Location: /admin/events_admin.php');
 
   }
 
 } else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
-  $id = $_GET['id'];
+  $event = new event($_GET['id']);
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
-    $event = new event($id);
-
     $event->modifyData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
 
-  } else {
-
-    $status = 'form';
-
-    $event = new event($id);
-
-    $eventdata = $event->getData();
-
-    $eventdata['startdate'] = str_replace(' ', 'T', $eventdata['startdate']);
-    $eventdata['enddate'] = str_replace(' ', 'T', $eventdata['enddate']);
-
   }
+
+  $eventdata = $event->getData();
+
+  $eventdata['startdate'] = str_replace(' ', 'T', $eventdata['startdate']);
+  $eventdata['enddate'] = str_replace(' ', 'T', $eventdata['enddate']);
 
 } else {
 
@@ -62,7 +48,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   try {
 
-    $selectEvents = $con->query('select id, name from events order by startdate asc');
+    $selectEvents = $con->query('
+      select id, name
+      from events
+      order by startdate asc
+    ');
 
   } catch (PDOException $e) {
     die('Hiba.');
@@ -82,6 +72,9 @@ echo $twig->render(
     'eventdata' => (isset($eventdata)) ? $eventdata : null,
     'events' => (isset($events)) ? $events : null,
     'status' => $status,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );

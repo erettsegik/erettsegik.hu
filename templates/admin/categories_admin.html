@@ -12,7 +12,7 @@
 <tr>
   <form action='categories_admin.php' method='post'>
   <td>új</td>
-  <td><input type='text' name='name'></td>
+  <td><input type='text' name='name' required></td>
   <td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
 </form>
 </tr>
@@ -20,7 +20,7 @@
 {% for category in categories %}
   <tr>
   <td>{{ category.id }}</td>
-  <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name'></td>
+  <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name' required></td>
   <td>
   	{% if loop.last %}
       <input type='submit' value='Frissítés' name='update' class='submit'>

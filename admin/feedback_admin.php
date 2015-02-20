@@ -55,6 +55,9 @@ echo $twig->render(
     'status' => $status,
     'feedbackdata' => (isset($feedbackData)) ? $feedbackData : null,
     'feedbackarray' => (isset($feedbackArray)) ? $feedbackArray : null,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );

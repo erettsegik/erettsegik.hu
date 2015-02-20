@@ -24,7 +24,7 @@
   <h2>{{ modificationdata.title }}</h2>
 
   <span class='article-meta'>
-    Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&action=edit'>{{ notedata.title | raw }}</a>
+    Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>{{ notedata.title | raw }}</a>
     {% if modification.comment != '' %}
     <br>beküldő megjegyzése: {{ modificationdata.comment }}
     {% endif %}
@@ -42,7 +42,7 @@
 
   <form method='post' action='modifications_admin.php?id={{ modificationdata.id }}'>
 
-  <select name='status'>
+  <select name='status' required>
     <option value='0' {% if modificationdata.status == 0 %} selected {% endif %}>Jóváhagyásra vár</option>
     <option value='1' {% if modificationdata.status == 1 %} selected {% endif %}>Elfogadva</option>
     <option value='2' {% if modificationdata.status == 2 %} selected {% endif %}>Elutasítva</option>
@@ -54,7 +54,7 @@
   </form>
 
   <p>Fontos: a jegyzetek egyelőre nem módosulnak automatikusan, a változtatásokat kézzel kell
-  <a href='notes_admin.php?id={{ notedata.id }}&action=edit'>ITT</a> végrehajtani.</p>
+  <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>ITT</a> végrehajtani.</p>
 
 {% endif %}
 

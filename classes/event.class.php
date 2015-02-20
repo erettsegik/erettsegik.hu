@@ -54,6 +54,9 @@ class event {
       $insertData->bindValue('enddate', $this->enddate, PDO::PARAM_STR);
       $insertData->execute();
 
+      $this->startdate = new DateTime($this->startdate);
+      $this->enddate = new DateTime($this->enddate);
+
     } catch (PDOException $e) {
       die('Nem sikerült az esemény hozzáadása.');
     }
@@ -82,6 +85,9 @@ class event {
       $modifyData->bindValue('enddate', $this->enddate, PDO::PARAM_STR);
       $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
       $modifyData->execute();
+
+      $this->startdate = new DateTime($this->startdate);
+      $this->enddate = new DateTime($this->enddate);
 
     } catch (PDOException $e) {
       die('Nem sikerült az esemény módosítása.');

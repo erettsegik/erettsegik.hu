@@ -18,8 +18,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     $note = new note();
 
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
@@ -32,25 +30,29 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
-  } else {
+    $redirect_string = 'Location: /admin/notes_admin.php';
 
-    $status = 'form';
+    if (isset($_GET['subjectid'])) {
+      $redirect_string .= '?subjectid=' . $_GET['subjectid'];
+    }
+
+    header($redirect_string);
 
   }
 
 } else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
-  $id = $_GET['id'];
+  $note = new note($_GET['id']);
 
   if (isset($_POST['submit'])) {
-
-    $status = 'submit';
-
-    $note = new note($id);
 
     if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
       $note->remove();
+
+      $redirect_string = 'Location: /admin/notes_admin.php';
+
+      header($redirect_string);
 
     } else {
 
@@ -66,15 +68,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     }
 
-  } else {
-
-    $status = 'form';
-
-    $note = new note($id);
-
-    $noteData = $note->getData(true);
-
   }
+
+  $noteData = $note->getData(true);
 
 } else {
 
@@ -177,15 +173,20 @@ if (isset($_GET['subjectid'])) {
 
 }
 
-echo $twig->render('admin/notes_admin.html', array(
-  'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-  'status' => $status,
-  'notedata' => (isset($noteData)) ? $noteData : null,
-  'notelist' => (isset($noteList) ? $noteList : null),
-  'subjectlist' => getSubjects(),
-  'categories' => $categories,
-  'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0),
-  'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+echo $twig->render(
+  'admin/notes_admin.html',
+  array(
+    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
+    'status' => $status,
+    'notedata' => (isset($noteData)) ? $noteData : null,
+    'notelist' => (isset($noteList) ? $noteList : null),
+    'subjectlist' => getSubjects(),
+    'categories' => $categories,
+    'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0),
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );
 

@@ -17,8 +17,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
     $new = new news();
@@ -30,23 +28,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
-  } else {
-
-    $status = 'form';
+    header('Location: /admin/news_admin.php');
 
   }
 
 } else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
-  $id = $_GET['id'];
+  $new = new news($_GET['id']);
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
-
-    $new = new news($id);
 
     $new->modifyData(
       prepareText($_POST['title']),
@@ -54,15 +46,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
-  } else {
-
-    $status = 'form';
-
-    $new = new news($id);
-
-    $newsData = $new->getData(true);
-
   }
+
+  $newsData = $new->getData(true);
 
 } else {
 
@@ -89,11 +75,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
-echo $twig->render('admin/news_admin.html', array(
-  'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-  'status' => $status,
-  'newsdata' => (isset($newsData)) ? $newsData : null,
-  'news' => (isset($news) ? $news : null),
-  'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+echo $twig->render(
+  'admin/news_admin.html',
+  array(
+    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
+    'status' => $status,
+    'newsdata' => (isset($newsData)) ? $newsData : null,
+    'news' => (isset($news) ? $news : null),
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );

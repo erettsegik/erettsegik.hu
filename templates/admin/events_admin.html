@@ -6,45 +6,29 @@
 
 {% if action == 'add' %}
 
-  {% if status == 'form' %}
-
-    <form action='events_admin.php?action=add' method='post'>
-    <input type='text' name='name' placeholder='Név'>
-    <br>
-    Kezdés: <input type='datetime-local' name='startdate' value='{{ current_dt }}'>
-    <br>
-    Vég: <input type='datetime-local' name='enddate' value='{{ current_dt }}'>
-    <br>
-    <input type='submit' name='submit' class='submit'>
-    </form>
-
-  {% else %}
-
-    <p>Sikeres mentés!</p>
-
-  {% endif %}
+  <form action='events_admin.php?action=add' method='post'>
+  <input type='text' name='name' placeholder='Név' required>
+  <br>
+  Kezdés: <input type='datetime-local' name='startdate' value='{{ current_dt }}' required>
+  <br>
+  Vég: <input type='datetime-local' name='enddate' value='{{ current_dt }}' required>
+  <br>
+  <input type='submit' name='submit' class='submit'>
+  </form>
 
 {% endif %}
 
 {% if action == 'edit' %}
 
-  {% if status == 'form' %}
-
-    <form action='events_admin.php?action=edit&id={{ eventdata.id }}' method='post'>
-    <input type='text' name='name' placeholder='Név' value='{{ eventdata.name }}'>
-    <br>
-    Kezdés: <input type='datetime-local' name='startdate' value='{{ eventdata.startdate }}'>
-    <br>
-    Vég: <input type='datetime-local' name='enddate' value='{{ eventdata.enddate }}'>
-    <br>
-    <input type='submit' name='submit' class='submit'>
-    </form>
-
-  {% else %}
-
-    <p>Sikeres mentés!</p>
-
-  {% endif %}
+  <form action='events_admin.php?action=edit&amp;id={{ eventdata.id }}' method='post'>
+  <input type='text' name='name' placeholder='Név' value='{{ eventdata.name }}' required>
+  <br>
+  Kezdés: <input type='datetime-local' name='startdate' value='{{ eventdata.startdate }}' required>
+  <br>
+  Vég: <input type='datetime-local' name='enddate' value='{{ eventdata.enddate }}' required>
+  <br>
+  <input type='submit' name='submit' class='submit'>
+  </form>
 
 {% endif %}
 
@@ -55,7 +39,7 @@
   <ul>
 
   {% for event in events %}
-    <li><a href='events_admin.php?action=edit&id={{ event.id }}'>{{ event.name }}</li>
+    <li><a href='events_admin.php?action=edit&amp;id={{ event.id }}'>{{ event.name }}</li>
   {% endfor %}
 
   </ul>

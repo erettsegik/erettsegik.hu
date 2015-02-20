@@ -60,6 +60,9 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );

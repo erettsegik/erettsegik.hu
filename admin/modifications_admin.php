@@ -65,6 +65,9 @@ echo $twig->render(
     'modifications' => (isset($modifications)) ? $modifications : null,
     'notedata' => (isset($noteData)) ? $noteData : null,
     'status' => $status,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu' => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    )
   )
 );

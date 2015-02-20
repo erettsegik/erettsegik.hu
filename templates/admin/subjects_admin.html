@@ -10,7 +10,7 @@
 <tr><th>Név</th><th>Kötelező</th></tr>
 <tr>
   <form action='subjects_admin.php' method='post'>
-  <td><input type='text' name='name' autofocus></td>
+  <td><input type='text' name='name' autofocus required></td>
   <td><input type='checkbox' name='mandatory' style='width: auto;'></td>
   <td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
 </form>
@@ -18,7 +18,7 @@
 <form action='subjects_admin.php' method='post'>
 {% for subject in subjects %}
   <tr>
-  <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
+  <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name' required></td>
   <td>
   <input type='checkbox' style='width: auto;' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
   </td>
