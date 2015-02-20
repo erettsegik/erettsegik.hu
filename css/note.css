@@ -87,6 +87,11 @@ li.add-modification {
   line-height: 1.5;
 }
 
+#leftside ol {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
 #leftside ul a, #leftside ul a:visited {
   color: #ee7600;
 }
