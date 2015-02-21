@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da14137e1adec43cdb8f6f3e586da36f",
+    "hash": "a3d8b931ce9faa097e878fc129d736ea",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -62,16 +62,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.6.1",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "ad1b89403026158529620e0f6096be0eae96817c"
+                "reference": "5f5137889b2aec36f8a1009ebe8673dac45f004e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/ad1b89403026158529620e0f6096be0eae96817c",
-                "reference": "ad1b89403026158529620e0f6096be0eae96817c",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/5f5137889b2aec36f8a1009ebe8673dac45f004e",
+                "reference": "5f5137889b2aec36f8a1009ebe8673dac45f004e",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6-dev"
+                    "dev-master": "0.7-dev"
                 }
             },
             "autoload": {
@@ -117,7 +117,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-01-25 16:08:20"
+            "time": "2015-02-16 23:59:27"
         },
         {
             "name": "twig/twig",
