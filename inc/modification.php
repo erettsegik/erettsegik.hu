@@ -114,6 +114,7 @@ echo $twig->render(
     'modification' => isset($modification) ? $modification->getData() : null,
     'action'       => isset($_GET['action']) ? $_GET['action'] : null,
     'note'         => $note->getData(),
+    'production'    => (getenv('production') !== false) ? true : false,
     'status'       => $status,
     'diff'         => isset($diff) ? $diff : null
   )
