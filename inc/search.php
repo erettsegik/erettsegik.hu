@@ -102,9 +102,9 @@ echo $twig->render(
   'search.html',
   array(
     'index_var'   => $index_var,
-    'term'        => (isset($term)) ? $term : null,
+    'term'        => isset($term) ? $term : null,
     'status'      => $status,
-    'resultcount' => (isset($noteResults)) ? count($noteResults) : null,
-    'results'     => (isset($noteResults)) ? $noteResults : null
+    'resultcount' => isset($noteResults) ? count($noteResults) : null,
+    'results'     => isset($noteResults) ? $noteResults : null
   )
 );

@@ -84,9 +84,9 @@ while ($eventData = $getUpcomingEvents->fetch()) {
 echo $twig->render(
   'news.html',
   array(
-    'index_var' => $index_var,
-    'news'      => $news,
-    'current_events' => $current_events,
+    'index_var'       => $index_var,
+    'news'            => $news,
+    'current_events'  => $current_events,
     'upcoming_events' => $upcoming_events
   )
 );

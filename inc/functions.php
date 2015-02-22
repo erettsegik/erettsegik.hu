@@ -34,8 +34,7 @@ $config['clearance'] = array(
 );
 
 $config['dateformat'] = 'Y-m-d H:i';
-
-date_default_timezone_set('Europe/Budapest');
+$config['htmldate'] = 'Y-m-d\TH:i';
 
 try {
 

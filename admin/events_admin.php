@@ -45,10 +45,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   }
 
-  $eventdata = $event->getData();
-
-  $eventdata['startdate'] = str_replace(' ', 'T', $eventdata['startdate']);
-  $eventdata['enddate'] = str_replace(' ', 'T', $eventdata['enddate']);
+  $eventdata = $event->getData(true);
 
 } else {
 
@@ -74,11 +71,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
+$current = new DateTime(null, new DateTimeZone('UTC'));
+$current->setTimeZone(new DateTimeZone('Europe/Budapest'));
+$current_dt = $current->format($config['htmldate']);
+
 echo $twig->render(
   'admin/events_admin.html',
   array(
     'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-    'current_dt' => str_replace(' ', 'T', date('Y-m-d H:i')),
+    'current_dt' => $current_dt,
     'eventdata' => (isset($eventdata)) ? $eventdata : null,
     'events' => (isset($events)) ? $events : null,
     'status' => $status,

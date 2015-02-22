@@ -7,6 +7,9 @@ class event {
   protected $startdate = null;
   protected $enddate   = null;
 
+  protected $utc;
+  protected $bud;
+
   public function __construct($id = null) {
 
     global $con;
@@ -23,20 +26,30 @@ class event {
 
     $subjectData = $selectData->fetch();
 
+    $this->utc = new DateTimeZone('UTC');
+    $this->bud = new DateTimeZone('Europe/Budapest');
+
     $this->id        = $subjectData['id'];
     $this->name      = $subjectData['name'];
-    $this->startdate = new DateTime($subjectData['startdate']);
-    $this->enddate   = new DateTime($subjectData['enddate']);
+    $this->startdate = new DateTime($subjectData['startdate'], $this->utc);
+    $this->enddate   = new DateTime($subjectData['enddate'], $this->utc);
+
+    $this->startdate->setTimezone($this->bud);
+    $this->enddate->setTimezone($this->bud);
 
   }
 
   public function insertData($name, $startdate, $enddate) {
 
     global $con;
+    global $config;
 
     $this->name      = $name;
-    $this->startdate = $startdate;
-    $this->enddate   = $enddate;
+    $this->startdate = new DateTime($startdate, $this->bud);
+    $this->enddate   = new DateTime($enddate, $this->bud);
+
+    $this->startdate->setTimezone($this->utc);
+    $this->enddate->setTimezone($this->utc);
 
     try {
 
@@ -50,16 +63,16 @@ class event {
         )
       ');
       $insertData->bindValue('name', $this->name, PDO::PARAM_STR);
-      $insertData->bindValue('startdate', $this->startdate, PDO::PARAM_STR);
-      $insertData->bindValue('enddate', $this->enddate, PDO::PARAM_STR);
+      $insertData->bindValue('startdate', $this->startdate->format($config['htmldate']), PDO::PARAM_STR);
+      $insertData->bindValue('enddate', $this->enddate->format($config['htmldate']), PDO::PARAM_STR);
       $insertData->execute();
-
-      $this->startdate = new DateTime($this->startdate);
-      $this->enddate = new DateTime($this->enddate);
 
     } catch (PDOException $e) {
       die('Nem sikerült az esemény hozzáadása.');
     }
+
+    $this->startdate->setTimezone($this->bud);
+    $this->enddate->setTimezone($this->bud);
 
   }
 
@@ -68,8 +81,11 @@ class event {
     global $con;
 
     $this->name      = $name;
-    $this->startdate = $startdate;
-    $this->enddate   = $enddate;
+    $this->startdate = new DateTime($startdate, $this->bud);
+    $this->enddate   = new DateTime($enddate, $this->bud);
+
+    $this->startdate->setTimezone($this->utc);
+    $this->enddate->setTimezone($this->utc);
 
     try {
 
@@ -93,6 +109,9 @@ class event {
       die('Nem sikerült az esemény módosítása.');
     }
 
+    $this->startdate->setTimezone($this->bud);
+    $this->enddate->setTimezone($this->bud);
+
   }
 
   public function remove() {
@@ -111,15 +130,15 @@ class event {
 
   }
 
-  public function getData() {
+  public function getData($htmlformat = false) {
 
     global $config;
 
     return array(
       'id'        => $this->id,
       'name'      => $this->name,
-      'startdate' => $this->startdate->format($config['dateformat']),
-      'enddate'   => $this->enddate->format($config['dateformat'])
+      'startdate' => ($htmlformat) ? $this->startdate->format($config['htmldate']) : $this->startdate->format($config['dateformat']),
+      'enddate'   => ($htmlformat) ? $this->enddate->format($config['htmldate']) : $this->enddate->format($config['dateformat'])
     );
 
   }

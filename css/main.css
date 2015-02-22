@@ -209,3 +209,11 @@ hr {
   margin: 16px auto;
   width: 98%;
 }
+
+:valid {
+  border-color: green;
+}
+
+:invalid {
+  border-color: red;
+}

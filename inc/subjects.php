@@ -91,9 +91,9 @@ echo $twig->render(
   'subjects.html',
   array(
     'index_var'   => $index_var,
-    'subject'     => ($status == 'one') ? $subject->getData() : null,
-    'categories'  => (isset($categories)) ? $categories :  null,
-    'allsubjects' => (isset($allsubjects)) ? $allsubjects : null,
+    'subject'     => $status == 'one' ? $subject->getData() : null,
+    'categories'  => isset($categories) ? $categories :  null,
+    'allsubjects' => isset($allsubjects) ? $allsubjects : null,
     'status'      => $status
   )
 );

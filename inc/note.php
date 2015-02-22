@@ -154,11 +154,11 @@ echo $twig->render(
   'note.html',
   array(
     'index_var'     => $index_var,
-    'note'          => (isset($note)) ? $note->getData() : null,
-    'modifications' => (isset($modifications)) ? $modifications : null,
-    'production'    => (getenv('production') !== false) ? true : false,
+    'note'          => isset($note) ? $note->getData() : null,
+    'modifications' => isset($modifications) ? $modifications : null,
+    'production'    => getenv('production') !== false ? true : false,
     'status'        => $status,
-    'categories'    => (isset($categories)) ? $categories : null,
-    'subjects'      => (isset($subjects)) ? $subjects : null
+    'categories'    => isset($categories) ? $categories : null,
+    'subjects'      => isset($subjects) ? $subjects : null
   )
 );
