@@ -36,6 +36,9 @@ $config['clearance'] = array(
 $config['dateformat'] = 'Y-m-d H:i';
 $config['htmldate'] = 'Y-m-d\TH:i';
 
+$config['tz']['utc'] = new DateTimeZone('UTC');
+$config['tz']['local'] = new DateTimeZone('Europe/Budapest');
+
 try {
 
   $con = new PDO('mysql:host=' . $config['db']['host'] .
@@ -143,5 +146,58 @@ function getAdminMenuItems() {
     array('url' => 'subjects_admin.php', 'name' => 'Tárgyak', 'clearance' => $config['clearance']['subjects']),
     array('url' => 'feedback_admin.php', 'name' => 'Visszajelzések', 'clearance' => $config['clearance']['feedback'])
   );
+
+}
+
+function getDateText($dto) {
+
+  $current = new DateTime(null, $config['tz']['utc']);
+  $current->setTimeZone($config['tz']['local']);
+
+  $diff = $current->getTimestamp() - $dto->getTimestamp();
+
+  if ($diff >= 0) {
+
+    if ($diff < 10) {
+      return 'épp most';
+    } else if ($diff < 60) {
+      return $diff . ' másodperce';
+    } else if ($diff < 120) {
+      return 'egy perce';
+    } else if ($diff < 60*60) {
+      return (int)($diff/60) . ' perce';
+    } else if ($diff < 60*60*2) {
+      return 'egy órája';
+    } else if ($diff < 60*60*24) {
+      return (int)($diff/(60*60)) . ' órája';
+    } else if ($diff < 2*60*60*24) {
+      return 'egy napja';
+    } else {
+      return (int)($diff/(60*60*24)) . ' napja';
+    }
+
+  } else {
+
+    $diff = abs($diff);
+
+    if ($diff < 10) {
+      return 'épp most';
+    } else if ($diff < 60) {
+      return $diff . ' másodperc múlva';
+    } else if ($diff < 120) {
+      return 'egy perc múlva';
+    } else if ($diff < 60*60) {
+      return (int)($diff/60) . ' perc múlva';
+    } else if ($diff < 60*60*2) {
+      return 'egy óra múlva';
+    } else if ($diff < 60*60*24) {
+      return (int)($diff/(60*60)) . ' óra múlva';
+    } else if ($diff < 2*60*60*24) {
+      return 'egy nap múlva';
+    } else {
+      return (int)($diff/(60*60*24)) . ' nap múlva';
+    }
+
+  }
 
 }

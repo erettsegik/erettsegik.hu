@@ -7,12 +7,10 @@ class event {
   protected $startdate = null;
   protected $enddate   = null;
 
-  protected $utc;
-  protected $bud;
-
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -26,16 +24,13 @@ class event {
 
     $subjectData = $selectData->fetch();
 
-    $this->utc = new DateTimeZone('UTC');
-    $this->bud = new DateTimeZone('Europe/Budapest');
-
     $this->id        = $subjectData['id'];
     $this->name      = $subjectData['name'];
-    $this->startdate = new DateTime($subjectData['startdate'], $this->utc);
-    $this->enddate   = new DateTime($subjectData['enddate'], $this->utc);
+    $this->startdate = new DateTime($subjectData['startdate'], $config['tz']['utc']);
+    $this->enddate   = new DateTime($subjectData['enddate'], $config['tz']['utc']);
 
-    $this->startdate->setTimezone($this->bud);
-    $this->enddate->setTimezone($this->bud);
+    $this->startdate->setTimezone($config['tz']['local']);
+    $this->enddate->setTimezone($config['tz']['local']);
 
   }
 
@@ -45,11 +40,11 @@ class event {
     global $config;
 
     $this->name      = $name;
-    $this->startdate = new DateTime($startdate, $this->bud);
-    $this->enddate   = new DateTime($enddate, $this->bud);
+    $this->startdate = new DateTime($startdate, $config['tz']['local']);
+    $this->enddate   = new DateTime($enddate, $config['tz']['local']);
 
-    $this->startdate->setTimezone($this->utc);
-    $this->enddate->setTimezone($this->utc);
+    $this->startdate->setTimezone($config['tz']['utc']);
+    $this->enddate->setTimezone($config['tz']['utc']);
 
     try {
 
@@ -71,21 +66,22 @@ class event {
       die('Nem sikerült az esemény hozzáadása.');
     }
 
-    $this->startdate->setTimezone($this->bud);
-    $this->enddate->setTimezone($this->bud);
+    $this->startdate->setTimezone($config['tz']['local']);
+    $this->enddate->setTimezone($config['tz']['local']);
 
   }
 
   public function modifyData($name, $startdate, $enddate) {
 
     global $con;
+    global $config;
 
     $this->name      = $name;
-    $this->startdate = new DateTime($startdate, $this->bud);
-    $this->enddate   = new DateTime($enddate, $this->bud);
+    $this->startdate = new DateTime($startdate, $config['tz']['local']);
+    $this->enddate   = new DateTime($enddate, $config['tz']['local']);
 
-    $this->startdate->setTimezone($this->utc);
-    $this->enddate->setTimezone($this->utc);
+    $this->startdate->setTimezone($config['tz']['utc']);
+    $this->enddate->setTimezone($config['tz']['utc']);
 
     try {
 
@@ -97,20 +93,17 @@ class event {
         where id = :id
       ');
       $modifyData->bindValue('name', $this->name, PDO::PARAM_STR);
-      $modifyData->bindValue('startdate', $this->startdate, PDO::PARAM_STR);
-      $modifyData->bindValue('enddate', $this->enddate, PDO::PARAM_STR);
+      $modifyData->bindValue('startdate', $this->startdate->format($config['htmldate']), PDO::PARAM_STR);
+      $modifyData->bindValue('enddate', $this->enddate->format($config['htmldate']), PDO::PARAM_STR);
       $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
       $modifyData->execute();
-
-      $this->startdate = new DateTime($this->startdate);
-      $this->enddate = new DateTime($this->enddate);
 
     } catch (PDOException $e) {
       die('Nem sikerült az esemény módosítása.');
     }
 
-    $this->startdate->setTimezone($this->bud);
-    $this->enddate->setTimezone($this->bud);
+    $this->startdate->setTimezone($config['tz']['local']);
+    $this->enddate->setTimezone($config['tz']['local']);
 
   }
 
@@ -135,10 +128,12 @@ class event {
     global $config;
 
     return array(
-      'id'        => $this->id,
-      'name'      => $this->name,
-      'startdate' => ($htmlformat) ? $this->startdate->format($config['htmldate']) : $this->startdate->format($config['dateformat']),
-      'enddate'   => ($htmlformat) ? $this->enddate->format($config['htmldate']) : $this->enddate->format($config['dateformat'])
+      'id'            => $this->id,
+      'name'          => $this->name,
+      'startdate'     => $htmlformat ? $this->startdate->format($config['htmldate']) : $this->startdate->format($config['dateformat']),
+      'enddate'       => $htmlformat ? $this->enddate->format($config['htmldate']) : $this->enddate->format($config['dateformat']),
+      'startdatetext' => getDateText($this->startdate),
+      'enddatetext'   => getDateText($this->enddate)
     );
 
   }

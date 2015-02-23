@@ -210,10 +210,10 @@ hr {
   width: 98%;
 }
 
-:valid {
-  border-color: green;
+.form-element:valid {
+  background-color: #f0fff0;
 }
 
-:invalid {
-  border-color: red;
+.form-element:invalid {
+  background-color: #fff0f0;
 }

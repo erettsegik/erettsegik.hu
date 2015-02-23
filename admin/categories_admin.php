@@ -23,6 +23,8 @@ try {
 
 $getCategories->execute();
 
+$status = 'none';
+
 if (isset($_POST['update'])) {
 
   while ($categoryData = $getCategories->fetch()) {
@@ -33,6 +35,9 @@ if (isset($_POST['update'])) {
 
     $category->modifyData(prepareText($_POST[$id . 'name']));
 
+    $status = 'success';
+    $message = 'Sikeresen frissítve!';
+
   }
 
 }
@@ -42,6 +47,9 @@ if (isset($_POST['addnew'])) {
   $category = new category();
 
   $category->insertData(prepareText($_POST['name']));
+
+  $status = 'success';
+  $message = 'Sikeresen frissítve!';
 
 }
 
@@ -60,8 +68,10 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'index_var' => array(
-      'menu' => getAdminMenuItems(),
+    'status'     => $status,
+    'message'    => isset($message) ? $message : null,
+    'index_var'  => array(
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
     )
   )

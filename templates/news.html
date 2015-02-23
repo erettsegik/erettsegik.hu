@@ -30,18 +30,33 @@
 <hr>
 <div id='events-container'>
   <h2>Események</h2>
-  <h3>Aktuális</h3>
-  <ul>
+
+  {% if current_events|length != 0 %}
     {% for event in current_events %}
-    <li>{{ event.name }} <br> vége: {{ event.enddate }}</li>
+      <div class='event-container'>
+          <h4>{{ event.name }}</h4>
+          <span class='article-meta' title='kezdés: {{ event.startdate }}'>{{ event.startdatetext }}</span>
+      </div>
+      {% if not loop.last %}
+        <hr>
+      {% endif %}
     {% endfor %}
-  </ul>
-  <h3>Közeledő</h3>
-  <ul>
+  {% endif %}
+
+  <hr class='event-separator'>
+
+  {% if upcoming_events|length != 0 %}
     {% for event in upcoming_events %}
-    <li>{{ event.name }} <br> kezdődik: {{ event.startdate }}</li>
+      <div class='event-container'>
+          <h4>{{ event.name }}</h4>
+          <span class='article-meta' title='kezdés: {{ event.startdate }}'>{{ event.startdatetext }}</span>
+      </div>
+      {% if not loop.last %}
+        <hr>
+      {% endif %}
     {% endfor %}
-  </ul>
+  {% endif %}
+
   <p><a href='/events/'>Összes megtekintése</a></p>
 </div>
 </div>

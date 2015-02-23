@@ -4,23 +4,23 @@
 
 <h1>Kategóriák szerkesztése</h1>
 
-
-<p>Kategória törléséhez hagyd a nevét üresen</p>
+<p>Kategória törléséhez hagyd a nevét üresen!</p>
 
 <table>
 <tr><th>Id</th><th>Név</th></tr>
 <tr>
   <form action='categories_admin.php' method='post'>
   <td>új</td>
-  <td><input type='text' name='name' required></td>
+  <td><input type='text' name='name' autofocus required></td>
   <td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
 </form>
 </tr>
 <form action='categories_admin.php' method='post'>
+
 {% for category in categories %}
   <tr>
   <td>{{ category.id }}</td>
-  <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name' required></td>
+  <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name'></td>
   <td>
   	{% if loop.last %}
       <input type='submit' value='Frissítés' name='update' class='submit'>
@@ -28,6 +28,8 @@
   </td>
   </tr>
 {% endfor %}
+
 </form>
 </table>
+
 {% endblock %}

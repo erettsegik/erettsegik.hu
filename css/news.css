@@ -20,3 +20,13 @@ iframe {
   overflow: hidden;
   width: 230px;
 }
+
+.event-container h4 {
+  margin: 0px;
+}
+
+hr.event-separator {
+  height: 2px;
+  background-color: #ffb938;
+  border-color: #ffb938;
+}

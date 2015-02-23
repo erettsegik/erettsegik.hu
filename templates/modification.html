@@ -9,7 +9,7 @@
   {% if status == 'form' %}
 
     <form action='/modification/add/{{ note.id }}/' method='post'>
-    Javaslat címe: <input type='text' name='title' required><br>
+    Javaslat címe: <input type='text' name='title' class='form-element' required><br>
     <div class='modification'>Eredeti szöveg:<br>
     <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
     <div class='modification'>Új szöveg:<br>

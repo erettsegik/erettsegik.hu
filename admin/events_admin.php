@@ -13,6 +13,8 @@ $user = new user($_SESSION['userid']);
 
 $twig = initTwig();
 
+$status = 'none';
+
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
@@ -71,8 +73,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
-$current = new DateTime(null, new DateTimeZone('UTC'));
-$current->setTimeZone(new DateTimeZone('Europe/Budapest'));
+$current = new DateTime(null, $config['tz']['utc']);
+$current->setTimeZone($config['tz']['local']);
 $current_dt = $current->format($config['htmldate']);
 
 echo $twig->render(

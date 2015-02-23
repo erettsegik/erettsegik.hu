@@ -7,21 +7,21 @@
 <h2>Elmúlt</h2>
 <ul>
   {% for event in past_events %}
-  <li>{{ event.name }} <br> vége: {{ event.enddate }}</li>
+  <li>{{ event.name }} <br> vége: {{ event.enddate }} ({{ event.enddatetext }})</li>
   {% endfor %}
 </ul>
 
 <h2>Aktuális</h2>
 <ul>
   {% for event in current_events %}
-  <li>{{ event.name }} <br> vége: {{ event.enddate }}</li>
+  <li>{{ event.name }} <br> vége: {{ event.enddate }} ({{ event.enddatetext }})</li>
   {% endfor %}
 </ul>
 
 <h2>Közeledő</h2>
 <ul>
   {% for event in upcoming_events %}
-  <li>{{ event.name }} <br> kezdődik: {{ event.startdate }}</li>
+  <li>{{ event.name }} <br> kezdődik: {{ event.startdate }} ({{ event.startdatetext }})</li>
   {% endfor %}
 </ul>
 

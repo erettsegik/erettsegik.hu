@@ -18,7 +18,7 @@
 <form action='subjects_admin.php' method='post'>
 {% for subject in subjects %}
   <tr>
-  <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name' required></td>
+  <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>
   <td>
   <input type='checkbox' style='width: auto;' name='{{ subject.id }}mandatory' {% if subject.mandatory %} checked {% endif %} >
   </td>

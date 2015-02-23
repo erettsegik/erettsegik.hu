@@ -20,6 +20,10 @@
 </ul>
 </nav>
 
+{% if status != 'none' %}
+<span class='{{ status }}'>{{ message }}</span>
+{% endif %}
+
 <div id='main'>
 {% block content %}
 
