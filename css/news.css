@@ -21,12 +21,24 @@ iframe {
   width: 230px;
 }
 
+.event-container {
+  margin-top: 16px;
+}
+
 .event-container h4 {
   margin: 0px;
 }
 
-hr.event-separator {
-  height: 2px;
+.progress-container {
+  height: 5px;
+  width: 100%;
+  margin: 5px 0px;
+  padding: 0px;
   background-color: #ffb938;
-  border-color: #ffb938;
+}
+
+hr.progress-meter {
+  margin: 0px;
+  height: 5px;
+  background-color: #35586e;
 }

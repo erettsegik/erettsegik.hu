@@ -119,6 +119,10 @@ h2 {
   font-size: 1.4em;
 }
 
+#rightside h2 {
+  margin-top: 0;
+}
+
 h3 {
   font-size: 1.2em;
 }
@@ -216,4 +220,63 @@ hr {
 
 .form-element:invalid {
   background-color: #fff0f0;
+}
+
+span.top-notice {
+  display: block;
+  padding: 10px;
+  margin: 10px auto;
+  width: 1000px;
+  color: #000000;
+  animation: fadein 3s;
+  -webkit-animation: fadein 3s;
+  -moz-animation: fadein 3s;
+  -ms-animation: fadein 3s;
+  -o-animation: fadein 3s;
+  cursor: pointer;
+}
+
+span.success {
+  border: 2px solid #009900;
+  background-color: #f0fff0;
+}
+
+span.success:before {
+  content: url('/img/merged_icon.png');
+  margin-right: 10px;
+}
+
+span.error {
+  border: 2px solid #990000;
+  background-color: #fff0f0;
+}
+
+span.error:before {
+  content: url('/img/rejected_icon.png');
+  margin-right: 10px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
