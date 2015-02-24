@@ -18,22 +18,19 @@
 </form>
 </tr>
 
-<form action='users_admin.php' method='post'>
+<form action='users_admin.php' method='post' id='list_users_form'>
 {% for user in users %}
   <tr>
   <td>{{ user.id }}</td>
   <td><input type='text' value='{{ user.name }}' name='{{ user.id }}name' required></td>
   <td><input type='number' value='{{ user.authority }}' name='{{ user.id }}authority' required></td>
   <td><input type='text' value='' name='{{ user.id }}password'></td>
-  <td>
-  	{% if loop.last %}
-      <input type='submit' value='Frissítés' name='update' class='submit'>
-    {% endif %}
-  </td>
   </tr>
 {% endfor %}
 
 </form>
 </table>
+
+<input type='submit' value='Frissítés' name='update' class='submit' form='list_users_form'>
 
 {% endblock %}

@@ -15,21 +15,17 @@
   <td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
 </form>
 </tr>
-<form action='categories_admin.php' method='post'>
+<form action='categories_admin.php' method='post' id='list_categories_form'>
 
 {% for category in categories %}
   <tr>
   <td>{{ category.id }}</td>
   <td><input type='text' value='{{ category.name }}' name='{{ category.id }}name'></td>
-  <td>
-  	{% if loop.last %}
-      <input type='submit' value='Frissítés' name='update' class='submit'>
-    {% endif %}
-  </td>
   </tr>
 {% endfor %}
 
 </form>
 </table>
+<input type='submit' value='Frissítés' name='update' class='submit' form='list_categories_form'>
 
 {% endblock %}
