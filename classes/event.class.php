@@ -123,6 +123,21 @@ class event {
 
   }
 
+  public function getProgress() {
+
+    global $config;
+
+    $current = new DateTime(null, $config['tz']['utc']);
+    $current->setTimeZone($config['tz']['local']);
+
+    $length = $this->enddate->getTimestamp() - $this->startdate->getTimestamp();
+
+    $result = 100*($current->getTimestamp() - $this->startdate->getTimestamp()) / $length;
+
+    return $result;
+
+  }
+
   public function getData($htmlformat = false) {
 
     global $config;
@@ -133,7 +148,8 @@ class event {
       'startdate'     => $htmlformat ? $this->startdate->format($config['htmldate']) : $this->startdate->format($config['dateformat']),
       'enddate'       => $htmlformat ? $this->enddate->format($config['htmldate']) : $this->enddate->format($config['dateformat']),
       'startdatetext' => getDateText($this->startdate),
-      'enddatetext'   => getDateText($this->enddate)
+      'enddatetext'   => getDateText($this->enddate),
+      'progress'      => $this->getProgress()
     );
 
   }
