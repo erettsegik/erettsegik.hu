@@ -12,18 +12,23 @@ $index_var['title'] = 'Felhasználói oldal';
 
 if (!isset($_SESSION['userid'])) {
 
-  $status = 'form';
+  $mode = 'form';
 
   if (isset($_POST['submit'])) {
 
     $user = new user();
-    $status = ($user->login($_POST['name'], $_POST['password']))
-      ? 'success'
-      : 'error';
 
-    if ($status == 'success') {
+    if ($user->login($_POST['name'], $_POST['password'])) {
+
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres bejelentkezés!';
+
       header('Location: /user_manage/');
+
     }
+
+    $status = 'error';
+    $message = 'Ezekkel az adatokkal nem sikerült bejelentkezni!';
 
   }
 
@@ -31,19 +36,21 @@ if (!isset($_SESSION['userid'])) {
 
   if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
-    $status = 'logout';
-    session_destroy();
-    header('Location: /user_manage/');
+    unset($_SESSION['userid']);
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres kijelentkezés!';
+
+    header('Location: /');
 
   } else {
 
-     $status = 'loggedin';
+     $mode = 'loggedin';
 
   }
 
   if (isset($_GET['action']) && $_GET['action'] == 'change_password') {
 
-    $status = 'change_password';
+    $mode = 'change_password';
 
     if (isset($_POST['submit'])) {
 
@@ -52,13 +59,15 @@ if (!isset($_SESSION['userid'])) {
         $user = new user($_SESSION['userid']);
         $user->changePassword($_POST['old_password'], $_POST['new_password']);
 
+        $_SESSION['status'] = 'success';
+        $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
+
         header('Location: /user_manage/');
 
-      } else {
-
-        die('Érvénytelen!');
-
       }
+
+      $status = 'error';
+      $message = 'Nem sikerült a jelszóváltoztatás!';
 
     }
 
@@ -68,5 +77,10 @@ if (!isset($_SESSION['userid'])) {
 
 echo $twig->render(
   'user_manage.html',
-  array('index_var' => $index_var,'status' => $status)
+  array(
+    'index_var' => $index_var,
+    'mode' => $mode,
+    'status' => isset($status) ? $status : null,
+    'message' => isset($message) ? $message : null
+  )
 );

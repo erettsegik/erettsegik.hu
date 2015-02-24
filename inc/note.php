@@ -9,8 +9,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'addsubmit';
-
     if (
       !isValid('subject', $_POST['subjectid']) ||
       !isValid('category', $_POST['category']) ||
@@ -18,7 +16,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       !isNotEmpty($_POST['text'])
     ) {
 
-      $status = 'notvalid';
+      $status = 'error';
+      $message = 'Valamelyik mezőt nem helyesen töltötted ki!';
 
     } else {
 
@@ -32,11 +31,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         0
       );
 
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!';
+
+      header('Location: /subjects/' . $note->getData()['subjectid']);
+
     }
-
-  } else {
-
-    $status = 'addform';
 
   }
 
@@ -87,7 +87,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 } else {
 
-  $status = 'display';
+  $mode = 'display';
 
   if (!isValid('note', $_GET['id'])) {
 
@@ -156,6 +156,8 @@ echo $twig->render(
     'index_var'     => $index_var,
     'note'          => isset($note) ? $note->getData() : null,
     'modifications' => isset($modifications) ? $modifications : null,
+    'mode'          => isset($mode) ? $mode : null,
+    'message'       => isset($message) ? $message : null,
     'production'    => getenv('production') !== false ? true : false,
     'status'        => $status,
     'categories'    => isset($categories) ? $categories : null,

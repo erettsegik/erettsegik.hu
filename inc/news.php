@@ -87,6 +87,8 @@ echo $twig->render(
     'index_var'       => $index_var,
     'news'            => $news,
     'current_events'  => $current_events,
-    'upcoming_events' => $upcoming_events
+    'upcoming_events' => $upcoming_events,
+    'status'          => $status,
+    'message'         => isset($message) ? $message : null
   )
 );

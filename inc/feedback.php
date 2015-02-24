@@ -8,8 +8,6 @@ $index_var['title'] = 'Visszajelzés küldése';
 
 if (isset($_POST['submit'])) {
 
-  $status = 'submit';
-
   if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['text'])) {
 
     $feedback = new feedback();
@@ -19,15 +17,17 @@ if (isset($_POST['submit'])) {
       prepareText($_POST['text'])
     );
 
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Köszönjük a visszajelzést!';
+
+    header('Location: /');
+
   } else {
 
-    $status = 'empty';
+    $status = 'error';
+    $message = 'Nem küldheted el üresen az űrlapot!';
 
   }
-
-} else {
-
-  $status = 'form';
 
 }
 
@@ -35,6 +35,7 @@ echo $twig->render(
   'feedback.html',
   array(
     'index_var' => $index_var,
-    'status'    => $status
+    'status'    => $status,
+    'message'   => isset($message) ? $message : null
   )
 );

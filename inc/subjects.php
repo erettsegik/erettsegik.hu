@@ -10,8 +10,6 @@ $index_var['location'][] = array(
 
 if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 
-  $status = 'one';
-
   $subject = new subject($_GET['id']);
 
   $categories = array();
@@ -61,7 +59,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 
 } else {
 
-  $status = 'all';
+  $mode = 'all';
 
   $allsubjects = array();
 
@@ -91,9 +89,11 @@ echo $twig->render(
   'subjects.html',
   array(
     'index_var'   => $index_var,
-    'subject'     => $status == 'one' ? $subject->getData() : null,
+    'subject'     => $mode != 'all' ? $subject->getData() : null,
     'categories'  => isset($categories) ? $categories :  null,
     'allsubjects' => isset($allsubjects) ? $allsubjects : null,
-    'status'      => $status
+    'status'      => isset($status) ? $status : null,
+    'mode'        => isset($mode) ? $mode : null,
+    'message'     => isset($message) ? $message : null
   )
 );

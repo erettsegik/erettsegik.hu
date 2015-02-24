@@ -151,6 +151,8 @@ function getAdminMenuItems() {
 
 function getDateText($dto) {
 
+  global $config;
+
   $current = new DateTime(null, $config['tz']['utc']);
   $current->setTimeZone($config['tz']['local']);
 
@@ -183,19 +185,19 @@ function getDateText($dto) {
     if ($diff < 10) {
       return 'épp most';
     } else if ($diff < 60) {
-      return $diff . ' másodperc múlva';
+      return 'még ' . $diff . ' másodperc';
     } else if ($diff < 120) {
-      return 'egy perc múlva';
+      return 'még egy perc';
     } else if ($diff < 60*60) {
-      return (int)($diff/60) . ' perc múlva';
+      return 'még ' . (int)($diff/60) . ' perc';
     } else if ($diff < 60*60*2) {
-      return 'egy óra múlva';
+      return 'még egy óra';
     } else if ($diff < 60*60*24) {
-      return (int)($diff/(60*60)) . ' óra múlva';
+      return 'még ' . (int)($diff/(60*60)) . ' óra';
     } else if ($diff < 2*60*60*24) {
-      return 'egy nap múlva';
+      return 'még egy nap';
     } else {
-      return (int)($diff/(60*60*24)) . ' nap múlva';
+      return 'még ' . (int)($diff/(60*60*24)) . ' nap';
     }
 
   }

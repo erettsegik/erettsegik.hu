@@ -67,8 +67,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['new_text'])) {
 
       $modification = new modification();
@@ -80,19 +78,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['comment']
       );
 
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeresen beküldted a módosítást!';
+
+      header('Location: /modification/' . $modification->getData()['id']);
+
     } else {
-      die('Érvénytelen!');
+
+      $status = 'error';
+      $message = 'Nem küldheted el üresen az űrlapot!';
+
     }
-
-  } else {
-
-    $status = 'form';
 
   }
 
 } else {
-
-  $status = 'display';
 
   $modification = new modification($_GET['id']);
 
@@ -116,6 +116,7 @@ echo $twig->render(
     'note'         => $note->getData(),
     'production'   => getenv('production') !== false ? true : false,
     'status'       => $status,
+    'message'      => isset($message) ? $message : null,
     'diff'         => isset($diff) ? $diff : null
   )
 );
