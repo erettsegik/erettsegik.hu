@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if status == 'loggedin' %}
+{% if mode == 'loggedin' %}
 
   <h1>Felhasználói oldal</h1>
 
@@ -14,7 +14,7 @@
 
 {% endif %}
 
-{% if status == 'change_password' %}
+{% if mode == 'change_password' %}
 
   <h1>Jelszóváltoztatás</h1>
 
@@ -26,13 +26,9 @@
 
 {% endif %}
 
-{% if status == 'form' or status == 'error' %}
+{% if mode == 'form'%}
 
   <h1>Bejelentkezés</h1>
-
-  {% if status == 'error' %}
-    <p>Ezekkel az adatokkal nem sikerült bejelentkezni.</p>
-  {% endif %}
 
   <form action='/user_manage/login/' method='post'>
   <input class='login' type='text' name='name' placeholder='Felhasználónév' required><br>
@@ -41,9 +37,5 @@
   </form>
 
 {% endif%}
-
-{% if status == 'logout' %}
-  <p>Sikeresen kijelentkezett.</p>
-{% endif %}
 
 {% endblock %}

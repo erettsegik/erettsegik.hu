@@ -15,7 +15,7 @@
 <body>
   <nav>
     <form id='search_form' onsubmit='searchRedirect();'>
-      <input type='search' id='searchbox' required>
+      <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
     </form>
   <ul>
     {% for subject in index_var.subjects %}
@@ -35,6 +35,9 @@
   </section>
   <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
   <br style='clear: both;'>
+  {% if status == 'error' or status == 'success' %}
+  <span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
+  {% endif %}
   <section id='main'>
     {% block content %}
     {% endblock %}

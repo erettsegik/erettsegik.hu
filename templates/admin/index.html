@@ -21,7 +21,7 @@
 </nav>
 
 {% if status != 'none' %}
-<span class='{{ status }}'>{{ message }}</span>
+<span class='{{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
 {% endif %}
 
 <div id='main'>
