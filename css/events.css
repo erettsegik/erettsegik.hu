@@ -1,0 +1,31 @@
+.event-column {
+  width: 230px;
+  float: left;
+  margin: 0px 51px;
+}
+
+h2 {
+  margin: 0px auto;
+}
+
+.event-container {
+  margin-top: 16px;
+}
+
+.event-container h4 {
+  margin: 0px;
+}
+
+.progress-container {
+  height: 5px;
+  width: 100%;
+  margin: 5px 0px;
+  padding: 0px;
+  background-color: #ffb938;
+}
+
+hr.progress-meter {
+  margin: 0px;
+  height: 5px;
+  background-color: #35586e;
+}

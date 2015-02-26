@@ -4,25 +4,52 @@
 
 <h1>Események</h1>
 
+<p>Pontos időpontért kattints a szürke szövegre!</p>
+
+<div class='event-column'>
 <h2>Elmúlt</h2>
-<ul>
-  {% for event in past_events %}
-  <li>{{ event.name }} <br> vége: {{ event.enddate }} ({{ event.enddatetext }})</li>
-  {% endfor %}
-</ul>
+{% for event in past_events %}
+  <div class='event-container'>
+      <h4>{{ event.name }}</h4>
+      <span class='article-meta' onclick='this.innerHTML = "{{ event.startdate }} → {{ event.enddate }}"'>
+        {{ event.startdatetext }} kezdődött - {{ event.enddatetext }} ért véget
+      </span>
+  </div>
+  <div class='progress-container'>
+  <hr class='progress-meter current' style='width: 100%;'>
+  </div>
+{% endfor %}
+</div>
 
+<div class='event-column'>
 <h2>Aktuális</h2>
-<ul>
-  {% for event in current_events %}
-  <li>{{ event.name }} <br> vége: {{ event.enddate }} ({{ event.enddatetext }})</li>
-  {% endfor %}
-</ul>
+{% for event in current_events %}
+  <div class='event-container'>
+      <h4>{{ event.name }}</h4>
+      <span class='article-meta' onclick='this.innerHTML = "{{ event.startdate }} → {{ event.enddate }}"'>
+        {{ event.startdatetext }} kezdődött - {{ event.enddatetext }}
+      </span>
+  </div>
+  <div class='progress-container'>
+  <hr class='progress-meter current' style='width: {{ event.progress }}%;'>
+  </div>
+{% endfor %}
+</div>
 
+<div class='event-column'>
 <h2>Közeledő</h2>
-<ul>
-  {% for event in upcoming_events %}
-  <li>{{ event.name }} <br> kezdődik: {{ event.startdate }} ({{ event.startdatetext }})</li>
-  {% endfor %}
-</ul>
+{% for event in upcoming_events %}
+  <div class='event-container'>
+      <h4>{{ event.name }}</h4>
+      <span class='article-meta' onclick='this.innerHTML = "{{ event.startdate }} → {{ event.enddate }}"'>
+        {{ event.startdatetext }} a kezdésig - {{ event.enddatetext }} a végééig
+      </span>
+  </div>
+  <div class='progress-container'>
+  </div>
+{% endfor %}
+</div>
+
+<br style='clear: both;'>
 
 {% endblock %}

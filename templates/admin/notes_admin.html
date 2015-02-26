@@ -110,7 +110,7 @@
       <tr>
         <td><input type='number' name='{{ item.id }}order' value='{{ item.ordernumber }}' class='ordernumber' required></td>
         <td><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></td>
-        <td>{{ item.live }}</td>
+        <td><img src='{% if item.live %}/img/merged_icon.png{% else %}/img/rejected_icon.png{% endif %}'></td>
       </tr>
     {% endfor %}
 
