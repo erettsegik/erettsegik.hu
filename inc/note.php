@@ -28,7 +28,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         prepareText($_POST['text']),
         $_POST['subjectid'],
         $_POST['category'],
-        0
+        0,
+        1
       );
 
       $_SESSION['status'] = 'success';
@@ -127,17 +128,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
   }
 
   $index_var['location'][] = array(
-    'url' => '/subject/',
+    'url' => '/subjects/',
     'name' => 'Tantárgyak'
   );
 
   $index_var['location'][] = array(
-    'url' => '/subject/' . $subject->getData()['id'] . '/',
+    'url' => '/subjects/' . $subject->getData()['id'] . '/',
     'name' => $subject->getData()['name']
   );
 
   $index_var['location'][] = array(
-    'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
+    'url' => '/subjects/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
     'name' => $category->getData()['name']
   );
 

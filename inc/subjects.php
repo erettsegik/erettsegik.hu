@@ -17,7 +17,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
   try {
 
     $getNotesData = $con->prepare('
-      select notes.id, notes.title, categories.name
+      select notes.id, notes.title, notes.incomplete, categories.name
       from notes
       left join categories on notes.category = categories.id
       where notes.subjectid = :subjectid and notes.live = 1
@@ -45,7 +45,8 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
     $categories[$notesData['name']]['name'] = $notesData['name'];
     $categories[$notesData['name']]['data'][] = array(
       'id' => $notesData['id'],
-      'title' => $notesData['title']
+      'title' => $notesData['title'],
+      'incomplete' => $notesData['incomplete']
     );
 
   }

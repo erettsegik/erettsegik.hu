@@ -22,12 +22,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
+    $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
+
     $note->insertData(
       prepareText($_POST['title']),
       prepareText($_POST['text']),
       $_POST['subjectid'],
       $_POST['category'],
-      $live
+      $live,
+      $incomplete
     );
 
     $redirect_string = 'Location: /admin/notes_admin.php';
@@ -58,12 +61,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
+      $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
+
       $note->modifyData(
         prepareText($_POST['title']),
         prepareText($_POST['text']),
         $_POST['subjectid'],
         $_POST['category'],
-        $live
+        $live,
+        $incomplete
       );
 
     }
@@ -108,7 +114,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     try {
 
       $getNotes = $con->prepare('
-        select notes.id, notes.title, notes.ordernumber, notes.live, categories.name
+        select notes.id, notes.title, notes.ordernumber, notes.live, notes.incomplete, categories.name
         from notes
         left join categories on notes.category = categories.id
         where notes.subjectid = :subjectid
@@ -136,7 +142,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'id' => $noteData['id'],
         'title' => $noteData['title'],
         'ordernumber' => $noteData['ordernumber'],
-        'live' => $noteData['live']
+        'live' => $noteData['live'],
+        'incomplete' => $noteData['incomplete']
       );
 
     }

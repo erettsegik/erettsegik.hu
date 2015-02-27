@@ -38,6 +38,8 @@
   <br>
   <input type='checkbox' name='live' style='width: auto;'> élő
   <br>
+  <input type='checkbox' name='incomplete' style='width: auto;'> félkész
+  <br>
   <input type='submit' name='submit' class='submit'>
   </form>
 
@@ -82,6 +84,8 @@
   <textarea name='text' placeholder='Szöveg' rows='40' cols='150' id='note-txt' required>{{ notedata.text | raw }}</textarea>
   <br>
   <input type='checkbox' style='width: auto;' name='live' {% if notedata.live %} checked {% endif %}> élő
+  <br>
+  <input type='checkbox' style='width: auto;' name='incomplete' {% if notedata.incomplete %} checked {% endif %}> félkész
   <span class='delete-box'><input type='checkbox' style='width: auto;' name='delete'> TÖRLÉS</span>
   <br style='clear: both;'>
   <input type='submit' name='submit' class='submit'>
@@ -104,6 +108,7 @@
     <th>Rendezési szám</th>
     <th>Jegyzet neve</th>
     <th>Élő státusz</th>
+    <th>Kész státusz</th>
     </tr>
 
     {% for item in note.data %}
@@ -111,6 +116,7 @@
         <td><input type='number' name='{{ item.id }}order' value='{{ item.ordernumber }}' class='ordernumber' required></td>
         <td><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></td>
         <td><img src='{% if item.live %}/img/merged_icon.png{% else %}/img/rejected_icon.png{% endif %}'></td>
+        <td><img src='{% if item.incomplete %}/img/rejected_icon.png{% else %}/img/merged_icon.png{% endif %}'></td>
       </tr>
     {% endfor %}
 
