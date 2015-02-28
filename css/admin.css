@@ -174,6 +174,6 @@ span.success {
 }
 
 span.success:before {
-  content: url('/img/merged_icon.png');
+  content: url('/img/check_mark.png');
   margin-right: 10px;
 }

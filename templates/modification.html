@@ -18,8 +18,6 @@
 
 {% else %}
 
-  <h1 id='modification-title'>{{ modification.title }}</h1>
-
   {% if modification.status == 0 %}
     <img src='/img/pending.png' alt='pending' id='modification-status'>
   {% endif %}
@@ -31,6 +29,8 @@
   {% if modification.status == 2 %}
     <img src='/img/rejected.png' alt='rejected' id='modification-status'>
   {% endif %}
+
+  <h1 id='modification-title'>{{ modification.title }}</h1>
 
   <br>
 

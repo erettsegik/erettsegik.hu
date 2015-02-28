@@ -61,7 +61,7 @@ nav ul a:hover {
 }
 
 #searchbox {
-  background-image: url('/img/search_form_background.png');
+  background-image: url('/img/search_background.png');
   background-repeat: no-repeat;
   border-color: #688292;
   border-width: 2px;
@@ -242,7 +242,7 @@ span.success {
 }
 
 span.success:before {
-  content: url('/img/merged_icon.png');
+  content: url('/img/check_mark.png');
   margin-right: 10px;
 }
 
@@ -252,7 +252,7 @@ span.error {
 }
 
 span.error:before {
-  content: url('/img/rejected_icon.png');
+  content: url('/img/x_mark.png');
   margin-right: 10px;
 }
 
