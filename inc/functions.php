@@ -59,9 +59,7 @@ try {
   $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
-
   die($config['errors']['database']);
-
 }
 
 function initTwig() {
@@ -102,6 +100,7 @@ function isNotEmpty($text) {
 function isValid($type, $id) {
 
   global $con;
+  global $config;
 
   switch ($type) {
     case 'category':     $table = 'categories';    break;
@@ -113,9 +112,15 @@ function isValid($type, $id) {
     default:             return 0;                 break;
   }
 
-  $query = $con->prepare('select id from ' . $table . ' where id = :id');
-  $query->bindValue('id', $id, PDO::PARAM_INT);
-  $query->execute();
+  try {
+
+    $query = $con->prepare('select id from ' . $table . ' where id = :id');
+    $query->bindValue('id', $id, PDO::PARAM_INT);
+    $query->execute();
+    
+  } catch (PDOException $e) {
+    die($config['errors']['database']);
+  }
 
   return $query->rowCount();
 

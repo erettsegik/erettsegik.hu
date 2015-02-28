@@ -34,15 +34,21 @@ class user {
     global $con;
     global $config;
 
-    $getUserData = $con->prepare('
-      select *
-      from users
-      where name = :name
-    ');
-    $getUserData->bindValue('name', $name, PDO::PARAM_STR);
-    $getUserData->execute();
+    try {
 
-    $userData = $getUserData->fetch();
+      $getUserData = $con->prepare('
+        select *
+        from users
+        where name = :name
+      ');
+      $getUserData->bindValue('name', $name, PDO::PARAM_STR);
+      $getUserData->execute();
+
+      $userData = $getUserData->fetch();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
 
     if (password_verify($password, $userData['password'])) {
 
@@ -63,11 +69,17 @@ class user {
     global $con;
     global $config;
 
-    $selectData = $con->prepare('select password from users where id = :id');
-    $selectData->bindValue('id', $this->id, PDO::PARAM_INT);
-    $selectData->execute();
+    try {
 
-    $userData = $selectData->fetch();
+      $selectData = $con->prepare('select password from users where id = :id');
+      $selectData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $selectData->execute();
+
+      $userData = $selectData->fetch();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
 
     if (password_verify($oldPassword, $userData['password'])) {
 
