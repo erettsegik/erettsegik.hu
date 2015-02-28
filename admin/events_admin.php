@@ -64,7 +64,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     ');
 
   } catch (PDOException $e) {
-    die('Hiba.');
+    die($config['errors']['database']);
   }
 
   while ($event = $selectEvents->fetch()) {

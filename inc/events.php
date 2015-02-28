@@ -18,7 +18,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült az események betöltése.');
+  die($config['errors']['database']);
 }
 
 while ($eventData = $getPastEvents->fetch()) {
@@ -40,7 +40,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült az események betöltése.');
+  die($config['errors']['database']);
 }
 
 while ($eventData = $getCurrentEvents->fetch()) {
@@ -62,7 +62,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült az események betöltése.');
+  die($config['errors']['database']);
 }
 
 while ($eventData = $getUpcomingEvents->fetch()) {

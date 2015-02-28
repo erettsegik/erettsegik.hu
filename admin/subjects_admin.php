@@ -18,7 +18,7 @@ try {
   $getSubjects = $con->prepare('select id from subjects');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a tárgyak kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $getSubjects->execute();

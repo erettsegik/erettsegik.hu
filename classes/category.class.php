@@ -8,6 +8,7 @@ class category {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -16,7 +17,7 @@ class category {
       $selectData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az osztály adatait betölteni.');
+      die($config['errors']['database']);
     }
 
     $categoryData = $selectData->fetch();
@@ -29,6 +30,7 @@ class category {
   public function insertData($name) {
 
     global $con;
+    global $config;
 
     $this->name = $name;
 
@@ -45,7 +47,7 @@ class category {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a kategória hozzáadása.');
+      die($config['errors']['database']);
     }
 
   }
@@ -53,6 +55,7 @@ class category {
   public function modifyData($name) {
 
     global $con;
+    global $config;
 
     if ($name == '') {
 
@@ -74,7 +77,7 @@ class category {
         $insertData->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a kategória frissítése.');
+        die($config['errors']['database']);
       }
 
     }
@@ -84,6 +87,7 @@ class category {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -95,7 +99,7 @@ class category {
       $removeData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a kategória törlése.');
+      die($config['errors']['database']);
     }
 
   }

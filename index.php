@@ -29,7 +29,7 @@ try {
   $getSubjects = $con->query('select * from subjects where mandatory = 1');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a tantárgyak kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $index_var['subjects'] = array();
@@ -57,7 +57,7 @@ while ($subject = $getSubjects->fetch()) {
     $getNotesData->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a jegyzetek kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while ($notesData = $getNotesData->fetch()) {
@@ -74,7 +74,7 @@ try {
   $getSubjects = $con->query('select * from subjects where mandatory = 0');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a tantárgyak kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $index_var['othersubjects'] = array();

@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     $getFeedback->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a visszajelzések kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $feedbackArray = array();

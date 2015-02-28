@@ -11,6 +11,7 @@ class feedback {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -19,7 +20,7 @@ class feedback {
       $selectData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az osztály adatait betölteni.');
+      die($config['errors']['database']);
     }
 
     $subjectData = $selectData->fetch();
@@ -35,6 +36,7 @@ class feedback {
   public function makeNotNew() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -47,7 +49,7 @@ class feedback {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a frissítés.');
+      die($config['errors']['database']);
     }
 
   }
@@ -55,6 +57,7 @@ class feedback {
   public function insertData($title, $text) {
 
     global $con;
+    global $config;
 
     $this->title = $title;
     $this->text  = $text;
@@ -76,7 +79,7 @@ class feedback {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a visszajelzés elküldése.');
+      die($config['errors']['database']);
     }
 
   }

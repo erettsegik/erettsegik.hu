@@ -39,10 +39,17 @@ $config['htmldate'] = 'Y-m-d\TH:i';
 $config['tz']['utc'] = new DateTimeZone('UTC');
 $config['tz']['local'] = new DateTimeZone('Europe/Budapest');
 
+$config['errors']['database'] = '
+    Hiba történt az adatbázissal való kommunikáció során.
+    A jegyzetek biztonsági másolata megtekinthető a
+    http://github.com/erettsegik/notes-backup címen.
+    Ha a probléma nem oldódik meg pár percen belül, kérlek jelezd nekünk
+    e-mailben vagy facebookon.';
+
 try {
 
   $con = new PDO('mysql:host=' . $config['db']['host'] .
-    ';dbname=' . $config['db']['dbname'] .
+    'fef;dbname=' . $config['db']['dbname'] .
     ';charset=utf8',
     $config['db']['username'],
     $config['db']['password']
@@ -53,9 +60,7 @@ try {
 
 } catch (PDOException $e) {
 
-  die('Nem sikerült csatlakozni az adatbázishoz.
-    A jegyzetek biztonsági másolata megtekinthető a
-    http://github.com/erettsegik/notes-backup címen.');
+  die($config['errors']['database']);
 
 }
 

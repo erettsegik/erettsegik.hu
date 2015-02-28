@@ -31,7 +31,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
     $getNotesData->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a jegyzetek kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while ($notesData = $getNotesData->fetch()) {
@@ -72,7 +72,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a tantárgyak kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while($subjectData = $getSubjectData->fetch()) {

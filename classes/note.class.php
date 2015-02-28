@@ -17,6 +17,7 @@ class note {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -27,7 +28,7 @@ class note {
       $noteData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzet betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id          = $noteData['id'];
@@ -45,6 +46,7 @@ class note {
   public function insertData($title, $text, $subjectid, $category, $live, $incomplete) {
 
     global $con;
+    global $config;
 
     $this->title      = $title;
     $this->text       = $text;
@@ -80,7 +82,7 @@ class note {
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die('Nem sikerült elmenteni a jegyzetet.');
+      die($config['errors']['database']);
     }
 
   }
@@ -88,6 +90,7 @@ class note {
   public function modifyData($title, $text, $subjectid, $category, $live, $incomplete) {
 
     global $con;
+    global $config;
 
     $this->title      = $title;
     $this->text       = $text;
@@ -118,7 +121,7 @@ class note {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetet frissíteni.');
+      die($config['errors']['database']);
     }
 
   }
@@ -126,6 +129,7 @@ class note {
   public function modifyOrder($ordernumber) {
 
     global $con;
+    global $config;
 
     $this->ordernumber = $ordernumber;
 
@@ -141,7 +145,7 @@ class note {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetet frissíteni.');
+      die($config['errors']['database']);
     }
 
   }
@@ -149,6 +153,7 @@ class note {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -157,7 +162,7 @@ class note {
       $remove->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült kitörölni a jegyzetet.');
+      die($config['errors']['database']);
     }
 
   }

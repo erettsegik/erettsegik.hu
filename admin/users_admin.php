@@ -18,7 +18,7 @@ try {
   $getUsers = $con->prepare('select id from users');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a felhasználók kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $getUsers->execute();

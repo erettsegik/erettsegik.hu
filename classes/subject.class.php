@@ -9,6 +9,7 @@ class subject {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -19,7 +20,7 @@ class subject {
       $subjectData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a tárgy betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id        = $subjectData['id'];
@@ -31,6 +32,7 @@ class subject {
   public function insertData($name, $mandatory) {
 
     global $con;
+    global $config;
 
     $this->name      = $name;
     $this->mandatory = $mandatory;
@@ -50,7 +52,7 @@ class subject {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a tárgy hozzáadása.');
+      die($config['errors']['database']);
     }
 
   }
@@ -58,6 +60,7 @@ class subject {
   public function modifyData($name, $mandatory) {
 
     global $con;
+    global $config;
 
     if ($name == '') {
 
@@ -82,7 +85,7 @@ class subject {
         $insertData->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a tárgy frissítése.');
+        die($config['errors']['database']);
       }
 
     }
@@ -92,6 +95,7 @@ class subject {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -103,7 +107,7 @@ class subject {
       $removeSubject->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a tárgy törlése.');
+      die($config['errors']['database']);
     }
 
   }

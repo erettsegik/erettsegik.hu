@@ -33,9 +33,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
       $titleSearch->execute();
 
     } catch (PDOException $e) {
-
-      die('Hiba a rendszerben.');
-
+      die($config['errors']['database']);
     }
 
     try {
@@ -50,9 +48,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
       $textSearch->execute();
 
     } catch (PDOException $e) {
-
-      die('Hiba a rendszerben.');
-
+      die($config['errors']['database']);
     }
 
     while ($titleResult = $titleSearch->fetch()) {

@@ -20,6 +20,7 @@ class modification {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -34,7 +35,7 @@ class modification {
       $noteData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a javaslat betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id         = $noteData['id'];
@@ -55,6 +56,7 @@ class modification {
   public function insertData($noteid, $title, $modified, $comment) {
 
     global $con;
+    global $config;
 
     $note = new note($noteid);
 
@@ -114,7 +116,7 @@ class modification {
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die('Nem sikerült elmenteni a javaslatot.');
+      die($config['errors']['database']);
     }
 
   }
@@ -122,6 +124,7 @@ class modification {
   function updateStatus($status, $reply) {
 
     global $con;
+    global $config;
 
     $this->status = $status;
     $this->reply = $reply;
@@ -141,7 +144,7 @@ class modification {
       $updateStatus->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a javaslatot frissíteni.');
+      die($config['errors']['database']);
     }
 
   }

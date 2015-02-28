@@ -13,6 +13,7 @@ class news {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -23,7 +24,7 @@ class news {
       $newsData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id         = $newsData['id'];
@@ -41,6 +42,7 @@ class news {
   public function insertData($title, $text, $creatorid, $live) {
 
     global $con;
+    global $config;
 
     $this->title     = $title;
     $this->text      = $text;
@@ -68,7 +70,7 @@ class news {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír hozzáadása.');
+      die($config['errors']['database']);
     }
 
   }
@@ -76,6 +78,7 @@ class news {
   public function modifyData($title, $text, $live) {
 
     global $con;
+    global $config;
 
     $this->title = $title;
     $this->text  = $text;
@@ -98,7 +101,7 @@ class news {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír frissítése.');
+      die($config['errors']['database']);
     }
 
   }
@@ -106,6 +109,7 @@ class news {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -117,7 +121,7 @@ class news {
       $removeData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír törlése.');
+      die($config['errors']['database']);
     }
 
   }

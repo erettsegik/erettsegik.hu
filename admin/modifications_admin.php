@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
     $getModifications->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a javaslatok kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $modifications = array();

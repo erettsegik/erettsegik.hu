@@ -20,7 +20,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a híreket betölteni.');
+  die($config['errors']['database']);
 }
 
 while ($newsData = $getNewsData->fetch()) {
@@ -48,7 +48,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült az események betöltése.');
+  die($config['errors']['database']);
 }
 
 while ($eventData = $getCurrentEvents->fetch()) {
@@ -71,7 +71,7 @@ try {
   ');
 
 } catch (PDOException $e) {
-  die('Nem sikerült az események betöltése.');
+  die($config['errors']['database']);
 }
 
 while ($eventData = $getUpcomingEvents->fetch()) {

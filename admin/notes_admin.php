@@ -95,7 +95,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $getNotes->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a jegyzetek frissítése.');
+        die($config['errors']['database']);
       }
 
       while ($noteData = $getNotes->fetch()) {
@@ -124,7 +124,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $getNotes->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetek kiválasztása.');
+      die($config['errors']['database']);
     }
 
     while ($noteData = $getNotes->fetch()) {
@@ -161,7 +161,7 @@ try {
   $getCategories = $con->query('select id from categories');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a kategóriák kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $categories = array();
@@ -200,6 +200,7 @@ echo $twig->render(
 function getSubjects() {
 
   global $con;
+  global $config;
 
   $subjects = array();
 
@@ -212,7 +213,7 @@ function getSubjects() {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a tárgyak kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while ($subject = $getSubjects->fetch()) {

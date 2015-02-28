@@ -18,7 +18,7 @@ try {
   $getCategories = $con->prepare('select id from categories');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a kategóriák kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $getCategories->execute();

@@ -50,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a tantárgyak kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $subjects = array();
@@ -67,7 +67,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $getCategories = $con->query('select id from categories');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a kategóriák kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $categories = array();
@@ -117,7 +117,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $getModificationsData->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a kategóriák kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $modifications = array();

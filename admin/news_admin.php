@@ -65,7 +65,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a hírek kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while ($noteData = $getNews->fetch()) {

@@ -19,7 +19,7 @@ class event {
       $selectData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az osztály adatait betölteni.');
+      die($config['errors']['database']);
     }
 
     $subjectData = $selectData->fetch();
@@ -63,7 +63,7 @@ class event {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az esemény hozzáadása.');
+      die($config['errors']['database']);
     }
 
     $this->startdate->setTimezone($config['tz']['local']);
@@ -99,7 +99,7 @@ class event {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az esemény módosítása.');
+      die($config['errors']['database']);
     }
 
     $this->startdate->setTimezone($config['tz']['local']);
@@ -110,6 +110,7 @@ class event {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -118,7 +119,7 @@ class event {
       $remove->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült kitörölni az eseményt.');
+      die($config['errors']['database']);
     }
 
   }
