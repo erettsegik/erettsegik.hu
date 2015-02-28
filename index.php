@@ -36,7 +36,52 @@ $index_var['subjects'] = array();
 
 while ($subject = $getSubjects->fetch()) {
 
-  $index_var['subjects'][] = $subject;
+  $index_var['subjects'][$subject['id']] = $subject;
+
+  $index_var['subjects'][$subject['id']]['categories'] = array();
+
+  try {
+
+    $getNotesData = $con->prepare('
+      select notes.id, categories.name
+      from notes
+      left join categories on notes.category = categories.id
+      where notes.subjectid = :subjectid and notes.live = 1
+      order by category asc, ordernumber asc, id asc
+    ');
+    $getNotesData->bindValue(
+      'subjectid',
+      $subject['id'],
+      PDO::PARAM_INT
+    );
+    $getNotesData->execute();
+
+  } catch (PDOException $e) {
+    die('Nem sikerült a jegyzetek kiválasztása.');
+  }
+
+  while ($notesData = $getNotesData->fetch()) {
+
+    if (!isset($index_var['subjects'][$subject['id']]['categories'][$notesData['name']]))
+      $index_var['subjects'][$subject['id']]['categories'][$notesData['name']] = array('name' => $notesData['name']);
+
+  }
+
+}
+
+try {
+
+  $getSubjects = $con->query('select * from subjects where mandatory = 0');
+
+} catch (PDOException $e) {
+  die('Nem sikerült a tantárgyak kiválasztása.');
+}
+
+$index_var['othersubjects'] = array();
+
+while ($subject = $getSubjects->fetch()) {
+
+  $index_var['othersubjects'][] = $subject;
 
 }
 

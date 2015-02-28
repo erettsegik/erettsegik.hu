@@ -19,9 +19,21 @@
     </form>
   <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+      <!--
+        {% for category in subject.categories %}
+          <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+        {% endfor %}
+      -->
+      </li>
     {% endfor %}
-    <li><a href='/subjects/' class='unique'>Összes tárgy</a></li>
+    <li><a href='/subjects/' class='unique'>Összes tárgy</a>
+    <!--
+      {% for subject in index_var.othersubjects %}
+        <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      {% endfor %}
+    -->
+    </li>
   </ul>
   </nav>
   <div id='wrapper'>
