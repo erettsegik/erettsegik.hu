@@ -49,7 +49,7 @@ $config['errors']['database'] = '
 try {
 
   $con = new PDO('mysql:host=' . $config['db']['host'] .
-    'fef;dbname=' . $config['db']['dbname'] .
+    ';dbname=' . $config['db']['dbname'] .
     ';charset=utf8',
     $config['db']['username'],
     $config['db']['password']
