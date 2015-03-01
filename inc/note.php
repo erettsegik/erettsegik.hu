@@ -149,6 +149,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   $index_var['title'] = $note->getData()['title'];
 
+  if ($note->getData()['incomplete']) {
+    $status = 'notice';
+    $message = 'Ez a jegyzet félkész. Kérjük, segíts kibővíteni egy javaslat beküldésével!';
+  }
+
 }
 
 echo $twig->render(

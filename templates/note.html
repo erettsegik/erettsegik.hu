@@ -6,9 +6,6 @@
 
   <div id='leftside'>
     <h1>{{ note.title | raw }}</h1>
-    {% if note.incomplete %}
-      <p>Ez a jegyzet félkész. Kérjük, segíts kibővíteni egy <a href='/modification/add/{{ note.id }}/'>javaslat beküldésével</a>.</p>
-    {% endif %}
     {{ note.text | markdown }}
     <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
 

@@ -256,6 +256,16 @@ span.error:before {
   margin-right: 10px;
 }
 
+span.notice {
+  border: 2px solid #ee7600;
+  background-color: #f0f090;
+}
+
+span.notice:before {
+  content: url('/img/exclamation_mark.png');
+  margin-right: 10px;
+}
+
 @keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1; }
