@@ -31,7 +31,7 @@
   <h1>Bejelentkezés</h1>
 
   <form action='/user_manage/login/' method='post'>
-  <input class='login' type='text' name='name' placeholder='Felhasználónév' required><br>
+  <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
   <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>

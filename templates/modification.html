@@ -7,12 +7,12 @@
   <h1>Új javaslat hozzáadása a következő jegyzethez: {{ note.title }}</h1>
 
   <form action='/modification/add/{{ note.id }}/' method='post'>
-  Javaslat címe: <input type='text' name='title' class='form-element' required><br>
+  Javaslat címe: <input type='text' name='title' class='form-element' value='{{ saved.title }}' required><br>
   <div class='modification'>Eredeti szöveg:<br>
   <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
   <div class='modification'>Új szöveg:<br>
-  <textarea name='new_text' required>{{ note.text }}</textarea></div><br>
-  Megjegyzés (opcionális): <input type='text' name='comment'><br>
+  <textarea name='new_text' required>{% if saved.new_text %}{{ saved.new_text }}{% else %}{{ note.text }}{% endif %}</textarea></div><br>
+  Megjegyzés (opcionális): <input type='text' name='comment' value='{{ saved.comment }}'><br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 

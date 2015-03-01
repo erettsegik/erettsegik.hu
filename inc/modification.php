@@ -83,12 +83,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       header('Location: /modification/' . $modification->getData()['id']);
 
-    } else {
-
-      $status = 'error';
-      $message = 'Nem küldheted el üresen az űrlapot!';
-
     }
+
+    $saved = array('title' => $_POST['title'], 'new_text' => $_POST['new_text'], 'comment' => $_POST['comment']);
+
+    $status = 'error';
+    $message = 'Nem küldheted el üresen az űrlapot!';
 
   }
 
@@ -117,6 +117,7 @@ echo $twig->render(
     'production'   => getenv('production') !== false ? true : false,
     'status'       => $status,
     'message'      => isset($message) ? $message : null,
-    'diff'         => isset($diff) ? $diff : null
+    'diff'         => isset($diff) ? $diff : null,
+    'saved' => isset($saved) ? $saved : null
   )
 );

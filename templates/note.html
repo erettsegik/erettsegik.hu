@@ -47,14 +47,14 @@
   <table>
     <tr>
       <td>Cím:</td>
-      <td><input type='text' name='title' class='shorter form-element' required></td>
+      <td><input type='text' name='title' class='shorter form-element' value='{{ saved.title }}' required></td>
     </tr>
     <tr>
       <td>Tantárgy:</td>
       <td>
         <select name='subjectid' required>
           {% for subject in subjects %}
-          <option value='{{ subject.id }}'>{{ subject.name }}</option>
+          <option value='{{ subject.id }}'{% if subject.id == saved.subjectid %} selected{% endif %}>{{ subject.name }}</option>
           {% endfor %}
         </select>
       </td>
@@ -64,7 +64,7 @@
       <td>
         <select name='category' required>
           {% for category in categories %}
-            <option value='{{ category.id }}'>{{ category.name }}</option>
+            <option value='{{ category.id }}'{% if category.id == saved.category %} selected{% endif %}>{{ category.name }}</option>
           {% endfor %}
         </select>
       </td>
@@ -72,7 +72,7 @@
     <tr>
       <td>E-mail:</td>
       <td>
-        <input type='email' name='email' class='shorter form-element'>
+        <input type='email' name='email' class='shorter form-element' value='{{ saved.email }}'>
       </td>
     </tr>
   </table>
@@ -101,7 +101,7 @@
     A jegyzetírást megkönnyítendő írtunk egy kis szerkesztőt, mely lényegében a fenti pár gombot jelenti. Működése felettébb egyszerű, először ki kell jelölni a szövegmezőben a kívánt szövegrészletet (felsorolás esetén akár több sort is), majd valamelyik gombra kattintani. (A szerkesztő javascriptet használ, egyes bővítmények esetleg akadályozhatják a működését).
     {% endmarkdown %}
   </div>
-  <textarea name='text' id='note-txt' placeholder='Szöveg' required></textarea>
+  <textarea name='text' id='note-txt' placeholder='Szöveg' required>{{ saved.text }}</textarea>
   <br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>

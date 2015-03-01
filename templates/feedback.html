@@ -8,10 +8,10 @@
   <table>
     <tr>
       <td>Cím:</td>
-      <td><input type='text' name='title' class='form-element' required></td>
+      <td><input type='text' name='title' class='form-element' value='{{ saved.title }}' required></td>
     </tr>
   </table>
-  <textarea name='text' placeholder='Szöveg' required></textarea>
+  <textarea name='text' placeholder='Szöveg' required>{{ saved.text }}</textarea>
   <br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
 </form>

@@ -16,6 +16,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       !isNotEmpty($_POST['text'])
     ) {
 
+      $saved = array('title' => $_POST['title'], 'text' => $_POST['text'], 'subjectid' => $_POST['subjectid'], 'category' => $_POST['category'], 'email' => $_POST['email']);
+
       $status = 'error';
       $message = 'Valamelyik mezőt nem helyesen töltötted ki!';
 
@@ -167,6 +169,7 @@ echo $twig->render(
     'production'    => getenv('production') !== false ? true : false,
     'status'        => $status,
     'categories'    => isset($categories) ? $categories : null,
-    'subjects'      => isset($subjects) ? $subjects : null
+    'subjects'      => isset($subjects) ? $subjects : null,
+    'saved' => isset($saved) ? $saved : null
   )
 );

@@ -27,6 +27,8 @@ if (!isset($_SESSION['userid'])) {
 
     }
 
+    $saved = array('name' => $_POST['name']);
+
     $status = 'error';
     $message = 'Ezekkel az adatokkal nem sikerült bejelentkezni!';
 
@@ -81,6 +83,7 @@ echo $twig->render(
     'index_var' => $index_var,
     'mode' => $mode,
     'status' => isset($status) ? $status : null,
-    'message' => isset($message) ? $message : null
+    'message' => isset($message) ? $message : null,
+    'saved' => isset($saved) ? $saved : null
   )
 );

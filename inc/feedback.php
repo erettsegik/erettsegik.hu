@@ -22,12 +22,12 @@ if (isset($_POST['submit'])) {
 
     header('Location: /');
 
-  } else {
-
-    $status = 'error';
-    $message = 'Nem küldheted el üresen az űrlapot!';
-
   }
+
+  $saved = array('title' => $_POST['title'], 'text' => $_POST['text']);
+
+  $status = 'error';
+  $message = 'Nem küldheted el üresen az űrlapot!';
 
 }
 
@@ -36,6 +36,7 @@ echo $twig->render(
   array(
     'index_var' => $index_var,
     'status'    => $status,
-    'message'   => isset($message) ? $message : null
+    'message'   => isset($message) ? $message : null,
+    'saved' => isset($saved) ? $saved : null
   )
 );
