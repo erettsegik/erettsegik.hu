@@ -6,6 +6,7 @@
 
 h2 {
   margin: 0px auto;
+  border-bottom: 1px solid #dedede;
 }
 
 .event-container {

@@ -14,7 +14,7 @@ body {
 nav {
   background-color: #123952;
   color: #dedede;
-  font-size: 1.75em;
+  font-size: 1.5em;
   height: 50px;
   line-height: 50px;
   margin: 0px;
@@ -227,7 +227,7 @@ span.top-notice {
   padding: 10px;
   margin: 10px auto;
   width: 1000px;
-  color: #000000;
+  color: #123952;
   animation: fadein 3s;
   -webkit-animation: fadein 3s;
   -moz-animation: fadein 3s;
@@ -257,8 +257,8 @@ span.error:before {
 }
 
 span.notice {
-  border: 2px solid #ee7600;
-  background-color: #f0f090;
+  border: 2px solid #ffb938;
+  background-color: #FFF5C8;
 }
 
 span.notice:before {

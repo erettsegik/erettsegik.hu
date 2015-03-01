@@ -6,7 +6,11 @@ function emphasis() {
   var end = textarea.selectionEnd;
   var sel = textarea.value.substring(start, end);
 
-  var replace = '*' + sel + '*';
+  if (sel == '') {
+    var replace = '*kiemelendő szöveg*';
+  } else {
+    var replace = '*' + sel + '*';
+  }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
@@ -20,7 +24,11 @@ function header() {
   var end = textarea.selectionEnd;
   var sel = textarea.value.substring(start, end);
 
-  var replace = '##' + ' ' + sel;
+  if (sel == '') {
+    var replace = '## cím';
+  } else {
+    var replace = '## ' + sel;
+  }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
