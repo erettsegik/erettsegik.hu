@@ -24,7 +24,7 @@
   <h2>{{ modificationdata.title }}</h2>
 
   <span class='article-meta'>
-    Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>{{ notedata.title | raw }}</a>
+    Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>{{ notedata.title }}</a>
     {% if modification.comment != '' %}
     <br>beküldő megjegyzése: {{ modificationdata.comment }}
     {% endif %}

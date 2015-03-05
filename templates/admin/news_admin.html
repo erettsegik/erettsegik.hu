@@ -21,7 +21,7 @@
 {% if action == 'edit' %}
 
   <form action='news_admin.php?action=edit&amp;id={{ newsdata.id }}' method='post'>
-  <input type='text' name='title' placeholder='cím' value='{{ newsdata.title | raw }}' required>
+  <input type='text' name='title' placeholder='cím' value='{{ newsdata.title }}' required>
   <br>
   <textarea name='text' placeholder='szöveg' rows='50' cols='150' required>{{ newsdata.text | raw }}</textarea>
   <br>

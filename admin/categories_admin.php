@@ -33,7 +33,7 @@ if (isset($_POST['update'])) {
 
     $category = new category($id);
 
-    $category->modifyData(prepareText($_POST[$id . 'name']));
+    $category->modifyData($_POST[$id . 'name']);
 
     $status = 'success';
     $message = 'Sikeresen frissítve!';
@@ -46,7 +46,7 @@ if (isset($_POST['addnew'])) {
 
   $category = new category();
 
-  $category->insertData(prepareText($_POST['name']));
+  $category->insertData($_POST['name']);
 
   $status = 'success';
   $message = 'Sikeresen frissítve!';

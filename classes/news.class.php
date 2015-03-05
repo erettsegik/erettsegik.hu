@@ -132,7 +132,7 @@ class news {
 
     return array(
        'id'         => $this->id,
-       'title'      => $unsanitize ? unprepareText($this->title) : $this->title,
+       'title'      => $unsanitize ? $this->title : $this->title,
        'text'       => $unsanitize ? unprepareText($this->text) : $this->text,
        'date'       => $this->date->format($config['dateformat']),
        'updatedate' => $this->updatedate != null

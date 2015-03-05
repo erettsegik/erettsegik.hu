@@ -25,7 +25,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
 
     $note->insertData(
-      prepareText($_POST['title']),
+      $_POST['title'],
       prepareText($_POST['text']),
       $_POST['subjectid'],
       $_POST['category'],
@@ -64,7 +64,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
 
       $note->modifyData(
-        prepareText($_POST['title']),
+        $_POST['title'],
         prepareText($_POST['text']),
         $_POST['subjectid'],
         $_POST['category'],

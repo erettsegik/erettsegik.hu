@@ -22,7 +22,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $new = new news();
 
     $new->insertData(
-      prepareText($_POST['title']),
+      $_POST['title'],
       prepareText($_POST['text']),
       $_SESSION['userid'],
       $live
@@ -41,7 +41,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
     $new->modifyData(
-      prepareText($_POST['title']),
+      $_POST['title'],
       prepareText($_POST['text']),
       $live
     );

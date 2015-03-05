@@ -5,7 +5,7 @@
 {% if mode == 'display' %}
 
   <div id='leftside'>
-    <h1>{{ note.title | raw }}</h1>
+    <h1>{{ note.title }}</h1>
     {{ note.text | markdown }}
     <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
 

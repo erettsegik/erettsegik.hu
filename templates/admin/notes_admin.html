@@ -50,7 +50,7 @@
 {% if action == 'edit' %}
 
   <form action='notes_admin.php?action=edit&amp;id={{ notedata.id }}' method='post'>
-  <input type='text' name='title' placeholder='cím' value='{{ notedata.title | raw }}' class='shorter' required>
+  <input type='text' name='title' placeholder='cím' value='{{ notedata.title }}' class='shorter' required>
   <br>
   <select name='subjectid' required>
 
@@ -114,7 +114,7 @@
     {% for item in note.data %}
       <tr>
         <td><input type='number' name='{{ item.id }}order' value='{{ item.ordernumber }}' class='ordernumber' required></td>
-        <td><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title | raw }}</a></td>
+        <td><a href='notes_admin.php?action=edit&amp;id={{ item.id }}'>{{ item.title }}</a></td>
         <td><img src='{% if item.live %}/img/check_mark.png{% else %}/img/x_mark.png{% endif %}'></td>
         <td><img src='{% if item.incomplete %}/img/x_mark.png{% else %}/img/check_mark.png{% endif %}'></td>
       </tr>
