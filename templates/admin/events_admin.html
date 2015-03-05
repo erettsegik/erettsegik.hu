@@ -7,12 +7,32 @@
 {% if action == 'add' %}
 
   <form action='events_admin.php?action=add' method='post'>
-  <input type='text' name='name' placeholder='Név' required>
-  <br>
-  Kezdés: <input type='datetime-local' name='startdate' value='{{ current_dt }}' required>
-  <br>
-  Vég: <input type='datetime-local' name='enddate' value='{{ current_dt }}' required>
-  <br>
+  <table>
+    <tr>
+      <td>
+        Név:
+      </td>
+      <td>
+        <input type='text' name='name' placeholder='Név' required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Kezdés:
+      </td>
+      <td>
+        <input type='datetime-local' name='startdate' value='{{ current_dt }}' required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Vég:
+      </td>
+      <td>
+        <input type='datetime-local' name='enddate' value='{{ current_dt }}' required>
+      </td>
+    </tr>
+  </table>
   <input type='submit' name='submit' class='submit'>
   </form>
 
@@ -21,12 +41,32 @@
 {% if action == 'edit' %}
 
   <form action='events_admin.php?action=edit&amp;id={{ eventdata.id }}' method='post'>
-  <input type='text' name='name' placeholder='Név' value='{{ eventdata.name }}' required>
-  <br>
-  Kezdés: <input type='datetime-local' name='startdate' value='{{ eventdata.startdate }}' required>
-  <br>
-  Vég: <input type='datetime-local' name='enddate' value='{{ eventdata.enddate }}' required>
-  <br>
+  <table>
+    <tr>
+      <td>
+        Név:
+      </td>
+      <td>
+        <input type='text' name='name' placeholder='Név' value='{{ eventdata.name }}' required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Kezdés:
+      </td>
+      <td>
+        <input type='datetime-local' name='startdate' value='{{ eventdata.startdate }}' required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Vég:
+      </td>
+      <td>
+        <input type='datetime-local' name='enddate' value='{{ eventdata.enddate }}' required>
+      </td>
+    </tr>
+  </table>
   <span class='delete-box'><input type='checkbox' style='width: auto;' name='delete'> TÖRLÉS</span>
   <input type='submit' name='submit' class='submit'>
   </form>

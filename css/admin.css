@@ -133,19 +133,64 @@ input.ordernumber {
   width: 40px;
 }
 
-span.success {
+p a, p a:visited {
+  color: #EE7600;
+}
+
+table, td {
+  text-align: left;
+}
+
+.form-element:valid {
+  background-color: #f0fff0;
+}
+
+.form-element:invalid {
+  background-color: #fff0f0;
+}
+
+span.top-notice {
   -moz-animation: fadein 3s;
   -ms-animation: fadein 3s;
   -o-animation: fadein 3s;
   -webkit-animation: fadein 3s;
   animation: fadein 3s;
-  background-color: #f0fff0;
-  border: 2px solid #009900;
-  color: #000000;
+  color: #123952;
+  cursor: pointer;
   display: block;
   margin: 10px auto;
   padding: 10px;
   width: 1000px;
+}
+
+span.success {
+  border: 2px solid #009900;
+  background-color: #f0fff0;
+}
+
+span.success:before {
+  content: url('/img/check_mark.png');
+  margin-right: 10px;
+}
+
+span.error {
+  border: 2px solid #990000;
+  background-color: #fff0f0;
+}
+
+span.error:before {
+  content: url('/img/x_mark.png');
+  margin-right: 10px;
+}
+
+span.notice {
+  border: 2px solid #ffb938;
+  background-color: #FFF5C8;
+}
+
+span.notice:before {
+  content: url('/img/exclamation_mark.png');
+  margin-right: 10px;
 }
 
 @keyframes fadein {
@@ -171,9 +216,4 @@ span.success {
 @-o-keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-span.success:before {
-  content: url('/img/check_mark.png');
-  margin-right: 10px;
 }

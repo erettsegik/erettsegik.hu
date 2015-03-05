@@ -12,6 +12,18 @@ $twig = initTwig();
 
 $user = new user($_SESSION['userid']);
 
+if (isset($_SESSION['status'])) {
+
+  $status = $_SESSION['status'];
+  $message = $_SESSION['message'];
+  unset($_SESSION['status']);
+
+} else {
+
+  $status = 'none';
+
+}
+
 echo $twig->render(
   'admin/index.html',
   array(

@@ -20,8 +20,8 @@
 </ul>
 </nav>
 
-{% if status != 'none' %}
-<span class='{{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
+{% if status == 'error' or status == 'success' or status == 'notice' %}
+<span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
 {% endif %}
 
 <div id='main'>

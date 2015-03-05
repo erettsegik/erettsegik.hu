@@ -99,11 +99,15 @@ $index_var['css'] = '';
 $index_var['canonical'] = getCanonicalUrl();
 
 if (isset($_SESSION['status'])) {
+
   $status = $_SESSION['status'];
   $message = $_SESSION['message'];
   unset($_SESSION['status']);
+
 } else {
+
   $status = 'none';
+
 }
 
 if (isset($_GET['p'])) {
