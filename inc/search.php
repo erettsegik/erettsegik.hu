@@ -103,11 +103,11 @@ echo $twig->render(
   'search.html',
   array(
     'index_var'   => $index_var,
-    'term'        => isset($term) ? $term : null,
-    'status'      => isset($status) ? $status : null,
     'message'     => isset($message) ? $message : null,
     'mode'        => isset($mode) ? $mode : null,
     'resultcount' => isset($noteResults) ? count($noteResults) : null,
-    'results'     => isset($noteResults) ? $noteResults : null
+    'results'     => isset($noteResults) ? $noteResults : null,
+    'status'      => isset($status) ? $status : null,
+    'term'        => isset($term) ? $term : null
   )
 );

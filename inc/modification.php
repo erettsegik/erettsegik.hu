@@ -110,14 +110,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
   'modification.html',
   array(
-    'index_var'    => $index_var,
-    'modification' => isset($modification) ? $modification->getData() : null,
     'action'       => isset($_GET['action']) ? $_GET['action'] : null,
-    'note'         => $note->getData(),
-    'production'   => getenv('production') !== false ? true : false,
-    'status'       => $status,
-    'message'      => isset($message) ? $message : null,
     'diff'         => isset($diff) ? $diff : null,
-    'saved' => isset($saved) ? $saved : null
+    'index_var'    => $index_var,
+    'message'      => isset($message) ? $message : null,
+    'modification' => isset($modification) ? $modification->getData() : null,
+    'note'         => $note->getData(),
+    'production'   => getenv('production') !== false,
+    'saved'        => isset($saved) ? $saved : null,
+    'status'       => $status
   )
 );

@@ -1,6 +1,6 @@
-#page_not_found{
-  width: 1000px;
+#page_not_found {
+  margin: 0px;
   max-width: 1000px;
   padding: 0px;
-  margin: 0px;
+  width: 1000px;
 }

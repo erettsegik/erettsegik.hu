@@ -80,14 +80,14 @@ $current_dt = $current->format($config['htmldate']);
 echo $twig->render(
   'admin/events_admin.html',
   array(
-    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
+    'action'     => isset($_GET['action'] ? $_GET['action'] : null),
     'current_dt' => $current_dt,
-    'eventdata' => (isset($eventdata)) ? $eventdata : null,
-    'events' => (isset($events)) ? $events : null,
-    'status' => $status,
-    'index_var' => array(
-      'menu' => getAdminMenuItems(),
+    'eventdata'  => isset($eventdata) ? $eventdata : null,
+    'events'     => isset($events) ? $events : null,
+    'index_var'  => array(
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
-    )
+    ),
+    'status'     => $status
   )
 );

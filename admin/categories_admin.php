@@ -68,11 +68,11 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'status'     => $status,
-    'message'    => isset($message) ? $message : null,
     'index_var'  => array(
       'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
-    )
+    ),
+    'message'    => isset($message) ? $message : null,
+    'status'     => $status
   )
 );

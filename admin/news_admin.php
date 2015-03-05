@@ -78,13 +78,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
   'admin/news_admin.html',
   array(
-    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-    'status' => $status,
-    'newsdata' => (isset($newsData)) ? $newsData : null,
-    'news' => (isset($news) ? $news : null),
+    'action'    => isset($_GET['action']) ? $_GET['action'] : null,
     'index_var' => array(
-      'menu' => getAdminMenuItems(),
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
-    )
+    ),
+    'news'      => isset($news) ? $news : null,
+    'newsdata'  => isset($newsData) ? $newsData : null,
+    'status'    => $status
   )
 );

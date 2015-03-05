@@ -1,7 +1,7 @@
 <?php
 
-require_once 'inc/functions.php';
 require_once 'classes/user.class.php';
+require_once 'inc/functions.php';
 
 $index_var['location'][] = array(
   'url' => '/user_manage/',
@@ -81,9 +81,9 @@ echo $twig->render(
   'user_manage.html',
   array(
     'index_var' => $index_var,
-    'mode' => $mode,
-    'status' => isset($status) ? $status : null,
-    'message' => isset($message) ? $message : null,
-    'saved' => isset($saved) ? $saved : null
+    'message'   => isset($message) ? $message : null,
+    'mode'      => $mode,
+    'saved'     => isset($saved) ? $saved : null,
+    'status'    => isset($status) ? $status : null
   )
 );

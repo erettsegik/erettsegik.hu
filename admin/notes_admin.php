@@ -183,17 +183,17 @@ if (isset($_GET['subjectid'])) {
 echo $twig->render(
   'admin/notes_admin.html',
   array(
-    'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-    'status' => $status,
-    'notedata' => (isset($noteData)) ? $noteData : null,
-    'notelist' => (isset($noteList) ? $noteList : null),
-    'subjectlist' => getSubjects(),
-    'categories' => $categories,
-    'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0),
-    'index_var' => array(
-      'menu' => getAdminMenuItems(),
+    'action'          => isset($_GET['action']) ? $_GET['action'] : null,
+    'categories'      => $categories,
+    'index_var'       => array(
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
-    )
+    ),
+    'notedata'        => isset($noteData) ? $noteData : null,
+    'notelist'        => isset($noteList) ? $noteList : null,
+    'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),
+    'status'          => $status,
+    'subjectlist'     => getSubjects()
   )
 );
 

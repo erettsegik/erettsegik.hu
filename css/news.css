@@ -30,15 +30,15 @@ iframe {
 }
 
 .progress-container {
+  background-color: #ffb938;
   height: 5px;
-  width: 100%;
   margin: 5px 0px;
   padding: 0px;
-  background-color: #ffb938;
+  width: 100%;
 }
 
 hr.progress-meter {
-  margin: 0px;
-  height: 5px;
   background-color: #35586e;
+  height: 5px;
+  margin: 0px;
 }

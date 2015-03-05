@@ -89,12 +89,12 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 echo $twig->render(
   'subjects.html',
   array(
-    'index_var'   => $index_var,
-    'subject'     => $mode != 'all' ? $subject->getData() : null,
-    'categories'  => isset($categories) ? $categories :  null,
     'allsubjects' => isset($allsubjects) ? $allsubjects : null,
-    'status'      => isset($status) ? $status : null,
+    'categories'  => isset($categories) ? $categories :  null,
+    'index_var'   => $index_var,
+    'message'     => isset($message) ? $message : null,
     'mode'        => isset($mode) ? $mode : null,
-    'message'     => isset($message) ? $message : null
+    'status'      => isset($status) ? $status : null,
+    'subject'     => $mode != 'all' ? $subject->getData() : null
   )
 );

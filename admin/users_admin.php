@@ -63,7 +63,10 @@ while ($userData = $getUsers->fetch()) {
 echo $twig->render(
   'admin/users_admin.html',
   array(
-    'users' => $users,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'users'     => $users
   )
 );

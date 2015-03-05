@@ -22,12 +22,12 @@ class event {
       die($config['errors']['database']);
     }
 
-    $subjectData = $selectData->fetch();
+    $eventData = $selectData->fetch();
 
-    $this->id        = $subjectData['id'];
-    $this->name      = $subjectData['name'];
-    $this->startdate = new DateTime($subjectData['startdate'], $config['tz']['utc']);
-    $this->enddate   = new DateTime($subjectData['enddate'], $config['tz']['utc']);
+    $this->id        = $eventData['id'];
+    $this->name      = $eventData['name'];
+    $this->startdate = new DateTime($eventData['startdate'], $config['tz']['utc']);
+    $this->enddate   = new DateTime($eventData['enddate'], $config['tz']['utc']);
 
     $this->startdate->setTimezone($config['tz']['local']);
     $this->enddate->setTimezone($config['tz']['local']);

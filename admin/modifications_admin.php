@@ -61,13 +61,13 @@ if (isset($_GET['id'])) {
 echo $twig->render(
   'admin/modifications_admin.html',
   array(
-    'modificationdata' => (isset($modificationData)) ? $modificationData : null,
-    'modifications' => (isset($modifications)) ? $modifications : null,
-    'notedata' => (isset($noteData)) ? $noteData : null,
-    'status' => $status,
-    'index_var' => array(
-      'menu' => getAdminMenuItems(),
+    'index_var'        => array(
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
-    )
+    ),
+    'modificationdata' => isset($modificationData) ? $modificationData : null,
+    'modifications'    => isset($modifications) ? $modifications : null,
+    'notedata'         => isset($noteData) ? $noteData : null,
+    'status'           => $status
   )
 );

@@ -32,24 +32,24 @@ class modification {
       $selectData->bindValue('id', $id, PDO::PARAM_INT);
       $selectData->execute();
 
-      $noteData = $selectData->fetch();
+      $modificationData = $selectData->fetch();
 
     } catch (PDOException $e) {
       die($config['errors']['database']);
     }
 
-    $this->id         = $noteData['id'];
-    $this->note       = new note($noteData['noteid']);
-    $this->title      = $noteData['title'];
-    $this->start_text = $noteData['start_text'];
-    $this->old_text   = $noteData['old_text'];
-    $this->new_text   = $noteData['new_text'];
-    $this->end_text   = $noteData['end_text'];
-    $this->comment    = $noteData['comment'];
-    $this->date       = new DateTime($noteData['date']);
-    $this->updatedate = $noteData['updatedate'];
-    $this->status     = $noteData['status'];
-    $this->reply      = $noteData['reply'];
+    $this->id         = $modificationData['id'];
+    $this->note       = new note($modificationData['noteid']);
+    $this->title      = $modificationData['title'];
+    $this->start_text = $modificationData['start_text'];
+    $this->old_text   = $modificationData['old_text'];
+    $this->new_text   = $modificationData['new_text'];
+    $this->end_text   = $modificationData['end_text'];
+    $this->comment    = $modificationData['comment'];
+    $this->date       = new DateTime($modificationData['date']);
+    $this->updatedate = $modificationData['updatedate'];
+    $this->status     = $modificationData['status'];
+    $this->reply      = $modificationData['reply'];
 
   }
 

@@ -161,15 +161,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
   'note.html',
   array(
-    'index_var'     => $index_var,
-    'note'          => isset($note) ? $note->getData() : null,
-    'modifications' => isset($modifications) ? $modifications : null,
-    'mode'          => isset($mode) ? $mode : null,
-    'message'       => isset($message) ? $message : null,
-    'production'    => getenv('production') !== false ? true : false,
-    'status'        => $status,
     'categories'    => isset($categories) ? $categories : null,
-    'subjects'      => isset($subjects) ? $subjects : null,
-    'saved' => isset($saved) ? $saved : null
+    'index_var'     => $index_var,
+    'message'       => isset($message) ? $message : null,
+    'mode'          => isset($mode) ? $mode : null,
+    'modifications' => isset($modifications) ? $modifications : null,
+    'note'          => isset($note) ? $note->getData() : null,
+    'production'    => getenv('production') !== false,
+    'saved'         => isset($saved) ? $saved : null,
+    'status'        => $status,
+    'subjects'      => isset($subjects) ? $subjects : null
   )
 );

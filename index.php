@@ -6,8 +6,8 @@ session_start();
 
 $dir_level = 0;
 
-require_once 'classes/user.class.php';
 require_once 'inc/functions.php';
+require_once 'classes/user.class.php';
 require_once 'vendor/autoload.php';
 
 Twig_Autoloader::register();

@@ -17,15 +17,15 @@ class user {
       $selectData->bindValue('id', $id, PDO::PARAM_INT);
       $selectData->execute();
 
-      $newsData = $selectData->fetch();
+      $userData = $selectData->fetch();
 
     } catch (PDOException $e) {
       die($config['errors']['database']);
     }
 
-    $this->id        = $newsData['id'];
-    $this->name      = $newsData['name'];
-    $this->authority = $newsData['authority'];
+    $this->id        = $userData['id'];
+    $this->name      = $userData['name'];
+    $this->authority = $userData['authority'];
 
   }
 

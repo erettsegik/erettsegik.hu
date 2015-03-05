@@ -13,10 +13,10 @@ $twig = initTwig();
 $user = new user($_SESSION['userid']);
 
 echo $twig->render(
-  'admin/index.html', 
+  'admin/index.html',
   array(
     'index_var' => array(
-      'menu' => getAdminMenuItems(),
+      'menu'           => getAdminMenuItems(),
       'user_authority' => $user->getData()['authority']
     )
   )

@@ -23,13 +23,13 @@ class feedback {
       die($config['errors']['database']);
     }
 
-    $subjectData = $selectData->fetch();
+    $feedbackData = $selectData->fetch();
 
-    $this->id    = $subjectData['id'];
-    $this->title = $subjectData['title'];
-    $this->text  = $subjectData['text'];
-    $this->date  = new DateTime($subjectData['date']);
-    $this->isnew = $subjectData['isnew'];
+    $this->id    = $feedbackData['id'];
+    $this->title = $feedbackData['title'];
+    $this->text  = $feedbackData['text'];
+    $this->date  = new DateTime($feedbackData['date']);
+    $this->isnew = $feedbackData['isnew'];
 
   }
 

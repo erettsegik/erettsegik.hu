@@ -1,12 +1,12 @@
 .event-column {
-  width: 230px;
   float: left;
   margin: 0px 51px;
+  width: 230px;
 }
 
 h2 {
-  margin: 0px auto;
   border-bottom: 1px solid #dedede;
+  margin: 0px auto;
 }
 
 .event-container {
@@ -18,15 +18,15 @@ h2 {
 }
 
 .progress-container {
+  background-color: #ffb938;
   height: 5px;
-  width: 100%;
   margin: 5px 0px;
   padding: 0px;
-  background-color: #ffb938;
+  width: 100%;
 }
 
 hr.progress-meter {
-  margin: 0px;
-  height: 5px;
   background-color: #35586e;
+  height: 5px;
+  margin: 0px;
 }
