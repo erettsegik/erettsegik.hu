@@ -46,10 +46,12 @@ class modification {
     $this->new_text   = $modificationData['new_text'];
     $this->end_text   = $modificationData['end_text'];
     $this->comment    = $modificationData['comment'];
-    $this->date       = new DateTime($modificationData['date']);
+    $this->date       = new DateTime($modificationData['date'], $config['tz']['utc']);
     $this->updatedate = $modificationData['updatedate'];
     $this->status     = $modificationData['status'];
     $this->reply      = $modificationData['reply'];
+
+    $this->date->setTimezone($config['tz']['local']);
 
   }
 
@@ -65,7 +67,6 @@ class modification {
     $this->note    = new note($noteid);
     $this->title   = $title;
     $this->comment = $comment;
-    $this->date    = new DateTime();
 
     $i = 0;
     while ($original[$i] == $modified[$i]) {

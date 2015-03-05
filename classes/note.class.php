@@ -36,10 +36,12 @@ class note {
     $this->text        = $noteData['text'];
     $this->subject     = new subject($noteData['subjectid']);
     $this->category    = $noteData['category'];
-    $this->updatedate  = new DateTime($noteData['updatedate']);
+    $this->updatedate  = new DateTime($noteData['updatedate'], $config['tz']['utc']);
     $this->ordernumber = $noteData['ordernumber'];
     $this->live        = $noteData['live'];
     $this->incomplete  = $noteData['incomplete'];
+
+    $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 

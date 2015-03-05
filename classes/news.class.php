@@ -30,12 +30,15 @@ class news {
     $this->id         = $newsData['id'];
     $this->title      = $newsData['title'];
     $this->text       = $newsData['text'];
-    $this->date       = new DateTime($newsData['date']);
+    $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
     $this->updatedate = ($newsData['updatedate'] != null)
-                      ? new DateTime($newsData['updatedate'])
+                      ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
                       : null;
     $this->creatorid  = $newsData['creatorid'];
     $this->live       = $newsData['live'];
+
+    $this->date->setTimezone($config['tz']['local']);
+    $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 

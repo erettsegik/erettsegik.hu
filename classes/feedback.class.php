@@ -28,8 +28,10 @@ class feedback {
     $this->id    = $feedbackData['id'];
     $this->title = $feedbackData['title'];
     $this->text  = $feedbackData['text'];
-    $this->date  = new DateTime($feedbackData['date']);
+    $this->date  = new DateTime($feedbackData['date'], $config['tz']['utc']);
     $this->isnew = $feedbackData['isnew'];
+
+    $this->date->setTimezone($config['tz']['local']);
 
   }
 
