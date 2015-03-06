@@ -47,7 +47,7 @@
   <div id='wrapper'>
   <section id='location'>
     {% for element in index_var.location %}
-      <a href='{{ element.url }}'>{{ element.name | raw }}</a>
+      <a href='{{ element.url }}'>{{ element.name }}</a>
       {% if not loop.last %}
         &#x2192;
       {% endif %}
@@ -55,7 +55,7 @@
   </section>
   <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
   <br style='clear: both;'>
-  {% if status == 'error' or status == 'success' %}
+  {% if status == 'error' or status == 'success' or status == 'notice' %}
   <span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
   {% endif %}
   <section id='main'>
