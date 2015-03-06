@@ -31,19 +31,40 @@ nav a, nav a:visited {
 
 nav ul {
   display: inline-block;
-  height: 50px;
   list-style-type: none;
   margin: 0px 0px 0px 133px;
   padding: 0px 120px 0px 0px;
   text-align: center;
+  height: 50px;
 }
 
 nav li {
   display: inline-block;
-  height: 50px;
   line-height: 50px;
+  height: 50px;
   margin: 0px;
   padding: 0px;
+}
+
+nav li ul {
+  float: none;
+  position: absolute;
+  top: 50px;
+  visibility: hidden;
+}
+
+nav li ul li {
+  float: left;
+  width: 100%;
+}
+
+nav li:hover ul {
+  top: 50px;
+  visibility: visible
+}
+
+nav li ul li a {
+  background-color: #123952;
 }
 
 nav ul a {
