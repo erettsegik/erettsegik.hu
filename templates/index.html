@@ -19,7 +19,7 @@
     </form>
   <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='#' class='nav_item'>{{ subject.name }}</a>
+      <li tabindex='1'>{{ subject.name }}</a>
         <div class='nav_content'>
           <div class='nav_sub'>
             <ul>
@@ -31,7 +31,7 @@
         </div>
       </li>
     {% endfor %}
-    <li><a href='#' class='unique nav_item'>Összes tárgy</a>
+    <li tabindex='1' class='unique'>Összes tárgy
       <div class='nav_content'>
         <div class='nav_sub'>
             <ul>

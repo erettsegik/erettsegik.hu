@@ -51,17 +51,36 @@ nav li ul {
 }
 
 nav li ul li {
-  position: relative !important;
+  position: relative;
   float: left;
 }
 
-nav li:hover ul {
+nav li:focus {
+  outline: none;
+}
+
+li.unique {
+  color: #ffb938;
+}
+
+nav li:hover {
+  background-color: #688292;
+}
+
+nav li:focus ul {
   top: 50px;
   visibility: visible;
 }
 
 nav li ul li a {
   background-color: #123952;
+}
+
+nav ul li {
+  display: inline-block;
+  height: 50px;
+  padding: 0 10px;
+  cursor: pointer;
 }
 
 nav ul a {
@@ -72,6 +91,15 @@ nav ul a {
 
 nav ul a:hover {
   background-color: #688292;
+}
+
+.nav_sub ul {
+  margin-left: 0;
+  left: 0;
+}
+
+.nav_sub ul li {
+  padding: 0;
 }
 
 #search_form {
