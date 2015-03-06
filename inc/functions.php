@@ -117,7 +117,7 @@ function isValid($type, $id) {
     $query = $con->prepare('select id from ' . $table . ' where id = :id');
     $query->bindValue('id', $id, PDO::PARAM_INT);
     $query->execute();
-    
+
   } catch (PDOException $e) {
     die($config['errors']['database']);
   }
@@ -129,9 +129,6 @@ function isValid($type, $id) {
 function prepareText($text) {
 
   $text = trim($text);
-  $text = htmlspecialchars($text);
-  $text = str_replace('&gt;', '>', $text);
-
   return $text;
 
 }
