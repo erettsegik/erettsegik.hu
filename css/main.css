@@ -49,6 +49,7 @@ nav li {
 nav li ul {
   float: none;
   position: absolute;
+  text-align: left;
   top: 50px;
   visibility: hidden;
 }
