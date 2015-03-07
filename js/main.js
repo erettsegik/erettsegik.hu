@@ -1,3 +1,15 @@
+var updatePreviewTarget = function(data, status) {
+  $('#preview-target').html(data);
+}
+
+var main = function() {
+  $('button#preview').click(
+    function() {
+      $.post('/note_preview', {text: $('#note-txt').val()}, updatePreviewTarget);
+    }
+  );
+};
+
 function searchRedirect(searchpage) {
 
   event.preventDefault();
@@ -7,3 +19,5 @@ function searchRedirect(searchpage) {
   window.location = '/search/' + term + '/';
 
 }
+
+$(main);
