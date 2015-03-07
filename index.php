@@ -13,7 +13,16 @@ require_once 'vendor/autoload.php';
 Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem('templates');
+
+$filters = Array(
+    new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
+);
+
 $twig = new Twig_Environment($loader);
+
+foreach ($filters as $filter) {
+    $twig->addFilter($filter);
+}
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
