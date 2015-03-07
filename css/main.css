@@ -34,20 +34,16 @@ nav ul {
   list-style-type: none;
   margin: 0px 0px 0px 133px;
   padding: 0px 120px 0px 0px;
-  text-align: center;
   height: 50px;
 }
 
 nav li {
+  position: relative;
   display: inline-block;
-  line-height: 50px;
   height: 50px;
-  margin: 0px;
-  padding: 0px;
 }
 
 nav li ul {
-  float: none;
   position: absolute;
   text-align: left;
   top: 50px;
@@ -55,13 +51,13 @@ nav li ul {
 }
 
 nav li ul li {
+  position: relative !important;
   float: left;
-  width: 100%;
 }
 
 nav li:hover ul {
   top: 50px;
-  visibility: visible
+  visibility: visible;
 }
 
 nav li ul li a {
