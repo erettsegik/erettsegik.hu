@@ -111,3 +111,7 @@ li.add-modification {
 #leftside h6 {
   font-family: 'Roboto', sans-serif;
 }
+
+.latex-container {
+  text-indent: 0;
+}
