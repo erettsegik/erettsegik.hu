@@ -35,23 +35,23 @@ $subject = new subject($note->getData()['subjectid']);
 $category = new category($note->getData()['category']);
 
 $index_var['location'][] = array(
-  'url' => '/subject/',
+  'url' => '/subjects/',
   'name' => 'Tantárgyak'
 );
 
 $index_var['location'][] = array(
-  'url' => '/subject/' . $subject->getData()['id'] . '/',
+  'url' => '/subjects/' . $subject->getData()['id'] . '/',
   'name' => $subject->getData()['name']
 );
 
 $index_var['location'][] = array(
-  'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
+  'url' => '/subjects/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
   'name' => $category->getData()['name']
 );
 
 $index_var['location'][] = array(
   'url' => '/note/' . $note->getData()['id'] . '/',
-  'name' => $note->getData()['title']
+  'name' => (strlen($note->getData()['title']) > 17) ? substr($note->getData()['title'], 0, 17) . '...' : $note->getData()['title']
 );
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
@@ -67,8 +67,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['new_text'])) {
 
       $modification = new modification();
@@ -80,25 +78,27 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['comment']
       );
 
-    } else {
-      die('Érvénytelen!');
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeresen beküldted a módosítást!';
+
+      header('Location: /modification/' . $modification->getData()['id']);
+
     }
 
-  } else {
+    $saved = array('title' => $_POST['title'], 'new_text' => $_POST['new_text'], 'comment' => $_POST['comment']);
 
-    $status = 'form';
+    $status = 'error';
+    $message = 'Nem küldheted el üresen az űrlapot!';
 
   }
 
 } else {
 
-  $status = 'display';
-
   $modification = new modification($_GET['id']);
 
   $index_var['location'][] = array(
     'url' => '/modification/',
-    'name' => 'Javaslat: ' . $modification->getData()['title']
+    'name' => (strlen($modification->getData()['title']) > 17) ? 'Javaslat: ' . substr($modification->getData()['title'], 0, 17) . '...' : 'Javaslat: ' . $modification->getData()['title']
   );
 
   $index_var['title'] = $modification->getData()['title'];
@@ -110,11 +110,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 echo $twig->render(
   'modification.html',
   array(
-    'index_var'    => $index_var,
-    'modification' => isset($modification) ? $modification->getData() : null,
     'action'       => isset($_GET['action']) ? $_GET['action'] : null,
+    'diff'         => isset($diff) ? $diff : null,
+    'index_var'    => $index_var,
+    'message'      => isset($message) ? $message : null,
+    'modification' => isset($modification) ? $modification->getData() : null,
     'note'         => $note->getData(),
-    'status'       => $status,
-    'diff'         => isset($diff) ? $diff : null
+    'production'   => getenv('production') !== false,
+    'saved'        => isset($saved) ? $saved : null,
+    'status'       => $status
   )
 );

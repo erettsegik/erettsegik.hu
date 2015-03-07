@@ -9,29 +9,46 @@
     <link rel='stylesheet' type='text/css' href='/css/{{ index_var.css }}.css'>
   {% endif %}
   <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon'>
-  <script type='text/x-mathjax-config'>
-    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-  </script>
   <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css'>
-  <title>{{ index_var.title }} - erettsegik.hu</title>
+  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.css'>
+<title>{{ index_var.title }} - erettsegik.hu</title>
 </head>
 <body>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <nav>
+  <nav class='nav_main'>
     <form id='search_form' onsubmit='searchRedirect();'>
-      <input type='text' id='searchbox'>
+      <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
     </form>
   <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li><a href='/subjects/{{ subject.id }}/' class='nav_item'>{{ subject.name }}</a>
+        <div class='nav_content'>
+          <div class='nav_sub'>
+            <ul>
+            {% for category in subject.categories %}
+              <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </li>
     {% endfor %}
-    <li><a href='/subject/' class='unique'>Összes tárgy</a></li>
+    <li class='unique'><a href='/subjects/' class='unique nav_item'>Összes tárgy</a>
+      <div class='nav_content'>
+        <div class='nav_sub'>
+            <ul>
+            {% for subject in index_var.othersubjects %}
+              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+      <div>
+    </li>
   </ul>
   </nav>
   <div id='wrapper'>
   <section id='location'>
     {% for element in index_var.location %}
-      <a href='{{ element.url }}'>{{ element.name | raw }}</a>
+      <a href='{{ element.url }}'>{{ element.name }}</a>
       {% if not loop.last %}
         &#x2192;
       {% endif %}
@@ -39,6 +56,9 @@
   </section>
   <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
   <br style='clear: both;'>
+  {% if status == 'error' or status == 'success' or status == 'notice' %}
+  <span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
+  {% endif %}
   <section id='main'>
     {% block content %}
     {% endblock %}
@@ -48,11 +68,11 @@
     <a href='/user_manage/'> {% if index_var.username == '' %} tanári bejelentkezés {% else %} felhasználói oldal {% endif %} </a>
     | <a href='/about/'>rólunk</a>
   </footer>
-</div>
+  </div>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js'></script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js'></script>
-  <script type='text/JavaScript' src='/js/main.js'></script>
-  <script data-cfasync='false' src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'>
-  </script>
+  <script type='text/javascript' src='/js/main.js'></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

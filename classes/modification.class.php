@@ -20,6 +20,7 @@ class modification {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -31,30 +32,33 @@ class modification {
       $selectData->bindValue('id', $id, PDO::PARAM_INT);
       $selectData->execute();
 
-      $noteData = $selectData->fetch();
+      $modificationData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a javaslat betöltése.');
+      die($config['errors']['database']);
     }
 
-    $this->id         = $noteData['id'];
-    $this->note       = new note($noteData['noteid']);
-    $this->title      = $noteData['title'];
-    $this->start_text = $noteData['start_text'];
-    $this->old_text   = $noteData['old_text'];
-    $this->new_text   = $noteData['new_text'];
-    $this->end_text   = $noteData['end_text'];
-    $this->comment    = $noteData['comment'];
-    $this->date       = new DateTime($noteData['date']);
-    $this->updatedate = $noteData['updatedate'];
-    $this->status     = $noteData['status'];
-    $this->reply      = $noteData['reply'];
+    $this->id         = $modificationData['id'];
+    $this->note       = new note($modificationData['noteid']);
+    $this->title      = $modificationData['title'];
+    $this->start_text = $modificationData['start_text'];
+    $this->old_text   = $modificationData['old_text'];
+    $this->new_text   = $modificationData['new_text'];
+    $this->end_text   = $modificationData['end_text'];
+    $this->comment    = $modificationData['comment'];
+    $this->date       = new DateTime($modificationData['date'], $config['tz']['utc']);
+    $this->updatedate = $modificationData['updatedate'];
+    $this->status     = $modificationData['status'];
+    $this->reply      = $modificationData['reply'];
+
+    $this->date->setTimezone($config['tz']['local']);
 
   }
 
   public function insertData($noteid, $title, $modified, $comment) {
 
     global $con;
+    global $config;
 
     $note = new note($noteid);
 
@@ -63,7 +67,6 @@ class modification {
     $this->note    = new note($noteid);
     $this->title   = $title;
     $this->comment = $comment;
-    $this->date    = new DateTime();
 
     $i = 0;
     while ($original[$i] == $modified[$i]) {
@@ -114,7 +117,7 @@ class modification {
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die('Nem sikerült elmenteni a javaslatot.');
+      die($config['errors']['database']);
     }
 
   }
@@ -122,6 +125,7 @@ class modification {
   function updateStatus($status, $reply) {
 
     global $con;
+    global $config;
 
     $this->status = $status;
     $this->reply = $reply;
@@ -141,7 +145,7 @@ class modification {
       $updateStatus->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a javaslatot frissíteni.');
+      die($config['errors']['database']);
     }
 
   }

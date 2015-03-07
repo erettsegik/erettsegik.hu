@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if status == 'all' %}
+{% if mode == 'all' %}
 
   <h1>Összes tárgy</h1>
 
@@ -11,9 +11,9 @@
   {% for subject in allsubjects %}
 
     {% if subject.mandatory %}
-      <li class='mandatory'><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li class='mandatory'><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
     {% else %}
-      <li><a href='/subject/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
     {% endif %}
 
   {% endfor %}
@@ -26,10 +26,10 @@
 
   {% for category in categories %}
     <h2 id='{{ category.name }}'>{{ category.name }}</h2>
-    <ul>
+    <ul class='notes-list'>
 
     {% for note in category.data %}
-      <li><a href='/note/{{ note.id }}/'>{{ note.title | raw }}</a></li>
+      <li{% if note.incomplete %} class='incomplete'{% endif %}><a href='/note/{{ note.id }}/'>{{ note.title }}</a></li>
     {% endfor %}
 
     </ul>

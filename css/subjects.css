@@ -20,3 +20,11 @@
 #subject_menu li.mandatory {
   color: #ffb938;
 }
+
+.notes-list li {
+  list-style-image: url("/img/check_mark.png");
+}
+
+li.incomplete {
+  list-style-image: url("/img/exclamation_mark.png");
+}

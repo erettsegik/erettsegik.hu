@@ -18,63 +18,65 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'submit';
-
     $note = new note();
 
     $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
+    $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
+
     $note->insertData(
-      prepareText($_POST['title']),
+      $_POST['title'],
       prepareText($_POST['text']),
       $_POST['subjectid'],
       $_POST['category'],
-      $live
+      $live,
+      $incomplete
     );
 
-  } else {
+    $redirect_string = 'Location: /admin/notes_admin.php';
 
-    $status = 'form';
+    if (isset($_GET['subjectid'])) {
+      $redirect_string .= '?subjectid=' . $_GET['subjectid'];
+    }
+
+    header($redirect_string);
 
   }
 
 } else if (isset($_GET['action']) && $_GET['action'] == 'edit') {
 
-  $id = $_GET['id'];
+  $note = new note($_GET['id']);
 
   if (isset($_POST['submit'])) {
-
-    $status = 'submit';
-
-    $note = new note($id);
 
     if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
       $note->remove();
 
+      $redirect_string = 'Location: /admin/notes_admin.php';
+
+      header($redirect_string);
+
     } else {
 
       $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
+      $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
+
       $note->modifyData(
-        prepareText($_POST['title']),
+        $_POST['title'],
         prepareText($_POST['text']),
         $_POST['subjectid'],
         $_POST['category'],
-        $live
+        $live,
+        $incomplete
       );
 
     }
 
-  } else {
-
-    $status = 'form';
-
-    $note = new note($id);
-
-    $noteData = $note->getData(true);
-
   }
+
+  $noteData = $note->getData(true);
 
 } else {
 
@@ -93,7 +95,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $getNotes->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a jegyzetek frissítése.');
+        die($config['errors']['database']);
       }
 
       while ($noteData = $getNotes->fetch()) {
@@ -112,7 +114,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     try {
 
       $getNotes = $con->prepare('
-        select notes.id, notes.title, notes.ordernumber, notes.live, categories.name
+        select notes.id, notes.title, notes.ordernumber, notes.live, notes.incomplete, categories.name
         from notes
         left join categories on notes.category = categories.id
         where notes.subjectid = :subjectid
@@ -122,7 +124,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $getNotes->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetek kiválasztása.');
+      die($config['errors']['database']);
     }
 
     while ($noteData = $getNotes->fetch()) {
@@ -140,7 +142,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         'id' => $noteData['id'],
         'title' => $noteData['title'],
         'ordernumber' => $noteData['ordernumber'],
-        'live' => $noteData['live']
+        'live' => $noteData['live'],
+        'incomplete' => $noteData['incomplete']
       );
 
     }
@@ -158,7 +161,7 @@ try {
   $getCategories = $con->query('select id from categories');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a kategóriák kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $categories = array();
@@ -177,21 +180,27 @@ if (isset($_GET['subjectid'])) {
 
 }
 
-echo $twig->render('admin/notes_admin.html', array(
-  'action' => (isset($_GET['action']) ? $_GET['action'] : null),
-  'status' => $status,
-  'notedata' => (isset($noteData)) ? $noteData : null,
-  'notelist' => (isset($noteList) ? $noteList : null),
-  'subjectlist' => getSubjects(),
-  'categories' => $categories,
-  'selectedsubject' => (isset($_GET['subjectid'])) ? $selectedSubject : array('id' => 0),
-  'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+echo $twig->render(
+  'admin/notes_admin.html',
+  array(
+    'action'          => isset($_GET['action']) ? $_GET['action'] : null,
+    'categories'      => $categories,
+    'index_var'       => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'notedata'        => isset($noteData) ? $noteData : null,
+    'notelist'        => isset($noteList) ? $noteList : null,
+    'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),
+    'status'          => $status,
+    'subjectlist'     => getSubjects()
   )
 );
 
 function getSubjects() {
 
   global $con;
+  global $config;
 
   $subjects = array();
 
@@ -204,7 +213,7 @@ function getSubjects() {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a tárgyak kiválasztása.');
+    die($config['errors']['database']);
   }
 
   while ($subject = $getSubjects->fetch()) {

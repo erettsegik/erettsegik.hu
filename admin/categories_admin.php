@@ -18,10 +18,12 @@ try {
   $getCategories = $con->prepare('select id from categories');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a kategóriák kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $getCategories->execute();
+
+$status = 'none';
 
 if (isset($_POST['update'])) {
 
@@ -31,7 +33,10 @@ if (isset($_POST['update'])) {
 
     $category = new category($id);
 
-    $category->modifyData(prepareText($_POST[$id . 'name']));
+    $category->modifyData($_POST[$id . 'name']);
+
+    $status = 'success';
+    $message = 'Sikeresen frissítve!';
 
   }
 
@@ -41,7 +46,10 @@ if (isset($_POST['addnew'])) {
 
   $category = new category();
 
-  $category->insertData(prepareText($_POST['name']));
+  $category->insertData($_POST['name']);
+
+  $status = 'success';
+  $message = 'Sikeresen frissítve!';
 
 }
 
@@ -60,6 +68,11 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var'  => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'message'    => isset($message) ? $message : null,
+    'status'     => $status
   )
 );

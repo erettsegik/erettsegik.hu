@@ -7,16 +7,18 @@ body {
   background-color: #dedede;
   color: #35586e;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 100%;
   text-align: center;
 }
 
 nav {
   background-color: #123952;
   color: #dedede;
-  font-size: 24px;
+  font-size: 1.5em;
   height: 50px;
   line-height: 50px;
-  margin: auto;
+  margin: 0px;
+  padding: 0px;
   position: fixed;
   top: 0px;
   vertical-align: middle;
@@ -28,31 +30,96 @@ nav a, nav a:visited {
 }
 
 nav ul {
-  display: inline;
+  display: inline-block;
   list-style-type: none;
-  margin: auto auto auto 133px;
-  padding-right: 120px;
-  text-align: center;
+  margin: 0px 0px 0px 133px;
+  padding: 0px 120px 0px 0px;
+  height: 50px;
 }
 
 nav li {
-  display: inline;
+  position: relative;
+  display: inline-block;
   height: 50px;
-  line-height: 50px;
-  margin: 0 10px;
-  vertical-align: middle;
+}
+
+nav li ul {
+  position: absolute;
+  text-align: left;
+  top: 50px;
+  visibility: hidden;
+}
+
+nav li ul li {
+  position: relative;
+  float: left;
+}
+
+nav li:hover {
+  background-color: #688292;
+}
+
+nav li:hover ul {
+  top: 50px;
+  visibility: visible;
+}
+
+nav li ul li a {
+  background-color: #123952;
+}
+
+nav ul li {
+  display: inline-block;
+  height: 50px;
+}
+
+nav ul a {
+  display: inline-block;
+  height: 50px;
+  padding: 0 10px;
+}
+
+nav ul a:hover {
+  background-color: #688292;
+}
+
+.nav_sub {
+  font-size: 0.8em;
+}
+
+.nav_sub ul {
+  margin-left: 0;
+  left: 0;
+  padding: 0px;
+  width: 100%;
+}
+
+.nav_sub ul li {
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+
+.nav_sub a {
+  width: 100%;
+  box-sizing: border-box;
+  height: 35px;
 }
 
 #search_form {
   display: inline;
 }
 
-#search_form input {
-  background-image: url('/img/search_form_background.png');
+#searchbox {
+  background-image: url('/img/search_background.png');
   background-repeat: no-repeat;
   border-color: #688292;
+  border-width: 2px;
   color: #dedede;
-  height: 15px;
+  height: 19px;
   margin-top: 17px;
   padding: 0px 0px 0px 17px;
   position: fixed;
@@ -97,16 +164,20 @@ nav li {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.75em;
   margin-top: 0px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.4em;
+}
+
+#rightside h2 {
+  margin-top: 0;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 1.2em;
 }
 
 a, a:visited {
@@ -194,4 +265,81 @@ hr {
   height: 1px;
   margin: 16px auto;
   width: 98%;
+}
+
+.form-element:valid {
+  background-color: #f0fff0;
+}
+
+.form-element:invalid {
+  background-color: #fff0f0;
+}
+
+span.top-notice {
+  -moz-animation: fadein 3s;
+  -ms-animation: fadein 3s;
+  -o-animation: fadein 3s;
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+  color: #123952;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 1000px;
+}
+
+span.success {
+  border: 2px solid #009900;
+  background-color: #f0fff0;
+}
+
+span.success:before {
+  content: url('/img/check_mark.png');
+  margin-right: 10px;
+}
+
+span.error {
+  border: 2px solid #990000;
+  background-color: #fff0f0;
+}
+
+span.error:before {
+  content: url('/img/x_mark.png');
+  margin-right: 10px;
+}
+
+span.notice {
+  border: 2px solid #ffb938;
+  background-color: #FFF5C8;
+}
+
+span.notice:before {
+  content: url('/img/exclamation_mark.png');
+  margin-right: 10px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

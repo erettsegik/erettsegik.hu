@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     $getFeedback->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a visszajelzések kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $feedbackArray = array();
@@ -52,9 +52,12 @@ if (isset($_GET['id'])) {
 echo $twig->render(
   'admin/feedback_admin.html',
   array(
-    'status' => $status,
-    'feedbackdata' => (isset($feedbackData)) ? $feedbackData : null,
-    'feedbackarray' => (isset($feedbackArray)) ? $feedbackArray : null,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'feedbackarray' => isset($feedbackArray) ? $feedbackArray : null,
+    'feedbackdata'  => isset($feedbackData) ? $feedbackData : null,
+    'index_var'     => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'status'        => $status
   )
 );

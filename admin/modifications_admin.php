@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
     $getModifications->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a javaslatok kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $modifications = array();
@@ -61,10 +61,13 @@ if (isset($_GET['id'])) {
 echo $twig->render(
   'admin/modifications_admin.html',
   array(
-    'modificationdata' => (isset($modificationData)) ? $modificationData : null,
-    'modifications' => (isset($modifications)) ? $modifications : null,
-    'notedata' => (isset($noteData)) ? $noteData : null,
-    'status' => $status,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var'        => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'modificationdata' => isset($modificationData) ? $modificationData : null,
+    'modifications'    => isset($modifications) ? $modifications : null,
+    'notedata'         => isset($noteData) ? $noteData : null,
+    'status'           => $status
   )
 );

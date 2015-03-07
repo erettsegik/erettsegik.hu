@@ -11,6 +11,7 @@ class feedback {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -19,22 +20,25 @@ class feedback {
       $selectData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az osztály adatait betölteni.');
+      die($config['errors']['database']);
     }
 
-    $subjectData = $selectData->fetch();
+    $feedbackData = $selectData->fetch();
 
-    $this->id    = $subjectData['id'];
-    $this->title = $subjectData['title'];
-    $this->text  = $subjectData['text'];
-    $this->date  = new DateTime($subjectData['date']);
-    $this->isnew = $subjectData['isnew'];
+    $this->id    = $feedbackData['id'];
+    $this->title = $feedbackData['title'];
+    $this->text  = $feedbackData['text'];
+    $this->date  = new DateTime($feedbackData['date'], $config['tz']['utc']);
+    $this->isnew = $feedbackData['isnew'];
+
+    $this->date->setTimezone($config['tz']['local']);
 
   }
 
   public function makeNotNew() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -47,7 +51,7 @@ class feedback {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a frissítés.');
+      die($config['errors']['database']);
     }
 
   }
@@ -55,6 +59,7 @@ class feedback {
   public function insertData($title, $text) {
 
     global $con;
+    global $config;
 
     $this->title = $title;
     $this->text  = $text;
@@ -76,7 +81,7 @@ class feedback {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a visszajelzés elküldése.');
+      die($config['errors']['database']);
     }
 
   }

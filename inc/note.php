@@ -9,8 +9,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    $status = 'addsubmit';
-
     if (
       !isValid('subject', $_POST['subjectid']) ||
       !isValid('category', $_POST['category']) ||
@@ -18,7 +16,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       !isNotEmpty($_POST['text'])
     ) {
 
-      $status = 'notvalid';
+      $saved = array('title' => $_POST['title'], 'text' => $_POST['text'], 'subjectid' => $_POST['subjectid'], 'category' => $_POST['category'], 'email' => $_POST['email']);
+
+      $status = 'error';
+      $message = 'Valamelyik mezőt nem helyesen töltötted ki!';
 
     } else {
 
@@ -29,14 +30,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         prepareText($_POST['text']),
         $_POST['subjectid'],
         $_POST['category'],
-        0
+        0,
+        1
       );
 
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!';
+
+      header('Location: /subjects/' . $note->getData()['subjectid']);
+
     }
-
-  } else {
-
-    $status = 'addform';
 
   }
 
@@ -49,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     ');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a tantárgyak kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $subjects = array();
@@ -66,7 +69,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $getCategories = $con->query('select id from categories');
 
   } catch (PDOException $e) {
-    die('Nem sikerült a kategóriák kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $categories = array();
@@ -87,7 +90,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 } else {
 
-  $status = 'display';
+  $mode = 'display';
 
   if (!isValid('note', $_GET['id'])) {
 
@@ -116,7 +119,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $getModificationsData->execute();
 
   } catch (PDOException $e) {
-    die('Nem sikerült a kategóriák kiválasztása.');
+    die($config['errors']['database']);
   }
 
   $modifications = array();
@@ -127,37 +130,46 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
   }
 
   $index_var['location'][] = array(
-    'url' => '/subject/',
+    'url' => '/subjects/',
     'name' => 'Tantárgyak'
   );
 
   $index_var['location'][] = array(
-    'url' => '/subject/' . $subject->getData()['id'] . '/',
+    'url' => '/subjects/' . $subject->getData()['id'] . '/',
     'name' => $subject->getData()['name']
   );
 
   $index_var['location'][] = array(
-    'url' => '/subject/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
+    'url' => '/subjects/' . $subject->getData()['id'] . '/#' . $category->getData()['name'],
     'name' => $category->getData()['name']
   );
 
   $index_var['location'][] = array(
     'url' => '/note/' . $note->getData()['id'] . '/',
-    'name' => $note->getData()['title']
+    'name' => (strlen($note->getData()['title']) > 17) ? substr($note->getData()['title'], 0, 37) . '...' : $note->getData()['title']
   );
 
   $index_var['title'] = $note->getData()['title'];
+
+  if ($note->getData()['incomplete']) {
+    $status = 'notice';
+    $message = 'Ez a jegyzet félkész. Kérjük, segíts kibővíteni egy javaslat beküldésével!';
+  }
 
 }
 
 echo $twig->render(
   'note.html',
   array(
+    'categories'    => isset($categories) ? $categories : null,
     'index_var'     => $index_var,
-    'note'          => (isset($note)) ? $note->getData() : null,
-    'modifications' => (isset($modifications)) ? $modifications : null,
+    'message'       => isset($message) ? $message : null,
+    'mode'          => isset($mode) ? $mode : null,
+    'modifications' => isset($modifications) ? $modifications : null,
+    'note'          => isset($note) ? $note->getData() : null,
+    'production'    => getenv('production') !== false,
+    'saved'         => isset($saved) ? $saved : null,
     'status'        => $status,
-    'categories'    => (isset($categories)) ? $categories : null,
-    'subjects'      => (isset($subjects)) ? $subjects : null
+    'subjects'      => isset($subjects) ? $subjects : null
   )
 );

@@ -6,27 +6,17 @@
 
   <h1>Új javaslat hozzáadása a következő jegyzethez: {{ note.title }}</h1>
 
-  {% if status == 'form' %}
-
-    <form action='/modification/add/{{ note.id }}/' method='post'>
-    Javaslat címe: <input type='text' name='title' required><br>
-    <div class='modification'>Eredeti szöveg:<br>
-    <textarea name='original_text' readonly>{{ note.text }}</textarea></div>
-    <div class='modification'>Új szöveg:<br>
-    <textarea name='new_text' required>{{ note.text }}</textarea></div><br>
-    Megjegyzés (opcionális): <input type='text' name='comment'><br>
-    <input type='submit' name='submit' class='submit' value='Elküldés'>
-    </form>
-
-  {% else %}
-
-    <p>Siker!</p>
-
-  {% endif %}
+  <form action='/modification/add/{{ note.id }}/' method='post'>
+  Javaslat címe: <input type='text' name='title' class='form-element' value='{{ saved.title }}' required><br>
+  <div class='modification'>Eredeti szöveg:<br>
+  <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
+  <div class='modification'>Új szöveg:<br>
+  <textarea name='new_text' required>{% if saved.new_text %}{{ saved.new_text }}{% else %}{{ note.text }}{% endif %}</textarea></div><br>
+  Megjegyzés (opcionális): <input type='text' name='comment' value='{{ saved.comment }}'><br>
+  <input type='submit' name='submit' class='submit' value='Elküldés'>
+  </form>
 
 {% else %}
-
-  <h1 id='modification-title'>{{ modification.title }}</h1>
 
   {% if modification.status == 0 %}
     <img src='/img/pending.png' alt='pending' id='modification-status'>
@@ -40,10 +30,12 @@
     <img src='/img/rejected.png' alt='rejected' id='modification-status'>
   {% endif %}
 
+  <h1 id='modification-title'>{{ modification.title }}</h1>
+
   <br>
 
   <span class='article-meta'>
-    Tétel címe: {{ note.title | raw }}
+    Tétel címe: {{ note.title }}
 
     {% if modification.comment != '' %}
       <br>beküldő megjegyzése: {{ modification.comment }}
@@ -74,7 +66,7 @@
     <div id='disqus_thread'></div>
     <script type='text/javascript'>
       var disqus_shortname = 'erettsegikhu';
-      var disqus_identifier = 'modification-{{ modification.id }}';
+      var disqus_identifier = 'modification-{{ modification.id }}{% if production == false %}-dev{% endif %}';
       (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';

@@ -50,10 +50,6 @@ button.edit-button {
   width: 180px;
 }
 
-h2 {
-  margin-top: 0;
-}
-
 #notes-help {
   float: right;
 }
@@ -66,23 +62,28 @@ h2 {
 }
 
 li.status_0 {
-  list-style-image: url("/img/pending_icon.png");
+  list-style-image: url("/img/question_mark.png");
   list-style-position: outside;
 }
 
 li.status_1 {
-  list-style-image: url("/img/merged_icon.png");
+  list-style-image: url("/img/check_mark.png");
 }
 
 li.status_2 {
-  list-style-image: url("/img/rejected_icon.png");
+  list-style-image: url("/img/x_mark.png");
 }
 
 li.add-modification {
-  list-style-image: url("/img/addnew_icon.png");
+  list-style-image: url("/img/plus_sign.png");
 }
 
 #leftside ul {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+#leftside ol {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
@@ -109,4 +110,8 @@ li.add-modification {
 
 #leftside h6 {
   font-family: 'Roboto', sans-serif;
+}
+
+.latex-container {
+  text-indent: 0;
 }

@@ -1,37 +1,30 @@
 <?php
 
 require_once 'classes/event.class.php';
-require_once 'classes/news.class.php';
-require_once 'classes/user.class.php';
 
-$index_var['location'][] = array('url' => '/news/', 'name' => 'Hírek');
+$index_var['location'][] = array('url' => '/events/', 'name' => 'Események');
 
-$index_var['title'] = 'Hírek';
+$index_var['title'] = 'Események';
 
-$news = array();
+$past_events = array();
 
 try {
 
-  $getNewsData = $con->query('
+  $getPastEvents = $con->query('
     select id
-    from news
-    where live = 1
-    order by date desc
+    from events
+    where enddate < now()
+    order by startdate asc
   ');
 
 } catch (PDOException $e) {
   die($config['errors']['database']);
 }
 
-while ($newsData = $getNewsData->fetch()) {
+while ($eventData = $getPastEvents->fetch()) {
 
-  $new = new news($newsData['id']);
-  $a = $new->getData();
-
-  $author = new user($new->getData()['creatorid']);
-  $a['creator'] = $author->getData()['name'];
-
-  $news[] = $a;
+  $event = new event($eventData['id']);
+  $past_events[] = $event->getData();
 
 }
 
@@ -44,7 +37,6 @@ try {
     from events
     where startdate <= now() and enddate >= now()
     order by startdate asc
-    limit 0, 5
   ');
 
 } catch (PDOException $e) {
@@ -67,7 +59,6 @@ try {
     from events
     where startdate >= now()
     order by startdate asc
-    limit 0, 5
   ');
 
 } catch (PDOException $e) {
@@ -82,13 +73,11 @@ while ($eventData = $getUpcomingEvents->fetch()) {
 }
 
 echo $twig->render(
-  'news.html',
+  'events.html',
   array(
-    'current_events'  => $current_events,
-    'index_var'       => $index_var,
-    'message'         => isset($message) ? $message : null,
-    'news'            => $news,
-    'status'          => $status,
+    'current_events' => $current_events,
+    'index_var' => $index_var,
+    'past_events' => $past_events,
     'upcoming_events' => $upcoming_events
   )
 );

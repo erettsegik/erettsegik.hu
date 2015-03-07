@@ -6,7 +6,11 @@ function emphasis() {
   var end = textarea.selectionEnd;
   var sel = textarea.value.substring(start, end);
 
-  var replace = '*' + sel + '*';
+  if (sel == '') {
+    var replace = '*kiemelendő szöveg*';
+  } else {
+    var replace = '*' + sel + '*';
+  }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
@@ -20,7 +24,11 @@ function header() {
   var end = textarea.selectionEnd;
   var sel = textarea.value.substring(start, end);
 
-  var replace = '##' + ' ' + sel;
+  if (sel == '') {
+    var replace = '## cím\n';
+  } else {
+    var replace = '## ' + sel;
+  }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
@@ -35,9 +43,9 @@ function image() {
   var sel = textarea.value.substring(start, end);
 
   if (sel == '') {
-    var replace = '![kép címe](kép url-je)';
+    var replace = '![kép címe](kép url-je)\n';
   } else {
-    var replace = '![kép címe](' + sel + ')';
+    var replace = '![kép címe](' + sel + ')\n';
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
@@ -56,7 +64,7 @@ function list(type) {
 
     if (sel == '') {
 
-      var replace = '1. listaelem';
+      var replace = '1. listaelem\n';
 
     } else {
 
@@ -75,7 +83,7 @@ function list(type) {
 
     if (sel == '') {
 
-      var replace = ' - listaelem';
+      var replace = ' - listaelem\n';
 
     } else {
 

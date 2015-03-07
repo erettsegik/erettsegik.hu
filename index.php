@@ -6,14 +6,23 @@ session_start();
 
 $dir_level = 0;
 
-require_once 'classes/user.class.php';
 require_once 'inc/functions.php';
+require_once 'classes/user.class.php';
 require_once 'vendor/autoload.php';
 
 Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem('templates');
+
+$filters = Array(
+    new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
+);
+
 $twig = new Twig_Environment($loader);
+
+foreach ($filters as $filter) {
+    $twig->addFilter($filter);
+}
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
@@ -26,17 +35,62 @@ $index_var = array();
 
 try {
 
-  $getSubjects = $con->query('select * from subjects where mandatory = 1');
+  $getSubjects = $con->query('select id, name from subjects where mandatory = 1');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a tantárgyak kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $index_var['subjects'] = array();
 
 while ($subject = $getSubjects->fetch()) {
 
-  $index_var['subjects'][] = $subject;
+  $index_var['subjects'][$subject['id']] = $subject;
+
+  $index_var['subjects'][$subject['id']]['categories'] = array();
+
+  try {
+
+    $getNotesData = $con->prepare('
+      select notes.id, categories.name
+      from notes
+      left join categories on notes.category = categories.id
+      where notes.subjectid = :subjectid and notes.live = 1
+      order by category asc, ordernumber asc, id asc
+    ');
+    $getNotesData->bindValue(
+      'subjectid',
+      $subject['id'],
+      PDO::PARAM_INT
+    );
+    $getNotesData->execute();
+
+  } catch (PDOException $e) {
+    die($config['errors']['database']);
+  }
+
+  while ($notesData = $getNotesData->fetch()) {
+
+    if (!isset($index_var['subjects'][$subject['id']]['categories'][$notesData['name']]))
+      $index_var['subjects'][$subject['id']]['categories'][$notesData['name']] = array('name' => $notesData['name']);
+
+  }
+
+}
+
+try {
+
+  $getSubjects = $con->query('select id, name from subjects where mandatory = 0');
+
+} catch (PDOException $e) {
+  die($config['errors']['database']);
+}
+
+$index_var['othersubjects'] = array();
+
+while ($subject = $getSubjects->fetch()) {
+
+  $index_var['othersubjects'][] = $subject;
 
 }
 
@@ -52,6 +106,18 @@ $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 $index_var['css'] = '';
 
 $index_var['canonical'] = getCanonicalUrl();
+
+if (isset($_SESSION['status'])) {
+
+  $status = $_SESSION['status'];
+  $message = $_SESSION['message'];
+  unset($_SESSION['status']);
+
+} else {
+
+  $status = 'none';
+
+}
 
 if (isset($_GET['p'])) {
 

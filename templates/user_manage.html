@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if status == 'loggedin' %}
+{% if mode == 'loggedin' %}
 
   <h1>Felhasználói oldal</h1>
 
@@ -14,36 +14,28 @@
 
 {% endif %}
 
-{% if status == 'change_password' %}
+{% if mode == 'change_password' %}
 
   <h1>Jelszóváltoztatás</h1>
 
   <form action='/user_manage/change_password/' method='post'>
-  <input class='login' type='password' name='old_password' placeholder='régi jelszó'><br>
-  <input class='login' type='password' name='new_password' placeholder='új jelszó'><br>
+  <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
+  <input class='login' type='password' name='new_password' placeholder='új jelszó' required><br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
 {% endif %}
 
-{% if status == 'form' or status == 'error' %}
+{% if mode == 'form'%}
 
   <h1>Bejelentkezés</h1>
 
-  {% if status == 'error' %}
-    <p>Ezekkel az adatokkal nem sikerült bejelentkezni.</p>
-  {% endif %}
-
   <form action='/user_manage/login/' method='post'>
-  <input class='login' type='text' name='name' placeholder='Felhasználónév' required><br>
+  <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
   <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
 {% endif%}
-
-{% if status == 'logout' %}
-  <p>Sikeresen kijelentkezett.</p>
-{% endif %}
 
 {% endblock %}

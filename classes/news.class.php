@@ -13,6 +13,7 @@ class news {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -23,24 +24,28 @@ class news {
       $newsData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id         = $newsData['id'];
     $this->title      = $newsData['title'];
     $this->text       = $newsData['text'];
-    $this->date       = new DateTime($newsData['date']);
+    $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
     $this->updatedate = ($newsData['updatedate'] != null)
-                      ? new DateTime($newsData['updatedate'])
+                      ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
                       : null;
     $this->creatorid  = $newsData['creatorid'];
     $this->live       = $newsData['live'];
+
+    $this->date->setTimezone($config['tz']['local']);
+    $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
   public function insertData($title, $text, $creatorid, $live) {
 
     global $con;
+    global $config;
 
     $this->title     = $title;
     $this->text      = $text;
@@ -68,7 +73,7 @@ class news {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír hozzáadása.');
+      die($config['errors']['database']);
     }
 
   }
@@ -76,6 +81,7 @@ class news {
   public function modifyData($title, $text, $live) {
 
     global $con;
+    global $config;
 
     $this->title = $title;
     $this->text  = $text;
@@ -98,7 +104,7 @@ class news {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír frissítése.');
+      die($config['errors']['database']);
     }
 
   }
@@ -106,6 +112,7 @@ class news {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -117,7 +124,7 @@ class news {
       $removeData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a hír törlése.');
+      die($config['errors']['database']);
     }
 
   }
@@ -128,10 +135,10 @@ class news {
 
     return array(
        'id'         => $this->id,
-       'title'      => ($unsanitize) ? unprepareText($this->title) : $this->title,
-       'text'       => ($unsanitize) ? unprepareText($this->text) : $this->text,
+       'title'      => $unsanitize ? $this->title : $this->title,
+       'text'       => $unsanitize ? unprepareText($this->text) : $this->text,
        'date'       => $this->date->format($config['dateformat']),
-       'updatedate' => ($this->updatedate != null)
+       'updatedate' => $this->updatedate != null
                      ? $this->updatedate->format($config['dateformat'])
                      : null,
        'creatorid'  => $this->creatorid,

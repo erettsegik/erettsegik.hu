@@ -18,7 +18,7 @@ try {
   $getSubjects = $con->prepare('select id from subjects');
 
 } catch (PDOException $e) {
-  die('Nem sikerült a tárgyak kiválasztása.');
+  die($config['errors']['database']);
 }
 
 $getSubjects->execute();
@@ -63,7 +63,10 @@ while ($subjectData = $getSubjects->fetch()) {
 echo $twig->render(
   'admin/subjects_admin.html',
   array(
-    'subjects' => $subjects,
-    'index_var' => array('menu' => getAdminMenuItems(), 'user_authority' => $user->getData()['authority'])
+    'index_var' => array(
+      'menu'           => getAdminMenuItems(),
+      'user_authority' => $user->getData()['authority']
+    ),
+    'subjects'  => $subjects
   )
 );

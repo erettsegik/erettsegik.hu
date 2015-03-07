@@ -5,11 +5,11 @@
 <h1>Keresés</h1>
 
 <form onsubmit='searchRedirect("main");'>
-  <input type='text' id='mainsearch' value='{{ term }}'>
+  <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required>
   <input type='submit' class='submit' value='Keresés'>
 </form>
 
-{% if status == 'results' %}
+{% if mode == 'results' %}
 
   <div class='article-meta'>{{ resultcount }} találat a következőre: {{ term }}.</div>
 

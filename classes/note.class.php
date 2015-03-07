@@ -12,10 +12,12 @@ class note {
   protected $updatedate  = null;
   protected $ordernumber = null;
   protected $live        = null;
+  protected $incomplete  = null;
 
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -26,7 +28,7 @@ class note {
       $noteData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzet betöltése.');
+      die($config['errors']['database']);
     }
 
     $this->id          = $noteData['id'];
@@ -34,21 +36,26 @@ class note {
     $this->text        = $noteData['text'];
     $this->subject     = new subject($noteData['subjectid']);
     $this->category    = $noteData['category'];
-    $this->updatedate  = new DateTime($noteData['updatedate']);
+    $this->updatedate  = new DateTime($noteData['updatedate'], $config['tz']['utc']);
     $this->ordernumber = $noteData['ordernumber'];
     $this->live        = $noteData['live'];
+    $this->incomplete  = $noteData['incomplete'];
+
+    $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
-  public function insertData($title, $text, $subjectid, $category, $live) {
+  public function insertData($title, $text, $subjectid, $category, $live, $incomplete) {
 
     global $con;
+    global $config;
 
-    $this->title    = $title;
-    $this->text     = $text;
-    $this->subject  = new subject($subjectid);
-    $this->category = $category;
-    $this->live     = $live;
+    $this->title      = $title;
+    $this->text       = $text;
+    $this->subject    = new subject($subjectid);
+    $this->category   = $category;
+    $this->live       = $live;
+    $this->incomplete = $incomplete;
 
     try {
 
@@ -62,7 +69,8 @@ class note {
           :category,
           DEFAULT,
           0,
-          :live
+          :live,
+          :incomplete
         )
       ');
       $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
@@ -70,25 +78,28 @@ class note {
       $insertData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $insertData->bindValue('category', $this->category, PDO::PARAM_INT);
       $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
+      $insertData->bindValue('incomplete', $this->incomplete, PDO::PARAM_INT);
       $insertData->execute();
 
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die('Nem sikerült elmenteni a jegyzetet.');
+      die($config['errors']['database']);
     }
 
   }
 
-  public function modifyData($title, $text, $subjectid, $category, $live) {
+  public function modifyData($title, $text, $subjectid, $category, $live, $incomplete) {
 
     global $con;
+    global $config;
 
-    $this->title    = $title;
-    $this->text     = $text;
-    $this->subject  = new subject($subjectid);
-    $this->category = $category;
-    $this->live     = $live;
+    $this->title      = $title;
+    $this->text       = $text;
+    $this->subject    = new subject($subjectid);
+    $this->category   = $category;
+    $this->live       = $live;
+    $this->incomplete = $incomplete;
 
     try {
 
@@ -98,7 +109,8 @@ class note {
           text = :text,
           subjectid = :subjectid,
           category = :category,
-          live = :live
+          live = :live,
+          incomplete = :incomplete
         where id = :id
       ');
       $modifyData->bindValue('title', $this->title, PDO::PARAM_STR);
@@ -106,11 +118,12 @@ class note {
       $modifyData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $modifyData->bindValue('category', $this->category, PDO::PARAM_INT);
       $modifyData->bindValue('live', $this->live, PDO::PARAM_INT);
+      $modifyData->bindValue('incomplete', $this->incomplete, PDO::PARAM_INT);
       $modifyData->bindValue('id', $this->id, PDO::PARAM_INT);
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetet frissíteni.');
+      die($config['errors']['database']);
     }
 
   }
@@ -118,6 +131,7 @@ class note {
   public function modifyOrder($ordernumber) {
 
     global $con;
+    global $config;
 
     $this->ordernumber = $ordernumber;
 
@@ -133,7 +147,7 @@ class note {
       $modifyData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a jegyzetet frissíteni.');
+      die($config['errors']['database']);
     }
 
   }
@@ -141,6 +155,7 @@ class note {
   public function remove() {
 
     global $con;
+    global $config;
 
     try {
 
@@ -149,7 +164,7 @@ class note {
       $remove->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült kitörölni a jegyzetet.');
+      die($config['errors']['database']);
     }
 
   }
@@ -160,13 +175,14 @@ class note {
 
     return array(
       'id'          => $this->id,
-      'title'       => ($unsanitize) ? unprepareText($this->title) : $this->title,
-      'text'        => ($unsanitize) ? unprepareText($this->text) : $this->text,
-      'subjectid'   => $this->subject->getData()['id'],
+      'title'       => $unsanitize ? $this->title : $this->title,
+      'text'        => $unsanitize ? unprepareText($this->text) : $this->text,
+      'subjectid'   => isset($this->subject) ? $this->subject->getData()['id'] : null,
       'category'    => $this->category,
-      'updatedate'  => $this->updatedate->format($config['dateformat']),
+      'updatedate'  => isset($this->updatedate) ? $this->updatedate->format($config['dateformat']) : null,
       'ordernumber' => $this->ordernumber,
-      'live'        => $this->live
+      'live'        => $this->live,
+      'incomplete'  => $this->incomplete
     );
 
   }

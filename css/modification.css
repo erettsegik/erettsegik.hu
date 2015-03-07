@@ -10,6 +10,7 @@ div.modification {
 
 #modification-title {
   display: inline;
+  margin-left: 5px;
   width: auto;
 }
 

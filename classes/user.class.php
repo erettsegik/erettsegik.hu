@@ -9,6 +9,7 @@ class user {
   public function __construct($id = null) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -16,31 +17,38 @@ class user {
       $selectData->bindValue('id', $id, PDO::PARAM_INT);
       $selectData->execute();
 
-      $newsData = $selectData->fetch();
+      $userData = $selectData->fetch();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a felhasználó betöltése.');
+      die($config['errors']['database']);
     }
 
-    $this->id        = $newsData['id'];
-    $this->name      = $newsData['name'];
-    $this->authority = $newsData['authority'];
+    $this->id        = $userData['id'];
+    $this->name      = $userData['name'];
+    $this->authority = $userData['authority'];
 
   }
 
   public function login($name, $password) {
 
     global $con;
+    global $config;
 
-    $getUserData = $con->prepare('
-      select *
-      from users
-      where name = :name
-    ');
-    $getUserData->bindValue('name', $name, PDO::PARAM_STR);
-    $getUserData->execute();
+    try {
 
-    $userData = $getUserData->fetch();
+      $getUserData = $con->prepare('
+        select *
+        from users
+        where name = :name
+      ');
+      $getUserData->bindValue('name', $name, PDO::PARAM_STR);
+      $getUserData->execute();
+
+      $userData = $getUserData->fetch();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
 
     if (password_verify($password, $userData['password'])) {
 
@@ -59,12 +67,19 @@ class user {
   public function changePassword($oldPassword, $newPassword) {
 
     global $con;
+    global $config;
 
-    $selectData = $con->prepare('select password from users where id = :id');
-    $selectData->bindValue('id', $this->id, PDO::PARAM_INT);
-    $selectData->execute();
+    try {
 
-    $userData = $selectData->fetch();
+      $selectData = $con->prepare('select password from users where id = :id');
+      $selectData->bindValue('id', $this->id, PDO::PARAM_INT);
+      $selectData->execute();
+
+      $userData = $selectData->fetch();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
 
     if (password_verify($oldPassword, $userData['password'])) {
 
@@ -84,7 +99,7 @@ class user {
         $updatePassword->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a jelszóváltoztatás.');
+        die($config['errors']['database']);
       }
 
     } else {
@@ -98,6 +113,7 @@ class user {
   public function register($name, $authority, $password) {
 
     global $con;
+    global $config;
 
     try {
 
@@ -115,7 +131,7 @@ class user {
       $insertData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült a regisztráció.');
+      die($config['errors']['database']);
     }
 
   }
@@ -123,6 +139,7 @@ class user {
   public function modifyData($name, $authority, $password) {
 
     global $con;
+    global $config;
 
     if ($password != '') {
 
@@ -142,7 +159,7 @@ class user {
         $updatePassword->execute();
 
       } catch (PDOException $e) {
-        die('Nem sikerült a jelszóváltoztatás.');
+        die($config['errors']['database']);
       }
 
     }
@@ -160,7 +177,7 @@ class user {
       $updateData->execute();
 
     } catch (PDOException $e) {
-      die('Nem sikerült az adatok frissítése.');
+      die($config['errors']['database']);
     }
 
   }
