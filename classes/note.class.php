@@ -177,9 +177,9 @@ class note {
       'id'          => $this->id,
       'title'       => $unsanitize ? $this->title : $this->title,
       'text'        => $unsanitize ? unprepareText($this->text) : $this->text,
-      'subjectid'   => $this->subject->getData()['id'],
+      'subjectid'   => isset($this->subject) ? $this->subject->getData()['id'] : null,
       'category'    => $this->category,
-      'updatedate'  => $this->updatedate->format($config['dateformat']),
+      'updatedate'  => isset($this->updatedate) ? $this->updatedate->format($config['dateformat']) : null,
       'ordernumber' => $this->ordernumber,
       'live'        => $this->live,
       'incomplete'  => $this->incomplete

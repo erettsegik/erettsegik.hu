@@ -6,7 +6,7 @@
 
   <div id='leftside'>
     <h1>{{ note.title }}</h1>
-    {{ note.text | markdown }}
+    {% include 'note_text.html' %}
     <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
 
     </div>
@@ -105,6 +105,8 @@
   <br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
+  <button id='preview'>előnézet</button>
+  <div id='preview-target'></div>
 
   <script type='text/JavaScript' src='/js/editor.js'></script>
 
