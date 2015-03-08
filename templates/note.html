@@ -81,7 +81,10 @@
   <button type='button' class='edit-button' onclick='image();'>kép</button>
   <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
   <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
-  <button type='button' class='edit-button' onclick='togglehelp();' id='notes-help'>Segítség</button>
+  <span id='rightside-buttons'>
+  <button type='button' class='edit-button' id='preview'>Előnézet</button>
+  <button type='button' class='edit-button' onclick='togglehelp();'>Segítség</button>
+  </span>
   <br style='clear: both;'>
   <div id='note-help' style='display: none;'>
     {% markdown %}
@@ -105,7 +108,7 @@
   <br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
-  <button id='preview'>előnézet</button>
+  <hr>
   <div id='preview-target'></div>
 
   <script type='text/JavaScript' src='/js/editor.js'></script>
