@@ -6,7 +6,7 @@
 
 <div class='event-column'>
 {% if past_events|length == 0 %}
-  <p>Nincs egy elmúlt esemény sem.</p>
+  <p class='article-meta'>Nincs egy elmúlt esemény sem.</p>
 {% else %}
   {% for event in past_events %}
     <div class='event-container'>
@@ -24,7 +24,7 @@
 
 <div class='event-column'>
 {% if current_events|length == 0 %}
-  <p>Nincs egy aktuális esemény sem.</p>
+  <p class='article-meta'>Nincs egy aktuális esemény sem.</p>
 {% else %}
   {% for event in current_events %}
     <div class='event-container'>
