@@ -84,7 +84,7 @@ nav ul a:hover {
 }
 
 .nav_sub {
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 
 .nav_sub ul {
@@ -107,6 +107,7 @@ nav ul a:hover {
   width: 100%;
   box-sizing: border-box;
   height: 35px;
+  padding: 0;
 }
 
 #search_form {
