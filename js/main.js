@@ -3,6 +3,11 @@ var updatePreviewTarget = function(data, status) {
 }
 
 var main = function() {
+  $('div code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+
   $('button#preview').click(
     function() {
       $.post('/note_preview', {text: $('#note-txt').val()}, updatePreviewTarget);
