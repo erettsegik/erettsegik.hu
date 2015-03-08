@@ -2,6 +2,7 @@
 
 $config_file = str_repeat('../', $dir_level) . 'config.php';
 
+require_once 'filters.php';
 require_once str_repeat('../', $dir_level) . 'classes/user.class.php';
 
 if (file_exists($config_file)) {
