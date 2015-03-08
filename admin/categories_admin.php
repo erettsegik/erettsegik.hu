@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 
 checkRights($config['clearance']['categories']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 try {
 
@@ -68,10 +59,7 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'index_var'  => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var'  => $index_var,
     'message'    => isset($message) ? $message : null,
     'status'     => $status
   )

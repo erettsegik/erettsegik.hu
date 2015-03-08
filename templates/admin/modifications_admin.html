@@ -10,7 +10,7 @@
 
   {% for modification in modifications %}
   <tr>
-    <td><a href='modifications_admin.php?id={{ modification.id }}'>{{ modification.title }}</a></td>
+    <td><a href='index.php?p=modifications_admin&amp;id={{ modification.id }}'>{{ modification.title }}</a></td>
     <td>{{ modification.date }}</td>
   </tr>
   {% endfor %}
@@ -24,7 +24,7 @@
   <h2>{{ modificationdata.title }}</h2>
 
   <span class='article-meta'>
-    Tétel címe: <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>{{ notedata.title }}</a>
+    Tétel címe: <a href='index.php?p=notes_admin&amp;id={{ notedata.id }}&amp;action=edit'>{{ notedata.title }}</a>
     {% if modification.comment != '' %}
     <br>beküldő megjegyzése: {{ modificationdata.comment }}
     {% endif %}
@@ -40,7 +40,7 @@
 
   <br style='clear: both;'>
 
-  <form method='post' action='modifications_admin.php?id={{ modificationdata.id }}'>
+  <form method='post' action='index.php?p=modifications_admin&amp;id={{ modificationdata.id }}'>
 
   <select name='status' required>
     <option value='0' {% if modificationdata.status == 0 %} selected {% endif %}>Jóváhagyásra vár</option>
@@ -54,7 +54,7 @@
   </form>
 
   <p>Fontos: a jegyzetek egyelőre nem módosulnak automatikusan, a változtatásokat kézzel kell
-  <a href='notes_admin.php?id={{ notedata.id }}&amp;action=edit'>ITT</a> végrehajtani.</p>
+  <a href='index.php?p=notes_admin&amp;id={{ notedata.id }}&amp;action=edit'>ITT</a> végrehajtani.</p>
 
 {% endif %}
 

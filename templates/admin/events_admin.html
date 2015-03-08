@@ -6,7 +6,7 @@
 
 {% if action == 'add' %}
 
-  <form action='events_admin.php?action=add' method='post'>
+  <form action='index.php?p=events_admin&amp;action=add' method='post'>
   <table>
     <tr>
       <td>
@@ -40,7 +40,7 @@
 
 {% if action == 'edit' %}
 
-  <form action='events_admin.php?action=edit&amp;id={{ eventdata.id }}' method='post'>
+  <form action='index.php?p=events_admin&amp;action=edit&amp;id={{ eventdata.id }}' method='post'>
   <table>
     <tr>
       <td>
@@ -75,12 +75,12 @@
 
 {% if status == 'list' %}
 
-  <a href='events_admin.php?action=add'>új hozzáadása</a>
+  <a href='index.php?p=events_admin&amp;action=add'>új hozzáadása</a>
 
   <ul>
 
   {% for event in events %}
-    <li><a href='events_admin.php?action=edit&amp;id={{ event.id }}'>{{ event.name }}</li>
+    <li><a href='index.php?p=events_admin&amp;action=edit&amp;id={{ event.id }}'>{{ event.name }}</li>
   {% endfor %}
 
   </ul>

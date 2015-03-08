@@ -1,18 +1,9 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/modification.class.php';
 require_once '../classes/note.class.php';
 
 checkRights($config['clearance']['modifications']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 if (isset($_GET['id'])) {
 
@@ -61,10 +52,7 @@ if (isset($_GET['id'])) {
 echo $twig->render(
   'admin/modifications_admin.html',
   array(
-    'index_var'        => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var'        => $index_var,
     'modificationdata' => isset($modificationData) ? $modificationData : null,
     'modifications'    => isset($modifications) ? $modifications : null,
     'notedata'         => isset($noteData) ? $noteData : null,

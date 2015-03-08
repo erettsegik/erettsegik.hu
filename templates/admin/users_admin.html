@@ -9,7 +9,7 @@
 <tr><th>Id</th><th>Név</th><th>Jogosultság</th><th>Jelszó</th></tr>
 
 <tr>
-<form action='users_admin.php' method='post'>
+<form action='index.php?p=users_admin' method='post'>
 <td>új</td>
 <td><input type='text' name='name' required></td>
 <td><input type='number' name='authority' required></td>
@@ -18,7 +18,7 @@
 </form>
 </tr>
 
-<form action='users_admin.php' method='post' id='list_users_form'>
+<form action='index.php?p=users_admin' method='post' id='list_users_form'>
 {% for user in users %}
   <tr>
   <td>{{ user.id }}</td>

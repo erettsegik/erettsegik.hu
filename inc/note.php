@@ -146,7 +146,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   $index_var['location'][] = array(
     'url' => '/note/' . $note->getData()['id'] . '/',
-    'name' => (strlen($note->getData()['title']) > 17) ? substr($note->getData()['title'], 0, 37) . '...' : $note->getData()['title']
+    'name' => (strlen($note->getData()['title']) > 37) ? substr($note->getData()['title'], 0, 37) . '...' : $note->getData()['title']
   );
 
   $index_var['title'] = $note->getData()['title'];

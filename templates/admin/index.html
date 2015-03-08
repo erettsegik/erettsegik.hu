@@ -13,7 +13,7 @@
 <ul>
   {% for item in index_var.menu %}
     {% if index_var.user_authority >= item.clearance %}
-      <li><a href='{{ item.url }}'>{{ item.name }}</a></li>
+      <li><a href='index.php?p={{ item.url }}'>{{ item.name }}</a></li>
     {% endif %}
   {% endfor %}
   <li><a href='/' class='unique'>Vissza az oldalra</a></li>

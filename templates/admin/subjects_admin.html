@@ -4,18 +4,18 @@
 
 <h1>Tárgyak szerkesztése</h1>
 
-<form action='subjects_admin.php' method='post'>
+<form action='index.php?p=subjects_admin' method='post'>
 <p>Tantárgy törléséhez hagyd a nevét üresen</p>
 <table>
 <tr><th>Név</th><th>Kötelező</th></tr>
 <tr>
-  <form action='subjects_admin.php' method='post'>
+  <form action='index.php?p=subjects_admin' method='post'>
   <td><input type='text' name='name' autofocus required></td>
   <td><input type='checkbox' name='mandatory' style='width: auto;'></td>
   <td><input type='submit' name='addnew' value='Hozzáadás' class='submit'></td>
 </form>
 </tr>
-<form action='subjects_admin.php' method='post' id='list_subjects_form'>
+<form action='index.php?p=subjects_admin' method='post' id='list_subjects_form'>
 {% for subject in subjects %}
   <tr>
   <td><input type='text' value='{{ subject.name }}' name='{{ subject.id }}name'></td>

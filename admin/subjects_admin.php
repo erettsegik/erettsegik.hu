@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/subject.class.php';
 
 checkRights($config['clearance']['subjects']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 try {
 
@@ -63,10 +54,7 @@ while ($subjectData = $getSubjects->fetch()) {
 echo $twig->render(
   'admin/subjects_admin.html',
   array(
-    'index_var' => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var' => $index_var,
     'subjects'  => $subjects
   )
 );

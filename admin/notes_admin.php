@@ -1,18 +1,9 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 require_once '../classes/note.class.php';
 
 checkRights($config['clearance']['notes']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -33,7 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $incomplete
     );
 
-    $redirect_string = 'Location: /admin/notes_admin.php';
+    $redirect_string = 'Location: index.php?p=notes_admin';
 
     if (isset($_GET['subjectid'])) {
       $redirect_string .= '?subjectid=' . $_GET['subjectid'];
@@ -53,7 +44,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $note->remove();
 
-      $redirect_string = 'Location: /admin/notes_admin.php';
+      $redirect_string = 'Location: index.php?p=notes_admin';
 
       header($redirect_string);
 
@@ -185,10 +176,7 @@ echo $twig->render(
   array(
     'action'          => isset($_GET['action']) ? $_GET['action'] : null,
     'categories'      => $categories,
-    'index_var'       => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var'       => $index_var,
     'notedata'        => isset($noteData) ? $noteData : null,
     'notelist'        => isset($noteList) ? $noteList : null,
     'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),

@@ -2,7 +2,7 @@
 
 $config_file = str_repeat('../', $dir_level) . 'config.php';
 
-require_once 'filters.php';
+require_once str_repeat('../', $dir_level) . 'inc/filters.php';
 require_once str_repeat('../', $dir_level) . 'classes/user.class.php';
 
 if (file_exists($config_file)) {
@@ -136,24 +136,7 @@ function prepareText($text) {
 
 function unprepareText($text) {
 
-  return htmlspecialchars_decode($text);
-
-}
-
-function getAdminMenuItems() {
-
-  global $config;
-
-  return array(
-    array('url' => 'events_admin.php', 'name' => 'Események', 'clearance' => $config['clearance']['events']),
-    array('url' => 'users_admin.php', 'name' => 'Felhasználók', 'clearance' => $config['clearance']['users']),
-    array('url' => 'news_admin.php', 'name' => 'Hírek', 'clearance' => $config['clearance']['news']),
-    array('url' => 'modifications_admin.php', 'name' => 'Javaslatok', 'clearance' => $config['clearance']['modifications']),
-    array('url' => 'notes_admin.php', 'name' => 'Jegyzetek', 'clearance' => $config['clearance']['notes']),
-    array('url' => 'categories_admin.php', 'name' => 'Kategóriák', 'clearance' => $config['clearance']['categories']),
-    array('url' => 'subjects_admin.php', 'name' => 'Tárgyak', 'clearance' => $config['clearance']['subjects']),
-    array('url' => 'feedback_admin.php', 'name' => 'Visszajelzések', 'clearance' => $config['clearance']['feedback'])
-  );
+  return $text;
 
 }
 

@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/event.class.php';
 
 checkRights($config['clearance']['events']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 $status = 'none';
 
@@ -23,7 +14,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $event->insertData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
 
-    header('Location: /admin/events_admin.php');
+    header('Location: index.php?p=events_admin');
 
   }
 
@@ -37,7 +28,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $event->remove();
 
-      header('Location: /admin/events_admin.php');
+      header('Location: index.php?p=events_admin');
 
     } else {
 
@@ -84,10 +75,7 @@ echo $twig->render(
     'current_dt' => $current_dt,
     'eventdata'  => isset($eventdata) ? $eventdata : null,
     'events'     => isset($events) ? $events : null,
-    'index_var'  => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var'  => $index_var,
     'status'     => $status
   )
 );

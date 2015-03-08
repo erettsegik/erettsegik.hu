@@ -6,7 +6,7 @@
 
 {% if action == 'add' %}
 
-  <form action='notes_admin.php?action=add' method='post'>
+  <form action='index.php?p=notes_admin&amp;action=add' method='post'>
   <input type='text' name='title' placeholder='Cím' class='shorter' required>
   <br>
   <select name='subjectid' required>
@@ -40,7 +40,7 @@
   <label for='live-checkbox'>élő</label>
   <br>
   <input type='checkbox' name='incomplete' style='width: auto;' id='incomplete-checkbox'>
-    <label for='incomplete-checkbox'>félkész</label>
+  <label for='incomplete-checkbox'>félkész</label>
   <br>
   <input type='submit' name='submit' class='submit'>
   </form>
@@ -55,7 +55,7 @@
 
 {% if action == 'edit' %}
 
-  <form action='notes_admin.php?action=edit&amp;id={{ notedata.id }}' method='post'>
+  <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ notedata.id }}' method='post'>
   <input type='text' name='title' placeholder='cím' value='{{ notedata.title }}' class='shorter' required>
   <br>
   <select name='subjectid' required>
@@ -109,9 +109,9 @@
 
 {% if status == 'notelist' %}
 
-  <a href='notes_admin.php?action=add&amp;subjectid={{ selectedsubject.id }}'>új hozzáadása</a>
+  <a href='index.php?p=notes_admin&amp;action=add&amp;subjectid={{ selectedsubject.id }}'>új hozzáadása</a>
 
-  <form action='notes_admin.php?subjectid={{ selectedsubject.id }}' method='post'>
+  <form action='index.php?p=notes_admin&amp;subjectid={{ selectedsubject.id }}' method='post'>
 
   {% for note in notelist %}
     <h2>{{ note.name }}</h2>
@@ -142,12 +142,12 @@
 
 {% if status == 'subjectlist' %}
 
-  <a href='notes_admin.php?action=add'>új hozzáadása</a>
+  <a href='index.php?p=notes_admin&amp;action=add'>új hozzáadása</a>
 
   <ul>
 
   {% for subject in subjectlist %}
-    <li><a href='notes_admin.php?subjectid={{ subject.id }}'>{{ subject.name }}</a></li>
+    <li><a href='index.php?p=notes_admin&amp;subjectid={{ subject.id }}'>{{ subject.name }}</a></li>
   {% endfor %}
 
   </ul>
