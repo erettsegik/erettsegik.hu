@@ -30,6 +30,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $redirect_string .= '?subjectid=' . $_GET['subjectid'];
     }
 
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres mentés!';
+
     header($redirect_string);
 
   }
@@ -43,6 +46,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
       $note->remove();
+
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres törlés!';
 
       $redirect_string = 'Location: index.php?p=notes_admin';
 
@@ -62,6 +68,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $live,
         $incomplete
       );
+
+      $status = 'success';
+      $message = 'Sikeres mentés!';
 
     }
 
@@ -94,11 +103,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $note = new note($noteData['id']);
         $note->modifyOrder($_POST[$noteData['id'] . 'order']);
 
+        $status = 'success';
+        $message = 'Sikeres frissítés!';
+
       }
 
     }
 
-    $status = 'notelist';
+    $mode = 'notelist';
 
     $notes = array();
 
@@ -141,7 +153,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   } else {
 
-    $status = 'subjectlist';
+    $mode = 'subjectlist';
 
   }
 
@@ -180,8 +192,10 @@ echo $twig->render(
     'notedata'        => isset($noteData) ? $noteData : null,
     'notelist'        => isset($noteList) ? $noteList : null,
     'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),
+    'mode'            => isset($mode) ? $mode : null,
+    'subjectlist'     => getSubjects(),
     'status'          => $status,
-    'subjectlist'     => getSubjects()
+    'message'         => isset($message) ? $message : null
   )
 );
 

@@ -7,13 +7,16 @@ checkRights($config['clearance']['modifications']);
 
 if (isset($_GET['id'])) {
 
-  $status = 'one';
+  $mode = 'one';
 
   $modification = new modification($_GET['id']);
 
   if (isset($_POST['submit'])) {
 
     $modification->updateStatus($_POST['status'], $_POST['reply']);
+
+    $status = 'success';
+    $message = 'Sikeres mentés!';
 
   }
 
@@ -23,7 +26,7 @@ if (isset($_GET['id'])) {
 
 } else {
 
-  $status = 'all';
+  $mode = 'all';
 
   try {
 
@@ -56,6 +59,8 @@ echo $twig->render(
     'modificationdata' => isset($modificationData) ? $modificationData : null,
     'modifications'    => isset($modifications) ? $modifications : null,
     'notedata'         => isset($noteData) ? $noteData : null,
-    'status'           => $status
+    'status'           => $status,
+    'mode'             => $mode,
+    'message'          => isset($message) ? $message : null
   )
 );

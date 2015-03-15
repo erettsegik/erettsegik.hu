@@ -28,6 +28,9 @@ if (isset($_POST['update'])) {
       $_POST[$id . 'password']
     );
 
+    $status = 'success';
+    $message = 'Sikeres mentés!';
+
   }
 
 }
@@ -37,6 +40,9 @@ if (isset($_POST['addnew'])) {
   $user = new user();
 
   $user->register($_POST['name'], $_POST['authority'], $_POST['password']);
+
+  $status = 'success';
+  $message = 'Sikeres mentés!';
 
 }
 
@@ -55,6 +61,8 @@ echo $twig->render(
   'admin/users_admin.html',
   array(
     'index_var' => $index_var,
-    'users'     => $users
+    'users'     => $users,
+    'status'    => isset($status) ? $status : null,
+    'message'   => isset($message) ? $message : null
   )
 );

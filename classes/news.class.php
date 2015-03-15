@@ -15,30 +15,37 @@ class news {
     global $con;
     global $config;
 
-    try {
+    if ($id != null) {
 
-      $selectData = $con->prepare('select * from news where id = :id');
-      $selectData->bindValue('id', $id, PDO::PARAM_INT);
-      $selectData->execute();
+      try {
 
-      $newsData = $selectData->fetch();
+        $selectData = $con->prepare('select * from news where id = :id');
+        $selectData->bindValue('id', $id, PDO::PARAM_INT);
+        $selectData->execute();
 
-    } catch (PDOException $e) {
-      die($config['errors']['database']);
+        $newsData = $selectData->fetch();
+
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
+
+      $this->id         = $newsData['id'];
+      $this->title      = $newsData['title'];
+      $this->text       = $newsData['text'];
+      $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
+      $this->updatedate = ($newsData['updatedate'] != null)
+                        ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
+                        : null;
+      $this->creatorid  = $newsData['creatorid'];
+      $this->live       = $newsData['live'];
+
+      $this->date->setTimezone($config['tz']['local']);
+
+      if ($this->updatedate != null) {
+        $this->updatedate->setTimezone($config['tz']['local']);
+      }
+
     }
-
-    $this->id         = $newsData['id'];
-    $this->title      = $newsData['title'];
-    $this->text       = $newsData['text'];
-    $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
-    $this->updatedate = ($newsData['updatedate'] != null)
-                      ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
-                      : null;
-    $this->creatorid  = $newsData['creatorid'];
-    $this->live       = $newsData['live'];
-
-    $this->date->setTimezone($config['tz']['local']);
-    $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 

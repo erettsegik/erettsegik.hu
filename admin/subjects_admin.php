@@ -26,6 +26,9 @@ if (isset($_POST['update'])) {
 
     $subject->modifyData($_POST[$id . 'name'], $mandatory);
 
+    $status = 'success';
+    $message = 'Sikeres mentés!';
+
   }
 
 }
@@ -37,6 +40,9 @@ if (isset($_POST['addnew'])) {
   $mandatory = isset($_POST['mandatory']) && $_POST['mandatory'] == 'on';
 
   $subject->insertData($_POST['name'], $mandatory);
+
+  $status = 'success';
+  $message = 'Sikeres mentés!';
 
 }
 
@@ -55,6 +61,8 @@ echo $twig->render(
   'admin/subjects_admin.html',
   array(
     'index_var' => $index_var,
-    'subjects'  => $subjects
+    'subjects'  => $subjects,
+    'message'   => isset($message) ? $message : null,
+    'status'    => $status
   )
 );

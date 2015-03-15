@@ -19,6 +19,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres mentés!';
+
     header('Location: index.php?p=news_admin');
 
   }
@@ -37,13 +40,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
+    $status = 'success';
+    $message = 'Sikeresen frissítve!';
+
   }
 
   $newsData = $new->getData(true);
 
 } else {
 
-  $status = 'list';
+  $mode = 'list';
 
   $news = array();
 
@@ -73,6 +79,8 @@ echo $twig->render(
     'index_var' => $index_var,
     'news'      => isset($news) ? $news : null,
     'newsdata'  => isset($newsData) ? $newsData : null,
-    'status'    => $status
+    'mode'      => isset($mode) ? $mode : null,
+    'status'    => $status,
+    'message'   => isset($message) ? $message : null
   )
 );

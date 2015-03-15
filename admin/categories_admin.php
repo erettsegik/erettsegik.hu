@@ -27,7 +27,7 @@ if (isset($_POST['update'])) {
     $category->modifyData($_POST[$id . 'name']);
 
     $status = 'success';
-    $message = 'Sikeresen frissítve!';
+    $message = 'Sikeres mentés!';
 
   }
 
@@ -40,7 +40,7 @@ if (isset($_POST['addnew'])) {
   $category->insertData($_POST['name']);
 
   $status = 'success';
-  $message = 'Sikeresen frissítve!';
+  $message = 'Sikeres mentés!';
 
 }
 
