@@ -81,10 +81,10 @@ class modification {
       $n_i--;
     }
 
-    $this->start_text = substr($modified, max(0, $i-200), min($i, 200));
-    $this->old_text   = substr($original, $i, max(0, $o_i - $i + 1));
-    $this->new_text   = substr($modified, $i, max(0, $n_i - $i + 1));
-    $this->end_text   = substr($modified, $n_i + 1, 200);
+    $this->start_text = mb_substr($modified, max(0, $i-200), min($i, 200), 'utf-8');
+    $this->old_text   = mb_substr($original, $i, max(0, $o_i - $i + 1), 'utf-8');
+    $this->new_text   = mb_substr($modified, $i, max(0, $n_i - $i + 1), 'utf-8');
+    $this->end_text   = mb_substr($modified, $n_i + 1, 200, 'utf-8');
 
     try {
 
