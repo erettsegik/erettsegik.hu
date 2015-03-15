@@ -102,6 +102,36 @@ function list(type) {
 
 }
 
+function latex(type) {
+
+  var textarea = document.getElementById('note-txt');
+  var len = textarea.value.length;
+  var start = textarea.selectionStart;
+  var end = textarea.selectionEnd;
+  var sel = textarea.value.substring(start, end);
+
+  if (type == 'inline') {
+
+    if (sel == '') {
+      var replace = '[latex inline]képlet[/latex]';
+    } else {
+      var replace = '[latex inline]' + sel + '[/latex]';
+    }
+
+  } else {
+
+    if (sel == '') {
+      var replace = '[latex]képlet[/latex]';
+    } else {
+      var replace = '[latex]' + sel + '[/latex]';
+    }
+
+  }
+
+  textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+
+}
+
 function togglehelp() {
 
   var div = document.getElementById('note-help');
