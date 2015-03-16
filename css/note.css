@@ -119,3 +119,8 @@ li.add-modification {
 .latex-container {
   text-indent: 0;
 }
+
+img {
+  display: block;
+  margin: auto;
+}
