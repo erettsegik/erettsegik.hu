@@ -121,9 +121,9 @@ function latex(type) {
   } else {
 
     if (sel == '') {
-      var replace = '[latex]képlet[/latex]';
+      var replace = '[latex]képlet[/latex]\n';
     } else {
-      var replace = '[latex]' + sel + '[/latex]';
+      var replace = '[latex]' + sel + '[/latex]\n';
     }
 
   }

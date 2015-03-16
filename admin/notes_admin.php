@@ -181,6 +181,8 @@ if (isset($_GET['subjectid'])) {
   $subject = new subject($_GET['subjectid']);
   $selectedSubject = $subject->getData();
 
+} else {
+  $selectedSubject = array('id' => 0);
 }
 
 echo $twig->render(
@@ -189,11 +191,11 @@ echo $twig->render(
     'action'          => isset($_GET['action']) ? $_GET['action'] : null,
     'categories'      => $categories,
     'index_var'       => $index_var,
-    'notedata'        => isset($noteData) ? $noteData : null,
+    'saved'           => isset($noteData) ? $noteData : array('subjectid' => $selectedSubject['id']),
     'notelist'        => isset($noteList) ? $noteList : null,
-    'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),
+    'selectedsubject' => $selectedSubject,
     'mode'            => isset($mode) ? $mode : null,
-    'subjectlist'     => getSubjects(),
+    'subjects'        => getSubjects(),
     'status'          => $status,
     'message'         => isset($message) ? $message : null
   )

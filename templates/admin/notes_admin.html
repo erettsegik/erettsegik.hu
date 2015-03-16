@@ -7,35 +7,9 @@
 {% if action == 'add' %}
 
   <form action='index.php?p=notes_admin&amp;action=add' method='post'>
-  <input type='text' name='title' placeholder='Cím' class='shorter' required>
-  <br>
-  <select name='subjectid' required>
 
-    {% for subject in subjectlist %}
-      <option value='{{ subject.id }}' {% if subject.id == selectedsubject.id %} selected {% endif %}>
-      {{ subject.name }}
-      </option>
-    {% endfor %}
+    {% include 'note-editor.html' %}
 
-  </select>
-  <br>
-  <select name='category' required>
-
-    {% for category in categories %}
-      <option value='{{ category.id }}'>{{ category.name }}</option>
-    {% endfor %}
-
-  </select>
-  <br>
-  <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
-  <button type='button' class='edit-button' onclick='header();'>alcím</button>
-  <button type='button' class='edit-button' onclick='image();'>kép</button>
-  <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
-  <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
-  <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
-  <br style='clear: both;'>
-  <textarea name='text' placeholder='Szöveg' rows='50' cols='150' id='note-txt' required></textarea>
-  <br>
   <input type='checkbox' name='live' style='width: auto;' id='live-checkbox'>
   <label for='live-checkbox'>élő</label>
   <br>
@@ -44,8 +18,6 @@
   <br>
   <input type='submit' name='submit' class='submit'>
   </form>
-  <button id='preview'>előnézet</button>
-  <div id='preview-target'></div>
 
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script type='text/JavaScript' src='/js/editor.js'></script>
@@ -55,51 +27,19 @@
 
 {% if action == 'edit' %}
 
-  <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ notedata.id }}' method='post'>
-  <input type='text' name='title' placeholder='cím' value='{{ notedata.title }}' class='shorter' required>
-  <br>
-  <select name='subjectid' required>
+  <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ saved.id }}' method='post'>
 
-    {% for subject in subjectlist %}
-      {% if subject.id == notedata.subjectid %}
-        <option value='{{ subject.id }}' selected>{{ subject.name }}</option>
-      {% else %}
-        <option value='{{ subject.id }}'>{{ subject.name }}</option>
-      {% endif %}
-    {% endfor %}
+    {% include 'note-editor.html' %}
 
-  </select>
-  <br>
-  <select name='category' required>
-
-    {% for category in categories %}
-      <option value='{{ category.id }}' {% if notedata.category == category.id %} selected {% endif %}>
-      {{ category.name }}
-      </option>
-    {% endfor %}
-
-  </select>
-  <br>
-  <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
-  <button type='button' class='edit-button' onclick='header();'>alcím</button>
-  <button type='button' class='edit-button' onclick='image();'>kép</button>
-  <button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
-  <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
-  <button type='button' class='edit-button' onclick='' id='notes-help'>Segítség</button>
-  <br style='clear: both;'>
-  <textarea name='text' placeholder='Szöveg' rows='40' cols='150' id='note-txt' required>{{ notedata.text | raw }}</textarea>
-  <br>
-  <input type='checkbox' style='width: auto;' name='live' id= 'live-checkbox'{% if notedata.live %} checked {% endif %}>
+  <input type='checkbox' style='width: auto;' name='live' id= 'live-checkbox'{% if saved.live %} checked {% endif %}>
   <label for='live-checkbox'>élő</label>
   <br>
-  <input type='checkbox' style='width: auto;' name='incomplete' id='incomplete-checkbox'{% if notedata.incomplete %} checked {% endif %}>
+  <input type='checkbox' style='width: auto;' name='incomplete' id='incomplete-checkbox'{% if saved.incomplete %} checked {% endif %}>
   <label for='incomplete-checkbox'>félkész</label>
   <span class='delete-box'><input type='checkbox' style='width: auto;' name='delete'> TÖRLÉS</span>
   <br style='clear: both;'>
   <input type='submit' name='submit' class='submit'>
   </form>
-  <button id='preview'>előnézet</button>
-  <div id='preview-target'></div>
 
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script type='text/JavaScript' src='/js/editor.js'></script>
@@ -146,7 +86,7 @@
 
   <ul>
 
-  {% for subject in subjectlist %}
+  {% for subject in subjects %}
     <li><a href='index.php?p=notes_admin&amp;subjectid={{ subject.id }}'>{{ subject.name }}</a></li>
   {% endfor %}
 
