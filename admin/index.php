@@ -50,10 +50,12 @@ if (isset($_SESSION['status'])) {
   $status = $_SESSION['status'];
   $message = $_SESSION['message'];
   unset($_SESSION['status']);
+  unset($_SESSION['message']);
 
 } else {
 
   $status = 'none';
+  $message = '';
 
 }
 

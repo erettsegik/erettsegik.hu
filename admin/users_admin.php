@@ -62,7 +62,7 @@ echo $twig->render(
   array(
     'index_var' => $index_var,
     'users'     => $users,
-    'status'    => isset($status) ? $status : null,
-    'message'   => isset($message) ? $message : null
+    'status'    => $status,
+    'message'   => $message
   )
 );

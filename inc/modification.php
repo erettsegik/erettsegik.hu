@@ -113,7 +113,7 @@ echo $twig->render(
     'action'       => isset($_GET['action']) ? $_GET['action'] : null,
     'diff'         => isset($diff) ? $diff : null,
     'index_var'    => $index_var,
-    'message'      => isset($message) ? $message : null,
+    'message'      => $message,
     'modification' => isset($modification) ? $modification->getData() : null,
     'note'         => $note->getData(),
     'production'   => getenv('production') !== false,

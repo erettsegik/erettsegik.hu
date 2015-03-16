@@ -92,9 +92,9 @@ echo $twig->render(
     'allsubjects' => isset($allsubjects) ? $allsubjects : null,
     'categories'  => isset($categories) ? $categories :  null,
     'index_var'   => $index_var,
-    'message'     => isset($message) ? $message : null,
+    'message'     => $message,
     'mode'        => isset($mode) ? $mode : null,
-    'status'      => isset($status) ? $status : null,
+    'status'      => $status,
     'subject'     => $mode != 'all' ? $subject->getData() : null
   )
 );

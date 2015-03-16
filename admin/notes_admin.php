@@ -197,7 +197,7 @@ echo $twig->render(
     'mode'            => isset($mode) ? $mode : null,
     'subjects'        => getSubjects(),
     'status'          => $status,
-    'message'         => isset($message) ? $message : null
+    'message'         => $message
   )
 );
 

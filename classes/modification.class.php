@@ -22,6 +22,9 @@ class modification {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('

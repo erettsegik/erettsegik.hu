@@ -81,9 +81,9 @@ echo $twig->render(
   'user_manage.html',
   array(
     'index_var' => $index_var,
-    'message'   => isset($message) ? $message : null,
+    'message'   => $message,
     'mode'      => $mode,
     'saved'     => isset($saved) ? $saved : null,
-    'status'    => isset($status) ? $status : null
+    'status'    => $status
   )
 );

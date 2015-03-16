@@ -61,6 +61,6 @@ echo $twig->render(
     'notedata'         => isset($noteData) ? $noteData : null,
     'status'           => $status,
     'mode'             => $mode,
-    'message'          => isset($message) ? $message : null
+    'message'          => $message
   )
 );

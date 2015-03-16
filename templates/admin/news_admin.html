@@ -36,13 +36,26 @@
 
   <a href='index.php?p=news_admin&amp;action=add'>új hozzáadása</a>
 
-  <ul>
-
+  <table>
+    <tr>
+      <th>
+        Cím
+      </th>
+      <th>
+        Élő
+      </th>
+    </tr>
   {% for new in news %}
-    <li><a href='index.php?p=news_admin&amp;action=edit&amp;id={{ new.id }}'>{{ new.title }}</a> - {{ new.live }}</li>
+    <tr>
+      <td>
+        <a href='index.php?p=news_admin&amp;action=edit&amp;id={{ new.id }}'>{{ new.title }}</a>
+      </td>
+      <td>
+        <img src='{% if new.live %}/img/check_mark.png{% else %}/img/x_mark.png{% endif %}'>
+     </td>
+   </tr>
   {% endfor %}
-
-  </ul>
+  </table>
 
 {% endif %}
 

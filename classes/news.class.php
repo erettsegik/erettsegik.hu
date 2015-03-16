@@ -15,36 +15,35 @@ class news {
     global $con;
     global $config;
 
-    if ($id != null) {
+    if ($id == null)
+      return;
 
-      try {
+    try {
 
-        $selectData = $con->prepare('select * from news where id = :id');
-        $selectData->bindValue('id', $id, PDO::PARAM_INT);
-        $selectData->execute();
+      $selectData = $con->prepare('select * from news where id = :id');
+      $selectData->bindValue('id', $id, PDO::PARAM_INT);
+      $selectData->execute();
 
-        $newsData = $selectData->fetch();
+      $newsData = $selectData->fetch();
 
-      } catch (PDOException $e) {
-        die($config['errors']['database']);
-      }
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
 
-      $this->id         = $newsData['id'];
-      $this->title      = $newsData['title'];
-      $this->text       = $newsData['text'];
-      $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
-      $this->updatedate = ($newsData['updatedate'] != null)
-                        ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
-                        : null;
-      $this->creatorid  = $newsData['creatorid'];
-      $this->live       = $newsData['live'];
+    $this->id         = $newsData['id'];
+    $this->title      = $newsData['title'];
+    $this->text       = $newsData['text'];
+    $this->date       = new DateTime($newsData['date'], $config['tz']['utc']);
+    $this->updatedate = ($newsData['updatedate'] != null)
+                      ? new DateTime($newsData['updatedate'], $config['tz']['utc'])
+                      : null;
+    $this->creatorid  = $newsData['creatorid'];
+    $this->live       = $newsData['live'];
 
-      $this->date->setTimezone($config['tz']['local']);
+    $this->date->setTimezone($config['tz']['local']);
 
-      if ($this->updatedate != null) {
-        $this->updatedate->setTimezone($config['tz']['local']);
-      }
-
+    if ($this->updatedate != null) {
+      $this->updatedate->setTimezone($config['tz']['local']);
     }
 
   }

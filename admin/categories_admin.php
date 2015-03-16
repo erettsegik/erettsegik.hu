@@ -60,7 +60,7 @@ echo $twig->render(
   array(
     'categories' => $categories,
     'index_var'  => $index_var,
-    'message'    => isset($message) ? $message : null,
+    'message'    => $message,
     'status'     => $status
   )
 );

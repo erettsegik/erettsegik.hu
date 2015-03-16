@@ -81,6 +81,6 @@ echo $twig->render(
     'newsdata'  => isset($newsData) ? $newsData : null,
     'mode'      => isset($mode) ? $mode : null,
     'status'    => $status,
-    'message'   => isset($message) ? $message : null
+    'message'   => $message
   )
 );

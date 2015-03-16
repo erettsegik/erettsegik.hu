@@ -163,7 +163,7 @@ echo $twig->render(
   array(
     'categories'    => isset($categories) ? $categories : null,
     'index_var'     => $index_var,
-    'message'       => isset($message) ? $message : null,
+    'message'       => $message,
     'mode'          => isset($mode) ? $mode : null,
     'modifications' => isset($modifications) ? $modifications : null,
     'note'          => isset($note) ? $note->getData() : null,

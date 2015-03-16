@@ -56,7 +56,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
   try {
 
     $selectEvents = $con->query('
-      select id, name
+      select id
       from events
       order by startdate asc
     ');
@@ -65,8 +65,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     die($config['errors']['database']);
   }
 
-  while ($event = $selectEvents->fetch()) {
-    $events[] = array('id' => $event['id'], 'name' => $event['name']);
+  while ($eventdata = $selectEvents->fetch()) {
+    $event = new event($eventdata['id']);
+    $events[] = $event->getData();
   }
 
 }
@@ -85,6 +86,6 @@ echo $twig->render(
     'index_var'  => $index_var,
     'mode'       => isset($mode) ? $mode : null,
     'status'     => $status,
-    'message'    => isset($message) ? $message : null
+    'message'    => $message
   )
 );

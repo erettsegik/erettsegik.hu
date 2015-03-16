@@ -35,7 +35,7 @@ echo $twig->render(
   'feedback.html',
   array(
     'index_var' => $index_var,
-    'message'   => isset($message) ? $message : null,
+    'message'   => $message,
     'saved'     => isset($saved) ? $saved : null,
     'status'    => $status
   )

@@ -10,6 +10,9 @@ class category {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('select * from categories where id = :id');

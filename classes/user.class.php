@@ -11,6 +11,9 @@ class user {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('select * from users where id = :id');

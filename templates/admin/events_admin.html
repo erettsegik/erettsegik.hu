@@ -77,13 +77,32 @@
 
   <a href='index.php?p=events_admin&amp;action=add'>új hozzáadása</a>
 
-  <ul>
-
+  <table>
+    <tr>
+      <th>
+        Név
+      </th>
+      <th>
+        Kezdés
+      </th>
+      <th>
+        Vég
+      </th>
+    </tr>
   {% for event in events %}
-    <li><a href='index.php?p=events_admin&amp;action=edit&amp;id={{ event.id }}'>{{ event.name }}</li>
+    <tr>
+      <td>
+      <a href='index.php?p=events_admin&amp;action=edit&amp;id={{ event.id }}'>{{ event.name }}</a>
+      </td>
+      <td>
+        {{ event.startdate }}
+      </td>
+      <td>
+        {{ event.enddate }}
+      </td>
+    </tr>
   {% endfor %}
-
-  </ul>
+  </table>
 
 {% endif %}
 
