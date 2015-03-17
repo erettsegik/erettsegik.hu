@@ -23,6 +23,7 @@
 
 .notes-list li {
   list-style-image: url("/img/check_mark.png");
+  line-height: 1.5;
 }
 
 li.incomplete {
