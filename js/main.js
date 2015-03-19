@@ -1,18 +1,10 @@
 var updatePreviewTarget = function(data, status) {
+  $('.spinner').hide();
   $('#preview-target').html(data);
+  renderLatexExpressions();
 }
 
-var main = function() {
-  $('div code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-
-  $('button#preview').click(
-    function() {
-      $.post('/note_preview', {text: $('#note-txt').val()}, updatePreviewTarget);
-    }
-  );
-
+var renderLatexExpressions = function() {
   $('.latex-container').each(
     function(index) {
       katex.render(
@@ -22,6 +14,23 @@ var main = function() {
       );
     }
   );
+}
+
+var main = function() {
+  $('div code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  $('button#preview').click(
+    function() {
+      $('#preview-target').html('');
+      $('.spinner').show();
+      $('h1.preview').text($('input[name=title]').val())
+      $.post('/note_preview', {text: $('#note-txt').val()}, updatePreviewTarget);
+    }
+  );
+
+  renderLatexExpressions();
 };
 
 function searchRedirect(searchpage) {
