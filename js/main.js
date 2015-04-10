@@ -8,7 +8,7 @@ var renderLatexExpressions = function() {
   $('.latex-container').each(
     function(index) {
       katex.render(
-        this.innerText,
+        this.textContent,
         this,
         { displayMode: $(this).data('displaymode') == 'block' }
       );
