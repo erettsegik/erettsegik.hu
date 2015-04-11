@@ -214,9 +214,9 @@ p a, p a:visited {
 
 blockquote {
   background-color: #f0f0f0;
-  border: 3px solid #d7d7d7;
+  border: 0px solid #d7d7d7;
   margin: 0;
-  padding: 6.5px;
+  padding: 10px;
 }
 
 blockquote p {

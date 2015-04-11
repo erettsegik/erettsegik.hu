@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aptoma/twig-markdown",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aptoma/twig-markdown.git",
-                "reference": "f547fd717d46e60ca6008d1acae7eebfd054fc29"
+                "reference": "0f0563365a5b7a06841b47b7619f39063d07b7a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aptoma/twig-markdown/zipball/f547fd717d46e60ca6008d1acae7eebfd054fc29",
-                "reference": "f547fd717d46e60ca6008d1acae7eebfd054fc29",
+                "url": "https://api.github.com/repos/aptoma/twig-markdown/zipball/0f0563365a5b7a06841b47b7619f39063d07b7a4",
+                "reference": "0f0563365a5b7a06841b47b7619f39063d07b7a4",
                 "shasum": ""
             },
             "require": {
@@ -25,12 +25,14 @@
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "dev-master",
+                "knplabs/github-api": "~1.2",
                 "league/commonmark": "~0.5",
                 "michelf/php-markdown": "~1",
                 "phpunit/phpunit": "~4.0",
                 "satooshi/php-coveralls": "~0.6"
             },
             "suggest": {
+                "knplabs/github-api": "Needed for using GitHub's Markdown engine provided through their API.",
                 "michelf/php-markdown": "Original Markdown engine with MarkdownExtra."
             },
             "type": "library",
@@ -58,7 +60,7 @@
                 "markdown",
                 "twig"
             ],
-            "time": "2015-01-06 14:13:18"
+            "time": "2015-03-25 14:26:57"
         },
         {
             "name": "league/commonmark",
