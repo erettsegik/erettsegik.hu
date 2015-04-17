@@ -35,7 +35,7 @@ $index_var = array();
 
 try {
 
-  $getSubjects = $con->query('select id, name from subjects where mandatory = 1');
+  $getSubjects = $con->query('select id, name from subjects where mandatory = 1 order by name asc');
 
 } catch (PDOException $e) {
   die($config['errors']['database']);
@@ -80,7 +80,7 @@ while ($subject = $getSubjects->fetch()) {
 
 try {
 
-  $getSubjects = $con->query('select id, name from subjects where mandatory = 0');
+  $getSubjects = $con->query('select id, name from subjects where mandatory = 0 order by name asc');
 
 } catch (PDOException $e) {
   die($config['errors']['database']);
@@ -112,10 +112,12 @@ if (isset($_SESSION['status'])) {
   $status = $_SESSION['status'];
   $message = $_SESSION['message'];
   unset($_SESSION['status']);
+  unset($_SESSION['message']);
 
 } else {
 
   $status = 'none';
+  $message = '';
 
 }
 

@@ -23,9 +23,9 @@
 {% else %}
 
   <h1>{{ subject.name }}</h1>
-
   {% for category in categories %}
-    <h2 id='{{ category.name }}'>{{ category.name }}</h2>
+    <a class='anchor' id='{{ category.name }}'></a>
+    <h2>{{ category.name }}</h2>
     <ul class='notes-list'>
 
     {% for note in category.data %}

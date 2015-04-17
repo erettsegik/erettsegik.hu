@@ -1,19 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/event.class.php';
 
 checkRights($config['clearance']['events']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
-
-$status = 'none';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -23,7 +12,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $event->insertData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
 
-    header('Location: /admin/events_admin.php');
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres mentés!';
+
+    header('Location: index.php?p=events_admin');
 
   }
 
@@ -37,11 +29,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $event->remove();
 
-      header('Location: /admin/events_admin.php');
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres törlés!';
+
+      header('Location: index.php?p=events_admin');
 
     } else {
 
       $event->modifyData($_POST['name'], $_POST['startdate'], $_POST['enddate']);
+
+      $status = 'success';
+      $message = 'Sikeres mentés!';
 
     }
 
@@ -51,14 +49,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 } else {
 
-  $status = 'list';
+  $mode = 'list';
 
   $events = array();
 
   try {
 
     $selectEvents = $con->query('
-      select id, name
+      select id
       from events
       order by startdate asc
     ');
@@ -67,8 +65,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     die($config['errors']['database']);
   }
 
-  while ($event = $selectEvents->fetch()) {
-    $events[] = array('id' => $event['id'], 'name' => $event['name']);
+  while ($eventdata = $selectEvents->fetch()) {
+    $event = new event($eventdata['id']);
+    $events[] = $event->getData();
   }
 
 }
@@ -84,10 +83,9 @@ echo $twig->render(
     'current_dt' => $current_dt,
     'eventdata'  => isset($eventdata) ? $eventdata : null,
     'events'     => isset($events) ? $events : null,
-    'index_var'  => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
-    'status'     => $status
+    'index_var'  => $index_var,
+    'mode'       => isset($mode) ? $mode : null,
+    'status'     => $status,
+    'message'    => $message
   )
 );

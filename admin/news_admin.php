@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/news.class.php';
 
 checkRights($config['clearance']['news']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -28,7 +19,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
-    header('Location: /admin/news_admin.php');
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres mentés!';
+
+    header('Location: index.php?p=news_admin');
 
   }
 
@@ -46,13 +40,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live
     );
 
+    $status = 'success';
+    $message = 'Sikeresen frissítve!';
+
   }
 
   $newsData = $new->getData(true);
 
 } else {
 
-  $status = 'list';
+  $mode = 'list';
 
   $news = array();
 
@@ -79,12 +76,11 @@ echo $twig->render(
   'admin/news_admin.html',
   array(
     'action'    => isset($_GET['action']) ? $_GET['action'] : null,
-    'index_var' => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
+    'index_var' => $index_var,
     'news'      => isset($news) ? $news : null,
     'newsdata'  => isset($newsData) ? $newsData : null,
-    'status'    => $status
+    'mode'      => isset($mode) ? $mode : null,
+    'status'    => $status,
+    'message'   => $message
   )
 );

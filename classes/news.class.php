@@ -15,6 +15,9 @@ class news {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('select * from news where id = :id');
@@ -38,7 +41,10 @@ class news {
     $this->live       = $newsData['live'];
 
     $this->date->setTimezone($config['tz']['local']);
-    $this->updatedate->setTimezone($config['tz']['local']);
+
+    if ($this->updatedate != null) {
+      $this->updatedate->setTimezone($config['tz']['local']);
+    }
 
   }
 

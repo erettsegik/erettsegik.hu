@@ -19,6 +19,9 @@ class note {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('select * from notes where id = :id');

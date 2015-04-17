@@ -10,7 +10,7 @@
 
   {% for feedback in feedbackarray %}
     <tr>
-      <td><a href='feedback_admin.php?id={{ feedback.id }}'>{{ feedback.title }}</a></td>
+      <td><a href='index.php?p=feedback_admin&amp;id={{ feedback.id }}'>{{ feedback.title }}</a></td>
       <td>{{ feedback.date }}</td>
       <td>{% if feedback.isnew %}<img src='/img/exclamation_mark.png' alt=''>{% else %}<img src='/img/check_mark.png' alt=''>{% endif %}</td>
     </tr>

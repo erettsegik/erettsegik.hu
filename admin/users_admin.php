@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/user.class.php';
 
 checkRights($config['clearance']['users']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 try {
 
@@ -37,6 +28,9 @@ if (isset($_POST['update'])) {
       $_POST[$id . 'password']
     );
 
+    $status = 'success';
+    $message = 'Sikeres mentés!';
+
   }
 
 }
@@ -46,6 +40,9 @@ if (isset($_POST['addnew'])) {
   $user = new user();
 
   $user->register($_POST['name'], $_POST['authority'], $_POST['password']);
+
+  $status = 'success';
+  $message = 'Sikeres mentés!';
 
 }
 
@@ -63,10 +60,9 @@ while ($userData = $getUsers->fetch()) {
 echo $twig->render(
   'admin/users_admin.html',
   array(
-    'index_var' => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
-    'users'     => $users
+    'index_var' => $index_var,
+    'users'     => $users,
+    'status'    => $status,
+    'message'   => $message
   )
 );

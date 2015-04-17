@@ -1,18 +1,9 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 require_once '../classes/note.class.php';
 
 checkRights($config['clearance']['notes']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -33,11 +24,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $incomplete
     );
 
-    $redirect_string = 'Location: /admin/notes_admin.php';
+    $redirect_string = 'Location: index.php?p=notes_admin';
 
     if (isset($_GET['subjectid'])) {
       $redirect_string .= '?subjectid=' . $_GET['subjectid'];
     }
+
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'Sikeres mentés!';
 
     header($redirect_string);
 
@@ -53,7 +47,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $note->remove();
 
-      $redirect_string = 'Location: /admin/notes_admin.php';
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres törlés!';
+
+      $redirect_string = 'Location: index.php?p=notes_admin';
 
       header($redirect_string);
 
@@ -71,6 +68,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $live,
         $incomplete
       );
+
+      $status = 'success';
+      $message = 'Sikeres mentés!';
 
     }
 
@@ -103,11 +103,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $note = new note($noteData['id']);
         $note->modifyOrder($_POST[$noteData['id'] . 'order']);
 
+        $status = 'success';
+        $message = 'Sikeres frissítés!';
+
       }
 
     }
 
-    $status = 'notelist';
+    $mode = 'notelist';
 
     $notes = array();
 
@@ -150,7 +153,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   } else {
 
-    $status = 'subjectlist';
+    $mode = 'subjectlist';
 
   }
 
@@ -178,6 +181,8 @@ if (isset($_GET['subjectid'])) {
   $subject = new subject($_GET['subjectid']);
   $selectedSubject = $subject->getData();
 
+} else {
+  $selectedSubject = array('id' => 0);
 }
 
 echo $twig->render(
@@ -185,15 +190,14 @@ echo $twig->render(
   array(
     'action'          => isset($_GET['action']) ? $_GET['action'] : null,
     'categories'      => $categories,
-    'index_var'       => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
-    'notedata'        => isset($noteData) ? $noteData : null,
+    'index_var'       => $index_var,
+    'saved'           => isset($noteData) ? $noteData : array('subjectid' => $selectedSubject['id']),
     'notelist'        => isset($noteList) ? $noteList : null,
-    'selectedsubject' => isset($_GET['subjectid']) ? $selectedSubject : array('id' => 0),
+    'selectedsubject' => $selectedSubject,
+    'mode'            => isset($mode) ? $mode : null,
+    'subjects'        => getSubjects(),
     'status'          => $status,
-    'subjectlist'     => getSubjects()
+    'message'         => $message
   )
 );
 

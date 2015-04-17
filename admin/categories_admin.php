@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/category.class.php';
 
 checkRights($config['clearance']['categories']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 try {
 
@@ -36,7 +27,7 @@ if (isset($_POST['update'])) {
     $category->modifyData($_POST[$id . 'name']);
 
     $status = 'success';
-    $message = 'Sikeresen frissítve!';
+    $message = 'Sikeres mentés!';
 
   }
 
@@ -49,7 +40,7 @@ if (isset($_POST['addnew'])) {
   $category->insertData($_POST['name']);
 
   $status = 'success';
-  $message = 'Sikeresen frissítve!';
+  $message = 'Sikeres mentés!';
 
 }
 
@@ -68,11 +59,8 @@ echo $twig->render(
   'admin/categories_admin.html',
   array(
     'categories' => $categories,
-    'index_var'  => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
-    'message'    => isset($message) ? $message : null,
+    'index_var'  => $index_var,
+    'message'    => $message,
     'status'     => $status
   )
 );

@@ -1,17 +1,8 @@
 <?php
 
-session_start();
-
-$dir_level = 1;
-
-require_once '../inc/functions.php';
 require_once '../classes/subject.class.php';
 
 checkRights($config['clearance']['subjects']);
-
-$user = new user($_SESSION['userid']);
-
-$twig = initTwig();
 
 try {
 
@@ -35,6 +26,9 @@ if (isset($_POST['update'])) {
 
     $subject->modifyData($_POST[$id . 'name'], $mandatory);
 
+    $status = 'success';
+    $message = 'Sikeres mentés!';
+
   }
 
 }
@@ -46,6 +40,9 @@ if (isset($_POST['addnew'])) {
   $mandatory = isset($_POST['mandatory']) && $_POST['mandatory'] == 'on';
 
   $subject->insertData($_POST['name'], $mandatory);
+
+  $status = 'success';
+  $message = 'Sikeres mentés!';
 
 }
 
@@ -63,10 +60,9 @@ while ($subjectData = $getSubjects->fetch()) {
 echo $twig->render(
   'admin/subjects_admin.html',
   array(
-    'index_var' => array(
-      'menu'           => getAdminMenuItems(),
-      'user_authority' => $user->getData()['authority']
-    ),
-    'subjects'  => $subjects
+    'index_var' => $index_var,
+    'subjects'  => $subjects,
+    'message'   => $message,
+    'status'    => $status
   )
 );

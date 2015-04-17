@@ -23,8 +23,16 @@
 
 .notes-list li {
   list-style-image: url("/img/check_mark.png");
+  line-height: 1.5;
 }
 
 li.incomplete {
   list-style-image: url("/img/exclamation_mark.png");
+}
+
+.anchor {
+display: block;
+position: relative;
+top: -60px;
+visibility: hidden;
 }

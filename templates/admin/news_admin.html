@@ -6,7 +6,7 @@
 
 {% if action == 'add' %}
 
-  <form action='news_admin.php?action=add' method='post'>
+  <form action='index.php?p=news_admin&amp;action=add' method='post'>
   <input type='text' name='title' placeholder='Cím' required>
   <br>
   <textarea name='text' placeholder='Szöveg' rows='50' cols='150' required></textarea>
@@ -20,7 +20,7 @@
 
 {% if action == 'edit' %}
 
-  <form action='news_admin.php?action=edit&amp;id={{ newsdata.id }}' method='post'>
+  <form action='index.php?p=news_admin&amp;action=edit&amp;id={{ newsdata.id }}' method='post'>
   <input type='text' name='title' placeholder='cím' value='{{ newsdata.title }}' required>
   <br>
   <textarea name='text' placeholder='szöveg' rows='50' cols='150' required>{{ newsdata.text | raw }}</textarea>
@@ -32,17 +32,30 @@
 
 {% endif %}
 
-{% if status == 'list' %}
+{% if mode == 'list' %}
 
-  <a href='news_admin.php?action=add'>új hozzáadása</a>
+  <a href='index.php?p=news_admin&amp;action=add'>új hozzáadása</a>
 
-  <ul>
-
+  <table>
+    <tr>
+      <th>
+        Cím
+      </th>
+      <th>
+        Élő
+      </th>
+    </tr>
   {% for new in news %}
-    <li><a href='news_admin.php?action=edit&amp;id={{ new.id }}'>{{ new.title }}</a> - {{ new.live }}</li>
+    <tr>
+      <td>
+        <a href='index.php?p=news_admin&amp;action=edit&amp;id={{ new.id }}'>{{ new.title }}</a>
+      </td>
+      <td>
+        <img src='{% if new.live %}/img/check_mark.png{% else %}/img/x_mark.png{% endif %}'>
+     </td>
+   </tr>
   {% endfor %}
-
-  </ul>
+  </table>
 
 {% endif %}
 

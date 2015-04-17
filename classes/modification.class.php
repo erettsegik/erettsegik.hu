@@ -22,6 +22,9 @@ class modification {
     global $con;
     global $config;
 
+    if ($id == null)
+      return;
+
     try {
 
       $selectData = $con->prepare('
@@ -115,6 +118,9 @@ class modification {
       $insertData->execute();
 
       $this->id = $con->lastInsertId();
+
+      $this->date = new DateTime(null, $config['tz']['utc']);
+      $this->date->setTimezone($config['tz']['local']);
 
     } catch (PDOException $e) {
       die($config['errors']['database']);

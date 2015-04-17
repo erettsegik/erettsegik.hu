@@ -23,6 +23,7 @@ nav {
   top: 0px;
   vertical-align: middle;
   width: 100%;
+  z-index: 100;
 }
 
 nav a, nav a:visited {
@@ -84,7 +85,7 @@ nav ul a:hover {
 }
 
 .nav_sub {
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 
 .nav_sub ul {
@@ -107,6 +108,7 @@ nav ul a:hover {
   width: 100%;
   box-sizing: border-box;
   height: 35px;
+  padding: 0;
 }
 
 #search_form {
@@ -212,9 +214,9 @@ p a, p a:visited {
 
 blockquote {
   background-color: #f0f0f0;
-  border: 3px solid #d7d7d7;
+  border: 0px solid #d7d7d7;
   margin: 0;
-  padding: 6.5px;
+  padding: 10px;
 }
 
 blockquote p {

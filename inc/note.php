@@ -146,7 +146,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   $index_var['location'][] = array(
     'url' => '/note/' . $note->getData()['id'] . '/',
-    'name' => (strlen($note->getData()['title']) > 17) ? substr($note->getData()['title'], 0, 37) . '...' : $note->getData()['title']
+    'name' => (strlen($note->getData()['title']) > 37) ? mb_substr($note->getData()['title'], 0, 37, 'utf-8') . '...' : $note->getData()['title']
   );
 
   $index_var['title'] = $note->getData()['title'];
@@ -163,7 +163,7 @@ echo $twig->render(
   array(
     'categories'    => isset($categories) ? $categories : null,
     'index_var'     => $index_var,
-    'message'       => isset($message) ? $message : null,
+    'message'       => $message,
     'mode'          => isset($mode) ? $mode : null,
     'modifications' => isset($modifications) ? $modifications : null,
     'note'          => isset($note) ? $note->getData() : null,
