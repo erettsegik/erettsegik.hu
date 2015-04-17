@@ -14,6 +14,11 @@ p {
   text-indent: 20px;
 }
 
+li p {
+  text-indent: 0px;
+  margin: 0px;
+}
+
 input.shorter {
   width: 196px;
 }
