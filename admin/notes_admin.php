@@ -21,7 +21,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $_POST['subjectid'],
       $_POST['category'],
       $live,
-      $incomplete
+      $incomplete,
+      null
     );
 
     $redirect_string = 'Location: index.php?p=notes_admin';

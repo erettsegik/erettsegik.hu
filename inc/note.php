@@ -31,7 +31,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['subjectid'],
         $_POST['category'],
         0,
-        1
+        1,
+        $_POST['email']
       );
 
       $_SESSION['status'] = 'success';
