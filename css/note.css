@@ -130,6 +130,10 @@ img {
   margin: auto;
 }
 
+h1.preview {
+  margin-top: 16px;
+}
+
 /*
  From https://github.com/tobiasahlin/SpinKit/blob/master/css/spinners/3-wave.css
 */

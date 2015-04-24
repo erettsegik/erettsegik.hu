@@ -33,13 +33,14 @@ var main = function() {
   renderLatexExpressions();
 };
 
-function searchRedirect(searchpage) {
+function searchRedirect(event, searchpage) {
 
-  event.preventDefault();
-
-  var term = (arguments.length == 1) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
+  var term = (arguments.length == 2) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
 
   window.location = '/search/' + term + '/';
+
+  event.preventDefault(event);
+
 }
 
 $(main);

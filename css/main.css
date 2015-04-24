@@ -116,12 +116,15 @@ nav ul a:hover {
 }
 
 #searchbox {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
   background-image: url('/img/search_background.png');
   background-repeat: no-repeat;
   border-color: #688292;
   border-width: 2px;
+  box-sizing: content-box;
   color: #dedede;
-  height: 19px;
+  height: 15px;
   margin-top: 17px;
   padding: 0px 0px 0px 17px;
   position: fixed;
