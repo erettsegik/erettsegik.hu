@@ -95,6 +95,6 @@ echo $twig->render(
     'message'     => $message,
     'mode'        => isset($mode) ? $mode : null,
     'status'      => $status,
-    'subject'     => $mode != 'all' ? $subject->getData() : null
+    'subject'     => (isset($mode) && $mode != 'all') ? $subject->getData() : null
   )
 );

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'classes/user.class.php';
+require_once 'classes/logger.class.php';
 require_once 'inc/functions.php';
 
 $index_var['location'][] = array(
@@ -22,6 +23,10 @@ if (!isset($_SESSION['userid'])) {
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeres bejelentkezés!';
+
+      $logger = new logger();
+
+      $logger->log($user->getData()['name'] . ' logged in');
 
       header('Location: /user_manage/');
 
