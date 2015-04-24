@@ -71,20 +71,20 @@ button.edit-button {
 }
 
 li.status_0 {
-  list-style-image: url("/img/question_mark.png");
+  list-style-image: url('/img/question_mark.png');
   list-style-position: outside;
 }
 
 li.status_1 {
-  list-style-image: url("/img/check_mark.png");
+  list-style-image: url('/img/check_mark.png');
 }
 
 li.status_2 {
-  list-style-image: url("/img/x_mark.png");
+  list-style-image: url('/img/x_mark.png');
 }
 
 li.add-modification {
-  list-style-image: url("/img/plus_sign.png");
+  list-style-image: url('/img/plus_sign.png');
 }
 
 #leftside ul {
@@ -135,7 +135,7 @@ h1.preview {
 }
 
 /*
- From https://github.com/tobiasahlin/SpinKit/blob/master/css/spinners/3-wave.css
+From https://github.com/tobiasahlin/SpinKit/blob/master/css/spinners/3-wave.css
 */
 
 .spinner {

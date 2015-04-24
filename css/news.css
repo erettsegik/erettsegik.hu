@@ -6,6 +6,10 @@
   width: 740px;
 }
 
+ul {
+  font-family: 'Roboto', sans-serif;
+}
+
 #rightside {
   display: inline;
   float: left;

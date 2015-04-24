@@ -281,14 +281,15 @@ hr {
 }
 
 .horizontal-ad {
-  width: 700px;
-  height: 100px;
+  width: 728px;
+  height: 90px;
   margin: 10px auto;
+  background-image: url('/img/horizontal-placeholder.png');
 }
 
 .vertical-ad {
-  width: 170px;
-  height: 500px;
+  width: 160px;
+  height: 600px;
   margin: auto;
   text-align: center;
 }
