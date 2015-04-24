@@ -1,6 +1,7 @@
 <?php
 
 require_once 'classes/category.class.php';
+require_once 'classes/logger.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
 require_once 'classes/subject.class.php';
@@ -34,6 +35,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         1,
         $_POST['email']
       );
+
+      $logger = new logger();
+
+      $logger->log('Note submitted');
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!';

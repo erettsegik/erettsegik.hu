@@ -8,7 +8,7 @@ class logger {
 
   public function log($text) {
 
-    error_log($text);
+    error_log('Erettsegik event: ' . $text);
 
   }
 

@@ -15,6 +15,10 @@ if (isset($_GET['id'])) {
 
     $modification->updateStatus($_POST['status'], $_POST['reply']);
 
+    $logger = new logger();
+
+    $logger->log($user->getData()['name'] . ' edited a modification: ' . $modification->getData()['id']);
+
     $status = 'success';
     $message = 'Sikeres mentés!';
 

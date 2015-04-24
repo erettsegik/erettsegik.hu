@@ -1,6 +1,7 @@
 <?php
 
 require_once '../classes/category.class.php';
+require_once '../classes/logger.class.php';
 require_once '../classes/note.class.php';
 
 checkRights($config['clearance']['notes']);
@@ -25,6 +26,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       ''
     );
 
+    $logger = new logger();
+
+    $logger->log($user->getData()['name'] . ' added a new note');
+
     $redirect_string = 'Location: index.php?p=notes_admin';
 
     if (isset($_GET['subjectid'])) {
@@ -48,6 +53,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $note->remove();
 
+      $logger = new logger();
+
+      $logger->log($user->getData()['name'] . ' removed a note: ' . $note->getData()['id'] . ' - ' . $note->getData()['title']);
+
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeres törlés!';
 
@@ -69,6 +78,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $live,
         $incomplete
       );
+
+      $logger = new logger();
+
+      $logger->log($user->getData()['name'] . ' edited a note: ' . $note->getData()['id']);
 
       $status = 'success';
       $message = 'Sikeres mentés!';

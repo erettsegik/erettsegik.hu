@@ -3,6 +3,7 @@
 require_once 'classes/category.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
+require_once 'classes/logger.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -77,6 +78,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['new_text'],
         $_POST['comment']
       );
+
+      $logger = new logger();
+
+      $logger->log('Modification submitted');
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeresen beküldted a módosítást!';
