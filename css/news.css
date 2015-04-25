@@ -10,6 +10,10 @@ ul {
   font-family: 'Roboto', sans-serif;
 }
 
+nav ul {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 #rightside {
   display: inline;
   float: left;
