@@ -17,7 +17,7 @@ ul {
   width: 230px;
 }
 
-iframe {
+iframe.facebook {
   background-color: transparent;
   border-width: 0;
   margin: 10px auto;
