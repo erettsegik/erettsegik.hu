@@ -17,6 +17,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
+if (!isset($_GET['id']) && !isset($_GET['action'])) {
+  header('Location: /404/');
+}
+
 if (isset($_GET['id']) && !isset($_GET['action'])) {
 
   if (isValid('modification', $_GET['id'])) {

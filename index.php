@@ -33,6 +33,10 @@ $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
 
+if (isset($_GET['mobile'])) {
+  $index_var['mobile'] = true;
+}
+
 try {
 
   $getSubjects = $con->query('select id, name from subjects where mandatory = 1 order by name asc');

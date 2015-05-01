@@ -171,6 +171,10 @@ class note {
       $remove->bindValue('id', $this->id, PDO::PARAM_INT);
       $remove->execute();
 
+      $removeModifications = $con->prepare('delete from modifications where noteid = :id');
+      $removeModifications->bindValue('id', $this->id, PDO::PARAM_INT);
+      $removeModifications->execute();
+
     } catch (PDOException $e) {
       die($config['errors']['database']);
     }
