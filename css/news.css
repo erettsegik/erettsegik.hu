@@ -50,3 +50,11 @@ hr.progress-meter {
   height: 5px;
   margin: 0px;
 }
+
+#notes-container h4 {
+  margin: 0;
+}
+
+#notes-container .article-meta {
+  margin: 4px 0px 12px 0px;
+}

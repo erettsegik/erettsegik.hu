@@ -59,6 +59,18 @@
   <p><a href='/events/'>Összes megtekintése</a></p>
 </div>
 <hr>
+<div id='notes-container'>
+  <h2>Nemrég módosult jegyzetek</h2>
+
+  {% for note in recentnotes %}
+
+  <a href='/note/{{ note.id }}'><h4>{{ note.title }}</h4></a>
+  <div class='article-meta'><a href='/subjects/{{ note.subjectid }}/'>{{ note.subject }}</a> &#8226; <a href='/subjects/{{ note.subjectid }}/#{{ note.category }}'>{{ note.category }}</a></div>
+
+  {% endfor %}
+
+</div>
+<hr>
 <iframe class='facebook' src='//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width=230&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:230px; height:258px;' allowTransparency='true'></iframe>
 </div>
 <br style='clear: both;'>
