@@ -7,6 +7,7 @@ class note {
   protected $id          = null;
   protected $title       = null;
   protected $text        = null;
+  protected $footnotes   = null;
   protected $subject     = null;
   protected $category    = null;
   protected $updatedate  = null;
@@ -38,6 +39,7 @@ class note {
     $this->id          = $noteData['id'];
     $this->title       = $noteData['title'];
     $this->text        = $noteData['text'];
+    $this->footnotes   = $noteData['footnotes'];
     $this->subject     = new subject($noteData['subjectid']);
     $this->category    = $noteData['category'];
     $this->updatedate  = new DateTime($noteData['updatedate'], $config['tz']['utc']);
@@ -50,13 +52,14 @@ class note {
 
   }
 
-  public function insertData($title, $text, $subjectid, $category, $live, $incomplete, $email) {
+  public function insertData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete, $email) {
 
     global $con;
     global $config;
 
     $this->title      = $title;
     $this->text       = $text;
+    $this->footnotes  = $footnotes;
     $this->subject    = new subject($subjectid);
     $this->category   = $category;
     $this->live       = $live;
@@ -71,6 +74,7 @@ class note {
           DEFAULT,
           :title,
           :text,
+          :footnotes,
           :subjectid,
           :category,
           DEFAULT,
@@ -82,6 +86,7 @@ class note {
       ');
       $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
       $insertData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $insertData->bindValue('footnotes', $this->footnotes, PDO::PARAM_STR);
       $insertData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $insertData->bindValue('category', $this->category, PDO::PARAM_INT);
       $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
@@ -97,13 +102,14 @@ class note {
 
   }
 
-  public function modifyData($title, $text, $subjectid, $category, $live, $incomplete) {
+  public function modifyData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete) {
 
     global $con;
     global $config;
 
     $this->title      = $title;
     $this->text       = $text;
+    $this->footnotes  = $footnotes;
     $this->subject    = new subject($subjectid);
     $this->category   = $category;
     $this->live       = $live;
@@ -115,6 +121,7 @@ class note {
         update notes
         set title = :title,
           text = :text,
+          footnotes = :footnotes,
           subjectid = :subjectid,
           category = :category,
           live = :live,
@@ -123,6 +130,7 @@ class note {
       ');
       $modifyData->bindValue('title', $this->title, PDO::PARAM_STR);
       $modifyData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $modifyData->bindValue('footnotes', $this->footnotes, PDO::PARAM_STR);
       $modifyData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $modifyData->bindValue('category', $this->category, PDO::PARAM_INT);
       $modifyData->bindValue('live', $this->live, PDO::PARAM_INT);
@@ -189,6 +197,7 @@ class note {
       'id'          => $this->id,
       'title'       => $unsanitize ? $this->title : $this->title,
       'text'        => $unsanitize ? unprepareText($this->text) : $this->text,
+      'footnotes'   => $unsanitize ? unprepareText($this->footnotes) : $this->footnotes,
       'subjectid'   => isset($this->subject) ? $this->subject->getData()['id'] : null,
       'category'    => $this->category,
       'updatedate'  => isset($this->updatedate) ? $this->updatedate->format($config['dateformat']) : null,

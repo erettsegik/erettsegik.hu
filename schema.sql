@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) NOT NULL,
   `text` text NOT NULL,
+  `footnotes` text NOT NULL,
   `subjectid` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
