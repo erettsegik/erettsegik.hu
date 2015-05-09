@@ -119,8 +119,10 @@ while ($foundNote = $getNotes->fetch()) {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/news.html' : 'news.html';
+
 echo $twig->render(
-  'news.html',
+  $rendertarget,
   array(
     'current_events'  => $current_events,
     'index_var'       => $index_var,

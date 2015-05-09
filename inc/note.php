@@ -165,8 +165,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/note.html' : 'note.html';
+
 echo $twig->render(
-  'note.html',
+  $rendertarget,
   array(
     'categories'    => isset($categories) ? $categories : null,
     'index_var'     => $index_var,

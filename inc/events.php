@@ -72,8 +72,10 @@ while ($eventData = $getUpcomingEvents->fetch()) {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/events.html' : 'events.html';
+
 echo $twig->render(
-  'events.html',
+  $rendertarget,
   array(
     'current_events' => $current_events,
     'index_var' => $index_var,

@@ -36,8 +36,10 @@ if (isset($_POST['submit'])) {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/feedback.html' : 'feedback.html';
+
 echo $twig->render(
-  'feedback.html',
+  $rendertarget,
   array(
     'index_var' => $index_var,
     'message'   => $message,

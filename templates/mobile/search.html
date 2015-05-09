@@ -1,0 +1,27 @@
+{% extends 'mobile/index.html' %}
+
+{% block content %}
+
+<h1>Keresés</h1>
+
+<form onsubmit='searchRedirect(event, "main");'>
+  <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required>
+  <input type='submit' class='submit' value='Keresés'>
+</form>
+
+{% if mode == 'results' %}
+
+  <div class='article-meta'>{{ resultcount }} találat a következőre: {{ term }}.</div>
+
+  <hr>
+
+  {% for result in results %}
+
+  <a href='/note/{{ result.id }}'><h2 class='result-header'>{{ result.title }}</h2></a>
+  <div class='article-meta'>{{ result.subject }} &#8226; {{ result.category }}</div>
+
+  {% endfor %}
+
+{% endif %}
+
+{% endblock %}

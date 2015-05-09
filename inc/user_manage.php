@@ -82,8 +82,10 @@ if (!isset($_SESSION['userid'])) {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/user_manage.html' : 'user_manage.html';
+
 echo $twig->render(
-  'user_manage.html',
+  $rendertarget,
   array(
     'index_var' => $index_var,
     'message'   => $message,

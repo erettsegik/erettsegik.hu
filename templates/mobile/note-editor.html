@@ -1,0 +1,77 @@
+<table>
+  <tr>
+    <td>Cím:</td>
+    <td><input type='text' name='title' class='shorter form-element' value='{{ saved.title }}' required></td>
+  </tr>
+  <tr>
+    <td>Tantárgy:</td>
+    <td>
+      <select name='subjectid' required>
+        {% for subject in subjects %}
+        <option value='{{ subject.id }}'{% if subject.id == saved.subjectid %} selected{% endif %}>{{ subject.name }}</option>
+        {% endfor %}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Kategória:</td>
+    <td>
+      <select name='category' required>
+        {% for category in categories %}
+          <option value='{{ category.id }}'{% if category.id == saved.category %} selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>E-mail:</td>
+    <td>
+      <input type='email' name='email' class='shorter form-element' value='{{ saved.email }}'>
+    </td>
+  </tr>
+</table>
+<button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
+<button type='button' class='edit-button' onclick='header();'>alcím</button>
+<button type='button' class='edit-button' onclick='image();'>kép</button>
+<button type='button' class='edit-button' onclick='list("ordered");'>számozott lista</button>
+<button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
+<button type='button' class='edit-button' onclick='latex("inline");'>képlet szövegbe</button>
+<button type='button' class='edit-button' onclick='latex("");'>külön képlet</button>
+<span id='rightside-buttons'>
+<button type='button' class='edit-button' id='preview'>Előnézet</button>
+<button type='button' class='edit-button' onclick='togglehelp();'>Segítség</button>
+</span>
+<br style='clear: both;'>
+<div id='note-help' style='display: none;'>
+  {% markdown %}
+  ### Általános
+
+  Kérjük, hogy jegyzetet csak akkor küldjetek be, ha az a saját szellemi terméketek, azaz nem más engedély nélkül feltöltött jegyzete, vagy egy könyvből egy az egyben kimásolt részlet.
+  Jegyzetet nem csak ezen az űrlapon keresztül küldhettek be nekünk, hanem például a [Facebook oldalunkon](https://facebook.com/erettsegik) keresztül is (lehetőleg üzenetben, csatolva).
+  Ha maradtok ennél a megoldásnál, akkor a jegyzetet át kell írnotok markdown formátumba, amelyről a következőkben olvashattok.
+
+  ### A markdownról
+
+  A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható.
+  A teljes specifikáció [itt](http://daringfireball.net/projects/markdown) megtalálható, de a legfontosabb elemek a szerkesztőnkkel is előállíthatók (megjegyezni sem nehéz őket).
+
+  ### A szerkesztőről
+
+  A jegyzetírást megkönnyítendő írtunk egy kis szerkesztőt, mely lényegében a fenti pár gombot jelenti. Működése felettébb egyszerű, először ki kell jelölni a szövegmezőben a kívánt szövegrészletet (felsorolás esetén akár több sort is), majd valamelyik gombra kattintani. (A szerkesztő javascriptet használ, egyes bővítmények esetleg akadályozhatják a működését).
+  {% endmarkdown %}
+</div>
+<textarea name='text' id='note-txt' placeholder='Szöveg' required>{{ saved.text }}</textarea>
+
+<h1 class='preview'></h1>
+<div class='spinner' style='display: none;'>
+  <div class='rect1'></div>
+  <div class='rect2'></div>
+  <div class='rect3'></div>
+  <div class='rect4'></div>
+  <div class='rect5'></div>
+</div>
+<div id='preview-target'></div>
+
+<hr>
+
+<script type='text/JavaScript' src='/js/editor.js'></script>

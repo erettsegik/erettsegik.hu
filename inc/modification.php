@@ -116,8 +116,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
 }
 
+$rendertarget = $_SESSION['mobile'] ? 'mobile/modification.html' : 'modification.html';
+
 echo $twig->render(
-  'modification.html',
+  $rendertarget,
   array(
     'action'       => isset($_GET['action']) ? $_GET['action'] : null,
     'diff'         => isset($diff) ? $diff : null,

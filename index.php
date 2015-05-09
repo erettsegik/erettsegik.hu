@@ -34,7 +34,9 @@ $twig->addExtension(new MarkdownExtension($engine));
 $index_var = array();
 
 if (isset($_GET['mobile'])) {
-  $index_var['mobile'] = true;
+  $_SESSION['mobile'] = true;
+} else if (!isset($_SESSION['mobile']) || isset($_GET['desktop'])) {
+  $_SESSION['mobile'] = false;
 }
 
 try {
