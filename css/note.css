@@ -40,6 +40,10 @@ button.edit-button {
   padding: 5px;
 }
 
+#note-footnotes {
+  height: 50px;
+}
+
 #leftside {
   border-right: 2px solid #dedede;
   display: inline;
@@ -132,6 +136,18 @@ img {
 
 h1.preview {
   margin-top: 16px;
+}
+
+#footnotes {
+  color: #8090aa;
+  font-size: 0.7em;
+  margin: 26px auto 0 auto;
+}
+
+#footnotes p {
+  margin: 2px 0 0 0;
+  padding: 0;
+  text-indent: 0;
 }
 
 /*

@@ -19,7 +19,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $note->insertData(
       $_POST['title'],
       prepareText($_POST['text']),
-      "",
+      prepareText($_POST['footnotes']),
       $_POST['subjectid'],
       $_POST['category'],
       $live,
@@ -74,7 +74,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $note->modifyData(
         $_POST['title'],
         prepareText($_POST['text']),
-        "",
+        prepareText($_POST['footnotes']),
         $_POST['subjectid'],
         $_POST['category'],
         $live,

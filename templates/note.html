@@ -7,7 +7,10 @@
   <div id='leftside'>
     <h1>{{ note.title }}</h1>
     {% include 'note_text.html' %}
-    <p class='article-meta'>Legutóbb frissítve: {{ note.updatedate }}</p>
+    <div id='footnotes'>
+      <p>Legutóbb frissítve: {{ note.updatedate }}</p>
+      {{ note.footnotes | markdown }}
+    </div>
 
     </div>
     <div id='rightside'>
