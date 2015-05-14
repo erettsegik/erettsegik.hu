@@ -58,3 +58,7 @@ hr.progress-meter {
 #notes-container .article-meta {
   margin: 4px 0px 12px 0px;
 }
+
+#notes-container .article-meta a, #notes-container .article-meta a:visited {
+  color: #ee7600;
+}
