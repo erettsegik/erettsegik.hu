@@ -91,6 +91,7 @@ try {
   $getNotes = $con->query('
     select id
     from notes
+    where live = 1
     order by updatedate desc
     limit 5
   ');
