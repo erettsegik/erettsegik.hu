@@ -64,7 +64,7 @@
 
   {% for note in recentnotes %}
 
-  <a href='/note/{{ note.id }}'><h4>{{ note.title }}</h4></a>
+  <a href='/note/{{ note.id }}/'><h4>{{ note.title }}</h4></a>
   <div class='article-meta'><a href='/subjects/{{ note.subjectid }}/'>{{ note.subject }}</a> &#8226; <a href='/subjects/{{ note.subjectid }}/#{{ note.category }}'>{{ note.category }}</a></div>
 
   {% endfor %}
