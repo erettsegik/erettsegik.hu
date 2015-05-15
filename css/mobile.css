@@ -1,7 +1,180 @@
 @media (max-width: 1000px) {
   body {
-    background-color: #000;
-    color: #35586e;
-    font-size: 10%;
+    font-size: 1em;
+  }
+
+  nav {
+    height: 10vh;
+    line-height: 10vh;
+  }
+
+  nav ul {
+    /* margin: ???; */
+    height: 10vh;
+  }
+
+  nav li {
+    height: 10vh;
+  }
+
+  nav li ul {
+    top: 10vh;
+  }
+
+  nav li:hover ul {
+    top: 10vh;
+  }
+
+  nav ul li {
+    height: 10vh;
+  }
+
+  nav ul a {
+    height: 10vh;
+    padding: 0 2vh;
+  }
+
+  .nav_sub {
+    font-size: 0.7em;
+  }
+
+  .nav_sub ul li {
+    height: 7vh;
+    line-height: 7vh;
+  }
+
+  .nav_sub a {
+    height: 7vh;
+  }
+
+  #searchbox {
+    border-width: 2px;
+    height: 15px;
+    margin-top: 17px;
+    padding: 0px 0px 0px 17px;
+    width: 103px;
+  }
+
+  #wrapper {
+    margin: 10vh auto auto auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #location {
+    height: 2em;
+    line-height: 2em;
+    margin: 2vh auto;
+    padding-left: 1.5em;
+    width: 70vw;
+    box-sizing: border-box;
+  }
+
+  #upload_button {
+    height: 2em;
+    line-height: 2em;
+    margin: 2vh auto;
+    padding-right: 1.5em;
+    width: 30vw;
+    box-sizing: border-box;
+  }
+
+  #main {
+    border: 3px solid #d7d7d7;
+    padding: 1.5em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  footer {
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+  }
+
+  blockquote {
+    border: 0px solid #d7d7d7;
+    padding: 10px;
+  }
+
+  input, select, textarea {
+    border: 2px solid #d7d7d7;
+  }
+
+  input {
+    width: 25vw;
+  }
+
+  input.submit {
+    border-radius: 3px;
+    margin-top: 5px;
+    width: auto;
+  }
+
+  select {
+    width: 25vw;
+  }
+
+  textarea {
+    height: 50vh;
+    margin-top: 5px;
+    width: 90vw;
+  }
+
+  .article-meta {
+    font-size: 0.7em;
+    margin: 16px auto;
+  }
+
+  img {
+    max-width: 748px;
+  }
+
+  hr {
+    height: 1px;
+    margin: 16px auto;
+    width: 98%;
+  }
+
+  .horizontal-ad {
+    width: 100%;
+    background-size: cover;
+    height: 12.4vw;
+    margin: 10px auto;
+  }
+
+  .vertical-ad {
+    width: 160px;
+    height: 600px;
+  }
+
+  span.top-notice {
+    margin: 2vh auto;
+    padding: 2vh;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  span.success {
+    border: 2px solid #009900;
+  }
+
+  span.success:before {
+    margin-right: 10px;
+  }
+
+  span.error {
+    border: 2px solid #990000;
+  }
+
+  span.error:before {
+    margin-right: 10px;
+  }
+
+  span.notice {
+    border: 2px solid #ffb938;
+  }
+
+  span.notice:before {
+    margin-right: 10px;
   }
 }

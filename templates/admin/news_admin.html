@@ -11,7 +11,7 @@
   <br>
   <textarea name='text' placeholder='Szöveg' rows='50' cols='150' required></textarea>
   <br>
-  <input type='checkbox' name='live' style='width: auto;'> élő
+  <input type='checkbox' name='live' id='live' style='width: auto;'> <label for='live'>élő</label>
   <br>
   <input type='submit' name='submit' class='submit'>
   </form>
@@ -25,7 +25,7 @@
   <br>
   <textarea name='text' placeholder='szöveg' rows='50' cols='150' required>{{ newsdata.text | raw }}</textarea>
   <br>
-  <input type='checkbox' style='width: auto;' name='live' {% if newsdata.live %} checked {% endif %}> élő
+  <input type='checkbox' id='live' style='width: auto;' name='live' {% if newsdata.live %} checked {% endif %}> <label for='live'>élő</live>
   <br>
   <input type='submit' name='submit' class='submit'>
   </form>
