@@ -50,11 +50,12 @@ class modification {
     $this->end_text   = $modificationData['end_text'];
     $this->comment    = $modificationData['comment'];
     $this->date       = new DateTime($modificationData['date'], $config['tz']['utc']);
-    $this->updatedate = $modificationData['updatedate'];
+    $this->updatedate = $modificationData['updatedate'] != null ? new DateTime($modificationData['updatedate'], $config['tz']['utc']) : null;
     $this->status     = $modificationData['status'];
     $this->reply      = $modificationData['reply'];
 
     $this->date->setTimezone($config['tz']['local']);
+    if ($this->updatedate != null) $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
@@ -170,7 +171,7 @@ class modification {
       'end_text'   => $this->end_text,
       'comment'    => $this->comment,
       'date'       => $this->date->format($config['dateformat']),
-      'updatedate' => $this->updatedate,
+      'updatedate' => $this->updatedate != null ? $this->updatedate->format($config['dateformat']) : null,
       'status'     => $this->status,
       'reply'      => $this->reply
     );
