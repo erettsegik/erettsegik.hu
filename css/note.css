@@ -91,17 +91,21 @@ li.add-modification {
   list-style-image: url('/img/plus_sign.png');
 }
 
-#leftside ul {
+#leftside ul, #preview-target ul {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
-#leftside ol {
+#leftside ol, #preview-target ol {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
-#leftside ul a, #leftside ul a:visited {
+#leftside ul a, #leftside ul a:visited, #preview-target ul a, #preview-target ul a:visited {
+  color: #ee7600;
+}
+
+#leftside ol a, #leftside ol a:visited, #preview-target ol a, #preview-target ol a:visited {
   color: #ee7600;
 }
 
