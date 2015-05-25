@@ -1,5 +1,5 @@
 #person-cont-left{
-  margin-top: 15px;
+  margin-top: 0px;
   display: block;
 }
 
@@ -16,13 +16,14 @@
 }
 
 #person-txt-left{
+  font-size: 18px;
   float: left;
   text-align: left;
   display: block;
 }
 
 #person-cont-right{
-  margin-top: 15px;
+  margin-top: 0px;
   display: block;
 }
 
@@ -40,8 +41,8 @@
 
 
 #person-txt-right{
+  font-size: 18px;
   float: right;
-  vertical-align: middle;
   text-align: right;
   display: block;
 }
