@@ -1,9 +1,5 @@
-#person-cont-left{
-  margin-top: 0px;
-  display: block;
-}
-
 #img-circular-left{
+ margin-top: 0px;
  float: left;
  display: inline-block;
  margin-left: 30px;
@@ -16,18 +12,15 @@
 }
 
 #person-txt-left{
+  margin-top: 0px;
   font-size: 18px;
   float: left;
   text-align: left;
-  display: block;
-}
-
-#person-cont-right{
-  margin-top: 0px;
-  display: block;
+  display: inline;
 }
 
 #img-circular-right{
+ margin-top: 50px;
  float: right;
  display: inline-block;
  margin-right: 30px;
@@ -39,10 +32,10 @@
  -moz-border-radius: 150px;
 }
 
-
 #person-txt-right{
+  margin-top: 50px;
   font-size: 18px;
   float: right;
   text-align: right;
-  display: block;
+  display: inline;
 }
