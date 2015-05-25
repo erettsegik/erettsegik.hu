@@ -1,0 +1,47 @@
+#person-cont-left{
+  margin-top: 15px;
+  display: block;
+}
+
+#img-circular-left{
+ float: left;
+ display: inline-block;
+ margin-left: 30px;
+ margin-right: 10px;
+ width: 150px;
+ height: 150px;
+ border-radius: 150px;
+ -webkit-border-radius: 150px;
+ -moz-border-radius: 150px;
+}
+
+#person-txt-left{
+  float: left;
+  text-align: left;
+  display: block;
+}
+
+#person-cont-right{
+  margin-top: 15px;
+  display: block;
+}
+
+#img-circular-right{
+ float: right;
+ display: inline-block;
+ margin-right: 30px;
+ margin-left: 10px;
+ width: 150px;
+ height: 150px;
+ border-radius: 150px;
+ -webkit-border-radius: 150px;
+ -moz-border-radius: 150px;
+}
+
+
+#person-txt-right{
+  float: right;
+  vertical-align: middle;
+  text-align: right;
+  display: block;
+}
