@@ -10,17 +10,20 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
+    $recaptcha = new \ReCaptcha\ReCaptcha($config['recaptcha-key']);
+    $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
     if (
       !isValid('subject', $_POST['subjectid']) ||
       !isValid('category', $_POST['category']) ||
       !isNotEmpty($_POST['title']) ||
-      !isNotEmpty($_POST['text'])
+      !isNotEmpty($_POST['text']) || !$resp->isSuccess()
     ) {
 
       $saved = array('title' => $_POST['title'], 'text' => $_POST['text'], 'subjectid' => $_POST['subjectid'], 'category' => $_POST['category'], 'email' => $_POST['email']);
 
       $status = 'error';
-      $message = 'Valamelyik mezőt nem helyesen töltötted ki!';
+      $message = $resp->isSuccess() ? 'Valamelyik mezőt nem helyesen töltötted ki!' : 'Robot vagy?';
 
     } else {
 

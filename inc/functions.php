@@ -21,6 +21,8 @@ if (file_exists($config_file)) {
     'charset'  => 'utf8'
   );
 
+  $config['recaptcha-key'] = getenv('recaptcha-key');
+
 }
 
 $config['clearance'] = array(

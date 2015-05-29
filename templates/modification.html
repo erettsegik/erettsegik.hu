@@ -13,9 +13,11 @@
   <div class='modification'>Új szöveg:<br>
   <textarea name='new_text' required>{% if saved.new_text %}{{ saved.new_text }}{% else %}{{ note.text }}{% endif %}</textarea></div><br>
   Megjegyzés (opcionális): <input type='text' name='comment' value='{{ saved.comment }}'><br>
+  <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 {% else %}
 
   {% if modification.status == 0 %}
