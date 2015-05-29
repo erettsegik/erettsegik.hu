@@ -90,6 +90,16 @@
 
   </ul>
 
+  A legutóbb módosult félkész jegyzetek:
+
+  <ul>
+  {% for note in recentnotes %}
+
+    <li>{{ note.title }} - {{ note.subject }}: {{ note.category }} ({{ note.updatedate }})</li>
+
+  {% endfor %}
+  </ul>
+
 {% endif %}
 
 {% endblock %}

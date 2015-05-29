@@ -171,6 +171,43 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $mode = 'subjectlist';
 
+    $recentNotes = array();
+
+    try {
+
+      $getNotes = $con->query('
+        select id
+        from notes
+        where live = 0 and incomplete = 1
+        order by updatedate desc
+        limit 10
+      ');
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
+
+    while ($foundNote = $getNotes->fetch()) {
+
+      $note = new note($foundNote['id']);
+      $noteData = $note->getData();
+
+      $subject = new subject($noteData['subjectid']);
+      $category = new category($noteData['category']);
+
+      $result = array(
+        'id' => $noteData['id'],
+        'title' => $noteData['title'],
+        'updatedate' => $noteData['updatedate'],
+        'subject' => $subject->getData()['name'],
+        'subjectid' => $noteData['subjectid'],
+        'category' => $category->getData()['name']
+      );
+
+      $recentNotes[] = $result;
+
+    }
+
   }
 
 }
@@ -213,7 +250,8 @@ echo $twig->render(
     'mode'            => isset($mode) ? $mode : null,
     'subjects'        => getSubjects(),
     'status'          => $status,
-    'message'         => $message
+    'message'         => $message,
+    'recentnotes'     => isset($recentNotes) ? $recentNotes : null
   )
 );
 
