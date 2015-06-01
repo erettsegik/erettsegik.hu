@@ -95,7 +95,7 @@
   <ul>
   {% for note in recentnotes %}
 
-    <li>{{ note.title }} - {{ note.subject }}: {{ note.category }} ({{ note.updatedate }})</li>
+    <li><a href='index.php?p=notes_admin&amp;action=edit&amp;id={{ note.id }}'>{{ note.title }}</a> - {{ note.subject }}: {{ note.category }} ({{ note.updatedate }})</li>
 
   {% endfor %}
   </ul>
