@@ -29,6 +29,7 @@ if (!isset($_SESSION['userid'])) {
       $logger->log($user->getData()['name'] . ' logged in');
 
       header('Location: /user_manage/');
+      die();
 
     }
 
@@ -48,6 +49,7 @@ if (!isset($_SESSION['userid'])) {
     $_SESSION['message'] = 'Sikeres kijelentkezés!';
 
     header('Location: /');
+    die();
 
   } else {
 
@@ -70,6 +72,7 @@ if (!isset($_SESSION['userid'])) {
         $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
 
         header('Location: /user_manage/');
+        die();
 
       }
 

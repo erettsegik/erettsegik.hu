@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['message'] = 'Köszönjük a visszajelzést!';
 
     header('Location: /');
+    die();
 
   }
 

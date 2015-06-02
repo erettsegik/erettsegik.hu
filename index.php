@@ -144,6 +144,7 @@ if (isset($_GET['p'])) {
   } else {
 
     header('Location: /404/');
+    die();
 
   }
 

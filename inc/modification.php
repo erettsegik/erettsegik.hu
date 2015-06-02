@@ -13,12 +13,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   } else {
     header('Location: /404/');
+    die();
   }
 
 }
 
 if (!isset($_GET['id']) && !isset($_GET['action'])) {
   header('Location: /404/');
+  die();
 }
 
 if (isset($_GET['id']) && !isset($_GET['action'])) {
@@ -31,6 +33,7 @@ if (isset($_GET['id']) && !isset($_GET['action'])) {
 
   } else {
     header('Location: /404/');
+    die();
   }
 
 }

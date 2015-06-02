@@ -48,6 +48,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $_SESSION['message'] = 'Köszönjük a beküldést, reméljük a jegyzet hamarosan megjelenik az oldalon!';
 
       header('Location: /subjects/' . $note->getData()['subjectid']);
+      die();
 
     }
 
@@ -105,6 +106,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
   if (!isValid('note', $_GET['id'])) {
 
     header('Location: /404/');
+    die();
 
   }
 
