@@ -16,6 +16,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
 
+    if (prepareText($_POST['text']) == '') $incomplete = 2;
+
     $note->insertData(
       $_POST['title'],
       prepareText($_POST['text']),
@@ -70,6 +72,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $live = (isset($_POST['live']) && $_POST['live'] == 'on');
 
       $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
+
+      if (prepareText($_POST['text']) == '') $incomplete = 2;
 
       $note->modifyData(
         $_POST['title'],
@@ -178,7 +182,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $getNotes = $con->query('
         select id
         from notes
-        where live = 0 and incomplete = 1
+        where live = 0 and incomplete <> 0
         order by updatedate desc
         limit 10
       ');
