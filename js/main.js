@@ -31,6 +31,12 @@ var main = function() {
   );
 
   renderLatexExpressions();
+
+  $("textarea[name='footnotes']").focusin(function(){
+    $(this).height($(this).height() + 300);
+  }).focusout(function(){
+    $(this).height($(this).height() - 300);
+  });
 };
 
 function searchRedirect(event, searchpage) {
