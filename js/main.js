@@ -1,6 +1,9 @@
 var updatePreviewTarget = function(data, status) {
   $('.spinner').hide();
   $('#preview-target').html(data);
+  $('#preview-target code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
   renderLatexExpressions();
 }
 
@@ -31,6 +34,12 @@ var main = function() {
   );
 
   renderLatexExpressions();
+
+  $("textarea[name='footnotes']").focusin(function(){
+    $(this).height($(this).height() + 300);
+  }).focusout(function(){
+    $(this).height($(this).height() - 300);
+  });
 };
 
 function searchRedirect(event, searchpage) {
@@ -40,7 +49,6 @@ function searchRedirect(event, searchpage) {
   window.location = '/search/' + term + '/';
 
   event.preventDefault(event);
-
 }
 
 $(main);
