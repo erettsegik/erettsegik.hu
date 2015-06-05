@@ -29,7 +29,9 @@
     <ul class='notes-list'>
 
     {% for note in category.data %}
-      <li{% if note.incomplete %} class='incomplete'{% endif %}><a href='/note/{{ note.id }}/'>{{ note.title }}</a></li>
+      <li{% if note.incomplete == 1 %} class='incomplete'{% endif %}{% if note.incomplete == 2 %} class='empty'{% endif %}>
+        <a href='/note/{{ note.id }}/'>{{ note.title }}</a>
+      </li>
     {% endfor %}
 
     </ul>
