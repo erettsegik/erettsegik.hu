@@ -49,7 +49,6 @@ function searchRedirect(event, searchpage) {
   window.location = '/search/' + term + '/';
 
   event.preventDefault(event);
-
 }
 
 $(main);
