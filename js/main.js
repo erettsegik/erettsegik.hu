@@ -1,6 +1,9 @@
 var updatePreviewTarget = function(data, status) {
   $('.spinner').hide();
   $('#preview-target').html(data);
+  $('#preview-target code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
   renderLatexExpressions();
 }
 
