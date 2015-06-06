@@ -264,6 +264,19 @@ img {
   margin: 10px auto;
 }
 
+#note-footnotes {
+  height: 2em;
+}
+
+h1.preview {
+  display: inline;
+}
+
+#hide-preview {
+  float: right;
+  display: none;
+}
+
 code {
   border: 3px solid #d7d7d7;
 }

@@ -165,7 +165,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if ($note->getData()['incomplete']) {
     $status = 'notice';
-    $message = ($note->getData()['incomplete'] == 2) ? 'Ez a jegyzet üres.' : 'Ez a jegyzet félkész. Kérjük, segíts kibővíteni egy javaslat beküldésével!';
+    $message = ($note->getData()['incomplete'] == 2) ? 'Ez a jegyzet üres. Kérjük, használd a jegyzet beküldése menüpontot, ha tudsz ezen segíteni!' : 'Ez a jegyzet félkész. Kérjük, segíts kibővíteni egy javaslat beküldésével!';
   }
 
 }

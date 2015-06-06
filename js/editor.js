@@ -143,3 +143,11 @@ function togglehelp() {
   }
 
 }
+
+function hidePreview() {
+
+  document.getElementById('preview-target').innerHTML = '';
+  document.getElementById('preview-title').innerHTML = '';
+  document.getElementById('hide-preview').style.display = 'none';
+
+}

@@ -44,6 +44,19 @@ button.edit-button {
   height: 2em;
 }
 
+h1.preview {
+  display: inline;
+}
+
+#hide-preview {
+  float: right;
+  display: none;
+}
+
+div.g-recaptcha {
+  margin: 10px auto;
+}
+
 #leftside {
   border-right: 2px solid #dedede;
   display: inline;

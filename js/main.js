@@ -1,6 +1,7 @@
 var updatePreviewTarget = function(data, status) {
   $('.spinner').hide();
   $('#preview-target').html(data);
+  $('#hide-preview').show();
   $('#preview-target code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
@@ -36,9 +37,9 @@ var main = function() {
   renderLatexExpressions();
 
   $("textarea[name='footnotes']").focusin(function(){
-    $(this).height($(this).height() + 300);
+    $(this).height($(this).height() + 100);
   }).focusout(function(){
-    $(this).height($(this).height() - 300);
+    $(this).height($(this).height() - 100);
   });
 };
 
