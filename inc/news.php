@@ -91,7 +91,7 @@ try {
   $getNotes = $con->query('
     select id
     from notes
-    where live = 1
+    where live = 1 and incomplete <> 2
     order by updatedate desc
     limit 5
   ');
