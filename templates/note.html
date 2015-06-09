@@ -58,7 +58,7 @@
 
   <h1>Jegyzet beküldése</h1>
 
-  <form action='/note/add/' method='post'>
+  <form action='/note/add/' method='post' onsubmit='allowLeaving();'>
     {% include 'note-editor.html' %}
     <hr>
     <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>

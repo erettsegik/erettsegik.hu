@@ -50,6 +50,17 @@ function searchRedirect(event, searchpage) {
   window.location = '/search/' + term + '/';
 
   event.preventDefault(event);
+
+}
+
+function preventLeaving() {
+  window.onbeforeunload = function (e) {
+    return "Nem mentett változtatásaid vannak az oldalon.";
+  };
+}
+
+function allowLeaving() {
+  window.onbeforeunload = null;
 }
 
 $(main);

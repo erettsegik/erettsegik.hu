@@ -64,7 +64,7 @@
   Lehetőség van a jegyzetbe képleteket is beszúrni, ehhez szintén segítséget nyújt a szerkesztőnk. A képletek feldolgozásához a [KaTeX](https://github.com/Khan/KaTeX) TeX parsert használjuk, amely nem támogat minden TeX-beli kifejezést, a használható elemek listája megtalálható [itt](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX).
   {% endmarkdown %}
 </div>
-<textarea name='text' id='note-txt' placeholder='Szöveg' required>{{ saved.text }}</textarea>
+<textarea name='text' id='note-txt' placeholder='Szöveg' required onchange='preventLeaving();' onkeyup='preventLeaving();'>{{ saved.text }}</textarea>
 
 <h1 class='preview' id='preview-title'></h1><button type='button' class='edit-button' id='hide-preview' onclick='hidePreview();'>Előnézet elrejtése</button>
 <br style='clear: both;'>
