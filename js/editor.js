@@ -98,7 +98,7 @@ function list(type) {
 
   }
 
-  replace = replace.slice(0, -2);
+  replace = replace.slice(0, -1);
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
@@ -127,7 +127,7 @@ function quote(type) {
 
   }
 
-  replace = replace.slice(0, -2);
+  replace = replace.slice(0, -1);
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
