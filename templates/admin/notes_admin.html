@@ -6,7 +6,7 @@
 
 {% if action == 'add' %}
 
-  <form action='index.php?p=notes_admin&amp;action=add' method='post'>
+  <form action='index.php?p=notes_admin&amp;action=add' method='post' onsubmit='allowLeaving();'>
 
     {% include 'note-editor.html' %}
 
@@ -28,7 +28,7 @@
 
 {% if action == 'edit' %}
 
-  <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ saved.id }}' method='post'>
+  <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ saved.id }}' method='post' onsubmit='allowLeaving();'>
 
     {% include 'note-editor.html' %}
 
