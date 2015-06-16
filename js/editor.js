@@ -152,9 +152,9 @@ function latex(type) {
   } else {
 
     if (sel == '') {
-      var replace = '[latex]képlet[/latex]\n';
+      var replace = '[latex]képlet[/latex]';
     } else {
-      var replace = '[latex]' + sel + '[/latex]\n';
+      var replace = '[latex]' + sel + '[/latex]';
     }
 
   }

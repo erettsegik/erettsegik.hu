@@ -56,7 +56,7 @@
   <form action='index.php?p=notes_admin&amp;subjectid={{ selectedsubject.id }}' method='post'>
 
   {% for note in notelist %}
-    <h2>{{ note.name }}</h2>
+    <h2 id='{{ note.name }}'>{{ note.name }}</h2>
     <table>
     <tr>
     <th>Rendezési szám</th>
@@ -89,7 +89,7 @@
   <ul>
 
   {% for subject in subjects %}
-    <li><a href='index.php?p=notes_admin&amp;subjectid={{ subject.id }}'>{{ subject.name }}</a></li>
+    <li><a href='index.php?p=notes_admin&amp;subjectid={{ subject.id }}'>{{ subject.name }}</a> -- <span class='article-meta'>|{% for category in categories %} <a href='index.php?p=notes_admin&amp;subjectid={{ subject.id }}#{{ category.name }}'>{{ category.name }}</a> |{% endfor %}</span></li>
   {% endfor %}
 
   </ul>

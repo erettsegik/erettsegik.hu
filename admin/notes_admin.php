@@ -33,11 +33,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $logger->log($user->getData()['name'] . ' added a new note');
 
-    $redirect_string = 'Location: index.php?p=notes_admin';
+    $noteData = $note->getData();
 
-    if (isset($_GET['subjectid'])) {
-      $redirect_string .= '?subjectid=' . $_GET['subjectid'];
-    }
+    $subjectid = $noteData['subjectid'];
+    $category = new category($noteData['category']);
+
+    $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
 
     $_SESSION['status'] = 'success';
     $_SESSION['message'] = 'Sikeres mentés!';
@@ -54,6 +55,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
+      $noteData = $note->getData();
+
+      $subjectid = $noteData['subjectid'];
+      $category = new category($noteData['category']);
+
       $note->remove();
 
       $logger = new logger();
@@ -63,7 +69,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeres törlés!';
 
-      $redirect_string = 'Location: index.php?p=notes_admin';
+      $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
 
       header($redirect_string);
 
@@ -91,6 +97,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $status = 'success';
       $message = 'Sikeres mentés!';
+
+      $noteData = $note->getData();
+
+      $subjectid = $noteData['subjectid'];
+      $category = new category($noteData['category']);
+
+      $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
+
+      header($redirect_string);
 
     }
 

@@ -113,6 +113,12 @@ td {
   text-align: center;
 }
 
+.article-meta {
+  color: #8090aa;
+  font-size: 0.7em;
+  margin: 16px auto;
+}
+
 .delete-box {
   color: red;
   float: right;
