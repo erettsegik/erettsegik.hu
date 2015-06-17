@@ -25,7 +25,7 @@ function header() {
   var sel = textarea.value.substring(start, end);
 
   if (sel == '') {
-    var replace = '## cím\n';
+    var replace = '## cím';
   } else {
     var replace = '## ' + sel;
   }
@@ -43,9 +43,9 @@ function image() {
   var sel = textarea.value.substring(start, end);
 
   if (sel == '') {
-    var replace = '![kép címe](kép url-je)\n';
+    var replace = '![kép címe](kép url-je)';
   } else {
-    var replace = '![kép címe](' + sel + ')\n';
+    var replace = '![kép címe](' + sel + ')';
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
