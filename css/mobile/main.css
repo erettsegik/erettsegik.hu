@@ -1,50 +1,50 @@
 @media (max-width: 1000px) {
+
   body {
     font-size: 1em;
   }
 
+  div, section {
+    box-sizing: border-box;
+  }
+
   nav {
-    height: 10vh;
-    line-height: 10vh;
+    height: 8vh;
+    line-height: 8vh;
   }
 
   nav ul {
-    /* margin: ???; */
-    height: 10vh;
+    height: 8vh;
   }
 
   nav li {
-    height: 10vh;
+    height: 8vh;
   }
 
   nav li ul {
-    top: 10vh;
+    top: 8vh;
   }
 
   nav li:hover ul {
-    top: 10vh;
+    top: 8vh;
   }
 
   nav ul li {
-    height: 10vh;
+    height: 8vh;
   }
 
   nav ul a {
-    height: 10vh;
+    height: 8vh;
     padding: 0 2vh;
   }
 
-  .nav_sub {
-    font-size: 0.7em;
-  }
-
   .nav_sub ul li {
-    height: 7vh;
-    line-height: 7vh;
+    height: 6vh;
+    line-height: 6vh;
   }
 
   .nav_sub a {
-    height: 7vh;
+    height: 6vh;
   }
 
   #searchbox {
@@ -56,44 +56,44 @@
   }
 
   #wrapper {
-    margin: 10vh auto auto auto;
+    margin: 8vh auto auto auto;
     width: 100%;
-    box-sizing: border-box;
   }
 
   #location {
-    height: 2em;
-    line-height: 2em;
-    margin: 2vh auto;
-    padding-left: 1.5em;
-    width: 70vw;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px auto;
+    padding-left: 20px;
+    width: 100%;
     box-sizing: border-box;
   }
 
   #upload_button {
-    height: 2em;
-    line-height: 2em;
-    margin: 2vh auto;
-    padding-right: 1.5em;
-    width: 30vw;
-    box-sizing: border-box;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px auto;
+    padding-right: 20px;
+    width: 100%;
   }
 
   #main {
     border: 3px solid #d7d7d7;
-    padding: 1.5em;
+    padding: 20px;
     width: 100%;
-    box-sizing: border-box;
   }
 
   footer {
-    margin-bottom: 2vh;
-    margin-top: 2vh;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   blockquote {
-    border: 0px solid #d7d7d7;
     padding: 10px;
+  }
+
+  blockquote p {
+    margin: 0px;
   }
 
   input, select, textarea {
@@ -101,23 +101,22 @@
   }
 
   input {
-    width: 25vw;
+    width: 200px;
   }
 
   input.submit {
     border-radius: 3px;
     margin-top: 5px;
-    width: auto;
   }
 
   select {
-    width: 25vw;
+    width: 200px;
   }
 
   textarea {
-    height: 50vh;
+    height: 28vh;
     margin-top: 5px;
-    width: 90vw;
+    width: 100%;
   }
 
   .article-meta {
@@ -126,7 +125,7 @@
   }
 
   img {
-    max-width: 748px;
+    max-width: 100%;
   }
 
   hr {
@@ -137,8 +136,6 @@
 
   .horizontal-ad {
     width: 100%;
-    background-size: cover;
-    height: 12.4vw;
     margin: 10px auto;
   }
 
@@ -148,8 +145,9 @@
   }
 
   span.top-notice {
-    margin: 2vh auto;
-    padding: 2vh;
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -177,4 +175,5 @@
   span.notice:before {
     margin-right: 10px;
   }
+
 }

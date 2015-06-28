@@ -1,0 +1,43 @@
+@media (max-width: 1000px) {
+
+  #leftside {
+    border-right: 0px solid #dedede;
+    padding-right: 10px;
+    width: 100%;
+  }
+
+  #rightside {
+    padding: 9px;
+    width: 100%;
+  }
+
+  iframe.facebook {
+    margin: 10px auto;
+    width: 100%;
+  }
+
+  .event-container {
+    margin-top: 16px;
+  }
+
+  .event-container h4 {
+    margin: 0px;
+  }
+
+  .progress-container {
+    height: 5px;
+    margin: 5px 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  hr.progress-meter {
+    height: 5px;
+    margin: 0px;
+  }
+
+  #notes-container .article-meta {
+    margin: 4px 0px 12px 0px;
+  }
+
+}
