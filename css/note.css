@@ -11,12 +11,7 @@ em {
 p {
   line-height: 1.5;
   text-align: justify;
-  text-indent: 20px;
-}
-
-li p {
-  text-indent: 0px;
-  margin: 0px;
+  text-indent: 10px;
 }
 
 input.shorter {
@@ -63,6 +58,10 @@ div.g-recaptcha {
   float: left;
   padding-right: 10px;
   width: 788px;
+}
+
+#leftside img {
+  display: inline-block;
 }
 
 #rightside {
@@ -120,26 +119,6 @@ li.add-modification {
 
 #leftside ol a, #leftside ol a:visited, #preview-target ol a, #preview-target ol a:visited {
   color: #ee7600;
-}
-
-#leftside h2 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h3 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h4 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h5 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h6 {
-  font-family: 'Roboto', sans-serif;
 }
 
 .latex-container {
