@@ -36,6 +36,8 @@ var main = function() {
 
   renderLatexExpressions();
 
+  $('#leftside p:has(img)').addClass('img-wrapper');
+
   $("textarea[name='footnotes']").focusin(function(){
     $(this).height($(this).height() + 100);
   }).focusout(function(){

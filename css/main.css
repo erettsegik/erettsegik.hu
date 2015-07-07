@@ -275,6 +275,10 @@ textarea {
   margin: 16px auto;
 }
 
+.img-wrapper {
+  text-align: center;
+}
+
 img {
   max-width: 748px;
 }
