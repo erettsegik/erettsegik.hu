@@ -150,7 +150,7 @@ nav ul a:hover {
 
 #upload_button {
   display: inline;
-  float: left;
+  float: right;
   height: 30px;
   line-height: 30px;
   margin: 10px auto;
@@ -297,14 +297,11 @@ hr {
 }
 
 .horizontal-ad {
-  width: 728px;
-  height: 90px;
+  width: auto;
   margin: 10px auto;
 }
 
 .vertical-ad {
-  width: 160px;
-  height: 600px;
   margin: auto;
   text-align: center;
 }

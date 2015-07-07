@@ -65,7 +65,7 @@
     line-height: 30px;
     margin: 10px auto;
     padding-left: 20px;
-    width: 100%;
+    width: auto;
     box-sizing: border-box;
   }
 
@@ -74,7 +74,7 @@
     line-height: 30px;
     margin: 10px auto;
     padding-right: 20px;
-    width: 100%;
+    width: auto;
   }
 
   #main {
