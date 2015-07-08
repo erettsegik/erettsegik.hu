@@ -55,6 +55,20 @@ function searchRedirect(event, searchpage) {
 
 }
 
+function dropdownToggle() {
+
+  var menu = document.getElementById('main-menu');
+  var style = window.getComputedStyle(menu);
+  var display = style.getPropertyValue('display');
+
+  if (display == 'none') {
+    menu.style.display = 'block';
+  } else {
+    menu.style.display = 'none';
+  }
+
+}
+
 function preventLeaving() {
   window.onbeforeunload = function (e) {
     return "Nem mentett változtatásaid vannak az oldalon.";

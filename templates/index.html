@@ -5,6 +5,7 @@
   <meta charset='utf-8'>
   <meta name='description' content='Érettségi feladatsorok és kidolgozott tételek, melyeket bárki szerkeszthet.'>
   <meta name='robots' content='index, follow'>
+  <meta name='viewport' content='width=device-width'>
   <link rel='canonical' href='{{ index_var.canonical }}'>
   <link rel='stylesheet' type='text/css' href='/css/main.css'>
   <link rel='stylesheet' type='text/css' href='/css/mobile/main.css'>
@@ -28,10 +29,13 @@
 </head>
 <body>
   <nav class='nav_main'>
-    <form id='search_form' onsubmit='searchRedirect(event);'>
-      <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
-    </form>
-  <ul>
+  <div id='mobile-icons'>
+    <a href='/user_manage/'><img src='/img/key-128.png'></a><a href='/faq/'><img src='/img/faq.png'></a>
+  </div>
+  <form id='search_form' onsubmit='searchRedirect(event);'>
+    <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
+  </form>
+  <ul id='main-menu'>
     {% for subject in index_var.subjects %}
       <li><a href='/subjects/{{ subject.id }}/' class='nav_item'>{{ subject.name }}</a>
         <div class='nav_content'>
@@ -57,6 +61,9 @@
       <div>
     </li>
   </ul>
+  <div id='dropdown-toggle'>
+    <img src='/img/hamburger-100-2.png' onclick='dropdownToggle();'>
+  </div>
   </nav>
   <div id='wrapper'>
   <section id='location'>

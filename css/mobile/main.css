@@ -9,28 +9,33 @@
   }
 
   nav {
-    height: 8vh;
-    line-height: 8vh;
+    height: auto;
   }
 
   nav ul {
-    height: 8vh;
+    height: auto;
+    line-height: 8vh;
+    display: block;
   }
 
   nav li {
-    height: 8vh;
+    height: auto;
+    display: block;
   }
 
   nav li ul {
     top: 8vh;
+    position: static;
   }
 
   nav li:hover ul {
     top: 8vh;
+    display: none;
   }
 
   nav ul li {
     height: 8vh;
+    display: block;
   }
 
   nav ul a {
@@ -47,12 +52,42 @@
     height: 6vh;
   }
 
+  #mobile-icons {
+    display: block;
+  }
+
+  #mobile-icons img {
+    height: 6vh;
+    padding: 1vh;
+  }
+
   #searchbox {
     border-width: 2px;
     height: 15px;
     margin-top: 17px;
     padding: 0px 0px 0px 17px;
     width: 103px;
+  }
+
+  #main-menu {
+    display: none;
+    margin-top: 8vh;
+  }
+
+  #dropdown-toggle {
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    height: auto;
+    line-height: normal;
+  }
+
+  #dropdown-toggle img {
+    width: 6vh;
   }
 
   #wrapper {

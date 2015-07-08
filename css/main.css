@@ -48,7 +48,7 @@ nav li ul {
   position: absolute;
   text-align: left;
   top: 50px;
-  visibility: hidden;
+  display: none;
 }
 
 nav li ul li {
@@ -62,7 +62,7 @@ nav li:hover {
 
 nav li:hover ul {
   top: 50px;
-  visibility: visible;
+  display: block;
 }
 
 nav li ul li a {
@@ -111,6 +111,10 @@ nav ul a:hover {
   padding: 0;
 }
 
+#mobile-icons {
+  display: none;
+}
+
 #search_form {
   display: inline;
 }
@@ -129,6 +133,10 @@ nav ul a:hover {
   padding: 0px 0px 0px 17px;
   position: fixed;
   width: 103px;
+}
+
+#dropdown-toggle {
+  display: none;
 }
 
 #wrapper {
