@@ -2,12 +2,7 @@
     "require": {
         "twig/twig": ">=1.15",
         "aptoma/twig-markdown": ">=1.1",
-        "league/commonmark": ">=0.5",
-        "google/recaptcha": ">=1.1"
-    },
-    "extra": {
-        "heroku": {
-            "newrelic": true
-        }
+        "google/recaptcha": ">=1.1",
+        "knplabs/github-api": "~1.4"
     }
 }

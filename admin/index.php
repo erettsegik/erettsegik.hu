@@ -23,7 +23,7 @@ foreach ($filters as $filter) {
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
-$engine = new MarkdownEngine\PHPLeagueCommonMarkEngine();
+$engine = new MarkdownEngine\GitHubMarkdownEngine('aptoma/twig-markdown', true, '/tmp/markdown-cache');
 
 $twig->addExtension(new MarkdownExtension($engine));
 
