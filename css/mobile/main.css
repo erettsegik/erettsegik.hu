@@ -112,24 +112,20 @@
   }
 
   #location {
-    height: 30px;
-    line-height: 30px;
+    height: auto;
+    line-height: 1.5em;
     margin: 10px auto;
-    padding-left: 20px;
+    padding: 0 20px;
     width: auto;
     box-sizing: border-box;
   }
 
   #upload_button {
-    height: 30px;
-    line-height: 30px;
-    margin: 10px auto;
-    padding-right: 20px;
-    width: auto;
+    display: none;
   }
 
   #main {
-    border: 3px solid #d7d7d7;
+    border: 0px solid #d7d7d7;
     padding: 20px;
     width: 100%;
   }
@@ -185,45 +181,35 @@
     width: 98%;
   }
 
-  .horizontal-ad {
-    width: 100%;
-    margin: 10px auto;
-  }
-
-  .vertical-ad {
-    width: 160px;
-    height: 600px;
-  }
-
-  span.top-notice {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 100%;
+  .top-notice {
     box-sizing: border-box;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: auto;
   }
 
-  span.success {
+  .success {
     border: 2px solid #009900;
   }
 
-  span.success:before {
+  .success:before {
     margin-right: 10px;
   }
 
-  span.error {
+  .error {
     border: 2px solid #990000;
   }
 
-  span.error:before {
+  .error:before {
     margin-right: 10px;
   }
 
-  span.notice {
+  .notice {
     border: 2px solid #ffb938;
   }
 
-  span.notice:before {
+  .notice:before {
     margin-right: 10px;
   }
 

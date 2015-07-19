@@ -23,7 +23,7 @@
 </nav>
 
 {% if status == 'error' or status == 'success' or status == 'notice' %}
-<span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
+<div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
 {% endif %}
 
 <div id='main'>

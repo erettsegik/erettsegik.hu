@@ -78,7 +78,7 @@
   <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
   <br style='clear: both;'>
   {% if status == 'error' or status == 'success' or status == 'notice' %}
-  <span class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</span>
+  <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
   {% endif %}
   <section id='main'>
     {% block content %}

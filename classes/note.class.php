@@ -97,7 +97,7 @@ class note {
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die($config['errors']['database']);
+      die($config['errors']['database'] . $e->getMessage());
     }
 
   }
