@@ -30,11 +30,14 @@
 <body>
   <nav class='nav_main'>
   <div id='mobile-icons'>
-    <a href='/user_manage/'><img src='/img/key-128.png'></a><a href='/faq/'><img src='/img/faq.png'></a>
+    <a href='/user_manage/'><img src='/img/key-128.png'></a><a href='/faq/'><img src='/img/faq.png'></a><a href='/search/'><img src='/img/search.png'></a>
   </div>
   <form id='search_form' onsubmit='searchRedirect(event);'>
     <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
   </form>
+  <div id='dropdown-toggle'>
+    <img src='/img/hamburger-100-2.png' onclick='dropdownToggle();'>
+  </div>
   <ul id='main-menu'>
     {% for subject in index_var.subjects %}
       <li><a href='/subjects/{{ subject.id }}/' class='nav_item'>{{ subject.name }}</a>
@@ -61,9 +64,7 @@
       <div>
     </li>
   </ul>
-  <div id='dropdown-toggle'>
-    <img src='/img/hamburger-100-2.png' onclick='dropdownToggle();'>
-  </div>
+  <br style='clear: both;'>
   </nav>
   <div id='wrapper'>
   <section id='location'>

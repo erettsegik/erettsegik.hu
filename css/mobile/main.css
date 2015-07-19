@@ -10,6 +10,7 @@
 
   nav {
     height: auto;
+    box-sizing: border-box;
   }
 
   nav ul {
@@ -53,7 +54,10 @@
   }
 
   #mobile-icons {
-    display: block;
+    display: inline;
+    float: left;
+    width: auto;
+    text-align: left;
   }
 
   #mobile-icons img {
@@ -61,12 +65,17 @@
     padding: 1vh;
   }
 
+  #search_form {
+    display: none;
+  }
+
   #searchbox {
     border-width: 2px;
     height: 15px;
-    margin-top: 17px;
+    margin: auto;
     padding: 0px 0px 0px 17px;
     width: 103px;
+    display: inline;
   }
 
   #main-menu {
@@ -76,12 +85,9 @@
 
   #dropdown-toggle {
     display: block;
-    position: absolute;
-    top: 2px;
-    right: 2px;
+    float: right;
     margin: 0;
     padding: 0;
-    vertical-align: top;
     height: auto;
     line-height: normal;
   }
@@ -93,6 +99,7 @@
   #wrapper {
     margin: 8vh auto auto auto;
     width: 100%;
+    box-sizing: border-box;
   }
 
   #location {

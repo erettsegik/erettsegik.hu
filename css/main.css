@@ -16,7 +16,6 @@ nav {
   color: #dedede;
   font-size: 1.5em;
   height: 50px;
-  line-height: 50px;
   margin: 0px;
   padding: 0px;
   position: fixed;
@@ -36,6 +35,7 @@ nav ul {
   margin: 0px 0px 0px 133px;
   padding: 0px 120px 0px 0px;
   height: 50px;
+  line-height: 50px;
 }
 
 nav li {
