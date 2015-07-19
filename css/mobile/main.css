@@ -22,6 +22,7 @@
   nav li {
     height: auto;
     display: block;
+    padding: 0.5vh 0;
   }
 
   nav li ul {
@@ -58,6 +59,9 @@
     float: left;
     width: auto;
     text-align: left;
+    margin: 0;
+    padding: 0;
+    height: 8vh;
   }
 
   #mobile-icons img {
@@ -80,20 +84,25 @@
 
   #main-menu {
     display: none;
-    margin-top: 8vh;
+    margin: 8vh 0 0 0;
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid #35586e;
   }
 
   #dropdown-toggle {
-    display: block;
+    display: inline;
     float: right;
     margin: 0;
     padding: 0;
-    height: auto;
+    height: 8vh;
+    text-align: right;
     line-height: normal;
   }
 
   #dropdown-toggle img {
-    width: 6vh;
+    height: 6vh;
+    padding: 1vh;
   }
 
   #wrapper {
