@@ -3,6 +3,7 @@
         "twig/twig": ">=1.15",
         "aptoma/twig-markdown": ">=1.1",
         "google/recaptcha": ">=1.1",
-        "knplabs/github-api": "~1.4"
+        "knplabs/github-api": "~1.4",
+        "ext-mbstring": "*"
     }
 }
