@@ -98,6 +98,7 @@
     height: 8vh;
     text-align: right;
     line-height: normal;
+    cursor: pointer;
   }
 
   #dropdown-toggle img {
