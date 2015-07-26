@@ -1,5 +1,9 @@
 @media (max-width: 1000px) {
 
+  h1 {
+    text-align: center;
+  }
+
   p {
     line-height: 1.5;
     text-align: justify;
@@ -54,12 +58,18 @@
     display: block;
     padding-right: 10px;
     width: 100%;
+    text-align: left;
   }
 
   #rightside {
     display: block;
     padding: 0px 10px 10px 10px;
     width: 100%;
+  }
+
+  #rightside ul {
+    list-style-position: inside;
+    padding: 0;
   }
 
   #rightside-buttons {

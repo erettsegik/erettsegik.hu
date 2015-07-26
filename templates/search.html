@@ -2,8 +2,6 @@
 
 {% block content %}
 
-<h1>Keresés</h1>
-
 <form onsubmit='searchRedirect(event, "main");'>
   <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required>
   <input type='submit' class='submit' value='Keresés'>

@@ -4,7 +4,7 @@
 
 {% if action == 'add' %}
 
-  <h1>Új javaslat hozzáadása a következő jegyzethez: {{ note.title }}</h1>
+  <h1>{{ note.title }}</h1>
 
   <form action='/modification/add/{{ note.id }}/' method='post'>
   Javaslat címe: <input type='text' name='title' class='form-element' value='{{ saved.title }}' required><br>

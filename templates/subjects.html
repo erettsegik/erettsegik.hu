@@ -4,8 +4,6 @@
 
 {% if mode == 'all' %}
 
-  <h1>Összes tárgy</h1>
-
   <ul id='subject_menu'>
 
   {% for subject in allsubjects %}
@@ -22,7 +20,6 @@
 
 {% else %}
 
-  <h1>{{ subject.name }}</h1>
   {% for category in categories %}
     <a class='anchor' id='{{ category.name }}'></a>
     <h2>{{ category.name }}</h2>
