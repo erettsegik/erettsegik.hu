@@ -5,4 +5,13 @@
     padding: 0;
   }
 
+  #subject_menu {
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+    column-count: 1;
+    column-gap: 0px;
+  }
+
 }

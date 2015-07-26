@@ -60,6 +60,10 @@ div.g-recaptcha {
   width: 788px;
 }
 
+#leftside h2 {
+  margin: auto;
+}
+
 #leftside img {
   display: inline-block;
   margin: auto;
