@@ -21,12 +21,12 @@ nav ul {
   width: 230px;
 }
 
-iframe.facebook {
-  background-color: transparent;
-  border-width: 0;
-  margin: 10px auto;
-  overflow: hidden;
-  width: 230px;
+#events-container, #notes-container {
+  border-bottom: 2px solid #dedede;
+}
+
+#notes-container, .fb-page {
+  margin-top: 12px;
 }
 
 .event-container {
