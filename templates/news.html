@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% spaceless %}
+
 <div id='leftside'>
 <section>
 
@@ -13,10 +15,6 @@
 
   {% if new.updatedate %}
     <br>Legutóbb frissítve: {{ new.updatedate }}
-  {% endif %}
-
-  {% if not loop.last %}
-    <hr>
   {% endif %}
 
   </div>
@@ -80,5 +78,7 @@
   js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+{% endspaceless %}
 
 {% endblock %}

@@ -14,6 +14,10 @@ nav ul {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.article-meta {
+  margin-bottom: 24px;
+}
+
 #rightside {
   display: inline;
   float: left;
