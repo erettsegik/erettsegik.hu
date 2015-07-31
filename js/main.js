@@ -45,6 +45,23 @@ var main = function() {
   });
 };
 
+$(document).ready(function(){
+
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      $('#go-top-desktop').fadeIn();
+    } else {
+      $('#go-top-desktop').fadeOut();
+    }
+  });
+
+  $('#go-top-desktop').click(function(){
+    $('html, body').animate({scrollTop : 0}, 800);
+    return false;
+  });
+
+});
+
 function searchRedirect(event, searchpage) {
 
   var term = (arguments.length == 2) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;

@@ -390,3 +390,21 @@ hr {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+#go-top-desktop {
+  box-sizing: border-box;
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+  padding-left: 35px;
+  position: fixed;
+  bottom: 50px;
+  right: 0px;
+  display: none;
+  background-size: contain;
+  background-image: url('/img/go_top.png');
+  background-repeat: no-repeat;
+  align-items: center;
+  background-color: #123952;
+  color: #dedede;
+}

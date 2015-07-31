@@ -215,4 +215,8 @@
     margin-right: 10px;
   }
 
+  #go-top-desktop {
+    z-index: -1;
+  }
+
 }
