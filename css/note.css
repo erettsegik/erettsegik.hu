@@ -60,6 +60,16 @@ div.g-recaptcha {
   width: 788px;
 }
 
+#leftside h1 {
+  display: inline;
+}
+
+#collection-form {
+  display: inline;
+  line-height: 2em;
+  margin-left: 20px;
+}
+
 #leftside h2 {
   margin: auto;
 }
@@ -144,6 +154,23 @@ h1.preview {
   margin: 2px 0 0 0;
   padding: 0;
   text-indent: 0;
+}
+
+.collection-add {
+  background: url('/img/collection_empty.png') no-repeat;
+}
+
+.collection-remove {
+  background: url('/img/collection_full.png') no-repeat;
+}
+
+.collection-button {
+  display: inline;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  background-size: contain;
+  border: none;
 }
 
 /*

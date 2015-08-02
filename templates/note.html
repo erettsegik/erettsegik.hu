@@ -6,6 +6,11 @@
 
   <div id='leftside'>
     <h1>{{ note.title }}</h1>
+    {% if incollection != -1 %}
+    <form action='/note/{{ note.id }}/' method='post' id='collection-form'>
+      <input type='submit' name='collection' class='collection-button {% if incollection %}collection-remove{% else %}collection-add{% endif %}' value='' title='{% if incollection %}Gyűjteményből kivétel{% else %}Gyűjteményhez hozzáadás{% endif %}'>
+    </form>
+    {% endif %}
     {% include 'note_text.html' %}
     <div id='footnotes'>
       <p>Legutóbb frissítve: {{ note.updatedate }}</p>

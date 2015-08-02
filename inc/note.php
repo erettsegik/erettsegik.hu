@@ -110,6 +110,65 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   }
 
+  $inCollection = -1;
+
+  if (isset($_SESSION['userid'])) {
+
+    try {
+
+      $checkCollection = $con->prepare('select id from collections where noteid = :noteid and userid = :userid');
+      $checkCollection->bindValue('noteid', $_GET['id'], PDO::PARAM_INT);
+      $checkCollection->bindValue('userid', $_SESSION['userid'], PDO::PARAM_INT);
+      $checkCollection->execute();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
+
+    if ($checkCollection->rowCount() == 1) {
+      $inCollection = 1;
+    } else {
+      $inCollection = 0;
+    }
+
+  }
+
+  if (isset($_POST['collection']) && isset($_SESSION['userid']) && isValid('note', $_GET['id'])) {
+
+    if ($inCollection) {
+
+      try {
+
+        $remove = $con->prepare('delete from collections where noteid = :noteid and userid = :userid');
+        $remove->bindValue('noteid', $_GET['id'], PDO::PARAM_INT);
+        $remove->bindValue('userid', $_SESSION['userid'], PDO::PARAM_INT);
+        $remove->execute();
+
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
+
+      $inCollection = 0;
+
+    } else {
+
+      try {
+
+        $add = $con->prepare('insert into collections values(DEFAULT, :userid, :noteid, 0)');
+        $add->bindValue('noteid', $_GET['id'], PDO::PARAM_INT);
+        $add->bindValue('userid', $_SESSION['userid'], PDO::PARAM_INT);
+        $add->execute();
+
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
+
+      $inCollection = 1;
+
+    }
+
+  }
+
   $note = new note($_GET['id']);
 
   $subject = new subject($note->getData()['subjectid']);
@@ -182,6 +241,7 @@ echo $twig->render(
     'production'    => getenv('production') !== false,
     'saved'         => isset($saved) ? $saved : null,
     'status'        => $status,
-    'subjects'      => isset($subjects) ? $subjects : null
+    'subjects'      => isset($subjects) ? $subjects : null,
+    'incollection'  => isset($inCollection) ? $inCollection : null,
   )
 );

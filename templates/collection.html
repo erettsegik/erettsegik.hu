@@ -11,8 +11,9 @@
   {% else %}
 
     {% for note in notes %}
-
-      {{ note.title }}
+      <ul>
+        <li><a href='/note/{{ note.id }}'>{{ note.title }}</a> {{ note.learned }}</li>
+      </ul>
 
     {% endfor %}
 

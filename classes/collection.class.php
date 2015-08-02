@@ -1,6 +1,6 @@
 <?php
 
-class category {
+class collection {
 
   protected $id   = null;
   protected $userid = null;

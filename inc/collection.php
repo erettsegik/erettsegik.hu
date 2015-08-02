@@ -1,5 +1,8 @@
 <?php
 
+require_once 'classes/collection.class.php';
+require_once 'classes/note.class.php';
+
 $index_var['location'][] = array('url' => '/collection/', 'name' => 'Gyűjteményem');
 
 $index_var['title'] = 'Gyűjteményem';
