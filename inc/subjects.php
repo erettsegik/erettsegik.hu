@@ -86,10 +86,8 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
 
 }
 
-$rendertarget = $_SESSION['mobile'] ? 'mobile/subjects.html' : 'subjects.html';
-
 echo $twig->render(
-  $rendertarget,
+  'subjects.html',
   array(
     'allsubjects' => isset($allsubjects) ? $allsubjects : null,
     'categories'  => isset($categories) ? $categories :  null,

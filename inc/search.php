@@ -99,10 +99,8 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
 
 }
 
-$rendertarget = $_SESSION['mobile'] ? 'mobile/search.html' : 'search.html';
-
 echo $twig->render(
-  $rendertarget,
+  'search.html',
   array(
     'index_var'   => $index_var,
     'message'     => $message,

@@ -15,13 +15,13 @@ Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem('templates');
 
 $filters = Array(
-    new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
+  new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
 );
 
 $twig = new Twig_Environment($loader);
 
 foreach ($filters as $filter) {
-    $twig->addFilter($filter);
+  $twig->addFilter($filter);
 }
 
 use Aptoma\Twig\Extension\MarkdownExtension;
@@ -32,12 +32,6 @@ $engine = new MarkdownEngine\GitHubMarkdownEngine('aptoma/twig-markdown', true, 
 $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
-
-if (isset($_GET['mobile'])) {
-  $_SESSION['mobile'] = true;
-} else if (!isset($_SESSION['mobile']) || isset($_GET['desktop'])) {
-  $_SESSION['mobile'] = false;
-}
 
 try {
 
