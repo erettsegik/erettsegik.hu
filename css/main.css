@@ -153,10 +153,10 @@ nav ul a:hover {
   padding-left: 20px;
   text-align: left;
   vertical-align: middle;
-  width: 866px;
+  width: 806px;
 }
 
-#upload_button {
+#desktop-buttons {
   display: inline;
   float: right;
   height: 30px;
@@ -164,7 +164,12 @@ nav ul a:hover {
   margin: 10px auto;
   padding-right: 20px;
   vertical-align: middle;
-  width: 140px;
+  width: 200px;
+}
+
+#desktop-buttons img {
+  width: 30px;
+  padding: 0 5px;
 }
 
 #main {

@@ -30,13 +30,13 @@
 <body>
   <nav class='nav_main'>
   <div id='mobile-icons'>
-    <a href='/user_manage/'><img src='/img/login.png'></a><a href='/faq/'><img src='/img/faq.png'></a><a href='/search/'><img src='/img/search.png'></a><a href='/note/add/'><img src='/img/note-add.png'></a><a href='#top'><img src='/img/go_top.png'></a>
+    <a href='/user_manage/'><img src='/img/login.png' alt='Bejelentkezés' title='Bejelentkezés'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/search/'><img src='/img/search.png' alt='Keresés' title='Keresés'></a><a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='#top'><img src='/img/go_top.png' alt='Oldal tetejére' title='Oldal tetejére'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
   </div>
   <form id='search_form' onsubmit='searchRedirect(event);'>
     <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
   </form>
   <div id='dropdown-toggle'>
-    <img src='/img/menu.png'>
+    <img src='/img/menu.png' alt='Menü' title='Menü'>
   </div>
   <ul id='main-menu'>
     {% for subject in index_var.subjects %}
@@ -75,7 +75,9 @@
       {% endif %}
     {% endfor %}
   </section>
-  <div id='upload_button'><a href='/note/add/'>Jegyzet beküldése</a></div>
+  <div id='desktop-buttons'>
+    <a href='/user_manage/'><img src='/img/login.png' alt='Bejelentkezés' title='Bejelentkezés'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
+  </div>
   <br style='clear: both;'>
   {% if status == 'error' or status == 'success' or status == 'notice' %}
   <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
@@ -97,10 +99,7 @@
     </script>
   </div>
   <footer>
-    <a href='/feedback/'>visszajelzés</a> |
-    <a href='/user_manage/'> {% if index_var.username == '' %} tanári bejelentkezés {% else %} felhasználói oldal {% endif %} </a>
-    | <a href='/about/'>rólunk</a>
-    | <a href='/faq/'>GYIK</a>
+    &copy; 2015 erettsegik.hu
   </footer>
   </div>
   <a href='#top' id='go-top-desktop'>Vissza a tetejére</a>

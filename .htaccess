@@ -22,8 +22,8 @@ RewriteRule ^search\/([^\/\.]+)\/?$ \/index.php?p=search&term=$1 [L]
 # /note/add/ -> /?p=note&action=add
 RewriteRule ^note\/add\/?$ \/index.php?p=note&action=add [L]
 
-# /modification/add/5/ -> /?p=modification&action=add&tid=5
-RewriteRule ^modification\/add\/([^\/\.]+)\/?$ \/index.php?p=modification&action=add&tid=$1 [L]
+# /modification/add/5/ -> /?p=modification&action=add&id=5
+RewriteRule ^modification\/add\/([^\/\.]+)\/?$ \/index.php?p=modification&action=add&id=$1 [L]
 
 # /user_manage/xy -> /?p=user_manage&action=xy
 RewriteRule ^user_manage\/([^\/\.]+)\/?$ \/index.php?p=user_manage&action=$1 [L]
