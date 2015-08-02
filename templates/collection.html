@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% if mode == 'list' %}
+
+  {% if notes is empty %}
+
+    Még egy jegyzet sincs a gyűjteményedben. Adj hozzá egyet a jegyzet címe melletti gomb megnyomásával!
+
+  {% else %}
+
+    {% for note in notes %}
+
+      {{ note.title }}
+
+    {% endfor %}
+
+  {% endif %}
+
+{% else %}
+
+  Gyűjteményt bejelentkezés után hozhatsz létre, ezzel könnyebbé téve azt, hogy csak azokat a jegyzeteket lásd, amikre tényleg kíváncsi vagy.
+
+{% endif %}
+
+{% endblock %}
