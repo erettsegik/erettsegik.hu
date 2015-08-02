@@ -11,6 +11,8 @@
   <link rel='stylesheet' type='text/css' href='/css/mobile/main.css'>
   {% if index_var.css != '' %}
     <link rel='stylesheet' type='text/css' href='/css/{{ index_var.css }}.css'>
+  {% endif %}
+  {% if index_var.mobilecss != '' %}
     <link rel='stylesheet' type='text/css' href='/css/mobile/{{ index_var.css }}.css'>
   {% endif %}
   <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon'>

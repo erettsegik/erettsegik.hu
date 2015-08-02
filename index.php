@@ -104,6 +104,7 @@ if (isset($_SESSION['userid'])) {
 $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 
 $index_var['css'] = '';
+$index_var['mobilecss'] = '';
 
 $index_var['canonical'] = getCanonicalUrl();
 
@@ -128,6 +129,12 @@ if (isset($_GET['p'])) {
   if (file_exists('css/' . $p . '.css')) {
 
     $index_var['css'] = $p;
+
+  }
+
+  if (file_exists('css/mobile/' . $p . '.css')) {
+
+    $index_var['mobilecss'] = $p;
 
   }
 
