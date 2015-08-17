@@ -152,6 +152,7 @@ if (isset($_GET['p'])) {
 } else {
 
   $index_var['css'] = 'news';
+  $index_var['mobilecss'] = 'news';
 
   require_once 'inc/news.php';
 

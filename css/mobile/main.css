@@ -217,6 +217,7 @@
 
   #go-top-desktop {
     z-index: -1;
+    visibility: hidden;
   }
 
 }
