@@ -131,7 +131,7 @@ echo $twig->render(
     'message'      => $message,
     'modification' => isset($modification) ? $modification->getData() : null,
     'note'         => $note->getData(),
-    'production'   => getenv('production') !== false,
+    'production'   => $config['production'] !== false,
     'saved'        => isset($saved) ? $saved : null,
     'status'       => $status
   )

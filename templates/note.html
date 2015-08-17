@@ -16,7 +16,13 @@
       <p>Legutóbb frissítve: {{ note.updatedate }}</p>
       {{ note.footnotes | markdown }}
     </div>
-
+    {% if incollection %}
+    <form action='/note/{{ note.id }}/' method='post'>
+      <input type='checkbox' name='learned' {% if learned %} checked {% endif %}>
+      <label for='learned'>Megtanultam</label>
+      <input type='submit' name='learned-submit'>
+    </form>
+    {% endif %}
     </div>
     <div id='rightside'>
     <h2>Javaslatok</h2>
