@@ -265,7 +265,7 @@ echo $twig->render(
     'mode'          => isset($mode) ? $mode : null,
     'modifications' => isset($modifications) ? $modifications : null,
     'note'          => isset($note) ? $note->getData() : null,
-    'production'    => $config['production'] !== false,
+    'production'    => isset($config['production']) && $config['production'] === 1,
     'saved'         => isset($saved) ? $saved : null,
     'status'        => $status,
     'subjects'      => isset($subjects) ? $subjects : null,
