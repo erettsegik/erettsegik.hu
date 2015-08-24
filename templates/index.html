@@ -30,42 +30,36 @@
 <title>{{ index_var.title }} - erettsegik.hu</title>
 </head>
 <body>
-  <nav class='nav_main'>
+  <nav>
   <div id='mobile-icons'>
     <a href='/user_manage/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/search/'><img src='/img/search.png' alt='Keresés' title='Keresés'></a><a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
   </div>
-  <form id='search_form' onsubmit='searchRedirect(event);'>
+  <form id='search-form' onsubmit='searchRedirect(event);'>
     <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
   </form>
   <div id='dropdown-toggle'>
     <img src='/img/menu.png' alt='Menü' title='Menü'>
   </div>
-  <ul id='main-menu'>
+  <div id='menu-wrapper'>
+  <ul>
     {% for subject in index_var.subjects %}
-      <li><a href='/subjects/{{ subject.id }}/' class='nav_item'>{{ subject.name }}</a>
-        <div class='nav_content'>
-          <div class='nav_sub'>
-            <ul>
-            {% for category in subject.categories %}
-              <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
-            {% endfor %}
-            </ul>
-          </div>
-        </div>
+      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+        <ul>
+        {% for category in subject.categories %}
+          <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+        {% endfor %}
+        </ul>
       </li>
     {% endfor %}
-    <li class='unique'><a href='/subjects/' class='unique nav_item'>Összes tárgy</a>
-      <div class='nav_content'>
-        <div class='nav_sub'>
-            <ul>
-            {% for subject in index_var.othersubjects %}
-              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
-      <div>
+    <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
+      <ul>
+      {% for subject in index_var.othersubjects %}
+        <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+      {% endfor %}
+      </ul>
     </li>
   </ul>
+  </div>
   </nav>
   <div id='wrapper'>
   <section id='location'>

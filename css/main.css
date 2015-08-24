@@ -29,49 +29,22 @@ nav a, nav a:visited {
   color: #dedede;
 }
 
-nav ul {
-  display: inline-block;
-  list-style-type: none;
-  margin: 0px 0px 0px 133px;
-  padding: 0px 120px 0px 0px;
-  height: 50px;
-  line-height: 50px;
-}
-
-nav li {
-  position: relative;
-  display: inline-block;
-  height: 50px;
-}
-
-nav li ul {
-  position: absolute;
-  text-align: left;
-  top: 50px;
-  display: none;
-}
-
-nav li ul li {
-  position: relative;
-  float: left;
-}
-
-nav li:hover {
+nav a:hover {
   background-color: #688292;
 }
 
-nav li:hover ul {
-  top: 50px;
-  display: block;
-}
-
-nav li ul li a {
-  background-color: #123952;
-}
-
-nav ul li {
+#menu-wrapper {
   display: inline-block;
   height: 50px;
+  line-height: 50px;
+  margin: 0px 0px 0px 133px;
+  padding: 0px 120px 0px 0px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul a {
@@ -80,49 +53,64 @@ nav ul a {
   padding: 0 10px;
 }
 
-nav ul a:hover {
+nav ul li {
+  display: inline-block;
+  height: 50px;
+  position: relative;
+}
+
+nav ul li:hover {
   background-color: #688292;
 }
 
-.nav_sub {
+nav ul li:hover ul {
+  display: block;
+  top: 50px;
+}
+
+nav ul li ul {
+  display: none;
   font-size: 0.7em;
-}
-
-.nav_sub ul {
-  margin-left: 0;
   left: 0;
+  margin-left: 0;
   padding: 0px;
+  position: absolute;
+  text-align: left;
+  top: 50px;
   width: 100%;
 }
 
-.nav_sub ul li {
-  padding: 0;
-  width: 100%;
-  overflow: hidden;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-}
-
-.nav_sub a {
-  width: 100%;
+nav ul li ul a {
+  background-color: #123952;
   box-sizing: border-box;
   height: 35px;
   padding: 0;
+  width: 100%;
+}
+
+nav ul li ul li {
+  float: left;
+  height: 35px;
+  line-height: 35px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
 }
 
 #mobile-icons {
   display: none;
 }
 
-#search_form {
+#search-form {
   display: inline;
 }
 
 #searchbox {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
-  background-image: url('/img/search_background.png');
+  background-image: url('/img/search-background.png');
   background-repeat: no-repeat;
   border-color: #688292;
   border-width: 2px;
@@ -302,14 +290,6 @@ hr {
   width: 98%;
 }
 
-.form-element:valid {
-  background-color: #f0fff0;
-}
-
-.form-element:invalid {
-  background-color: #fff0f0;
-}
-
 .anchor {
   display: block;
   position: relative;
@@ -347,7 +327,7 @@ hr {
 }
 
 .success:before {
-  content: url('/img/check_mark.png');
+  content: url('/img/check-mark.png');
   margin-right: 10px;
 }
 
@@ -357,7 +337,7 @@ hr {
 }
 
 .error:before {
-  content: url('/img/x_mark.png');
+  content: url('/img/x-mark.png');
   margin-right: 10px;
 }
 
@@ -367,7 +347,7 @@ hr {
 }
 
 .notice:before {
-  content: url('/img/exclamation_mark.png');
+  content: url('/img/exclamation-mark.png');
   margin-right: 10px;
 }
 
@@ -397,19 +377,19 @@ hr {
 }
 
 #go-top-desktop {
+  align-items: center;
+  background-color: #123952;
+  background-image: url('/img/page-up.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: 50px;
   box-sizing: border-box;
-  width: 150px;
+  color: #dedede;
+  display: none;
   height: 35px;
   line-height: 35px;
   padding-left: 35px;
   position: fixed;
-  bottom: 50px;
   right: 0px;
-  display: none;
-  background-size: contain;
-  background-image: url('/img/page-up.png');
-  background-repeat: no-repeat;
-  align-items: center;
-  background-color: #123952;
-  color: #dedede;
+  width: 150px;
 }

@@ -29,7 +29,7 @@
     <ul class='modifications-list'>
 
     {% for modification in modifications %}
-        <li class='status_{{ modification.status }}'>
+        <li class='status-{{ modification.status }}'>
           <a href='/modification/{{ modification.id }}/' title='{{ modification.comment }}'>{{ modification.title }}</a>
         </li>
     {% endfor %}
