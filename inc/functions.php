@@ -131,7 +131,6 @@ function isValid($type, $id) {
 
 function prepareText($text) {
 
-  $text = trim($text);
   return $text;
 
 }
