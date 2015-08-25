@@ -18,6 +18,12 @@ nav ul {
   margin-bottom: 24px;
 }
 
+#news-pages {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.3em;
+}
+
 #rightside {
   display: inline;
   float: left;

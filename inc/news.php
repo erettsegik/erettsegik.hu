@@ -11,20 +11,51 @@ $index_var['location'][] = array('url' => '/news/', 'name' => 'Hírek');
 
 $index_var['title'] = 'Hírek';
 
+if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] < 1) {
+
+    $page = 1;
+
+} else {
+
+    $page = $_GET['page'];
+
+}
+
+$starting = ($page - 1) * 3;
+
 $news = array();
 
 try {
 
-  $getNewsData = $con->query('
+  $getNewsData = $con->prepare('
     select id
     from news
     where live = 1
     order by date desc
+    limit :starting, 3
   ');
+  $getNewsData->bindValue('starting', $starting, PDO::PARAM_INT);
+  $getNewsData->execute();
 
 } catch (PDOException $e) {
   die($config['errors']['database']);
 }
+
+try {
+
+  $liveNewsCount = $con->query('select id from news where live = 1')->rowCount();
+
+} catch (PDOException $e) {
+  die($config['errors']['database']);
+}
+
+if (($getNewsData->rowCount() == 0) && ($liveNewsCount != 0)) {
+
+  header('Location: /news/');
+
+}
+
+$pageCount = ceil($liveNewsCount / 3);
 
 while ($newsData = $getNewsData->fetch()) {
 
@@ -127,6 +158,8 @@ echo $twig->render(
     'index_var'       => $index_var,
     'message'         => $message,
     'news'            => $news,
+    'page'            => $page,
+    'pagecount'       => $pageCount,
     'recentnotes'     => $recentNotes,
     'status'          => $status,
     'upcoming_events' => $upcoming_events

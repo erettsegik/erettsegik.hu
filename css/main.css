@@ -127,6 +127,10 @@ nav ul li ul li {
   display: none;
 }
 
+#more-mobile-icons {
+  display: none;
+}
+
 #wrapper {
   margin: 50px auto auto auto;
   width: 1046px;

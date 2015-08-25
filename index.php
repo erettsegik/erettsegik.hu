@@ -28,7 +28,6 @@ use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
 $engine = new MarkdownEngine\GitHubMarkdownEngine('aptoma/twig-markdown', true, '/tmp/markdown-cache');
-
 $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
