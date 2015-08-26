@@ -70,13 +70,19 @@ div.g-recaptcha {
   margin-left: 20px;
 }
 
-#leftside h2 {
-  margin: auto;
-}
-
 #leftside img {
   display: inline-block;
   margin: auto;
+}
+
+#learned-form {
+  padding: 20px;
+  font-size: 1.3em;
+}
+
+#learned-form input {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 #rightside {

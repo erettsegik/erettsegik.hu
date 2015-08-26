@@ -17,10 +17,10 @@
       {{ note.footnotes | markdown }}
     </div>
     {% if incollection == 1 %}
-    <form action='/note/{{ note.id }}/' method='post'>
-      <input type='checkbox' name='learned' {% if learned %} checked {% endif %}>
+    <form action='/note/{{ note.id }}/' method='post' id='learned-form'>
+      <input type='hidden' value='off' name='learned'>
+      <input type='checkbox' onchange='$("#learned-form").submit();' name='learned' {% if learned %} checked {% endif %}>
       <label for='learned'>Megtanultam</label>
-      <input type='submit' name='learned-submit'>
     </form>
     {% endif %}
     </div>

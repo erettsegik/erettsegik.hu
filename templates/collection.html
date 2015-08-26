@@ -10,12 +10,11 @@
 
   {% else %}
 
+    <ul>
     {% for note in notes %}
-      <ul>
-        <li><a href='/note/{{ note.id }}'>{{ note.title }}</a> {{ note.learned }}</li>
-      </ul>
-
+      <li><a href='/note/{{ note.id }}'>{{ note.title }}</a> {{ note.learned }}</li>
     {% endfor %}
+    </ul>
 
   {% endif %}
 

@@ -177,7 +177,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   }
 
-  if (isset($_POST['learned-submit']) && isset($_SESSION['userid']) && isValid('note', $_GET['id'])) {
+  if (isset($_POST['learned']) && isset($_SESSION['userid']) && isValid('note', $_GET['id'])) {
 
     $learned = isset($_POST['learned']) && $_POST['learned'] == 'on';
 

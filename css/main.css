@@ -184,6 +184,9 @@ h1 {
 
 h2 {
   font-size: 1.75em;
+}
+
+#rightside h2 {
   margin-top: 0px;
 }
 
