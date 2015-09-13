@@ -60,6 +60,10 @@ div.g-recaptcha {
   width: 788px;
 }
 
+.latex-container[data-displaymode="block"] > * {
+  overflow-y: hidden;
+}
+
 #leftside h1 {
   display: inline;
 }

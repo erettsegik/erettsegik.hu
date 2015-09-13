@@ -69,8 +69,8 @@
       <tr>
         <td><input type='number' name='{{ item.id }}order' value='{{ item.ordernumber }}' class='ordernumber' required></td>
         <td><a href='index.php?p=notes_admin&amp;action=edit&amp;id={{ item.id }}'>{{ item.title }}</a></td>
-        <td><img src='{% if item.live %}/img/check_mark.png{% else %}/img/x_mark.png{% endif %}'></td>
-        <td><img src='{% if item.incomplete == 0 %}/img/check_mark.png{% else %}{% if item.incomplete == 1 %}/img/exclamation_mark.png{% else %}/img/empty_set.png{% endif %}{% endif %}'></td>
+        <td><img src='{% if item.live %}/img/check-mark.png{% else %}/img/x-mark.png{% endif %}'></td>
+        <td><img src='{% if item.incomplete == 0 %}/img/check-mark.png{% else %}{% if item.incomplete == 1 %}/img/exclamation-mark.png{% else %}/img/empty-set.png{% endif %}{% endif %}'></td>
       </tr>
     {% endfor %}
 
