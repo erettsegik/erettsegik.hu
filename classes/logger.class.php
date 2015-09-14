@@ -8,7 +8,20 @@ class logger {
 
   public function log($text) {
 
-    error_log('Erettsegik event: ' . $text);
+    global $con;
+    global $config;
+
+    // error_log('Erettsegik event: ' . $text);
+
+    try {
+
+      $query = $con->prepare('insert into logs values(DEFAULT, :text, now())');
+      $query->bindValue('text', $text, PDO::PARAM_STR);
+      $query->execute();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database'] . $e->getMessage());
+    }
 
   }
 

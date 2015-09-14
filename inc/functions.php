@@ -29,6 +29,7 @@ $config['clearance'] = array(
   'categories'    => 2,
   'events'        => 2,
   'feedback'      => 2,
+  'logs    '      => 2,
   'modifications' => 1,
   'news'          => 2,
   'notes'         => 1,

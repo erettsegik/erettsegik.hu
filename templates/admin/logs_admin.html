@@ -1,0 +1,18 @@
+{% extends 'admin/index.html' %}
+
+{% block content %}
+
+<h1>Logok</h1>
+
+<table>
+
+{% for log in logsarray %}
+  <tr>
+    <td>{{ log.date }}</td>
+    <td>{{ log.text }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
