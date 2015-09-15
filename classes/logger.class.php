@@ -15,7 +15,7 @@ class logger {
 
     try {
 
-      $query = $con->prepare('insert into logs values(DEFAULT, :text, now())');
+      $query = $con->prepare('insert into happenings values(DEFAULT, :text, now())');
       $query->bindValue('text', $text, PDO::PARAM_STR);
       $query->execute();
 
