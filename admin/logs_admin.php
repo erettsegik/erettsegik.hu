@@ -6,7 +6,7 @@ try {
 
   $getLogs = $con->prepare('
     select text, date
-    from logs
+    from happenings
     order by id desc
   ');
   $getLogs->execute();
