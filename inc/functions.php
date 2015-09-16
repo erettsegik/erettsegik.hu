@@ -40,7 +40,7 @@ $config['clearance'] = array(
 $config['dateformat'] = 'Y-m-d H:i';
 $config['htmldate'] = 'Y-m-d\TH:i';
 
-$config['tz']['utc'] = new DateTimeZone('UTC');
+$config['tz']['utc'] = new DateTimeZone('Europe/Budapest');
 $config['tz']['local'] = new DateTimeZone('Europe/Budapest');
 
 $config['errors']['database'] = '

@@ -26,7 +26,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
       $titleSearch = $con->prepare('
         select id
         from notes
-        where title like :term and live = 1
+        where title like :term and live = 1 and incomplete <> 2
         order by subjectid asc, id asc
       ');
       $titleSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
@@ -41,7 +41,7 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
       $textSearch = $con->prepare('
         select id
         from notes
-        where text like :term and live = 1
+        where text like :term and live = 1 and incomplete <> 2
         order by subjectid asc, id asc
       ');
       $textSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
