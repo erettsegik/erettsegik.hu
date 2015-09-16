@@ -1,0 +1,8 @@
+@media (max-width: 1000px) {
+
+  #wrapper ul {
+    list-style-position: inside;
+    padding: 0;
+  }
+
+}

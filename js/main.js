@@ -1,6 +1,10 @@
 var updatePreviewTarget = function(data, status) {
   $('.spinner').hide();
   $('#preview-target').html(data);
+  $('#hide-preview').show();
+  $('#preview-target code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
   renderLatexExpressions();
 }
 
@@ -31,15 +35,55 @@ var main = function() {
   );
 
   renderLatexExpressions();
+
+  $('#leftside p:has(img)').addClass('img-wrapper');
+
+  $("textarea[name='footnotes']").focusin(function(){
+    $(this).height($(this).height() + 100);
+  }).focusout(function(){
+    $(this).height($(this).height() - 100);
+  });
 };
 
-function searchRedirect(searchpage) {
+$(document).ready(function(){
 
-  event.preventDefault();
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      $('#go-top-desktop').fadeIn();
+    } else {
+      $('#go-top-desktop').fadeOut();
+    }
+  });
 
-  var term = (arguments.length == 1) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
+  $('#go-top-desktop').click(function(){
+    $('html, body').animate({scrollTop : 0}, 800);
+    return false;
+  });
+
+});
+
+function searchRedirect(event, searchpage) {
+
+  var term = (arguments.length == 2) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
 
   window.location = '/search/' + term + '/';
+
+  event.preventDefault(event);
+
+}
+
+$('#dropdown-toggle').click(function(){
+    $('#menu-wrapper').slideToggle();
+});
+
+function preventLeaving() {
+  window.onbeforeunload = function (e) {
+    return "Nem mentett változtatásaid vannak az oldalon.";
+  };
+}
+
+function allowLeaving() {
+  window.onbeforeunload = null;
 }
 
 $(main);

@@ -1,0 +1,218 @@
+@media (max-width: 1000px) {
+
+  body {
+    font-size: 1em;
+  }
+
+  div, section {
+    box-sizing: border-box;
+  }
+
+  nav {
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  #menu-wrapper {
+    display: none;
+    margin: 8vh 0 0 0;
+    height: auto;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid #35586e;
+  }
+
+  nav ul {
+    display: block;
+    height: auto;
+    line-height: 8vh;
+  }
+
+  nav ul li {
+    display: block;
+    height: 8vh;
+    padding: 0.5vh 0;
+  }
+
+  nav ul li:hover ul {
+    display: none;
+  }
+
+  nav ul li a {
+    height: 8vh;
+    padding: 0 2vh;
+    width: 100%;
+  }
+
+  #mobile-icons {
+    display: inline;
+    float: left;
+    width: auto;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    height: 8vh;
+  }
+
+  #mobile-icons a:hover, #more-mobile-icons a:hover {
+    background-color: transparent;
+  }
+
+  #mobile-icons img {
+    height: 6vh;
+    padding: 1vh;
+  }
+
+  #search-form {
+    display: none;
+  }
+
+  #searchbox {
+    border-width: 2px;
+    height: 15px;
+    margin: auto;
+    padding: 0px 0px 0px 17px;
+    width: 103px;
+    display: inline;
+  }
+
+  #dropdown-toggle {
+    display: inline;
+    float: right;
+    margin: 0;
+    padding: 0;
+    height: 8vh;
+    text-align: right;
+    line-height: normal;
+    cursor: pointer;
+  }
+
+  #dropdown-toggle img, #more-mobile-icons img {
+    height: 6vh;
+    padding: 1vh;
+  }
+
+  #more-mobile-icons {
+    display: block;
+  }
+
+  #wrapper {
+    margin: 8vh auto auto auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #location {
+    height: auto;
+    line-height: 1.5em;
+    margin: 10px auto;
+    padding: 0 20px;
+    width: auto;
+    box-sizing: border-box;
+  }
+
+  #desktop-buttons {
+    display: none;
+  }
+
+  #main {
+    border: 0px solid #d7d7d7;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  footer {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  blockquote {
+    padding: 10px;
+  }
+
+  blockquote p {
+    margin: 0px;
+  }
+
+  input, select, textarea {
+    border: 2px solid #d7d7d7;
+  }
+
+  input {
+    width: 200px;
+  }
+
+  input.submit {
+    border-radius: 3px;
+    margin-top: 5px;
+  }
+
+  select {
+    width: 200px;
+  }
+
+  textarea {
+    height: 28vh;
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .article-meta {
+    font-size: 0.7em;
+    margin: 16px auto;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  hr {
+    height: 1px;
+    margin: 16px auto;
+    width: 98%;
+  }
+
+  .anchor {
+    top: -9vh;
+  }
+
+  .top-notice {
+    box-sizing: border-box;
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    width: auto;
+  }
+
+  .success {
+    border: 2px solid #009900;
+  }
+
+  .success:before {
+    margin-right: 10px;
+  }
+
+  .error {
+    border: 2px solid #990000;
+  }
+
+  .error:before {
+    margin-right: 10px;
+  }
+
+  .notice {
+    border: 2px solid #ffb938;
+  }
+
+  .notice:before {
+    margin-right: 10px;
+  }
+
+  #go-top-desktop {
+    z-index: -1;
+    visibility: hidden;
+  }
+
+}

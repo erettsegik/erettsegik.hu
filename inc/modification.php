@@ -3,6 +3,7 @@
 require_once 'classes/category.class.php';
 require_once 'classes/modification.class.php';
 require_once 'classes/note.class.php';
+require_once 'classes/logger.class.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
@@ -12,8 +13,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   } else {
     header('Location: /404/');
+    die();
   }
 
+}
+
+if (!isset($_GET['id']) && !isset($_GET['action'])) {
+  header('Location: /404/');
+  die();
 }
 
 if (isset($_GET['id']) && !isset($_GET['action'])) {
@@ -26,6 +33,7 @@ if (isset($_GET['id']) && !isset($_GET['action'])) {
 
   } else {
     header('Location: /404/');
+    die();
   }
 
 }
@@ -67,7 +75,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
   if (isset($_POST['submit'])) {
 
-    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['new_text'])) {
+    $recaptcha = new \ReCaptcha\ReCaptcha($config['recaptcha-key']);
+    $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
+    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['new_text']) && $resp->isSuccess() && ($_POST['original_text'] != $_POST['new_text'])) {
 
       $modification = new modification();
 
@@ -77,6 +88,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['new_text'],
         $_POST['comment']
       );
+
+      $logger = new logger();
+
+      $logger->log('Modification submitted');
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeresen beküldted a módosítást!';
@@ -88,7 +103,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $saved = array('title' => $_POST['title'], 'new_text' => $_POST['new_text'], 'comment' => $_POST['comment']);
 
     $status = 'error';
-    $message = 'Nem küldheted el üresen az űrlapot!';
+    $message = $resp->isSuccess() ? 'Nem küldheted el üresen az űrlapot!' : 'Robot vagy?';
 
   }
 
@@ -116,7 +131,7 @@ echo $twig->render(
     'message'      => $message,
     'modification' => isset($modification) ? $modification->getData() : null,
     'note'         => $note->getData(),
-    'production'   => getenv('production') !== false,
+    'production'   => isset($config['production']) && $config['production'] === 1,
     'saved'        => isset($saved) ? $saved : null,
     'status'       => $status
   )

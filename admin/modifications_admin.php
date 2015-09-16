@@ -1,5 +1,6 @@
 <?php
 
+require_once '../classes/logger.class.php';
 require_once '../classes/modification.class.php';
 require_once '../classes/note.class.php';
 
@@ -14,6 +15,10 @@ if (isset($_GET['id'])) {
   if (isset($_POST['submit'])) {
 
     $modification->updateStatus($_POST['status'], $_POST['reply']);
+
+    $logger = new logger();
+
+    $logger->log($user->getData()['name'] . ' edited a modification: ' . $modification->getData()['id']);
 
     $status = 'success';
     $message = 'Sikeres mentés!';

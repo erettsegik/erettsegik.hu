@@ -15,20 +15,19 @@ Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem('templates');
 
 $filters = Array(
-    new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
+  new Twig_SimpleFilter('prepareLatexElements', 'prepareLatexElements'),
 );
 
 $twig = new Twig_Environment($loader);
 
 foreach ($filters as $filter) {
-    $twig->addFilter($filter);
+  $twig->addFilter($filter);
 }
 
 use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
-$engine = new MarkdownEngine\PHPLeagueCommonMarkEngine();
-
+$engine = new MarkdownEngine\GitHubMarkdownEngine('aptoma/twig-markdown', true, '/tmp/markdown-cache');
 $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
@@ -104,6 +103,7 @@ if (isset($_SESSION['userid'])) {
 $index_var['username'] = (isset($_SESSION['userid'])) ? $username : '';
 
 $index_var['css'] = '';
+$index_var['mobilecss'] = '';
 
 $index_var['canonical'] = getCanonicalUrl();
 
@@ -131,6 +131,12 @@ if (isset($_GET['p'])) {
 
   }
 
+  if (file_exists('css/mobile/' . $p . '.css')) {
+
+    $index_var['mobilecss'] = $p;
+
+  }
+
   if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
 
     require_once 'inc/' . $p . '.php';
@@ -138,12 +144,14 @@ if (isset($_GET['p'])) {
   } else {
 
     header('Location: /404/');
+    die();
 
   }
 
 } else {
 
   $index_var['css'] = 'news';
+  $index_var['mobilecss'] = 'news';
 
   require_once 'inc/news.php';
 

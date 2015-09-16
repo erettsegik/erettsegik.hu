@@ -1,6 +1,7 @@
 <?php
 
 require_once 'classes/feedback.class.php';
+require_once 'classes/logger.class.php';
 
 $index_var['location'][] = array('url' => '/feedback/', 'name' => 'Visszajelzés küldése');
 
@@ -17,10 +18,15 @@ if (isset($_POST['submit'])) {
       prepareText($_POST['text'])
     );
 
+    $logger = new logger();
+
+    $logger->log('Feedback sent');
+
     $_SESSION['status'] = 'success';
     $_SESSION['message'] = 'Köszönjük a visszajelzést!';
 
     header('Location: /');
+    die();
 
   }
 

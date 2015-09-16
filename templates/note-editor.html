@@ -37,6 +37,7 @@
 <button type='button' class='edit-button' onclick='list("unordered");'>felsorolás</button>
 <button type='button' class='edit-button' onclick='latex("inline");'>képlet szövegbe</button>
 <button type='button' class='edit-button' onclick='latex("");'>külön képlet</button>
+<button type='button' class='edit-button' onclick='quote();'>idézet</button>
 <span id='rightside-buttons'>
 <button type='button' class='edit-button' id='preview'>Előnézet</button>
 <button type='button' class='edit-button' onclick='togglehelp();'>Segítség</button>
@@ -52,24 +53,33 @@
 
   ### A markdownról
 
-  A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható.
+  A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható legyen.
   A teljes specifikáció [itt](http://daringfireball.net/projects/markdown) megtalálható, de a legfontosabb elemek a szerkesztőnkkel is előállíthatók (megjegyezni sem nehéz őket).
 
   ### A szerkesztőről
 
   A jegyzetírást megkönnyítendő írtunk egy kis szerkesztőt, mely lényegében a fenti pár gombot jelenti. Működése felettébb egyszerű, először ki kell jelölni a szövegmezőben a kívánt szövegrészletet (felsorolás esetén akár több sort is), majd valamelyik gombra kattintani. (A szerkesztő javascriptet használ, egyes bővítmények esetleg akadályozhatják a működését).
+
+  ### Matematikai képletek
+
+  Lehetőség van a jegyzetbe képleteket is beszúrni, ehhez szintén segítséget nyújt a szerkesztőnk. A képletek feldolgozásához a [KaTeX](https://github.com/Khan/KaTeX) TeX parsert használjuk, amely nem támogat minden TeX-beli kifejezést, a használható elemek listája megtalálható [itt](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX).
   {% endmarkdown %}
 </div>
-<textarea name='text' id='note-txt' placeholder='Szöveg' required>{{ saved.text }}</textarea>
+<textarea name='text' id='note-txt' placeholder='Szöveg' required onchange='preventLeaving();' onkeyup='preventLeaving();'>{{ saved.text }}</textarea>
 
-<h1 class='preview'></h1>
-<div class="spinner" style="display: none;">
-  <div class="rect1"></div>
-  <div class="rect2"></div>
-  <div class="rect3"></div>
-  <div class="rect4"></div>
-  <div class="rect5"></div>
+<h1 class='preview' id='preview-title'></h1><button type='button' class='edit-button' id='hide-preview' onclick='hidePreview();'>Előnézet elrejtése</button>
+<br style='clear: both;'>
+<div class='spinner' style='display: none;'>
+  <div class='rect1'></div>
+  <div class='rect2'></div>
+  <div class='rect3'></div>
+  <div class='rect4'></div>
+  <div class='rect5'></div>
 </div>
 <div id='preview-target'></div>
+
+<hr>
+
+<textarea name='footnotes' id='note-footnotes' placeholder='Lábjegyzet (opcionális)'>{{ saved.footnotes }}</textarea>
 
 <script type='text/JavaScript' src='/js/editor.js'></script>

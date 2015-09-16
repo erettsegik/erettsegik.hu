@@ -4,8 +4,6 @@
 
 {% if mode == 'loggedin' %}
 
-  <h1>Felhasználói oldal</h1>
-
   <ul>
     <li><a href='/admin/index.php'>Tovább az admin felületre?</a></li>
     <li><a href='/user_manage/change_password/'>Jelszóváltoztatás?</a></li>
@@ -16,8 +14,6 @@
 
 {% if mode == 'change_password' %}
 
-  <h1>Jelszóváltoztatás</h1>
-
   <form action='/user_manage/change_password/' method='post'>
   <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
   <input class='login' type='password' name='new_password' placeholder='új jelszó' required><br>
@@ -27,8 +23,6 @@
 {% endif %}
 
 {% if mode == 'form'%}
-
-  <h1>Bejelentkezés</h1>
 
   <form action='/user_manage/login/' method='post'>
   <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>

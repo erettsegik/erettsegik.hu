@@ -1,6 +1,7 @@
 <?php
 
 require_once '../classes/category.class.php';
+require_once '../classes/logger.class.php';
 require_once '../classes/note.class.php';
 
 checkRights($config['clearance']['notes']);
@@ -15,20 +16,29 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
 
+    if (prepareText($_POST['text']) == '') $incomplete = 2;
+
     $note->insertData(
       $_POST['title'],
       prepareText($_POST['text']),
+      prepareText($_POST['footnotes']),
       $_POST['subjectid'],
       $_POST['category'],
       $live,
-      $incomplete
+      $incomplete,
+      ''
     );
 
-    $redirect_string = 'Location: index.php?p=notes_admin';
+    $logger = new logger();
 
-    if (isset($_GET['subjectid'])) {
-      $redirect_string .= '?subjectid=' . $_GET['subjectid'];
-    }
+    $logger->log($user->getData()['name'] . ' added a new note');
+
+    $noteData = $note->getData();
+
+    $subjectid = $noteData['subjectid'];
+    $category = new category($noteData['category']);
+
+    $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
 
     $_SESSION['status'] = 'success';
     $_SESSION['message'] = 'Sikeres mentés!';
@@ -45,12 +55,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     if (isset($_POST['delete']) && $_POST['delete'] == 'on') {
 
+      $noteData = $note->getData();
+
+      $subjectid = $noteData['subjectid'];
+      $category = new category($noteData['category']);
+
       $note->remove();
+
+      $logger = new logger();
+
+      $logger->log($user->getData()['name'] . ' removed a note: ' . $note->getData()['id'] . ' - ' . $note->getData()['title']);
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeres törlés!';
 
-      $redirect_string = 'Location: index.php?p=notes_admin';
+      $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
 
       header($redirect_string);
 
@@ -60,17 +79,33 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $incomplete = (isset($_POST['incomplete']) && $_POST['incomplete'] == 'on');
 
+      if (prepareText($_POST['text']) == '') $incomplete = 2;
+
       $note->modifyData(
         $_POST['title'],
         prepareText($_POST['text']),
+        prepareText($_POST['footnotes']),
         $_POST['subjectid'],
         $_POST['category'],
         $live,
         $incomplete
       );
 
+      $logger = new logger();
+
+      $logger->log($user->getData()['name'] . ' edited a note: ' . $note->getData()['id']);
+
       $status = 'success';
       $message = 'Sikeres mentés!';
+
+      $noteData = $note->getData();
+
+      $subjectid = $noteData['subjectid'];
+      $category = new category($noteData['category']);
+
+      $redirect_string = 'Location: index.php?p=notes_admin&subjectid=' . $subjectid . '#' . $category->getData()['name'];
+
+      header($redirect_string);
 
     }
 
@@ -155,6 +190,43 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     $mode = 'subjectlist';
 
+    $recentNotes = array();
+
+    try {
+
+      $getNotes = $con->query('
+        select id
+        from notes
+        where live = 0 and incomplete <> 0
+        order by updatedate desc
+        limit 10
+      ');
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
+    }
+
+    while ($foundNote = $getNotes->fetch()) {
+
+      $note = new note($foundNote['id']);
+      $noteData = $note->getData();
+
+      $subject = new subject($noteData['subjectid']);
+      $category = new category($noteData['category']);
+
+      $result = array(
+        'id' => $noteData['id'],
+        'title' => $noteData['title'],
+        'updatedate' => $noteData['updatedate'],
+        'subject' => $subject->getData()['name'],
+        'subjectid' => $noteData['subjectid'],
+        'category' => $category->getData()['name']
+      );
+
+      $recentNotes[] = $result;
+
+    }
+
   }
 
 }
@@ -197,7 +269,8 @@ echo $twig->render(
     'mode'            => isset($mode) ? $mode : null,
     'subjects'        => getSubjects(),
     'status'          => $status,
-    'message'         => $message
+    'message'         => $message,
+    'recentnotes'     => isset($recentNotes) ? $recentNotes : null
   )
 );
 

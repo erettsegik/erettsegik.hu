@@ -7,12 +7,14 @@ class note {
   protected $id          = null;
   protected $title       = null;
   protected $text        = null;
+  protected $footnotes   = null;
   protected $subject     = null;
   protected $category    = null;
   protected $updatedate  = null;
   protected $ordernumber = null;
   protected $live        = null;
   protected $incomplete  = null;
+  protected $email       = null;
 
   public function __construct($id = null) {
 
@@ -37,28 +39,32 @@ class note {
     $this->id          = $noteData['id'];
     $this->title       = $noteData['title'];
     $this->text        = $noteData['text'];
+    $this->footnotes   = $noteData['footnotes'];
     $this->subject     = new subject($noteData['subjectid']);
     $this->category    = $noteData['category'];
     $this->updatedate  = new DateTime($noteData['updatedate'], $config['tz']['utc']);
     $this->ordernumber = $noteData['ordernumber'];
     $this->live        = $noteData['live'];
     $this->incomplete  = $noteData['incomplete'];
+    $this->email       = $noteData['email'];
 
     $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
-  public function insertData($title, $text, $subjectid, $category, $live, $incomplete) {
+  public function insertData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete, $email) {
 
     global $con;
     global $config;
 
     $this->title      = $title;
     $this->text       = $text;
+    $this->footnotes  = $footnotes;
     $this->subject    = new subject($subjectid);
     $this->category   = $category;
     $this->live       = $live;
     $this->incomplete = $incomplete;
+    $this->email      = $email;
 
     try {
 
@@ -68,37 +74,42 @@ class note {
           DEFAULT,
           :title,
           :text,
+          :footnotes,
           :subjectid,
           :category,
           DEFAULT,
           0,
           :live,
-          :incomplete
+          :incomplete,
+          :email
         )
       ');
       $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
       $insertData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $insertData->bindValue('footnotes', $this->footnotes, PDO::PARAM_STR);
       $insertData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $insertData->bindValue('category', $this->category, PDO::PARAM_INT);
       $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
       $insertData->bindValue('incomplete', $this->incomplete, PDO::PARAM_INT);
+      $insertData->bindValue('email', $this->email, PDO::PARAM_STR);
       $insertData->execute();
 
       $this->id = $con->lastInsertId();
 
     } catch (PDOException $e) {
-      die($config['errors']['database']);
+      die($config['errors']['database'] . $e->getMessage());
     }
 
   }
 
-  public function modifyData($title, $text, $subjectid, $category, $live, $incomplete) {
+  public function modifyData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete) {
 
     global $con;
     global $config;
 
     $this->title      = $title;
     $this->text       = $text;
+    $this->footnotes  = $footnotes;
     $this->subject    = new subject($subjectid);
     $this->category   = $category;
     $this->live       = $live;
@@ -110,6 +121,7 @@ class note {
         update notes
         set title = :title,
           text = :text,
+          footnotes = :footnotes,
           subjectid = :subjectid,
           category = :category,
           live = :live,
@@ -118,6 +130,7 @@ class note {
       ');
       $modifyData->bindValue('title', $this->title, PDO::PARAM_STR);
       $modifyData->bindValue('text', $this->text, PDO::PARAM_STR);
+      $modifyData->bindValue('footnotes', $this->footnotes, PDO::PARAM_STR);
       $modifyData->bindValue('subjectid', $subjectid, PDO::PARAM_INT);
       $modifyData->bindValue('category', $this->category, PDO::PARAM_INT);
       $modifyData->bindValue('live', $this->live, PDO::PARAM_INT);
@@ -166,6 +179,10 @@ class note {
       $remove->bindValue('id', $this->id, PDO::PARAM_INT);
       $remove->execute();
 
+      $removeModifications = $con->prepare('delete from modifications where noteid = :id');
+      $removeModifications->bindValue('id', $this->id, PDO::PARAM_INT);
+      $removeModifications->execute();
+
     } catch (PDOException $e) {
       die($config['errors']['database']);
     }
@@ -180,12 +197,14 @@ class note {
       'id'          => $this->id,
       'title'       => $unsanitize ? $this->title : $this->title,
       'text'        => $unsanitize ? unprepareText($this->text) : $this->text,
+      'footnotes'   => $unsanitize ? unprepareText($this->footnotes) : $this->footnotes,
       'subjectid'   => isset($this->subject) ? $this->subject->getData()['id'] : null,
       'category'    => $this->category,
       'updatedate'  => isset($this->updatedate) ? $this->updatedate->format($config['dateformat']) : null,
       'ordernumber' => $this->ordernumber,
       'live'        => $this->live,
-      'incomplete'  => $this->incomplete
+      'incomplete'  => $this->incomplete,
+      'email'       => $this->email
     );
 
   }

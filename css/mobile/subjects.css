@@ -1,0 +1,17 @@
+@media (max-width: 1000px) {
+
+  #wrapper ul {
+    list-style-position: inside;
+    padding: 0;
+  }
+
+  #subject-menu {
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+    column-count: 1;
+    column-gap: 0px;
+  }
+
+}

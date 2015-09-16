@@ -2,9 +2,9 @@
 
 {% block content %}
 
+{% spaceless %}
+
 <div id='leftside'>
-<h1>Hírek</h1>
-<section>
 
 {% for new in news %}
   <h2>{{ new.title }}</h2>
@@ -16,14 +16,29 @@
     <br>Legutóbb frissítve: {{ new.updatedate }}
   {% endif %}
 
-  {% if not loop.last %}
-    <hr>
-  {% endif %}
-
   </div>
 {% endfor %}
 
-</section>
+<div id='news-pages'>
+
+{% if page > 1 %}
+
+<a href='/news/page/{{ page - 1 }}/'>&lt;&lt; Következő oldal</a>
+
+{% endif %}
+
+{% if page > 1 and page < pagecount %}
+|
+{% endif %}
+
+{% if page < pagecount %}
+
+<a href='/news/page/{{ page + 1 }}/'>Előző oldal &gt;&gt;</a>
+
+{% endif %}
+
+</div>
+
 </div>
 <div id='rightside'>
 <div id='events-container'>
@@ -58,9 +73,30 @@
 
   <p><a href='/events/'>Összes megtekintése</a></p>
 </div>
-<hr>
-<iframe src='//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Ferettsegik&amp;width=230&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:230px; height:258px;' allowTransparency='true'></iframe>
+<div id='notes-container'>
+  <h2>Nemrég módosult</h2>
+
+  {% for note in recentnotes %}
+
+  <a href='/note/{{ note.id }}/'><h6>{{ note.title }}</h6></a>
+  <div class='article-meta'><a href='/subjects/{{ note.subjectid }}/'>{{ note.subject }}</a> &#8226; <a href='/subjects/{{ note.subjectid }}/#{{ note.category }}'>{{ note.category }}</a></div>
+
+  {% endfor %}
+
+</div>
+<div class='fb-page' data-href='https://www.facebook.com/erettsegik' data-width='230' data-small-header='true' data-adapt-container-width='false' data-hide-cover='false' data-show-facepile='true' data-show-posts='false'><div class='fb-xfbml-parse-ignore'><blockquote cite='https://www.facebook.com/erettsegik'><a href='https://www.facebook.com/erettsegik'>erettsegik.hu</a></blockquote></div></div>
 </div>
 <br style='clear: both;'>
+
+<div id='fb-root'></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endspaceless %}
 
 {% endblock %}

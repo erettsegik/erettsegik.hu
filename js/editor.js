@@ -25,7 +25,7 @@ function header() {
   var sel = textarea.value.substring(start, end);
 
   if (sel == '') {
-    var replace = '## cím\n';
+    var replace = '## cím';
   } else {
     var replace = '## ' + sel;
   }
@@ -43,9 +43,9 @@ function image() {
   var sel = textarea.value.substring(start, end);
 
   if (sel == '') {
-    var replace = '![kép címe](kép url-je)\n';
+    var replace = '![kép címe](kép url-je)';
   } else {
-    var replace = '![kép címe](' + sel + ')\n';
+    var replace = '![kép címe](' + sel + ')';
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
@@ -98,6 +98,37 @@ function list(type) {
 
   }
 
+  replace = replace.slice(0, -1);
+
+  textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+
+}
+
+function quote(type) {
+
+  var textarea = document.getElementById('note-txt');
+  var len = textarea.value.length;
+  var start = textarea.selectionStart;
+  var end = textarea.selectionEnd;
+  var sel = textarea.value.substring(start, end);
+
+  if (sel == '') {
+
+    var replace = '> idézet\n';
+
+  } else {
+
+    var lines = sel.split('\n');
+    var replace = '';
+
+    for (var i = 0; i < lines.length; i++) {
+      replace += '> ' + lines[i] + '\n';
+    }
+
+  }
+
+  replace = replace.slice(0, -1);
+
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
 
 }
@@ -121,9 +152,9 @@ function latex(type) {
   } else {
 
     if (sel == '') {
-      var replace = '[latex]képlet[/latex]\n';
+      var replace = '[latex]képlet[/latex]';
     } else {
-      var replace = '[latex]' + sel + '[/latex]\n';
+      var replace = '[latex]' + sel + '[/latex]';
     }
 
   }
@@ -141,5 +172,13 @@ function togglehelp() {
   } else {
     div.style.display = 'none';
   }
+
+}
+
+function hidePreview() {
+
+  document.getElementById('preview-target').innerHTML = '';
+  document.getElementById('preview-title').innerHTML = '';
+  document.getElementById('hide-preview').style.display = 'none';
 
 }

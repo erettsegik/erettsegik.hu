@@ -11,12 +11,7 @@ em {
 p {
   line-height: 1.5;
   text-align: justify;
-  text-indent: 20px;
-}
-
-li p {
-  text-indent: 0px;
-  margin: 0px;
+  text-indent: 10px;
 }
 
 input.shorter {
@@ -40,12 +35,58 @@ button.edit-button {
   padding: 5px;
 }
 
+#note-footnotes {
+  height: 2em;
+}
+
+h1.preview {
+  display: inline;
+}
+
+#hide-preview {
+  float: right;
+  display: none;
+}
+
+div.g-recaptcha {
+  margin: 10px auto;
+}
+
 #leftside {
   border-right: 2px solid #dedede;
   display: inline;
   float: left;
   padding-right: 10px;
   width: 788px;
+}
+
+.latex-container[data-displaymode="block"] > * {
+  overflow-y: hidden;
+}
+
+#leftside h1 {
+  display: inline;
+}
+
+#collection-form {
+  display: inline;
+  line-height: 2em;
+  margin-left: 20px;
+}
+
+#leftside img {
+  display: inline-block;
+  margin: auto;
+}
+
+#learned-form {
+  padding: 20px;
+  font-size: 1.3em;
+}
+
+#learned-form input {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 #rightside {
@@ -70,68 +111,80 @@ button.edit-button {
   margin: 10px auto;
 }
 
-li.status_0 {
-  list-style-image: url("/img/question_mark.png");
+li.status-0 {
+  list-style-image: url('/img/question-mark.png');
   list-style-position: outside;
 }
 
-li.status_1 {
-  list-style-image: url("/img/check_mark.png");
+li.status-1 {
+  list-style-image: url('/img/check-mark.png');
 }
 
-li.status_2 {
-  list-style-image: url("/img/x_mark.png");
+li.status-2 {
+  list-style-image: url('/img/x-mark.png');
 }
 
 li.add-modification {
-  list-style-image: url("/img/plus_sign.png");
+  list-style-image: url('/img/plus-sign.png');
 }
 
-#leftside ul {
+#leftside ul, #preview-target ul {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
-#leftside ol {
+#leftside ol, #preview-target ol {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
-#leftside ul a, #leftside ul a:visited {
+#leftside ul a, #leftside ul a:visited, #preview-target ul a, #preview-target ul a:visited {
   color: #ee7600;
 }
 
-#leftside h2 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h3 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h4 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h5 {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside h6 {
-  font-family: 'Roboto', sans-serif;
+#leftside ol a, #leftside ol a:visited, #preview-target ol a, #preview-target ol a:visited {
+  color: #ee7600;
 }
 
 .latex-container {
   text-indent: 0;
 }
 
-img {
-  display: block;
-  margin: auto;
+h1.preview {
+  margin-top: 16px;
+}
+
+#footnotes {
+  color: #8090aa;
+  font-size: 0.7em;
+  margin: 26px auto 0 auto;
+}
+
+#footnotes p {
+  margin: 2px 0 0 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+.collection-add {
+  background: url('/img/collection-empty.png') no-repeat;
+}
+
+.collection-remove {
+  background: url('/img/collection-full.png') no-repeat;
+}
+
+.collection-button {
+  display: inline;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  background-size: contain;
+  border: none;
 }
 
 /*
- From https://github.com/tobiasahlin/SpinKit/blob/master/css/spinners/3-wave.css
+From https://github.com/tobiasahlin/SpinKit/blob/master/css/spinners/3-wave.css
 */
 
 .spinner {

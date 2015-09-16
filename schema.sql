@@ -4,6 +4,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+CREATE TABLE IF NOT EXISTS `collections` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` varchar(256) NOT NULL,
+  `noteid` text NOT NULL,
+  `learned` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -18,6 +26,13 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `text` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `isnew` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `happenings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `text` varchar(256) NOT NULL,
+  `date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -52,12 +67,14 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) NOT NULL,
   `text` text NOT NULL,
+  `footnotes` text NOT NULL,
   `subjectid` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ordernumber` int(11) NOT NULL,
   `live` tinyint(1) NOT NULL,
   `incomplete` tinyint(1) NOT NULL,
+  `email` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

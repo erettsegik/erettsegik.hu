@@ -1,0 +1,38 @@
+<Files .htaccess>
+order deny,allow
+deny from all
+</Files>
+
+<Files index.php>
+order allow,deny
+allow from all
+</Files>
+
+Options -Indexes
+
+ErrorDocument 404 /404/
+
+RewriteEngine on
+
+RewriteRule \.(css|jpe?g|gif|png)$ - [L]
+
+# /search/xy/ -> /?p=search&term=xy
+RewriteRule ^search\/([^\/\.]+)\/?$ \/index.php?p=search&term=$1 [L]
+
+# /note/add/ -> /?p=note&action=add
+RewriteRule ^note\/add\/?$ \/index.php?p=note&action=add [L]
+
+# /modification/add/5/ -> /?p=modification&action=add&id=5
+RewriteRule ^modification\/add\/([^\/\.]+)\/?$ \/index.php?p=modification&action=add&id=$1 [L]
+
+# /user_manage/xy -> /?p=user_manage&action=xy
+RewriteRule ^user_manage\/([^\/\.]+)\/?$ \/index.php?p=user_manage&action=$1 [L]
+
+# /news/page/1/ -> /?p=news&page=xy
+RewriteRule ^news\/page\/(\d+)\/?$ \/index.php?p=news&page=$1 [L]
+
+# /xy/4 -> /?p=xy&id=4
+RewriteRule ^([^\/\.]+)\/([^\/\.]+)\/?$ \/index.php?p=$1&id=$2 [L,QSA]
+
+# /xy -> /?p=xy
+RewriteRule ^([^\/\.]+)\/?$ \/index.php?p=$1 [L,QSA]
