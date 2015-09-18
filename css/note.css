@@ -14,17 +14,42 @@ p {
   text-indent: 10px;
 }
 
+table {
+  border-spacing: 0;
+  background-color: #f8f8f8;
+  border: 2px solid #d7d7d7;
+  margin: auto;
+  empty-cells: hide;
+}
+
+th, td {
+  border: 1px solid #d7d7d7;
+  padding: 5px;
+}
+
+th:empty {
+  padding: 0;
+  border: 0;
+  height: 0;
+}
+
 input.shorter {
   width: 196px;
 }
 
-td {
+table.editor td {
   padding: 0px 10px 0px 0px;
   vertical-align: middle;
+  border-width: 0;
+  padding: 0;
 }
 
-table {
+table.editor {
   margin-bottom: 10px;
+  background: transparent;
+  border-width: 0;
+  border-spacing: 3px;
+  margin-left: 0;
 }
 
 button.edit-button {
