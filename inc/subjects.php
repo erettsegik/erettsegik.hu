@@ -19,7 +19,7 @@ if (isset($_GET['id']) && isValid('subject', $_GET['id'])) {
     $getNotesData = $con->prepare('
       select notes.id, notes.title, notes.incomplete, categories.name
       from notes
-      left join categories on notes.category = categories.id
+      inner join categories on notes.category = categories.id
       where notes.subjectid = :subjectid and notes.live = 1
       order by category asc, ordernumber asc, id asc
     ');
