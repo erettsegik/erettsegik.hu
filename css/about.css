@@ -3,7 +3,9 @@ h2 {
 }
 
 .img-circular {
-  display: inline-block;
+  margin-left: 85px;
+  margin-right: 85px;
+  display: flex;
   width: 150px;
   height: 150px;
   border-radius: 150px;
@@ -11,37 +13,15 @@ h2 {
   -moz-border-radius: 150px;
 }
 
-.left-image {
-  margin-top: 0px;
-  float: left;
-  margin-left: 30px;
-  margin-right: 10px;
-}
 
-.right-image {
-  margin-top: 50px;
-  float: right;
-  margin-right: 30px;
-  margin-left: 10px;
-}
-
-.person-txt {
+.person {
+  margin-bottom: 100px;
+  text-align:center;
+  width: 320px;
   font-size: 18px;
-  display: flex;
+  display: inline-block;
   align-items: center;
   height: 150px;
-}
-
-.left-txt {
-  margin-top: 0px;
-  float: left;
-  text-align: left;
-}
-
-.right-txt {
-  margin-top: 50px;
-  float: right;
-  text-align: right;
 }
 
 .name {
