@@ -28,7 +28,6 @@ use Aptoma\Twig\Extension\MarkdownExtension;
 use Aptoma\Twig\Extension\MarkdownEngine;
 
 $engine = new MarkdownEngine\GitHubMarkdownEngine('aptoma/twig-markdown', true, '/tmp/markdown-cache');
-
 $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
@@ -54,7 +53,7 @@ while ($subject = $getSubjects->fetch()) {
     $getNotesData = $con->prepare('
       select notes.id, categories.name
       from notes
-      left join categories on notes.category = categories.id
+      inner join categories on notes.category = categories.id
       where notes.subjectid = :subjectid and notes.live = 1
       order by category asc, ordernumber asc, id asc
     ');
@@ -152,6 +151,7 @@ if (isset($_GET['p'])) {
 } else {
 
   $index_var['css'] = 'news';
+  $index_var['mobilecss'] = 'news';
 
   require_once 'inc/news.php';
 

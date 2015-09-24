@@ -16,14 +16,20 @@
       <p>Legutóbb frissítve: {{ note.updatedate }}</p>
       {{ note.footnotes | markdown }}
     </div>
-
+    {% if incollection == 1 %}
+    <form action='/note/{{ note.id }}/' method='post' id='learned-form'>
+      <input type='hidden' value='off' name='learned'>
+      <input type='checkbox' onchange='$("#learned-form").submit();' name='learned' {% if learned %} checked {% endif %}>
+      <label for='learned'>Megtanultam</label>
+    </form>
+    {% endif %}
     </div>
     <div id='rightside'>
     <h2>Javaslatok</h2>
     <ul class='modifications-list'>
 
     {% for modification in modifications %}
-        <li class='status_{{ modification.status }}'>
+        <li class='status-{{ modification.status }}'>
           <a href='/modification/{{ modification.id }}/' title='{{ modification.comment }}'>{{ modification.title }}</a>
         </li>
     {% endfor %}

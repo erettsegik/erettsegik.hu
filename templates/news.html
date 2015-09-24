@@ -5,7 +5,6 @@
 {% spaceless %}
 
 <div id='leftside'>
-<section>
 
 {% for new in news %}
   <h2>{{ new.title }}</h2>
@@ -20,7 +19,26 @@
   </div>
 {% endfor %}
 
-</section>
+<div id='news-pages'>
+
+{% if page > 1 %}
+
+<a href='/news/page/{{ page - 1 }}/'>&lt;&lt; Következő oldal</a>
+
+{% endif %}
+
+{% if page > 1 and page < pagecount %}
+|
+{% endif %}
+
+{% if page < pagecount %}
+
+<a href='/news/page/{{ page + 1 }}/'>Előző oldal &gt;&gt;</a>
+
+{% endif %}
+
+</div>
+
 </div>
 <div id='rightside'>
 <div id='events-container'>
@@ -66,7 +84,7 @@
   {% endfor %}
 
 </div>
-<div class='fb-page' data-href='https://www.facebook.com/erettsegik' data-width='1000' data-small-header='true' data-adapt-container-width='true' data-hide-cover='false' data-show-facepile='true' data-show-posts='false'><div class='fb-xfbml-parse-ignore'><blockquote cite='https://www.facebook.com/erettsegik'><a href='https://www.facebook.com/erettsegik'>erettsegik.hu</a></blockquote></div></div>
+<div class='fb-page' data-href='https://www.facebook.com/erettsegik' data-width='230' data-small-header='true' data-adapt-container-width='false' data-hide-cover='false' data-show-facepile='true' data-show-posts='false'><div class='fb-xfbml-parse-ignore'><blockquote cite='https://www.facebook.com/erettsegik'><a href='https://www.facebook.com/erettsegik'>erettsegik.hu</a></blockquote></div></div>
 </div>
 <br style='clear: both;'>
 

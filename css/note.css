@@ -14,17 +14,42 @@ p {
   text-indent: 10px;
 }
 
+table {
+  border-spacing: 0;
+  background-color: #f8f8f8;
+  border: 2px solid #d7d7d7;
+  margin: auto;
+  empty-cells: hide;
+}
+
+th, td {
+  border: 1px solid #d7d7d7;
+  padding: 5px;
+}
+
+th:empty {
+  padding: 0;
+  border: 0;
+  height: 0;
+}
+
 input.shorter {
   width: 196px;
 }
 
-td {
+table.editor td {
   padding: 0px 10px 0px 0px;
   vertical-align: middle;
+  border-width: 0;
+  padding: 0;
 }
 
-table {
+table.editor {
   margin-bottom: 10px;
+  background: transparent;
+  border-width: 0;
+  border-spacing: 3px;
+  margin-left: 0;
 }
 
 button.edit-button {
@@ -60,6 +85,10 @@ div.g-recaptcha {
   width: 788px;
 }
 
+.latex-container[data-displaymode="block"] > * {
+  overflow-y: hidden;
+}
+
 #leftside h1 {
   display: inline;
 }
@@ -70,13 +99,19 @@ div.g-recaptcha {
   margin-left: 20px;
 }
 
-#leftside h2 {
-  margin: auto;
-}
-
 #leftside img {
   display: inline-block;
   margin: auto;
+}
+
+#learned-form {
+  padding: 20px;
+  font-size: 1.3em;
+}
+
+#learned-form input {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 #rightside {
@@ -101,21 +136,21 @@ div.g-recaptcha {
   margin: 10px auto;
 }
 
-li.status_0 {
-  list-style-image: url('/img/question_mark.png');
+li.status-0 {
+  list-style-image: url('/img/question-mark.png');
   list-style-position: outside;
 }
 
-li.status_1 {
-  list-style-image: url('/img/check_mark.png');
+li.status-1 {
+  list-style-image: url('/img/check-mark.png');
 }
 
-li.status_2 {
-  list-style-image: url('/img/x_mark.png');
+li.status-2 {
+  list-style-image: url('/img/x-mark.png');
 }
 
 li.add-modification {
-  list-style-image: url('/img/plus_sign.png');
+  list-style-image: url('/img/plus-sign.png');
 }
 
 #leftside ul, #preview-target ul {
@@ -157,11 +192,11 @@ h1.preview {
 }
 
 .collection-add {
-  background: url('/img/collection_empty.png') no-repeat;
+  background: url('/img/collection-empty.png') no-repeat;
 }
 
 .collection-remove {
-  background: url('/img/collection_full.png') no-repeat;
+  background: url('/img/collection-full.png') no-repeat;
 }
 
 .collection-button {

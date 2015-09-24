@@ -116,7 +116,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     try {
 
-      $checkCollection = $con->prepare('select id from collections where noteid = :noteid and userid = :userid');
+      $checkCollection = $con->prepare('select id, learned from collections where noteid = :noteid and userid = :userid');
       $checkCollection->bindValue('noteid', $_GET['id'], PDO::PARAM_INT);
       $checkCollection->bindValue('userid', $_SESSION['userid'], PDO::PARAM_INT);
       $checkCollection->execute();
@@ -126,9 +126,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     }
 
     if ($checkCollection->rowCount() == 1) {
+
       $inCollection = 1;
+
+      $collectionData = $checkCollection->fetch();
+
+      $learned = $collectionData['learned'];
+
     } else {
+
       $inCollection = 0;
+
     }
 
   }
@@ -165,6 +173,24 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $inCollection = 1;
 
+    }
+
+  }
+
+  if (isset($_POST['learned']) && isset($_SESSION['userid']) && isValid('note', $_GET['id'])) {
+
+    $learned = isset($_POST['learned']) && $_POST['learned'] == 'on';
+
+    try {
+
+      $update = $con->prepare('update collections set learned = :learned where userid = :userid and noteid = :noteid');
+      $update->bindValue('learned', $learned, PDO::PARAM_INT);
+      $update->bindValue('noteid', $_GET['id'], PDO::PARAM_INT);
+      $update->bindValue('userid', $_SESSION['userid'], PDO::PARAM_INT);
+      $update->execute();
+
+    } catch (PDOException $e) {
+      die($config['errors']['database']);
     }
 
   }
@@ -234,11 +260,12 @@ echo $twig->render(
   array(
     'categories'    => isset($categories) ? $categories : null,
     'index_var'     => $index_var,
+    'learned'       => isset($learned) ? $learned : null,
     'message'       => $message,
     'mode'          => isset($mode) ? $mode : null,
     'modifications' => isset($modifications) ? $modifications : null,
     'note'          => isset($note) ? $note->getData() : null,
-    'production'    => getenv('production') !== false,
+    'production'    => isset($config['production']) && $config['production'] === 1,
     'saved'         => isset($saved) ? $saved : null,
     'status'        => $status,
     'subjects'      => isset($subjects) ? $subjects : null,

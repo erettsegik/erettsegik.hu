@@ -1,3 +1,7 @@
+h2 {
+  margin-top: 0;
+}
+
 .img-circular {
   display: inline-block;
   width: 150px;

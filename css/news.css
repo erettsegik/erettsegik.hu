@@ -6,6 +6,10 @@
   width: 740px;
 }
 
+#leftside h2 {
+  margin-top: 0;
+}
+
 ul {
   font-family: 'Roboto', sans-serif;
 }
@@ -16,6 +20,12 @@ nav ul {
 
 .article-meta {
   margin-bottom: 24px;
+}
+
+#news-pages {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.3em;
 }
 
 #rightside {

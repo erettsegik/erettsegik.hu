@@ -179,7 +179,7 @@ table, td {
 }
 
 .success:before {
-  content: url('/img/check_mark.png');
+  content: url('/img/check-mark.png');
   margin-right: 10px;
 }
 
@@ -189,7 +189,7 @@ table, td {
 }
 
 .error:before {
-  content: url('/img/x_mark.png');
+  content: url('/img/x-mark.png');
   margin-right: 10px;
 }
 
@@ -199,7 +199,7 @@ table, td {
 }
 
 .notice:before {
-  content: url('/img/exclamation_mark.png');
+  content: url('/img/exclamation-mark.png');
   margin-right: 10px;
 }
 

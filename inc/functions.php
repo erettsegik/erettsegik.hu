@@ -29,6 +29,7 @@ $config['clearance'] = array(
   'categories'    => 2,
   'events'        => 2,
   'feedback'      => 2,
+  'logs    '      => 2,
   'modifications' => 1,
   'news'          => 2,
   'notes'         => 1,
@@ -39,7 +40,7 @@ $config['clearance'] = array(
 $config['dateformat'] = 'Y-m-d H:i';
 $config['htmldate'] = 'Y-m-d\TH:i';
 
-$config['tz']['utc'] = new DateTimeZone('UTC');
+$config['tz']['utc'] = new DateTimeZone('Europe/Budapest');
 $config['tz']['local'] = new DateTimeZone('Europe/Budapest');
 
 $config['errors']['database'] = '
@@ -131,7 +132,6 @@ function isValid($type, $id) {
 
 function prepareText($text) {
 
-  $text = trim($text);
   return $text;
 
 }

@@ -28,6 +28,9 @@ RewriteRule ^modification\/add\/([^\/\.]+)\/?$ \/index.php?p=modification&action
 # /user_manage/xy -> /?p=user_manage&action=xy
 RewriteRule ^user_manage\/([^\/\.]+)\/?$ \/index.php?p=user_manage&action=$1 [L]
 
+# /news/page/1/ -> /?p=news&page=xy
+RewriteRule ^news\/page\/(\d+)\/?$ \/index.php?p=news&page=$1 [L]
+
 # /xy/4 -> /?p=xy&id=4
 RewriteRule ^([^\/\.]+)\/([^\/\.]+)\/?$ \/index.php?p=$1&id=$2 [L,QSA]
 

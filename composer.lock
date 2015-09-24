@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "91c3dd0e997ab8f80f319b2e67569348",
+    "content-hash": "9c9b52bb5d68ef456c96b9b28aa9ed41",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -64,16 +65,16 @@
         },
         {
             "name": "google/recaptcha",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/recaptcha.git",
-                "reference": "090585935d95ebdf2d16dd071b10c9179a94da47"
+                "reference": "2b7e00566afca82a38a1d3adb8e42c118006296e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/090585935d95ebdf2d16dd071b10c9179a94da47",
-                "reference": "090585935d95ebdf2d16dd071b10c9179a94da47",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/2b7e00566afca82a38a1d3adb8e42c118006296e",
+                "reference": "2b7e00566afca82a38a1d3adb8e42c118006296e",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +106,7 @@
                 "recaptcha",
                 "spam"
             ],
-            "time": "2015-03-16 13:45:08"
+            "time": "2015-09-02 17:23:59"
         },
         {
             "name": "guzzle/guzzle",
@@ -204,16 +205,16 @@
         },
         {
             "name": "knplabs/github-api",
-            "version": "1.4.14",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "9010dbe21f4b0bae0edae26bbe031d7d91347938"
+                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/9010dbe21f4b0bae0edae26bbe031d7d91347938",
-                "reference": "9010dbe21f4b0bae0edae26bbe031d7d91347938",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/313d7ed61494f525ab93cfd8595ec2d398533220",
+                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220",
                 "shasum": ""
             },
             "require": {
@@ -261,20 +262,20 @@
                 "gist",
                 "github"
             ],
-            "time": "2015-07-03 14:59:20"
+            "time": "2015-08-20 09:44:33"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.7.2",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3"
+                "reference": "b58c916f1db03a611b72dd702564f30ad8fe83fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
-                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/b58c916f1db03a611b72dd702564f30ad8fe83fa",
+                "reference": "b58c916f1db03a611b72dd702564f30ad8fe83fa",
                 "shasum": ""
             },
             "require": {
@@ -319,29 +320,33 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2015-06-18 19:21:56"
+            "time": "2015-08-24 07:13:45"
         },
         {
             "name": "twig/twig",
-            "version": "v1.18.2",
+            "version": "v1.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602"
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e8e6575abf6102af53ec283f7f14b89e304fa602",
-                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.7"
             },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -376,7 +381,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-06 23:31:24"
+            "time": "2015-09-22 13:59:32"
         }
     ],
     "packages-dev": [],

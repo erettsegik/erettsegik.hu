@@ -35,7 +35,8 @@ $adminMenuItems = array(
   array('url' => 'notes_admin', 'name' => 'Jegyzetek', 'clearance' => $config['clearance']['notes']),
   array('url' => 'categories_admin', 'name' => 'Kategóriák', 'clearance' => $config['clearance']['categories']),
   array('url' => 'subjects_admin', 'name' => 'Tárgyak', 'clearance' => $config['clearance']['subjects']),
-  array('url' => 'feedback_admin', 'name' => 'Visszajelzések', 'clearance' => $config['clearance']['feedback'])
+  array('url' => 'feedback_admin', 'name' => 'Visszajelzések', 'clearance' => $config['clearance']['feedback']),
+  array('url' => 'logs_admin', 'name' => 'Logok', 'clearance' => $config['clearance']['logs']),
 );
 
 $user = new user($_SESSION['userid']);

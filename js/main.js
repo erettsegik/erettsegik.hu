@@ -73,7 +73,7 @@ function searchRedirect(event, searchpage) {
 }
 
 $('#dropdown-toggle').click(function(){
-    $('#main-menu').slideToggle();
+    $('#menu-wrapper').slideToggle();
 });
 
 function preventLeaving() {
