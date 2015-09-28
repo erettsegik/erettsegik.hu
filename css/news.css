@@ -1,5 +1,5 @@
 #leftside {
-  border-right: 2px solid #dedede;
+  border-right: 1px solid #dedede;
   display: inline;
   float: left;
   padding-right: 10px;
@@ -36,7 +36,7 @@ nav ul {
 }
 
 #events-container, #notes-container {
-  border-bottom: 2px solid #dedede;
+  border-bottom: 1px solid #dedede;
 }
 
 #notes-container, .fb-page {

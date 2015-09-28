@@ -4,16 +4,18 @@ html, body {
 }
 
 body {
-  background-color: #dedede;
-  color: #35586e;
+  background-color: #EAE9EB;
+  color: #424141;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 100%;
   text-align: center;
 }
 
 nav {
-  background-color: #123952;
-  color: #dedede;
+
+  background-color: #5C4568;
+  opacity: 0.9;
+  color: #ffffff;
   font-size: 1.5em;
   height: 50px;
   margin: 0px;
@@ -26,11 +28,11 @@ nav {
 }
 
 nav a, nav a:visited {
-  color: #dedede;
+  color: #ffffff;
 }
 
 nav a:hover {
-  background-color: #688292;
+  background-color: #91B3C6;
 }
 
 #menu-wrapper {
@@ -60,7 +62,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background-color: #688292;
+  background-color: #91B3C6;
 }
 
 nav ul li:hover ul {
@@ -81,7 +83,7 @@ nav ul li ul {
 }
 
 nav ul li ul a {
-  background-color: #123952;
+  background-color: #5C4568;
   box-sizing: border-box;
   height: 35px;
   padding: 0;
@@ -122,6 +124,7 @@ nav ul li ul li {
   position: fixed;
   width: 103px;
 }
+
 
 #dropdown-toggle {
   display: none;
@@ -166,7 +169,7 @@ nav ul li ul li {
 
 #main {
   background-color: #ffffff;
-  border: 3px solid #d7d7d7;
+  border: 1px solid #d7d7d7;
   margin: auto;
   padding: 20px;
   text-align: left;
@@ -179,6 +182,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2em;
+  text-decoration: underline;
   margin-top: 0px;
 }
 
@@ -207,7 +211,7 @@ h6 {
 }
 
 a, a:visited {
-  color: #35586e;
+  color: #424141;
   text-decoration: none;
 }
 
@@ -216,7 +220,8 @@ a:focus {
 }
 
 nav a.unique, nav a.unique:visited {
-  color: #ffb938;
+  text-decoration: underline;
+  color: #ffffff;
 }
 
 .unique {
@@ -258,7 +263,7 @@ input {
 }
 
 input.submit {
-  border-color: #123952;
+  border-color: #424141;
   border-radius: 3px;
   margin-top: 5px;
   width: auto;
