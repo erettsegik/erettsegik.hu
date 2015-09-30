@@ -2,6 +2,10 @@ h2 {
   margin-top: 0;
 }
 
+.people-wrapper {
+  text-align: center;
+}
+
 .img-circular {
   margin-left: 85px;
   margin-right: 85px;
@@ -13,17 +17,19 @@ h2 {
   -moz-border-radius: 150px;
 }
 
-
 .person {
-  margin-bottom: 100px;
-  text-align:center;
+  text-align: center;
   width: 320px;
   font-size: 18px;
   display: inline-block;
   align-items: center;
-  height: 150px;
+  margin: auto;
 }
 
 .name {
   font-weight: bold;
+}
+
+.person p {
+  text-align: center;
 }
