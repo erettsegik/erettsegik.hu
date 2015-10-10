@@ -114,13 +114,13 @@ nav ul li ul li {
   -webkit-box-sizing: content-box;
   background-image: url('/img/search-background.png');
   background-repeat: no-repeat;
-  border-color: #688292;
-  border-width: 2px;
+  background-color: rgba(255, 255, 255, 0.2);;
+  border: 0px;
   box-sizing: content-box;
-  color: #dedede;
-  height: 15px;
-  margin-top: 17px;
-  padding: 0px 0px 0px 17px;
+  color: #fff;
+  height: 20px;
+  margin-top: 15px;
+  padding: 0px 0px 0px 19px;
   position: fixed;
   width: 103px;
 }
@@ -220,12 +220,11 @@ a:focus {
 }
 
 nav a.unique, nav a.unique:visited {
-  text-decoration: underline;
   color: #ffffff;
 }
 
 .unique {
-  color: #ee7600;
+  color: #5C4568;
 }
 
 footer {
@@ -238,7 +237,9 @@ p {
 }
 
 p a, p a:visited {
-  color: #EE7600;
+  background-color: #91B3C6;
+  color: #fff;
+  padding: 1px 3px 1px 3px;
 }
 
 blockquote {

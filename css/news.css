@@ -52,7 +52,7 @@ nav ul {
 }
 
 .progress-container {
-  background-color: #ffb938;
+  background-color: #5C4568;
   height: 5px;
   margin: 5px 0px;
   padding: 0px;
@@ -60,7 +60,7 @@ nav ul {
 }
 
 hr.progress-meter {
-  background-color: #35586e;
+  background-color: #91B3C6;
   height: 5px;
   margin: 0px;
 }
@@ -74,5 +74,9 @@ hr.progress-meter {
 }
 
 #notes-container .article-meta a, #notes-container .article-meta a:visited {
-  color: #ee7600;
+  background-color: #91B3C6;
+  color: #fff;
+  padding: 1px 3px 1px 3px;
+/*  padding-left: 3px;
+  padding-right: 3px;*/
 }
