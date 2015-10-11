@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
   <link href='//fonts.googleapis.com/css?family=Roboto+Condensed|Roboto&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -32,7 +32,7 @@
 <body>
   <nav>
   <div id='mobile-icons'>
-    <a href='/user_manage/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a>
+    <a href='/user_manage/'><img src='/img/login-mobile.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up-mobile.png' alt='Oldal tetejére' title='Oldal tetejére'></a>
   </div>
   <form id='search-form' onsubmit='searchRedirect(event);'>
     <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
@@ -60,7 +60,7 @@
     </li>
   </ul>
   <div id='more-mobile-icons'>
-    <a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+    <a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback-mobile.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
   </div>
   </div>
   </nav>
@@ -75,7 +75,7 @@
     {% endfor %}
   </section>
   <div id='desktop-buttons'>
-    <a href='/user_manage/'><img src='/img/login-blue.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq-blue.png' alt='GYIK' title='GYIK'></a><a href='/note/add/'><img src='/img/note-add-blue.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/feedback/'><img src='/img/feedback-blue.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-blue.png' alt='Rólunk' title='Rólunk'></a>
+    </a><a href='/note/add/'><img src='/img/note-add-blue.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user_manage/'><img src='/img/login-blue.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq-blue.png' alt='GYIK' title='GYIK'><a href='/feedback/'><img src='/img/feedback-blue.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-blue.png' alt='Rólunk' title='Rólunk'></a>
   </div>
   <br style='clear: both;'>
   {% if status == 'error' or status == 'success' or status == 'notice' %}
