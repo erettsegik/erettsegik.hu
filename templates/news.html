@@ -47,7 +47,7 @@
   {% if current_events|length != 0 %}
     {% for event in current_events %}
       <div class='event-container'>
-          <h4>{{ event.name }}</h4>
+          <h6>{{ event.name }}</h6>
           <span class='article-meta' onclick='this.innerHTML = "{{ event.startdate }} → {{ event.enddate }}"'>
             {{ event.startdatetext }} kezdődött - {{ event.enddatetext }}
           </span>
@@ -61,7 +61,7 @@
   {% if upcoming_events|length != 0 %}
     {% for event in upcoming_events %}
       <div class='event-container'>
-          <h4>{{ event.name }}</h4>
+          <h6>{{ event.name }}</h6>
           <span class='article-meta' onclick='this.innerHTML = "{{ event.startdate }} → {{ event.enddate }}"'>
             {{ event.startdatetext }} a kezdésig
           </span>
@@ -86,7 +86,6 @@
 </div>
 <div class='fb-page' data-href='https://www.facebook.com/erettsegik' data-width='230' data-small-header='true' data-adapt-container-width='false' data-hide-cover='false' data-show-facepile='true' data-show-posts='false'><div class='fb-xfbml-parse-ignore'><blockquote cite='https://www.facebook.com/erettsegik'><a href='https://www.facebook.com/erettsegik'>erettsegik.hu</a></blockquote></div></div>
 </div>
-<br style='clear: both;'>
 
 <div id='fb-root'></div>
 <script>(function(d, s, id) {

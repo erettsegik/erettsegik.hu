@@ -1,21 +1,23 @@
 @media (max-width: 1000px) {
 
   #main {
-    padding: 0;
     background-color: #dedede;
+    padding: 0;
   }
 
   #leftside {
-    padding: 20px;
     background-color: #ffffff;
-    border-right: 0px solid #dedede;
-    padding-right: 10px;
+    border-width: 0px;
+    padding: 2vh;
     width: 100%;
-    text-align: left;
   }
 
   #leftside h2 {
     text-align: center;
+  }
+
+  #leftside .article-meta {
+    text-align: left;
   }
 
   #rightside {
@@ -24,31 +26,18 @@
   }
 
   #events-container, #notes-container, .fb-page {
-    border-width: 0;
     background-color: #ffffff;
-    padding: 20px;
-    margin-top: 16px;
+    margin-top: 2vh;
+    padding: 2.5vh;
     width: 100%;
   }
 
-  .event-container h4 {
-    margin: 0px;
+  #events-container p {
+    text-align: center;
   }
 
-  .progress-container {
-    height: 5px;
-    margin: 5px 0px;
-    padding: 0px;
-    width: 100%;
-  }
-
-  hr.progress-meter {
-    height: 5px;
-    margin: 0px;
-  }
-
-  #notes-container .article-meta {
-    margin: 4px 0px 12px 0px;
+  ul {
+    text-align: left;
   }
 
 }

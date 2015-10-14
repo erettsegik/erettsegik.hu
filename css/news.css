@@ -1,12 +1,12 @@
 #leftside {
   border-right: 1px solid #dedede;
-  display: inline;
-  float: left;
+  display: inline-block;
   padding-right: 10px;
-  width: 740px;
+  vertical-align: top;
+  width: 711px;
 }
 
-#leftside h2 {
+h2 {
   margin-top: 0;
 }
 
@@ -23,16 +23,18 @@ nav ul {
 }
 
 #news-pages {
-  text-align: center;
-  padding: 10px;
   font-size: 1.3em;
+  padding: 10px;
+  text-align: center;
 }
 
 #rightside {
-  display: inline;
-  float: left;
-  padding: 9px;
-  width: 230px;
+  border-left: 1px solid #dedede;
+  display: inline-block;
+  margin-left: -1px;
+  padding-left: 10px;
+  vertical-align: top;
+  width: 250px;
 }
 
 #events-container, #notes-container {
@@ -65,7 +67,7 @@ hr.progress-meter {
   margin: 0px;
 }
 
-#notes-container h6 {
+#rightside h6 {
   margin: 0;
 }
 
@@ -77,6 +79,4 @@ hr.progress-meter {
   background-color: #91B3C6;
   color: #fff;
   padding: 1px 3px 1px 3px;
-/*  padding-left: 3px;
-  padding-right: 3px;*/
 }

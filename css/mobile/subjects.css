@@ -14,4 +14,8 @@
     column-gap: 0px;
   }
 
+  ul {
+    text-align: left;
+  }
+
 }
