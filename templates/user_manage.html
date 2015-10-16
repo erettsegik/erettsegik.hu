@@ -1,5 +1,10 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/user_manage.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/user_manage.css'>
+{% endblock %}
+
 {% block content %}
 
 {% if mode == 'loggedin' %}

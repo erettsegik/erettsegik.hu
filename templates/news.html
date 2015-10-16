@@ -1,8 +1,11 @@
 {% extends 'index.html' %}
 
-{% block content %}
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/news.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/news.css'>
+{% endblock %}
 
-{% spaceless %}
+{% block content %}
 
 <div id='leftside'>
 
@@ -95,7 +98,5 @@
   js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
-{% endspaceless %}
 
 {% endblock %}

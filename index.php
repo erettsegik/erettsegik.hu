@@ -125,18 +125,6 @@ if (isset($_GET['p'])) {
 
   $p = $_GET['p'];
 
-  if (file_exists('css/' . $p . '.css')) {
-
-    $index_var['css'] = $p;
-
-  }
-
-  if (file_exists('css/mobile/' . $p . '.css')) {
-
-    $index_var['mobilecss'] = $p;
-
-  }
-
   if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
 
     require_once 'inc/' . $p . '.php';
@@ -149,9 +137,6 @@ if (isset($_GET['p'])) {
   }
 
 } else {
-
-  $index_var['css'] = 'news';
-  $index_var['mobilecss'] = 'news';
 
   require_once 'inc/news.php';
 

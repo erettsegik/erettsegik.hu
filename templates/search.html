@@ -1,5 +1,9 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/search.css'>
+{% endblock %}
+
 {% block content %}
 
 <form onsubmit='searchRedirect(event, "main");'>
