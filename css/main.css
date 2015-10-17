@@ -26,13 +26,8 @@ nav {
   opacity: 0.9;
   position: fixed;
   top: 0px;
-  vertical-align: middle;
   width: 100%;
   z-index: 100;
-}
-
-nav > * {
-  position: static;
 }
 
 nav a, nav a:visited {
@@ -46,7 +41,6 @@ nav a:hover {
 #logo {
   display: inline-block;
   height: 50px;
-  width: 50px;
 }
 
 #logo a, #logo a:visited {
@@ -60,8 +54,6 @@ nav a:hover {
 
 #menu-wrapper {
   display: inline-block;
-  margin: 0px 0px 0px 120px;
-  padding: 0px 120px 0px 0px;
 }
 
 nav ul {
@@ -121,8 +113,8 @@ nav ul li ul li a {
   display: none;
 }
 
-#search-form {
-  display: inline;
+#search {
+  display: inline-block;
 }
 
 #searchbox {
@@ -134,7 +126,6 @@ nav ul li ul li a {
   height: 20px;
   margin-top: 15px;
   padding: 0px 0px 0px 20px;
-  position: fixed;
   width: 110px;
 }
 
