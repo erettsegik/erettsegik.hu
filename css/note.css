@@ -24,7 +24,7 @@ p {
   text-indent: 10px;
 }
 
-.img-wrapper a {
+#main .img-wrapper > a, #main .img-wrapper > a:visited {
   padding: 0;
   background-color: transparent;
 }
@@ -98,6 +98,13 @@ li p {
 
 #collection, #modifications {
   border-bottom: 1px solid #dedede;
+}
+
+#modifications li a, #modifications li a:visited {
+  color: #424141;
+  padding: 0;
+  background-color: inherit;;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 #modifications, .vertical-ad {

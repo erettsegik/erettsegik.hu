@@ -2,6 +2,13 @@ h2 {
   margin-top: 0;
 }
 
+#main li a, #main li a:visited {
+  color: #424141;
+  padding: 0;
+  background-color: inherit;;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 #subject-menu {
   -moz-column-count: 4;
   -moz-column-gap: 20px;

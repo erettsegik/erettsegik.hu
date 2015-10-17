@@ -1,0 +1,27 @@
+@media (max-width: 1000px) {
+
+  div.modification textarea {
+    height: 50vh;
+    width: 100%;
+  }
+
+  div.modification {
+    display: block;
+  }
+
+  #modification-status {
+    height: 4vh;
+  }
+
+  div.modification-container {
+    display: block;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .g-recaptcha {
+    margin: auto;
+    display: inline-block;
+  }
+
+}

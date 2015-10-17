@@ -108,7 +108,7 @@
   }
 
   input, select {
-    width: 25vh;
+    width: 50%;
   }
 
   textarea {

@@ -1,17 +1,19 @@
 div.modification textarea {
   height: 600px;
-  width: 490px;
+  width: 480px;
 }
 
 div.modification {
-  display: inline;
-  float: left;
+  display: inline-block;
+}
+
+#modification-title::before {
+  margin-right: 5px;
 }
 
 #modification-title {
-  display: inline;
-  margin-left: 5px;
   width: auto;
+  margin: 0;
 }
 
 #modification-status {
@@ -19,14 +21,9 @@ div.modification {
 }
 
 div.modification-container {
-  display: inline;
-  float: left;
+  display: inline-block;
   padding: 10px;
   width: 480px;
-}
-
-p {
-  text-align: justify;
 }
 
 .difference-original {

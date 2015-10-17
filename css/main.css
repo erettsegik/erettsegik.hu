@@ -262,9 +262,27 @@ blockquote p {
 }
 
 input, select, textarea {
-  background-color: #f8f8f8;
-  border: 2px solid #d7d7d7;
-  color: #35586e;
+  background-color: #F6E4FF;
+  border: 2px solid #5C4568;
+  color: #5C4568;
+  outline: none;
+  margin: 2px auto;
+}
+
+::-webkit-input-placeholder {
+  color: #A9A1A1;
+}
+
+:-moz-placeholder {
+  color: #A9A1A1;
+}
+
+::-moz-placeholder {
+  color: #A9A1A1;
+}
+
+:-ms-input-placeholder {
+  color: #A9A1A1;
 }
 
 input, select {
