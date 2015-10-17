@@ -5,7 +5,7 @@ html, body {
 
 body {
   background-color: #EAE9EB;
-  color: #424141;
+  color: #424242;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1em;
   text-align: center;
@@ -226,6 +226,22 @@ p {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5em;
   text-align: justify;
+}
+
+#main ul, #main ol {
+  font-family: 'Roboto', sans-serif;
+}
+
+#main ul a, #main ul a:visited {
+  background-color: #91B3C6;
+  color: #fff;
+  padding: 1px 3px 1px 3px;
+}
+
+#main ol a, #main ol a:visited {
+  background-color: #91B3C6;
+  color: #fff;
+  padding: 1px 3px 1px 3px;
 }
 
 p a, p a:visited {

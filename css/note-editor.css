@@ -19,12 +19,16 @@ button.edit-button {
   background-color: #f8f8f8;
   border: 2px solid #d7d7d7;
   color: #35586e;
-  margin: 5px 0;
+  margin: 5px -2px 5px 0;
   padding: 5px;
 }
 
 #rightside-buttons {
   float: right;
+}
+
+#rightside-buttons button.edit-button {
+  margin: 5px 0 5px -2px;
 }
 
 #note-help {

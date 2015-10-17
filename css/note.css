@@ -15,13 +15,18 @@ code {
 }
 
 em {
-  color: #15384e;
+  color: #303030;
   font-style: normal;
   font-weight: bold;
 }
 
 p {
   text-indent: 10px;
+}
+
+.img-wrapper a {
+  padding: 0;
+  background-color: transparent;
 }
 
 table {
@@ -64,22 +69,6 @@ th:empty {
 li p {
   text-indent: 0px;
   margin: 0px;
-}
-
-#leftside ul {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside ol {
-  font-family: 'Roboto', sans-serif;
-}
-
-#leftside ul a, #leftside ul a:visited {
-  color: #ee7600;
-}
-
-#leftside ol a, #leftside ol a:visited {
-  color: #ee7600;
 }
 
 #footnotes {

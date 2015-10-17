@@ -10,14 +10,6 @@ h2 {
   margin-top: 0;
 }
 
-ul {
-  font-family: 'Roboto', sans-serif;
-}
-
-nav ul {
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
 .article-meta {
   margin-bottom: 24px;
 }
@@ -43,28 +35,6 @@ nav ul {
 
 #notes-container, .fb-page {
   margin-top: 12px;
-}
-
-.event-container {
-  margin-top: 16px;
-}
-
-.event-container h4 {
-  margin: 0px;
-}
-
-.progress-container {
-  background-color: #5C4568;
-  height: 5px;
-  margin: 5px 0px;
-  padding: 0px;
-  width: 100%;
-}
-
-hr.progress-meter {
-  background-color: #91B3C6;
-  height: 5px;
-  margin: 0px;
 }
 
 #rightside h6 {

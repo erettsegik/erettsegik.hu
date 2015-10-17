@@ -1,0 +1,21 @@
+.event-container {
+  margin-top: 16px;
+}
+
+.event-container h4 {
+  margin: 0px;
+}
+
+.progress-container {
+  background-color: #5C4568;
+  height: 5px;
+  margin: 5px 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+hr.progress-meter {
+  background-color: #91B3C6;
+  height: 5px;
+  margin: 0px;
+}

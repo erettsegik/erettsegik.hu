@@ -1,41 +1,19 @@
-<script type='text/javascript'>
-  $( document ).ready(function() {
-    $('head').append('<link rel="stylesheet" type="text/css" href="/css/note-editor.css">');
-  });
-</script>
-
-<table class='editor'>
-  <tr>
-    <td>Cím:</td>
-    <td><input type='text' name='title' class='shorter form-element' value='{{ saved.title }}' required></td>
-  </tr>
-  <tr>
-    <td>Tantárgy:</td>
-    <td>
-      <select name='subjectid' required>
-        {% for subject in subjects %}
-        <option value='{{ subject.id }}'{% if subject.id == saved.subjectid %} selected{% endif %}>{{ subject.name }}</option>
-        {% endfor %}
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Kategória:</td>
-    <td>
-      <select name='category' required>
-        {% for category in categories %}
-          <option value='{{ category.id }}'{% if category.id == saved.category %} selected{% endif %}>{{ category.name }}</option>
-        {% endfor %}
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>E-mail:</td>
-    <td>
-      <input type='email' name='email' class='shorter form-element' value='{{ saved.email }}'>
-    </td>
-  </tr>
-</table>
+<input type='text' name='title' placeholder='Cím*' value='{{ saved.title }}' required>
+<br>
+<select name='subjectid' required>
+  {% for subject in subjects %}
+  <option value='{{ subject.id }}'{% if subject.id == saved.subjectid %} selected{% endif %}>{{ subject.name }}</option>
+  {% endfor %}
+</select>
+<br>
+<select name='category' required>
+  {% for category in categories %}
+    <option value='{{ category.id }}'{% if category.id == saved.category %} selected{% endif %}>{{ category.name }}</option>
+  {% endfor %}
+</select>
+<br>
+<input type='email' name='email' placeholder='e-mail cím' value='{{ saved.email }}'>
+<hr>
 <button type='button' class='edit-button' onclick='emphasis();'>kiemelés</button>
 <button type='button' class='edit-button' onclick='header();'>alcím</button>
 <button type='button' class='edit-button' onclick='image();'>kép</button>
@@ -53,14 +31,11 @@
   {% markdown %}
   ### Általános
 
-  Kérjük, hogy jegyzetet csak akkor küldjetek be, ha az a saját szellemi terméketek, azaz nem más engedély nélkül feltöltött jegyzete, vagy egy könyvből egy az egyben kimásolt részlet.
-  Jegyzetet nem csak ezen az űrlapon keresztül küldhettek be nekünk, hanem például a [Facebook oldalunkon](https://facebook.com/erettsegik) keresztül is (lehetőleg üzenetben, csatolva).
-  Ha maradtok ennél a megoldásnál, akkor a jegyzetet át kell írnotok markdown formátumba, amelyről a következőkben olvashattok.
+  Kérjük, hogy jegyzetet csak akkor küldjetek be, ha az a saját szellemi terméketek, azaz nem más engedély nélkül feltöltött jegyzete, vagy egy könyvből egy az egyben kimásolt részlet. Jegyzetet nem csak ezen az űrlapon keresztül küldhettek be nekünk, hanem például a [Facebook oldalunkon](https://facebook.com/erettsegik) keresztül is (lehetőleg üzenetben, csatolva). Ha maradtok ennél a megoldásnál, akkor a jegyzetet át kell írnotok markdown formátumba, amelyről a következőkben olvashattok.
 
   ### A markdownról
 
-  A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható legyen.
-  A teljes specifikáció [itt](http://daringfireball.net/projects/markdown) megtalálható, de a legfontosabb elemek a szerkesztőnkkel is előállíthatók (megjegyezni sem nehéz őket).
+  A Markdown egy leírónyelv, melyet John Gruber fejlesztett ki, hogy egyszerűen és szépen lehessen szöveget formázni olyan módon, hogy aztán az könnyen HTML-be, vagy PDF-be konvertálható legyen. A teljes specifikáció [itt](http://daringfireball.net/projects/markdown) megtalálható, de a legfontosabb elemek a szerkesztőnkkel is előállíthatók (megjegyezni sem nehéz őket).
 
   ### A szerkesztőről
 
@@ -71,7 +46,7 @@
   Lehetőség van a jegyzetbe képleteket is beszúrni, ehhez szintén segítséget nyújt a szerkesztőnk. A képletek feldolgozásához a [KaTeX](https://github.com/Khan/KaTeX) TeX parsert használjuk, amely nem támogat minden TeX-beli kifejezést, a használható elemek listája megtalálható [itt](https://github.com/Khan/KaTeX/wiki/Function-Support-in-KaTeX).
   {% endmarkdown %}
 </div>
-<textarea name='text' id='note-txt' placeholder='Szöveg' required onchange='preventLeaving();' onkeyup='preventLeaving();'>{{ saved.text }}</textarea>
+<textarea name='text' id='note-txt' placeholder='Szöveg*' required onchange='preventLeaving();' onkeyup='preventLeaving();'>{{ saved.text }}</textarea>
 
 <h1 class='preview' id='preview-title'></h1><button type='button' class='edit-button' id='hide-preview' onclick='hidePreview();'>Előnézet elrejtése</button>
 <br style='clear: both;'>
@@ -86,6 +61,6 @@
 
 <hr>
 
-<textarea name='footnotes' id='note-footnotes' placeholder='Lábjegyzet (opcionális)'>{{ saved.footnotes }}</textarea>
+<textarea name='footnotes' id='note-footnotes' placeholder='Lábjegyzet'>{{ saved.footnotes }}</textarea>
 
 <script type='text/JavaScript' src='/js/editor.js'></script>
