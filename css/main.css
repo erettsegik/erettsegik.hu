@@ -31,12 +31,31 @@ nav {
   z-index: 100;
 }
 
+nav > * {
+  position: static;
+}
+
 nav a, nav a:visited {
   color: #ffffff;
 }
 
 nav a:hover {
   background-color: #91B3C6;
+}
+
+#logo {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+
+#logo a, #logo a:visited {
+  padding: 0;
+  background-color: transparent;
+}
+
+#logo img {
+  height: 100%;
 }
 
 #menu-wrapper {
