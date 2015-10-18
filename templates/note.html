@@ -82,13 +82,13 @@
 
 {% endif %}
 
-{{ editor }}
-
 {% endblock %}
 
 {% block stylesheets %}
 <link rel='stylesheet' type='text/css' href='/css/note.css'>
 <link rel='stylesheet' type='text/css' href='/css/mobile/note.css'>
+{% if mode != 'display' %}
 <link rel='stylesheet' type='text/css' href='/css/note-editor.css'>
 <link rel='stylesheet' type='text/css' href='/css/mobile/note-editor.css'>
+{% endif %}
 {% endblock %}
