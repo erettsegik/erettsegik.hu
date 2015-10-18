@@ -76,14 +76,4 @@ $('#dropdown-toggle').click(function(){
     $('#menu-wrapper').slideToggle();
 });
 
-function preventLeaving() {
-  window.onbeforeunload = function (e) {
-    return "Nem mentett változtatásaid vannak az oldalon.";
-  };
-}
-
-function allowLeaving() {
-  window.onbeforeunload = null;
-}
-
 $(main);
