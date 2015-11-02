@@ -5,7 +5,7 @@ require_once 'classes/logger.class.php';
 require_once 'inc/functions.php';
 
 $index_var['location'][] = array(
-  'url' => '/user_manage/',
+  'url' => '/user/dashboard/',
   'name' => 'Felhasználói oldal'
 );
 
@@ -28,7 +28,7 @@ if (!isset($_SESSION['userid'])) {
 
       $logger->log($user->getData()['name'] . ' logged in');
 
-      header('Location: /user_manage/');
+      header('Location: /user/dashboard/');
       die();
 
     }
@@ -71,7 +71,7 @@ if (!isset($_SESSION['userid'])) {
         $_SESSION['status'] = 'success';
         $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
 
-        header('Location: /user_manage/');
+        header('Location: /user/dashboard/');
         die();
 
       }
@@ -86,7 +86,7 @@ if (!isset($_SESSION['userid'])) {
 }
 
 echo $twig->render(
-  'user_manage.html',
+  'user.html',
   array(
     'index_var' => $index_var,
     'message'   => $message,

@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
   `authority` int(11) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)

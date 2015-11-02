@@ -83,7 +83,7 @@ function initTwig() {
 function checkRights($clearance_level = 0) {
 
   if (!isset($_SESSION['userid'])) {
-    header('Location: /user_manage/');
+    header('Location: /user/login/');
     die('Kérlek jelentkezz be.');
   }
 
