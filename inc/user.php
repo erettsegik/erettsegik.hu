@@ -55,11 +55,15 @@ if (!isset($_SESSION['userid'])) {
 
      $mode = 'loggedin';
 
+     $user = new user($_SESSION['userid']);
+
+     $userdata = $user->getData();
+
   }
 
-  if (isset($_GET['action']) && $_GET['action'] == 'change_password') {
+  if (isset($_GET['action']) && $_GET['action'] == 'settings') {
 
-    $mode = 'change_password';
+    $mode = 'settings';
 
     if (isset($_POST['submit'])) {
 
@@ -92,6 +96,7 @@ echo $twig->render(
     'message'   => $message,
     'mode'      => $mode,
     'saved'     => isset($saved) ? $saved : null,
-    'status'    => $status
+    'status'    => $status,
+    'userdata'  => isset($userdata) ? $userdata : null,
   )
 );

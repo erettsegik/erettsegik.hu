@@ -9,20 +9,44 @@
 
 {% if mode == 'loggedin' %}
 
-  <ul>
-    <li><a href='/admin/index.php'>Tovább az admin felületre?</a></li>
-    <li><a href='/user/change_password/'>Jelszóváltoztatás?</a></li>
-    <li><a href='/user/logout/'>Kijelentkezés?</a></li>
-  </ul>
+  {% if userdata.authority > 0 %}
+  <a href='/admin/index.php' target='_blank'>
+    <div class='dashboard-item'>
+      <img src='/img/dashboard/admin.png'>
+      <p>Adminisztráció</p>
+    </div>
+  </a>
+  {% endif %}
+
+  <a href='/collection/'>
+    <div class='dashboard-item'>
+      <img src='/img/dashboard/collection.png'>
+      <p>Gyűjteményem</p>
+    </div>
+  </a>
+
+  <a href='/user/settings/'>
+    <div class='dashboard-item'>
+      <img src='/img/dashboard/settings.png'>
+      <p>Beállítások</p>
+    </div>
+  </a>
+
+  <a href='/user/logout/'>
+    <div class='dashboard-item'>
+      <img src='/img/dashboard/logout.png'>
+      <p>Kijelentkezés</p>
+    </div>
+  </a>
 
 {% endif %}
 
-{% if mode == 'change_password' %}
+{% if mode == 'settings' %}
 
-  <form action='/user/change_password/' method='post'>
-  <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
-  <input class='login' type='password' name='new_password' placeholder='új jelszó' required><br>
-  <input type='submit' name='submit' class='submit' value='Elküldés'>
+  <form action='/user/settings/' method='post'>
+    <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
+    <input class='login' type='password' name='new_password' placeholder='új jelszó' required><br>
+    <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
 {% endif %}
@@ -30,9 +54,9 @@
 {% if mode == 'form'%}
 
   <form action='/user/login/' method='post'>
-  <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
-  <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
-  <input type='submit' name='submit' class='submit' value='Elküldés'>
+    <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
+    <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
+    <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
 {% endif%}
