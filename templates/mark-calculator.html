@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/mark-calculator.css'>
+{% endblock %}
+
+{% block content %}
+
+<table>
+  <thead>
+    <tr>
+      <td colspan='2'>
+        Tantárgyak
+      </td>
+      <td colspan='2'>
+        Jegyek
+      </td>
+      <td colspan='2'>
+        <select id='sulyozas' onchange='display();'>
+          <option value='11111'>1:1:1:1:1</option>
+          <option value='11122'>1:1:1:2:2</option>
+          <option value='12244'>1:2:2:4:4</option>
+          <option value='11224'>1:1:2:2:4</option>
+        </select>
+      </td>
+    </tr>
+  </thead>
+  <tbody id='tbody'>
+  <tr>
+  <td id='ujtantargy' class='tantargy'>
+  <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus></td>
+  <td id='addsubject'>
+  <button id='addsubjectbutton' onclick='addSubject();'></button></td>
+  <td class='jegyek' colspan='2'></td>
+  <td class='atlag'></td>
+  <td class='bizonyitvany'></td>
+  </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan='6'>
+        <span class='kis'>kis jegy</span>
+        <span class='normal'>normál jegy</span>
+        <span class='dolgozat'>dolgozat</span>
+        <span class='temazaro'>témazáró</span>
+        <span class='vizsga'>vizsgajegy</span>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<div id='jegyszerkesztes'>
+</div>
+<div id='data'>
+  <fieldset>
+    <legend>Adatkezelés</legend>
+    <button id='loadfromtext' onclick='loadTextData();'>
+    Adatok betöltése szövegből</button>
+    <button id='exporttotext' onclick='saveTextData();'>
+    Adatok mentése szövegbe</button>
+    <div id='outputfield'>
+    </div>
+  </fieldset>
+</div>
+<p><a href='https://github.com/erettsegik/mark-calculator/blob/gh-pages/README.md' target='_blank'>Súgó</a></p>
+
+<script src='/js/mark-calculator.js'>
+
+</script>
+
+{% endblock %}

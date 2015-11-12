@@ -1,0 +1,164 @@
+table {
+  background-color: #dcdcdc;
+  border: 1px solid #969696;
+  margin: auto;
+}
+
+thead {
+  background-color: #660077;
+  color: #ffffff;
+}
+
+td {
+  height: 25px;
+  padding: 0 5px;
+}
+
+form {
+  height: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+#newsubject {
+  background-color: #828C96;
+  border: 0;
+  color: #ffffff;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  padding: 5px;
+  width: 100%;
+}
+
+::-webkit-input-placeholder {
+  color: #ffffff;
+}
+:-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #ffffff;
+}
+
+#addsubjectbutton {
+  background-color: #828C96;
+  background-image: url(/img/mark-calculator/add.png);
+  border: 0px;
+  height: 25px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 25px;
+}
+
+#removesubjectbutton {
+  background-color: #828C96;
+  background-image: url(/img/mark-calculator/remove.png);
+  border: 0px;
+  height: 25px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 25px;
+}
+
+#addsubject {
+  background-color: #828C96;
+  height: 25px;
+  padding: 0;
+  width: 25px;
+}
+
+#removesubject {
+  background-color: #828C96;
+  border-left: 0px;
+  height: 25px;
+  padding: 0;
+  width: 25px;
+}
+
+td.tantargy {
+  background-color: #828C96;
+  border-right: 0px;
+  color: #ffffff;
+  padding-left: 5px;
+  text-align: left;
+}
+
+#ujtantargy {
+  padding: 0;
+}
+
+td.jegyek {
+  background-color: #eeeeee;
+}
+
+#ujjegy {
+  height: 25px;
+  padding: 0;
+  width: 25px;
+}
+
+#ujjegybutton {
+  background-image: url(/img/mark-calculator/add.png);
+  border: 0px;
+  height: 25px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 25px;
+}
+
+td.atlag {
+  background-color: #646482;
+  color: #ffffff;
+}
+
+td.bizonyitvany {
+  background-color: #446655;
+  color: #ffffff;
+}
+
+span {
+  margin: 0 2px;
+}
+
+span.kis {
+  color: #0000ff;
+}
+
+span.normal {
+  color: #000000;
+}
+
+span.dolgozat {
+  color: green;
+}
+
+span.temazaro {
+  color: #ff0000;
+}
+
+span.vizsga {
+  color: #800080;
+}
+
+blockquote {
+  background-color: #ededed;
+  font-style: italic;
+  margin: auto;
+  width: auto;
+}
+
+fieldset {
+  margin: auto;
+  width: auto;
+}
