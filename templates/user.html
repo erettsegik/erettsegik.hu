@@ -1,13 +1,13 @@
 {% extends 'index.html' %}
 
 {% block stylesheets %}
-<link rel='stylesheet' type='text/css' href='/css/user.css'>
-<link rel='stylesheet' type='text/css' href='/css/mobile/user.css'>
+  <link rel='stylesheet' type='text/css' href='/css/user.css'>
+  <link rel='stylesheet' type='text/css' href='/css/mobile/user.css'>
 {% endblock %}
 
 {% block content %}
 
-{% if mode == 'loggedin' %}
+{% if action == 'dashboard' %}
 
   {% if userdata.authority > 0 %}
   <a href='/admin/index.php' target='_blank'>
@@ -22,6 +22,13 @@
     <div class='dashboard-item'>
       <img src='/img/dashboard/collection.png'>
       <p>Gyűjteményem</p>
+    </div>
+  </a>
+
+  <a href='/mark-calculator/'>
+    <div class='dashboard-item'>
+      <img src='/img/dashboard/mark-calculator.png'>
+      <p>Jegyszámító</p>
     </div>
   </a>
 
@@ -41,7 +48,7 @@
 
 {% endif %}
 
-{% if mode == 'settings' %}
+{% if action == 'settings' %}
 
   <form action='/user/settings/' method='post'>
     <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
@@ -51,14 +58,26 @@
 
 {% endif %}
 
-{% if mode == 'form'%}
+{% if action == 'login' %}
 
   <form action='/user/login/' method='post'>
     <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
     <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
-    <input type='submit' name='submit' class='submit' value='Elküldés'>
+    <input type='submit' name='submit' class='submit' value='Elküldés'><br>
+    <p><a href='/user/register/'>Regisztráció</a> &#8226; <a href='/user/forgotten/'>Elfelejtett jelszó</a></p>
   </form>
 
-{% endif%}
+{% endif %}
+
+{% if action == 'register' %}
+
+  <form action='/user/register/' method='post'>
+    <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
+    <input class='login' type='email' name='email' placeholder='E-mail cím' value='{{ saved.email }}' required><br>
+    <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
+    <input type='submit' name='submit' class='submit' value='Elküldés'><br>
+  </form>
+
+{% endif %}
 
 {% endblock %}

@@ -11,9 +11,91 @@ $index_var['location'][] = array(
 
 $index_var['title'] = 'Felhasználói oldal';
 
-if (!isset($_SESSION['userid'])) {
+if (isset($_SESSION['userid'])) {
 
-  $mode = 'form';
+  if (isset($_GET['action'])) {
+
+    switch ($_GET['action']) {
+      case 'dashboard': $action = 'dashboard'; break;
+      case 'logout': $action = 'logout'; break;
+      case 'settings': $action = 'settings'; break;
+      default: header('Location: /user/dashboard/'); die();
+    }
+
+  } else {
+
+    header('Location: /user/dashboard/');
+    die();
+
+  }
+
+  $user = new user($_SESSION['userid']);
+
+} else {
+
+  if (isset($_GET['action'])) {
+
+    switch ($_GET['action']) {
+      case 'forgotten': $action = 'forgotten'; break;
+      case 'login': $action = 'login'; break;
+      case 'register': $action = 'register'; break;
+      default: header('Location: /user/login/'); die();
+    }
+
+  } else {
+
+    header('Location: /user/login/');
+    die();
+
+  }
+
+}
+
+if ($action == 'dashboard') {
+
+  $userdata = $user->getData();
+
+}
+
+if ($action == 'logout') {
+
+  unset($_SESSION['userid']);
+  $_SESSION['status'] = 'success';
+  $_SESSION['message'] = 'Sikeres kijelentkezés!';
+
+  header('Location: /');
+  die();
+
+}
+
+if ($action == 'settings') {
+
+  if (isset($_POST['submit'])) {
+
+    if (isNotEmpty($_POST['new_password'])) {
+
+      $user->changePassword($_POST['old_password'], $_POST['new_password']);
+
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
+
+      header('Location: /user/dashboard/');
+      die();
+
+    }
+
+    $status = 'error';
+    $message = 'Nem sikerült a jelszóváltoztatás!';
+
+  }
+
+}
+
+if ($action == 'forgotten') {
+
+}
+
+if ($action == 'login') {
 
   if (isset($_POST['submit'])) {
 
@@ -40,50 +122,32 @@ if (!isset($_SESSION['userid'])) {
 
   }
 
-} else {
+}
 
-  if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+if ($action == 'register') {
 
-    unset($_SESSION['userid']);
-    $_SESSION['status'] = 'success';
-    $_SESSION['message'] = 'Sikeres kijelentkezés!';
+  if (isset($_POST['submit'])) {
 
-    header('Location: /');
-    die();
+    $user = new user();
 
-  } else {
+    if ($user->register($_POST['name'], $_POST['email'], 0, $_POST['password'])) {
 
-     $mode = 'loggedin';
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Sikeres regisztráció!';
 
-     $user = new user($_SESSION['userid']);
+      $logger = new logger();
 
-     $userdata = $user->getData();
+      $logger->log($user->getData()['name'] . ' registered');
 
-  }
-
-  if (isset($_GET['action']) && $_GET['action'] == 'settings') {
-
-    $mode = 'settings';
-
-    if (isset($_POST['submit'])) {
-
-      if (isNotEmpty($_POST['new_password'])) {
-
-        $user = new user($_SESSION['userid']);
-        $user->changePassword($_POST['old_password'], $_POST['new_password']);
-
-        $_SESSION['status'] = 'success';
-        $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
-
-        header('Location: /user/dashboard/');
-        die();
-
-      }
-
-      $status = 'error';
-      $message = 'Nem sikerült a jelszóváltoztatás!';
+      header('Location: /user/dashboard/');
+      die();
 
     }
+
+    $saved = array('name' => $_POST['name'], 'email' => $_POST['email']);
+
+    $status = 'error';
+    $message = $_SESSION['message'];
 
   }
 
@@ -94,7 +158,7 @@ echo $twig->render(
   array(
     'index_var' => $index_var,
     'message'   => $message,
-    'mode'      => $mode,
+    'action'    => $action,
     'saved'     => isset($saved) ? $saved : null,
     'status'    => $status,
     'userdata'  => isset($userdata) ? $userdata : null,

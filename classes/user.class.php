@@ -4,6 +4,7 @@ class user {
 
   protected $id        = null;
   protected $name      = null;
+  protected $email     = null;
   protected $authority = null;
 
   public function __construct($id = null) {
@@ -28,6 +29,7 @@ class user {
 
     $this->id        = $userData['id'];
     $this->name      = $userData['name'];
+    $this->email     = $userData['email'];
     $this->authority = $userData['authority'];
 
   }
@@ -113,18 +115,68 @@ class user {
 
   }
 
-  public function register($name, $authority, $password) {
+  private function checkAvailability($value, $type) {
 
     global $con;
     global $config;
+
+      try {
+
+        if ($type == 'name') {
+
+          try {
+            $select = $con->prepare('select id from users where name = :name');
+            $select->bindValue('name', $value, PDO::PARAM_STR);
+            $select->execute();
+          } catch (PDOException $e) {
+            die($config['errors']['database']);
+          }
+
+          return $select->rowCount();
+
+        } else {
+
+          try {
+            $select = $con->prepare('select id from users where email = :email');
+            $select->bindValue('email', $value, PDO::PARAM_STR);
+            $select->execute();
+          } catch (PDOException $e) {
+            die($config['errors']['database']);
+          }
+
+          return $select->rowCount();
+
+        }
+
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
+
+  }
+
+  public function register($name, $email, $authority, $password) {
+
+    global $con;
+    global $config;
+
+    if ($this->checkAvailability($name, 'name')) {
+      $_SESSION['message'] = 'Rossz név!';
+      return false;
+    }
+
+    if ($this->checkAvailability($email, 'email')) {
+      $_SESSION['message'] = 'Rossz email!';
+      return false;
+    }
 
     try {
 
       $insertData = $con->prepare('
         insert into users
-        values(DEFAULT, :name, :authority, :password)
+        values(DEFAULT, :name, :email, :authority, :password)
       ');
       $insertData->bindValue('name', $name, PDO::PARAM_STR);
+      $insertData->bindValue('email', $email, PDO::PARAM_STR);
       $insertData->bindValue('authority', $authority, PDO::PARAM_INT);
       $insertData->bindValue(
         'password',
@@ -133,13 +185,21 @@ class user {
       );
       $insertData->execute();
 
+      $this->id = $con->lastInsertId();
+
+      $_SESSION['userid'] = $this->id;
+      $this->__construct($this->id);
+      return true;
+
     } catch (PDOException $e) {
       die($config['errors']['database']);
     }
 
+    return false;
+
   }
 
-  public function modifyData($name, $authority, $password) {
+  public function modifyData($name, $email, $authority, $password) {
 
     global $con;
     global $config;
@@ -171,7 +231,7 @@ class user {
 
       $updateData = $con->prepare('
         update users
-        set name = :name, authority = :authority
+        set name = :name, email = :email, authority = :authority
         where id = :id
       ');
       $updateData->bindValue('name', $name, PDO::PARAM_STR);
@@ -190,7 +250,8 @@ class user {
     return array(
       'id'        => $this->id,
       'name'      => $this->name,
-      'authority' => $this->authority
+      'email'     => $this->email,
+      'authority' => $this->authority,
     );
 
   }
