@@ -15,7 +15,7 @@
 
     <ul>
     {% for note in notes %}
-      <li><a href='/note/{{ note.id }}'>{{ note.title }}</a> {{ note.learned }}</li>
+      <li class='learned-{{ note.learned }}'><a href='/note/{{ note.id }}'>{{ note.title }}</a></li>
     {% endfor %}
     </ul>
 
@@ -23,7 +23,7 @@
 
 {% else %}
 
-  Gyűjteményt bejelentkezés után hozhatsz létre, ezzel könnyebbé téve azt, hogy csak azokat a jegyzeteket lásd, amikre tényleg kíváncsi vagy.
+  <p>Gyűjteményt <a href='/user/login/'>bejelentkezés</a> után hozhatsz létre, ezzel könnyebbé téve azt, hogy csak azokat a jegyzeteket lásd, amikre tényleg kíváncsi vagy.</p>
 
 {% endif %}
 
