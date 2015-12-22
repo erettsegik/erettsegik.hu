@@ -12,7 +12,7 @@ function parseInput(input) {
   var splitarray = input.split("|");
 
   for (var i = 0; i < splitarray.length; i++) {
-    if (splitarray[i] != "") {
+    if (splitarray[i].trim() != "") {
       parseLine(splitarray[i]);
     }
   }
@@ -233,6 +233,8 @@ function display() {
 
     output += "</td></tr>";
 
+    saveTextData();
+
   }
 
   output += "<tr>";
@@ -274,7 +276,9 @@ function saveTextData() {
     output += "| ";
   }
 
-  document.getElementById("outputfield").innerHTML = "Másold ki az alábbi szöveget, és mentsd el biztos helyre! <blockquote>" + output + "</blockquote>";
+  document.getElementById("exportstring").value = output;
+  var select = document.getElementById("sulyozas");
+  document.getElementById("exportweight").value = select.options[select.selectedIndex].value;
 
 }
 

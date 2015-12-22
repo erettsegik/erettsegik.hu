@@ -17,10 +17,10 @@
       </td>
       <td colspan='2'>
         <select id='sulyozas' onchange='display();'>
-          <option value='11111'>1:1:1:1:1</option>
-          <option value='11122'>1:1:1:2:2</option>
-          <option value='12244'>1:2:2:4:4</option>
-          <option value='11224'>1:1:2:2:4</option>
+          <option value='11111' {% if data.weight == '11111' %}selected{% endif %}>1:1:1:1:1</option>
+          <option value='11122' {% if data.weight == '11122' %}selected{% endif %}>1:1:1:2:2</option>
+          <option value='12244' {% if data.weight == '12244' %}selected{% endif %}>1:2:2:4:4</option>
+          <option value='11224' {% if data.weight == '11224' %}selected{% endif %}>1:1:2:2:4</option>
         </select>
       </td>
     </tr>
@@ -53,18 +53,19 @@
 <div id='data'>
   <fieldset>
     <legend>Adatkezelés</legend>
-    <button id='loadfromtext' onclick='loadTextData();'>
-    Adatok betöltése szövegből</button>
-    <button id='exporttotext' onclick='saveTextData();'>
-    Adatok mentése szövegbe</button>
-    <div id='outputfield'>
-    </div>
+    <form action='/mark-calculator/' method='post'>
+      <input type='hidden' name='exportstring' id='exportstring'>
+      <input type='hidden' name='exportweight' id='exportweight'>
+      <input type='submit' name='save' value='Mentés'>
+    </form>
   </fieldset>
 </div>
 <p><a href='https://github.com/erettsegik/mark-calculator/blob/gh-pages/README.md' target='_blank'>Súgó</a></p>
 
-<script src='/js/mark-calculator.js'>
+<script src='/js/mark-calculator.js'></script>
 
+<script type='text/javascript'>
+  parseInput("{{ data.data }}");
 </script>
 
 {% endblock %}
