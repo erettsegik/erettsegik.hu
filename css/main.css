@@ -280,7 +280,7 @@ blockquote {
 blockquote p {
   margin: 0px;
 }
-
+/*
 input, select, textarea {
   background-color: #F6E4FF;
   border: 2px solid #5C4568;
@@ -310,12 +310,12 @@ input, select {
 }
 
 input.submit {
-  border-color: #424141;
+  border-color: ##d7d7d7;
   border-radius: 3px;
   margin-top: 5px;
   width: auto;
 }
-
+*/
 textarea {
   height: 250px;
   margin-top: 5px;
