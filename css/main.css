@@ -17,6 +17,16 @@ body {
   box-sizing: border-box;
 }
 
+::selection {
+  background-color: #765F82;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #765F82;
+  color: #ffffff;
+}
+
 nav {
   background-color: #5C4568;
   color: #ffffff;
