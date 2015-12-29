@@ -75,7 +75,7 @@
       {% endfor %}
     </section>
     <div id='desktop-buttons'>
-      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
+      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='{% if index_var.username == '' %}/img/login.png{% else %}/img/profile.png{% endif %}' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
     </div>
     {% if status == 'error' or status == 'success' or status == 'notice' %}
     <div class='top-notice {{ status }}' onclick='this.style.display = 'none';'>{{ message }}</div>
