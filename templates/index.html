@@ -26,82 +26,83 @@
   <title>{{ index_var.title }} - erettsegik.hu</title>
 </head>
 <body>
-  <nav>
-  <div id='mobile-icons'>
-    <a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a>
-  </div>
-  <!--<div id='logo'>
-    <a href='/'><img src='/img/logo.png'></a>
-  </div>-->
-  <div id='dropdown-toggle'>
-    <img src='/img/menu-mobile.png' alt='Menü' title='Menü'>
-  </div>
-  <div id='menu-wrapper'>
-    <ul>
-      {% for subject in index_var.subjects %}
-        <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
-          <ul>
-          {% for category in subject.categories %}
-            <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
-          {% endfor %}
-          </ul>
-        </li>
-      {% endfor %}
-      <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
+  <div class='container'>
+    <div id='fixed-bar'>
+      <nav>
+        <a href='/'><span id='logo'></span></a>
+        <div id='mobile-icons'>
+          <a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a>
+        </div>
+        <div id='dropdown-toggle'>
+          <img src='/img/menu-mobile.png' alt='Menü' title='Menü'>
+        </div>
         <ul>
-        {% for subject in index_var.othersubjects %}
-          <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
-        {% endfor %}
+          {% for subject in index_var.subjects %}
+            <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+              <ul>
+              {% for category in subject.categories %}
+                <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+              {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+          <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
+            <ul>
+            {% for subject in index_var.othersubjects %}
+              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+            {% endfor %}
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
-  <div id='more-mobile-icons'>
-    <a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback-mobile.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+        <div id='more-mobile-icons'>
+          <a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback-mobile.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+        </div>
+        <div id='search'>
+          <form id='search-form' onsubmit='searchRedirect(event);'>
+            <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div id='wrapper'>
+    <section id='location'>
+      <a id='top' class='anchor'></a>
+      {% for element in index_var.location %}
+        <a href='{{ element.url }}'>{{ element.name }}</a>
+        {% if not loop.last %}
+          &#x276F;
+        {% endif %}
+      {% endfor %}
+    </section>
+    <div id='desktop-buttons'>
+      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
+    </div>
+    {% if status == 'error' or status == 'success' or status == 'notice' %}
+    <div class='top-notice {{ status }}' onclick='this.style.display = 'none';'>{{ message }}</div>
+    {% endif %}
+    <section id='main'>
+      {% block content %}
+      {% endblock %}
+    </section>
+    <div class='horizontal-ad'>
+      <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+      <!-- erettsegik responsive -->
+      <ins class='adsbygoogle'
+           style='display:block'
+           data-ad-client='ca-pub-5210002685428807'
+           data-ad-slot='5383691773'
+           data-ad-format='auto'></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <footer>
+      &copy; 2015 erettsegik.hu
+    </footer>
+    </div>
+    <a href='#top' id='go-top-desktop'>Vissza a tetejére</a>
+
   </div>
-  </div>
-  <div id='search'>
-    <form id='search-form' onsubmit='searchRedirect(event);'>
-      <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
-    </form>
-  </div>
-  </nav>
-  <div id='wrapper'>
-  <section id='location'>
-    <a id='top' class='anchor'></a>
-    {% for element in index_var.location %}
-      <a href='{{ element.url }}'>{{ element.name }}</a>
-      {% if not loop.last %}
-        &#x276F;
-      {% endif %}
-    {% endfor %}
-  </section>
-  <div id='desktop-buttons'>
-    <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
-  </div>
-  {% if status == 'error' or status == 'success' or status == 'notice' %}
-  <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
-  {% endif %}
-  <section id='main'>
-    {% block content %}
-    {% endblock %}
-  </section>
-  <div class='horizontal-ad'>
-    <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-    <!-- erettsegik responsive -->
-    <ins class='adsbygoogle'
-         style='display:block'
-         data-ad-client='ca-pub-5210002685428807'
-         data-ad-slot='5383691773'
-         data-ad-format='auto'></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  <footer>
-    &copy; 2015 erettsegik.hu
-  </footer>
-  </div>
-  <a href='#top' id='go-top-desktop'>Vissza a tetejére</a>
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
   <script type='text/javascript' src='/js/main.js'></script>
   {% block javascript %}
