@@ -48,10 +48,6 @@ th:empty {
   padding: 0;
 }
 
-.latex-container[data-displaymode="block"] > * {
-  overflow-y: hidden;
-}
-
 .latex-container {
   text-indent: 0;
 }
