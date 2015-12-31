@@ -36,26 +36,28 @@
         <div id='dropdown-toggle'>
           <img src='/img/menu-mobile.png' alt='Menü' title='Menü'>
         </div>
-        <ul>
-          {% for subject in index_var.subjects %}
-            <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+        <div id='menu-wrapper'>
+          <ul>
+            {% for subject in index_var.subjects %}
+              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+                <ul>
+                {% for category in subject.categories %}
+                  <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+                {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+            <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
               <ul>
-              {% for category in subject.categories %}
-                <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+              {% for subject in index_var.othersubjects %}
+                <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
               {% endfor %}
               </ul>
             </li>
-          {% endfor %}
-          <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
-            <ul>
-            {% for subject in index_var.othersubjects %}
-              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
-            {% endfor %}
-            </ul>
-          </li>
-        </ul>
-        <div id='more-mobile-icons'>
-          <a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback-mobile.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+          </ul>
+          <div id='more-mobile-icons'>
+            <a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback-mobile.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+          </div>
         </div>
         <div id='search'>
           <form id='search-form' onsubmit='searchRedirect(event);'>

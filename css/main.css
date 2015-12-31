@@ -39,6 +39,10 @@ html, body {
   z-index: 100;
 }
 
+#menu-wrapper {
+  display: inline-block;
+}
+
 nav {
   position: relative;
   font-size: 1.5em;
@@ -50,7 +54,7 @@ nav a, nav a:visited {
   color: #ffffff;
 }
 
-nav a:hover {
+nav ul a:hover {
   background-color: #91B3C6;
 }
 
@@ -67,7 +71,7 @@ nav ul {
   display: inline-block;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
 }
 
 nav ul a {
@@ -132,7 +136,7 @@ nav ul li ul li a {
   border: 0px;
   color: #fff;
   height: 20px;
-  margin-top: 15px;
+  margin: 15px 0;
   padding: 0px 0px 0px 20px;
   width: 110px;
 }

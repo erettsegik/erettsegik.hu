@@ -1,16 +1,32 @@
 @media (max-width: 1000px) {
 
+  #fixed-bar {
+    height: 8vh;
+    line-height: 8vh;
+  }
+
   nav {
     height: auto;
+    width: 100%;
   }
 
   #menu-wrapper {
+    background-color: #5C4568;
     border-top: 1px solid #fff;
     display: none;
-    margin: 8vh 0 0 0;
+    margin: 0;
     padding: 0;
     text-align: left;
     width: 100%;
+  }
+
+  #logo {
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 
   nav ul {
