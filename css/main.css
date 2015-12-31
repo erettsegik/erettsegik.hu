@@ -122,10 +122,6 @@ nav ul li ul li a {
   width: 100%;
 }
 
-#mobile-icons {
-  display: none;
-}
-
 #search {
   display: inline-block;
 }
@@ -146,7 +142,7 @@ nav ul li ul li a {
   display: none;
 }
 
-#more-mobile-icons {
+#mobile-icons {
   display: none;
 }
 

@@ -31,6 +31,8 @@
 
   nav ul {
     line-height: 8vh;
+    width: 100%;
+    padding: 0;
   }
 
   nav ul li {
@@ -47,33 +49,14 @@
     width: 100%;
   }
 
-  #mobile-icons {
-    display: inline;
-    float: left;
-    height: 8vh;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    width: auto;
-  }
-
-  #mobile-icons a:hover, #more-mobile-icons a:hover {
-    background-color: transparent;
-  }
-
-  #mobile-icons img {
-    height: 8vh;
-    padding: 1vh;
-  }
-
-  #search-form {
+  #search {
     display: none;
   }
 
   #dropdown-toggle {
     cursor: pointer;
-    display: inline;
-    float: right;
+    display: block;
+    width: 100%;
     height: 8vh;
     line-height: normal;
     margin: 0;
@@ -81,12 +64,12 @@
     text-align: right;
   }
 
-  #dropdown-toggle img, #more-mobile-icons img {
+  #dropdown-toggle img, #mobile-icons img {
     height: 8vh;
     padding: 1vh;
   }
 
-  #more-mobile-icons {
+  #mobile-icons {
     display: block;
   }
 
