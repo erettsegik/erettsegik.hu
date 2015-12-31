@@ -93,7 +93,7 @@ while ($subject = $getSubjects->fetch()) {
 
 }
 
-$index_var['location'][] = array('url' => '/', 'name' => 'Főoldal');
+$index_var['location'] = array();
 
 if (isset($_SESSION['userid'])) {
   $user = new user($_SESSION['userid']);
