@@ -25,6 +25,7 @@ html, body {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1em;
   text-align: center;
+  height: 100%;
 }
 
 #fixed-bar {
