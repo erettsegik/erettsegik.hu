@@ -376,6 +376,10 @@ hr {
   width: 1000px;
 }
 
+.top-notice:before {
+  margin-right: 10px;
+}
+
 .success {
   background-color: #f0fff0;
   border: 2px solid #009900;
@@ -383,7 +387,6 @@ hr {
 
 .success:before {
   content: url('/img/check-mark.png');
-  margin-right: 10px;
 }
 
 .error {
@@ -393,7 +396,6 @@ hr {
 
 .error:before {
   content: url('/img/x-mark.png');
-  margin-right: 10px;
 }
 
 .notice {
@@ -403,7 +405,6 @@ hr {
 
 .notice:before {
   content: url('/img/exclamation-mark.png');
-  margin-right: 10px;
 }
 
 @keyframes fadein {
