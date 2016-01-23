@@ -63,6 +63,8 @@
 {% else %}
 
   <form action='/note/add/' method='post' onsubmit='allowLeaving();'>
+    {% include 'note-meta.html' %}
+    <hr>
     {% include 'note-editor.html' %}
     <hr>
     <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>

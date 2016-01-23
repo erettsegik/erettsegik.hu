@@ -2,7 +2,9 @@
 
 {% block stylesheets %}
 <link rel='stylesheet' type='text/css' href='/css/modification.css'>
+<link rel='stylesheet' type='text/css' href='/css/note-editor.css'>
 <link rel='stylesheet' type='text/css' href='/css/mobile/modification.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/note-editor.css'>
 {% endblock %}
 
 {% block content %}
@@ -12,11 +14,11 @@
   <h1>{{ note.title }}</h1>
 
   <form action='/modification/add/{{ note.id }}/' method='post'>
-  <input type='text' name='title' placeholder='Javaslat címe' value='{{ saved.title }}' required><br>
-  <div class='modification'>Eredeti szöveg:<br>
-  <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
-  <div class='modification'>Új szöveg:<br>
-  <textarea name='new_text' required>{% if saved.new_text %}{{ saved.new_text }}{% else %}{{ note.text }}{% endif %}</textarea></div><br>
+  <input type='text' name='title' placeholder='Javaslat címe' value='{{ saved.title }}' required>
+  <br>
+  <input type='hidden' name='original_text' readonly required>
+  {% include 'note-editor.html' %}
+  <br>
   <input type='text' name='comment' placeholder='Megjegyzés' value='{{ saved.comment }}'><br>
   <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>
   <br>
@@ -24,6 +26,7 @@
   </form>
 
   <script src='https://www.google.com/recaptcha/api.js'></script>
+
 {% else %}
 
   <style>

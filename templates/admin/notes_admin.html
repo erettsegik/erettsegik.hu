@@ -8,6 +8,8 @@
 
   <form action='index.php?p=notes_admin&amp;action=add' method='post' onsubmit='allowLeaving();'>
 
+    {% include 'note-meta.html' %}
+    <hr>
     {% include 'note-editor.html' %}
 
   <input type='checkbox' name='live' style='width: auto;' id='live-checkbox'>

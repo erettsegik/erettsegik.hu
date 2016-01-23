@@ -32,6 +32,8 @@ function parseLine(instring) {
 
 function addSubject() {
 
+  preventLeaving();
+
   var subjectname = document.getElementById("newsubject").value;
 
   if (subjectname == '') {
@@ -44,8 +46,11 @@ function addSubject() {
 }
 
 function deleteSubject(subject) {
+
+  preventLeaving();
   delete data[subject];
   display();
+
 }
 
 function newMark(subject) {
@@ -80,6 +85,8 @@ function newMark(subject) {
 }
 
 function addMark(subject) {
+
+  preventLeaving();
 
   var marktypeselect = document.getElementById("marktype");
   var marktype = marktypeselect.options[marktypeselect.selectedIndex].value;
@@ -135,6 +142,8 @@ function openMark (subject, markindex) {
 }
 
 function modifyMark (subject, markindex) {
+
+  preventLeaving();
 
   var deletecheck = document.getElementById("deletemark");
 

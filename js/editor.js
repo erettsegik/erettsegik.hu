@@ -187,13 +187,3 @@ function hidePreview() {
   document.getElementById('hide-preview').style.display = 'none';
 
 }
-
-function preventLeaving() {
-  window.onbeforeunload = function (e) {
-    return "Nem mentett változtatásaid vannak az oldalon.";
-  };
-}
-
-function allowLeaving() {
-  window.onbeforeunload = null;
-}

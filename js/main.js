@@ -72,6 +72,16 @@ function searchRedirect(event, searchpage) {
 
 }
 
+function preventLeaving() {
+  window.onbeforeunload = function (e) {
+    return "Nem mentett változtatásaid vannak az oldalon.";
+  };
+}
+
+function allowLeaving() {
+  window.onbeforeunload = null;
+}
+
 $('#dropdown-toggle').click(function(){
     $('#menu-wrapper').slideToggle();
 });

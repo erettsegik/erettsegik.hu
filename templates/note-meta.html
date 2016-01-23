@@ -1,0 +1,15 @@
+<input type='text' name='title' placeholder='Cím*' value='{{ saved.title }}' required>
+<br>
+<select name='subjectid' required>
+  {% for subject in subjects %}
+  <option value='{{ subject.id }}'{% if subject.id == saved.subjectid %} selected{% endif %}>{{ subject.name }}</option>
+  {% endfor %}
+</select>
+<br>
+<select name='category' required>
+  {% for category in categories %}
+    <option value='{{ category.id }}'{% if category.id == saved.category %} selected{% endif %}>{{ category.name }}</option>
+  {% endfor %}
+</select>
+<br>
+<input type='email' name='email' placeholder='e-mail cím' value='{{ saved.email }}'>
