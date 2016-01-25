@@ -13,11 +13,17 @@
 
   {% else %}
 
+  {% for id, subject in subjects %}
+    <h2>{{ subject }}</h2>
+
     <ul>
     {% for note in notes %}
-      <li class='learned-{{ note.learned }}'><a href='/note/{{ note.id }}'>{{ note.title }}</a></li>
+      {% if note.subjectid == id %}
+      <li class='learned-{{ note.learned }}'><a href='/note/{{ note.id }}'>{{ note.title }}</a> - {{ note.learned }}</li>
+      {% endif %}
     {% endfor %}
     </ul>
+  {% endfor %}
 
   {% endif %}
 

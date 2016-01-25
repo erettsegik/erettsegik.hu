@@ -2,6 +2,7 @@
 
 require_once 'classes/collection.class.php';
 require_once 'classes/note.class.php';
+require_once 'classes/subject.class.php';
 
 $index_var['location'][] = array('url' => '/collection/', 'name' => 'Gyűjteményem');
 
@@ -32,15 +33,37 @@ if (isset($_SESSION['userid'])) {
 
     $collection = new collection($collectionData['id']);
     $note = new note($collection->getData()['noteid']);
+    $tempData = $note->getData();
     $notes[] = array(
-      'id' => $note->getData()['id'],
-      'title' => $note->getData()['title'],
+      'id' => $tempData['id'],
+      'title' => $tempData['title'],
+      'subjectid' => $tempData['subjectid'],
       'learned' => $collection->getData()['learned'],
     );
 
     $collection->getData();
 
   }
+
+  $subjectids = array();
+
+  $temp = array();
+
+  foreach ($notes as $key => $row) {
+    $temp[$key] = $row['subjectid'];
+    $subjectids[] = $row['subjectid'];
+  }
+
+  array_unique($subjectids);
+
+  $subjects = array();
+
+  foreach ($subjectids as $id) {
+    $subject = new subject($id);
+    $subjects[$subject->getData()['id']] = $subject->getData()['name'];
+  }
+
+  array_multisort($temp, SORT_ASC, $notes);
 
 } else {
 
@@ -52,4 +75,5 @@ echo $twig->render('collection.html', array(
   'index_var' => $index_var,
   'mode' => $mode,
   'notes' => isset($notes) ? $notes : null,
+  'subjects' => isset($subjects) ? $subjects : null,
 ));
