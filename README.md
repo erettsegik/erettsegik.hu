@@ -1,8 +1,12 @@
+# Requirements
+
+ - [docker](https://docs.docker.com/) and [docker-compose](https://docs.docker.com/compose/install/)
+ - A MySQL client (`sudo apt-get install mysql-client`)
+
 # Installation
 
-1. Install [docker](https://docs.docker.com/) and [docker-compose](https://docs.docker.com/compose/install/)
-2. Run `docker-compose up` in the root directory
-3. While the server is running, execute `docker exec -t website_web_1 bash -c "mysql -h db -u root -p1234 erettsegik < schema.sql"` to initialize the database
+1. Run `docker-compose up` in the root directory
+2. When the server is running, execute `docker exec -t website_web_1 bash -c "mysql -h db -u root -p1234 erettsegik < schema.sql"` to initialize the database
 
 # Usage
 
