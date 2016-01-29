@@ -66,7 +66,7 @@ class user {
 
         $json = json_encode($array);
 
-        setcookie('remember', $json, time()+3600, '/', NULL, 0);
+        setcookie('remember', $json, time()+2592000, '/', NULL, 0);
 
         try {
 
