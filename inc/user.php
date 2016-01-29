@@ -60,6 +60,7 @@ if ($action == 'dashboard') {
 if ($action == 'logout') {
 
   unset($_SESSION['userid']);
+  setcookie('remember', '', time()-3600, '/', NULL, 0);
   $_SESSION['status'] = 'success';
   $_SESSION['message'] = 'Sikeres kijelentkezés!';
 
@@ -101,7 +102,9 @@ if ($action == 'login') {
 
     $user = new user();
 
-    if ($user->login($_POST['name'], $_POST['password'])) {
+    $remember = (isset($_POST['remember']) && $_POST['remember'] == 'on');
+
+    if ($user->login($_POST['name'], $_POST['password'], $remember)) {
 
       $_SESSION['status'] = 'success';
       $_SESSION['message'] = 'Sikeres bejelentkezés!';

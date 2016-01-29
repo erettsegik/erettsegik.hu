@@ -32,6 +32,31 @@ $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
 
+if (isset($_COOKIE['remember']) && !isset($_SESSION['userid'])) {
+
+  $array = json_decode($_COOKIE['remember'], true);
+
+  try {
+
+    $get = $con->prepare('select * from logins where session = :session');
+    $get->bindValue('session', $array['session'], PDO::PARAM_STR);
+    $get->execute();
+
+  } catch (PDOException $e) {
+    die($config['errors']['database']);
+  }
+
+  while ($session = $get->fetch()) {
+    if ($session['hash'] === hash('sha256', $array['token'])) {
+      $_SESSION['userid'] = $session['userid'];
+      $user = new user($_SESSION['userid']);
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'Be vagy jelentkezve ' . $user->getData()['name'] . '-ként!';
+    }
+  }
+
+}
+
 try {
 
   $getSubjects = $con->query('select id, name from subjects where mandatory = 1 order by name asc');

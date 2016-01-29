@@ -34,7 +34,7 @@ class user {
 
   }
 
-  public function login($name, $password) {
+  public function login($name, $password, $remember) {
 
     global $con;
     global $config;
@@ -59,6 +59,29 @@ class user {
 
       $_SESSION['userid'] = $userData['id'];
       $this->__construct($userData['id']);
+
+      if ($remember) {
+
+        $array = array('session' => mt_rand(), 'token' => mt_rand());
+
+        $json = json_encode($array);
+
+        setcookie('remember', $json, time()+3600, '/', NULL, 0);
+
+        try {
+
+          $insert = $con->prepare('insert into logins values(DEFAULT, :userid, :session, :hash, now())');
+          $insert->bindValue('userid', $userData['id'], PDO::PARAM_INT);
+          $insert->bindValue('session', $array['session'], PDO::PARAM_STR);
+          $insert->bindValue('hash', hash('sha256', $array['token']), PDO::PARAM_STR);
+          $insert->execute();
+
+        } catch(PDOException $e) {
+          die($config['errors']['database']);
+        }
+
+      }
+
       return true;
 
     } else {
