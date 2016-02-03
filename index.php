@@ -50,8 +50,6 @@ if (isset($_COOKIE['remember']) && !isset($_SESSION['userid'])) {
     if ($session['hash'] === hash('sha256', $array['token'])) {
       $_SESSION['userid'] = $session['userid'];
       $user = new user($_SESSION['userid']);
-      $_SESSION['status'] = 'success';
-      $_SESSION['message'] = 'Be vagy jelentkezve ' . $user->getData()['name'] . '-ként!';
     }
   }
 
