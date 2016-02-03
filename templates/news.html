@@ -27,7 +27,7 @@
 
 {% if page > 1 %}
 
-<a href='/news/page/{{ page - 1 }}/'>&lt;&lt; Következő oldal</a>
+<a href='/news/page/{{ page - 1 }}/'><img src='/img/previous.png'></a>
 
 {% endif %}
 
@@ -37,7 +37,7 @@
 
 {% if page < pagecount %}
 
-<a href='/news/page/{{ page + 1 }}/'>Előző oldal &gt;&gt;</a>
+<a href='/news/page/{{ page + 1 }}/'><img src='/img/next.png'></a>
 
 {% endif %}
 
