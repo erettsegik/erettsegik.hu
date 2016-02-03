@@ -26,7 +26,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $_POST['category'],
       $live,
       $incomplete,
-      ''
+      '',
+      $_SESSION['userid']
     );
 
     $logger = new logger();

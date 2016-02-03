@@ -59,8 +59,7 @@ if ($action == 'dashboard') {
 
 if ($action == 'logout') {
 
-  unset($_SESSION['userid']);
-  setcookie('remember', '', time()-3600, '/', NULL, 0);
+  $user->logout();
   $_SESSION['status'] = 'success';
   $_SESSION['message'] = 'Sikeres kijelentkezés!';
 

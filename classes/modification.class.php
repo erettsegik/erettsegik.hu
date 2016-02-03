@@ -16,6 +16,7 @@ class modification {
   protected $updatedate = null;
   protected $status     = null;
   protected $reply      = null;
+  protected $userid     = null;
 
   public function __construct($id = null) {
 
@@ -53,13 +54,14 @@ class modification {
     $this->updatedate = $modificationData['updatedate'] != null ? new DateTime($modificationData['updatedate'], $config['tz']['utc']) : null;
     $this->status     = $modificationData['status'];
     $this->reply      = $modificationData['reply'];
+    $this->userid     = $modificationData['userid'];
 
     $this->date->setTimezone($config['tz']['local']);
     if ($this->updatedate != null) $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
-  public function insertData($noteid, $title, $modified, $comment) {
+  public function insertData($noteid, $title, $modified, $comment, $userid) {
 
     global $con;
     global $config;
@@ -71,6 +73,7 @@ class modification {
     $this->note    = new note($noteid);
     $this->title   = $title;
     $this->comment = $comment;
+    $this->userid  = $userid;
 
     $i = 0;
     while ($original[$i] == $modified[$i]) {
@@ -106,7 +109,8 @@ class modification {
           DEFAULT,
           DEFAULT,
           0,
-          ""
+          "",
+          :userid
         )
       ');
       $insertData->bindValue('noteid', $noteid, PDO::PARAM_INT);
@@ -116,6 +120,7 @@ class modification {
       $insertData->bindValue('new_text', $this->new_text, PDO::PARAM_STR);
       $insertData->bindValue('end_text', $this->end_text, PDO::PARAM_STR);
       $insertData->bindValue('comment', $this->comment, PDO::PARAM_STR);
+      $insertData->bindValue('userid', $this->userid, PDO::PARAM_INT);
       $insertData->execute();
 
       $this->id = $con->lastInsertId();
@@ -173,7 +178,8 @@ class modification {
       'date'       => $this->date->format($config['dateformat']),
       'updatedate' => $this->updatedate != null ? $this->updatedate->format($config['dateformat']) : null,
       'status'     => $this->status,
-      'reply'      => $this->reply
+      'reply'      => $this->reply,
+      'userid'     => $this->userid,
     );
 
   }

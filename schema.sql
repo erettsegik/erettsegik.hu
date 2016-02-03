@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `modifications` (
   `updatedate` timestamp NULL DEFAULT NULL,
   `status` int(11) NOT NULL,
   `reply` text NOT NULL,
+  `userid` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -83,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `live` tinyint(1) NOT NULL,
   `incomplete` tinyint(1) NOT NULL,
   `email` varchar(256) NOT NULL,
+  `userid` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

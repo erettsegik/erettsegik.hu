@@ -92,6 +92,33 @@ class user {
 
   }
 
+  public function logout() {
+
+    global $con;
+    global $config;
+
+    unset($_SESSION['userid']);
+
+    if (isset($_COOKIE['remember'])) {
+
+      setcookie('remember', '', time()-3600, '/', NULL, 0);
+
+      $array = json_decode($_COOKIE['remember'], true);
+
+      try {
+
+        $delete = $con->prepare('delete from logins where session = :session');
+        $delete->bindValue('session', $array['session'], PDO::PARAM_STR);
+        $delete->execute();
+
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
+
+    }
+
+  }
+
   public function changePassword($oldPassword, $newPassword) {
 
     global $con;

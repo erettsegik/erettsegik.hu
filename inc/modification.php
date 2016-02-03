@@ -82,11 +82,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $modification = new modification();
 
+      $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 0;
+
       $modification->insertData(
         $_GET['id'],
         $_POST['title'],
         $_POST['text'],
-        $_POST['comment']
+        $_POST['comment'],
+        $userid
       );
 
       $logger = new logger();
