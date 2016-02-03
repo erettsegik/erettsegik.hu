@@ -12,4 +12,4 @@
   {% endfor %}
 </select>
 <br>
-<input type='email' name='email' placeholder='e-mail cím' value='{{ saved.email }}'>
+{% if index_var.username == '' %}<input type='email' name='email' placeholder='e-mail cím' value='{{ saved.email }}'>{% endif %}

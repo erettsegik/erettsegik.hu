@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   min-height: 100%;
   background-color: #EAE9EB;
+  font-size: 100%;
 }
 
 *, *::before, *::after {
