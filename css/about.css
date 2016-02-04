@@ -7,22 +7,20 @@ h2 {
 }
 
 .img-circular {
-  margin-left: 85px;
-  margin-right: 85px;
-  display: flex;
-  width: 150px;
-  height: 150px;
-  border-radius: 150px;
-  -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
+  -webkit-border-radius: 150px;
+  border-radius: 150px;
+  display: flex;
+  height: 150px;
+  margin: auto;
 }
 
 .person {
+  align-items: center;
+  display: inline-block;
+  margin: auto;
   text-align: center;
   width: 320px;
-  display: inline-block;
-  align-items: center;
-  margin: auto;
 }
 
 .name {
