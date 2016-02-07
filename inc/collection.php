@@ -38,6 +38,7 @@ if (isset($_SESSION['userid'])) {
       'id' => $tempData['id'],
       'title' => $tempData['title'],
       'subjectid' => $tempData['subjectid'],
+      'incomplete' => $tempData['incomplete'],
       'learned' => $collection->getData()['learned'],
     );
 

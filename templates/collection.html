@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 
 {% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/collection.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/collection.css'>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +21,9 @@
     <ul>
     {% for note in notes %}
       {% if note.subjectid == id %}
-      <li class='learned-{{ note.learned }}'><a href='/note/{{ note.id }}'>{{ note.title }}</a> - {{ note.learned }}</li>
+        <li class='learned-{{ note.learned }}{% if note.incomplete == 1 %} incomplete{% endif %}{% if note.incomplete == 2 %}empty{% endif %}'>
+        <a href='/note/{{ note.id }}'>{{ note.title }}</a>
+      </li>
       {% endif %}
     {% endfor %}
     </ul>
