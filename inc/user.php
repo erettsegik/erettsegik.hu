@@ -6,10 +6,10 @@ require_once 'inc/functions.php';
 
 $index_var['location'][] = array(
   'url' => '/user/dashboard/',
-  'name' => 'Felhasználói oldal'
+  'name' => 'Profil'
 );
 
-$index_var['title'] = 'Felhasználói oldal';
+$index_var['title'] = 'Profil';
 
 if (isset($_SESSION['userid'])) {
 
@@ -30,6 +30,7 @@ if (isset($_SESSION['userid'])) {
   }
 
   $user = new user($_SESSION['userid']);
+  $userdata = $user->getData();
 
 } else {
 
@@ -51,12 +52,6 @@ if (isset($_SESSION['userid'])) {
 
 }
 
-if ($action == 'dashboard') {
-
-  $userdata = $user->getData();
-
-}
-
 if ($action == 'logout') {
 
   $user->logout();
@@ -70,22 +65,29 @@ if ($action == 'logout') {
 
 if ($action == 'settings') {
 
+  $index_var['location'][] = array(
+    'url' => '/user/settings/',
+    'name' => 'Beállítások'
+  );
+
   if (isset($_POST['submit'])) {
+
+    $user->modifyData($userdata['name'], $_POST['email'], $userdata['authority']);
+
+    $_SESSION['status'] = 'success';
+    $_SESSION['message'] = 'E-mail cím frissítve!';
 
     if (isNotEmpty($_POST['new_password'])) {
 
       $user->changePassword($_POST['old_password'], $_POST['new_password']);
 
       $_SESSION['status'] = 'success';
-      $_SESSION['message'] = 'Sikeres jelszóváltoztatás!';
-
-      header('Location: /user/dashboard/');
-      die();
+      $_SESSION['message'] = 'Sikeres e-mail és jelszóváltoztatás!';
 
     }
 
-    $status = 'error';
-    $message = 'Nem sikerült a jelszóváltoztatás!';
+    header('Location: /user/dashboard/');
+    die();
 
   }
 

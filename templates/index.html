@@ -53,7 +53,7 @@
             </li>
           </ul>
           <div id='mobile-icons'>
-            <a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a><a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+            <a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Profil' title='Profil'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a><a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
           </div>
         </div>
         <div id='search'>
@@ -71,7 +71,7 @@
       {% endfor %}
     </section>
     <div id='desktop-buttons'>
-      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='{% if index_var.username == '' %}/img/login.png{% else %}/img/profile.png{% endif %}' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
+      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/user/dashboard/'><img src='{% if index_var.username == '' %}/img/login.png{% else %}/img/profile.png{% endif %}' alt='Profil' title='Profil'></a><a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
     </div>
     {% if status == 'error' or status == 'success' or status == 'notice' %}
     <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>

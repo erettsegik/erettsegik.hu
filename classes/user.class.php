@@ -249,7 +249,7 @@ class user {
 
   }
 
-  public function modifyData($name, $email, $authority, $password) {
+  public function modifyData($name, $email, $authority, $password = '') {
 
     global $con;
     global $config;
@@ -285,12 +285,13 @@ class user {
         where id = :id
       ');
       $updateData->bindValue('name', $name, PDO::PARAM_STR);
+      $updateData->bindValue('email', $email, PDO::PARAM_STR);
       $updateData->bindValue('authority', $authority, PDO::PARAM_INT);
       $updateData->bindValue('id', $this->id, PDO::PARAM_INT);
       $updateData->execute();
 
     } catch (PDOException $e) {
-      die($config['errors']['database']);
+      die($config['errors']['database'] . $e->getMessage());
     }
 
   }

@@ -51,8 +51,12 @@
 {% if action == 'settings' %}
 
   <form action='/user/settings/' method='post'>
-    <input class='login' type='password' name='old_password' placeholder='régi jelszó' required><br>
-    <input class='login' type='password' name='new_password' placeholder='új jelszó' required><br>
+    <input type='email' name='email' value='{{ userdata.email }}' placeholder='e-mail cím'><br>
+    <fieldset>
+      <legend>Csak ha jelszót szeretnél változtatani</legend>
+      <input class='login' type='password' name='old_password' placeholder='régi jelszó'><br>
+      <input class='login' type='password' name='new_password' placeholder='új jelszó'><br>
+    </fieldset>
     <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
@@ -61,7 +65,7 @@
 {% if action == 'login' %}
 
   <form action='/user/login/' method='post'>
-    <input class='login' type='text' name='name'  value='{{ saved.name }}' required>
+    <input class='login' type='text' name='name' value='{{ saved.name }}' required>
     <label alt='Felhasználónév' placeholder='Felhasználónév'></label>
     <input class='login' type='password' name='password' placeholder='Jelszó' required>
     <label alt='Jelszó' placeholder='Jelszó'></label>

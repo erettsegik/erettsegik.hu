@@ -1,5 +1,9 @@
 <?php
 
+$index_var['location'][] = array(
+  'url' => '/user/dashboard/',
+  'name' => 'Profil'
+);
 $index_var['location'][] = array('url' => '/mark-calculator/', 'name' => 'Jegyszámító');
 
 $index_var['title'] = 'Jegyszámító';
