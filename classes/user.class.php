@@ -209,13 +209,33 @@ class user {
     global $con;
     global $config;
 
+    if (!ctype_alnum($name)) {
+      $_SESSION['message'] = 'A neved csak számokat és az angol ABC betűit tartalmazhatja!';
+      return false;
+    }
+
+    if (strlen($name) < 2 || strlen($name) > 20) {
+      $_SESSION['message'] = 'A neved hossza 2 és 20 karakter közt lehet!';
+      return false;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $_SESSION['message'] = 'Ez nem egy valódi e-mail cím!';
+      return false;
+    }
+
+    if (strlen($password) < 6) {
+      $_SESSION['message'] = 'A jelszavadnak legalább 6 karakter hosszúnak kell lennie!';
+      return false;
+    }
+
     if ($this->checkAvailability($name, 'name')) {
-      $_SESSION['message'] = 'Rossz név!';
+      $_SESSION['message'] = 'Ez a név már foglalt!';
       return false;
     }
 
     if ($this->checkAvailability($email, 'email')) {
-      $_SESSION['message'] = 'Rossz email!';
+      $_SESSION['message'] = 'Ezzel az e-mail címmel már létezik felhasználó!';
       return false;
     }
 

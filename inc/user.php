@@ -99,6 +99,11 @@ if ($action == 'forgotten') {
 
 if ($action == 'login') {
 
+  $index_var['location'][] = array(
+    'url' => '/user/login/',
+    'name' => 'Bejelentkezés'
+  );
+
   if (isset($_POST['submit'])) {
 
     $user = new user();
@@ -129,6 +134,11 @@ if ($action == 'login') {
 }
 
 if ($action == 'register') {
+
+  $index_var['location'][] = array(
+    'url' => '/user/register/',
+    'name' => 'Regisztráció'
+  );
 
   if (isset($_POST['submit'])) {
 
