@@ -1,7 +1,13 @@
-/*input.login {
-  margin-bottom: 5px;
-  width: 150px;
-}*/
+input.login {
+  margin-bottom: 10px;
+  width: 200px;
+  display: block;
+}
+
+
+input.submit{
+  margin-right: 5px;
+}
 
 .dashboard-item {
   display: inline-block;

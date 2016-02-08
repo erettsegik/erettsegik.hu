@@ -310,7 +310,12 @@ input, select {
   width: 200px;
 }
 */
+input {
+  outline: none;
+}
+
 input.submit {
+  outline-color: green;
   background-color: #91B3C6;
   color: #fff;
   font-family: 'Roboto', sans-serif;
