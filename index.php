@@ -161,7 +161,21 @@ if (isset($_GET['p'])) {
 
 } else {
 
-  require_once 'inc/news.php';
+  if (isset($_COOKIE['getting-started'])) {
+
+    require_once 'inc/news.php';
+
+  } else {
+
+    setcookie(
+      "getting-started",
+      "true",
+      time() + (10 * 365 * 24 * 60 * 60)
+    );
+
+    require_once 'inc/getting-started.php';
+
+  }
 
 }
 

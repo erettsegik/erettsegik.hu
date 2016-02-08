@@ -53,7 +53,7 @@ th:empty {
 }
 
 #leftside img {
-  display: inline-block;
+  display: block;
   margin: auto;
 }
 

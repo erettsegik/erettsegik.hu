@@ -32,6 +32,8 @@
 
   <form action='index.php?p=notes_admin&amp;action=edit&amp;id={{ saved.id }}' method='post' onsubmit='allowLeaving();'>
 
+    {% include 'note-meta.html' %}
+    <hr>
     {% include 'note-editor.html' %}
 
   <input type='checkbox' style='width: auto;' name='live' id= 'live-checkbox'{% if saved.live %} checked {% endif %}>
