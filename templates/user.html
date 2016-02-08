@@ -65,13 +65,13 @@
 {% if action == 'login' %}
 
   <form action='/user/login/' method='post'>
-    <input class='login' type='text' name='name' value='{{ saved.name }}' required>
+    <h1>Bejelentkezés</h1>
+    <input class='login' type='text' name='name' value='{{ saved.name }}' placeholder='Felhasználónév' required>
     <label alt='Felhasználónév' placeholder='Felhasználónév'></label>
     <input class='login' type='password' name='password' placeholder='Jelszó' required>
     <label alt='Jelszó' placeholder='Jelszó'></label>
-    <input type='checkbox' name='remember'> Emlékezz
-    <input type='submit' name='submit' class='submit' value='Elküldés'><br>
-    <p><a href='/user/register/'>Regisztráció</a></p>
+    <input type='checkbox' name='remember'> Emlékezz<br>
+    <p><input type='submit' name='submit' class='submit' value='Elküldés'> <a href='/user/register/'>Regisztráció</a></p>
   </form>
 
 {% endif %}
@@ -79,10 +79,11 @@
 {% if action == 'register' %}
 
   <form action='/user/register/' method='post'>
-    <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required><br>
-    <input class='login' type='email' name='email' placeholder='E-mail cím' value='{{ saved.email }}' required><br>
-    <input class='login' type='password' name='password' placeholder='Jelszó' required><br>
-    <input type='submit' name='submit' class='submit' value='Elküldés'><br>
+    <h1>Regisztráció</h1>
+    <input class='login' type='text' name='name' placeholder='Felhasználónév' value='{{ saved.name }}' required>
+    <input class='login' type='email' name='email' placeholder='E-mail cím' value='{{ saved.email }}' required>
+    <input class='login' type='password' name='password' placeholder='Jelszó' required>
+    <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
 {% endif %}
