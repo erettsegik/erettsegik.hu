@@ -17,7 +17,9 @@
     <div id='collection'>
       <h2>Gyűjtemény</h2>
       <form action='/note/{{ note.id }}/' method='post' id='collection-form'>
-        <input type='submit' name='collection' class='collection-button {% if incollection %}collection-remove{% else %}collection-add{% endif %}' value='' title='{% if incollection %}Gyűjteményből kivétel{% else %}Gyűjteményhez hozzáadás{% endif %}'>
+        <input type='hidden' value='off' name='collection'>
+        <input type='checkbox' onchange='$("#collection-form").submit();' name='collection' id='collection-checkbox' {% if incollection %} checked {% endif %}>
+        <label for='collection-checkbox'>Gyűjteményemben</label>
       </form>
       {% if incollection == 1 %}
       <form action='/note/{{ note.id }}/' method='post' id='learned-form'>
@@ -29,7 +31,7 @@
       <p><a href='/collection/'>Gyűjteményem</a></p>
     </div>
     {% endif %}
-    <div id='modifications'{% if incollection == -1 %}style='margin-top: 0;'{% endif %}>
+    <div id='modifications'{% if incollection == -1 %} style='margin-top: 0;'{% endif %}>
       <h2>Javaslatok</h2>
       <ul class='modifications-list'>
       {% for modification in modifications %}

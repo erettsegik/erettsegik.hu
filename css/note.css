@@ -94,7 +94,6 @@ li p {
 
 #rightside p {
   text-indent: 0;
-  margin-top: 0;
 }
 
 #collection, #modifications {
@@ -112,20 +111,14 @@ li p {
   margin-top: 12px;
 }
 
-#collection-form {
-  display: inline;
-  line-height: 2em;
+#collection form {
+  display: block;
 }
 
-#learned-form {
-  margin-left: 10px;
-  display: inline;
-  font-size: 1.3em;
-}
-
-#learned-form input {
+#collection form input {
   width: 1.3em;
   height: 1.3em;
+  margin-left: 0;
 }
 
 .collection-add {
