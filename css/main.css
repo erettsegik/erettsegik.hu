@@ -129,7 +129,8 @@ nav ul li ul li a {
 }
 
 #searchbox {
-  background-color: rgba(255, 255, 255, 0.2);;
+  vertical-align: top;
+  background-color: rgba(255, 255, 255, 0.2);
   background-image: url('/img/search-background.png');
   background-repeat: no-repeat;
   border: 0px;
@@ -281,13 +282,12 @@ blockquote {
 blockquote p {
   margin: 0px;
 }
-/*
+
 input, select, textarea {
-  background-color: #F6E4FF;
-  border: 2px solid #5C4568;
-  color: #5C4568;
   outline: none;
-  margin: 2px auto;
+  border: 1px solid;
+  border-color: #dedede;
+  margin: 2px;
 }
 
 ::-webkit-input-placeholder {
@@ -306,12 +306,8 @@ input, select, textarea {
   color: #A9A1A1;
 }
 
-input, select {
+select {
   width: 200px;
-}
-*/
-input {
-  outline: none;
 }
 
 input.submit {
