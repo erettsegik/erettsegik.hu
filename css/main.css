@@ -315,6 +315,7 @@ input {
 }
 
 input.submit {
+  cursor: pointer;
   outline-color: green;
   background-color: #91B3C6;
   color: #fff;
