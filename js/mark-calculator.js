@@ -183,9 +183,9 @@ function display() {
     var base = 0;
     var sum = 0;
 
-    output += "<tr><td class='tantargy'>";
+    output += "<tr><td class='subject'>";
     output += subject;
-    output += "</td><td id='removesubject'><button id='removesubjectbutton' onclick='deleteSubject(\"" + subject + "\");'></button></td><td class='jegyek'>";
+    output += "</td><td class='button'><button class='button removebutton' onclick='deleteSubject(\"" + subject + "\");'></button></td><td class='jegyek'>";
 
     for (var markindex in data[subject]) {
 
@@ -229,7 +229,7 @@ function display() {
 
     avg = (sum/base).toFixed(2);
 
-    output += "</td><td id='ujjegy'><button id='ujjegybutton' onclick='newMark(\"";
+    output += "</td><td class='button'><button class='button addbutton' onclick='newMark(\"";
     output += subject;
     output += "\");'></button></td><td class='average'>";
 
@@ -248,13 +248,13 @@ function display() {
   saveTextData();
 
   output += "<tr>";
-  output += "<td id='ujtantargy' class='tantargy'>";
+  output += "<td class='subject'>";
   output += "  <form onsubmit='addSubject(event);' id='newsubjectform'>";
   output += "    <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>";
   output += "  </form>";
   output += "</td>";
-  output += "<td id='addsubject'>";
-  output += "  <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>";
+  output += "<td class='button'>";
+  output += "  <input type='submit' class='addbutton button' value='' form='newsubjectform'>";
   output += "</td>";
   output += "<td class='jegyek' colspan='2'></td>";
   output += "<td class='average'></td>";

@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
 <link rel='stylesheet' type='text/css' href='/css/mark-calculator.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/mark-calculator.css'>
 {% endblock %}
 
 {% block content %}
@@ -27,13 +28,13 @@
   </thead>
   <tbody id='tbody'>
     <tr>
-      <td id='ujtantargy' class='tantargy'>
+      <td class='subject'>
         <form onsubmit='addSubject(event);' id='newsubjectform'>
           <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus autocomplete='off'>
         </form>
       </td>
-      <td id='addsubject'>
-        <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>
+      <td class='button'>
+        <input type='submit' class='addbutton button' value='' form='newsubjectform'>
       </td>
       <td class='jegyek' colspan='2'></td>
       <td class='average'></td>

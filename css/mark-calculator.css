@@ -1,124 +1,66 @@
 table {
-  background-color: #dcdcdc;
-  border: 1px solid #969696;
   margin: auto;
+  width: 100%;
 }
 
 thead {
-  background-color: #660077;
+  background-color: #5C4568;
   color: #ffffff;
 }
 
 td {
   height: 25px;
-  padding: 0 5px;
+  padding: 5px;
+}
+
+tfoot td {
+  font-size: 0.8em;
+  padding: 0;
+}
+
+.button {
+  border: 0px;
+  background-color: #ffffff;
+  height: 25px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 25px;
+}
+
+.addbutton {
+  background-image: url(/img/mark-calculator/add.png);
+}
+
+.removebutton {
+  background-image: url(/img/mark-calculator/remove.png);
 }
 
 #newsubject {
-  background-color: #828C96;
   border: 0;
-  color: #ffffff;
+  color: #555555;
   height: 20px;
   line-height: 20px;
   margin: 0;
   outline: 0;
-  padding: 0;
-  padding: 5px;
   width: 100%;
 }
 
-::-webkit-input-placeholder {
-  color: #ffffff;
-}
-:-moz-placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-::-moz-placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-:-ms-input-placeholder {
-  color: #ffffff;
+.subject {
+  width: 300px;
 }
 
-#addsubjectbutton {
-  background-color: #828C96;
-  background-image: url(/img/mark-calculator/add.png);
-  border: 0px;
-  height: 25px;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  width: 25px;
-}
-
-#removesubjectbutton {
-  background-color: #828C96;
-  background-image: url(/img/mark-calculator/remove.png);
-  border: 0px;
-  height: 25px;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  width: 25px;
-}
-
-#addsubject {
-  background-color: #828C96;
-  height: 25px;
-  padding: 0;
-  width: 25px;
-}
-
-#removesubject {
-  background-color: #828C96;
-  border-left: 0px;
-  height: 25px;
-  padding: 0;
-  width: 25px;
-}
-
-td.tantargy {
-  background-color: #828C96;
-  border-right: 0px;
-  color: #ffffff;
-  padding-left: 5px;
-  text-align: left;
-}
-
-#ujtantargy {
-  padding: 0;
-}
-
-td.jegyek {
+.average, .final-grade {
   background-color: #eeeeee;
 }
 
-#ujjegy {
-  height: 25px;
-  padding: 0;
-  width: 25px;
+.average {
+  text-align: center;
+  width: 80px;
 }
 
-#ujjegybutton {
-  background-image: url(/img/mark-calculator/add.png);
-  border: 0px;
-  height: 25px;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  width: 25px;
-}
-
-td.average {
-  background-color: #646482;
-  color: #ffffff;
-}
-
-td.final-grade {
-  background-color: #446655;
-  color: #ffffff;
+.final-grade {
+  width: 150px;
 }
 
 span {
@@ -146,6 +88,6 @@ span.vizsga {
 }
 
 fieldset {
-  margin: auto;
+  margin: 10px auto;
   width: auto;
 }

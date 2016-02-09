@@ -1,0 +1,16 @@
+@media (max-width: 1000px) {
+
+  .subject {
+    text-align: left;
+    width: auto;
+  }
+
+  .average {
+    width: auto;
+  }
+
+  .final-grade {
+    width: auto;
+  }
+
+}
