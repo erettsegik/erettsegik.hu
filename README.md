@@ -6,7 +6,7 @@
 # Installation
 
 1. Run `docker-compose up` in the root directory
-2. When the server is running, execute `docker exec -t website_web_1 bash -c "mysql -h db -u root -p1234 erettsegik < schema.sql"` to initialize the database
+2. When the server is running, execute `docker exec -t erettsegikhu_web_1 bash -c "mysql -h db -u root -p1234 erettsegik < schema.sql"` to initialize the database
 
 # Usage
 
