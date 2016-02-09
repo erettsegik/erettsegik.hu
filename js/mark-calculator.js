@@ -30,9 +30,10 @@ function parseLine(instring) {
 
 }
 
-function addSubject() {
+function addSubject(event) {
 
   preventLeaving();
+  event.preventDefault();
 
   var subjectname = document.getElementById("newsubject").value;
 
@@ -57,7 +58,7 @@ function newMark(subject) {
 
   var output = "";
   output += "<fieldset>";
-  output += "<legend>Jegy szerkesztése</legend>";
+  output += "<legend>Jegy hozzáadása: " + subject + "</legend>";
   output += "Jegy típusa: <select id='marktype' name='marktype'>";
 
   var jegytipusok = {"k": "Kis jegy", "n": "Normál jegy", "d": "Dolgozat jegy", "t": "Témazáró jegy", "v": "Vizsga jegy"};
@@ -99,7 +100,7 @@ function addMark(subject) {
 
 }
 
-function openMark (subject, markindex) {
+function openMark(subject, markindex) {
 
   var mark = data[subject][markindex].trim();
 
@@ -141,7 +142,7 @@ function openMark (subject, markindex) {
 
 }
 
-function modifyMark (subject, markindex) {
+function modifyMark(subject, markindex) {
 
   preventLeaving();
 
@@ -162,7 +163,7 @@ function modifyMark (subject, markindex) {
 
 }
 
-function clearDisplay () {
+function clearDisplay() {
 
   document.getElementById("jegyszerkesztes").innerHTML = "";
   document.getElementById("outputfield").innerHTML = "";
@@ -248,10 +249,13 @@ function display() {
 
   output += "<tr>";
   output += "<td id='ujtantargy' class='tantargy'>";
-  output += "<input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>";
+  output += "  <form onsubmit='addSubject(event);' id='newsubjectform'>";
+  output += "    <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>";
+  output += "  </form>";
   output += "</td>";
-  output += "<td id='addsubject'><button id='addsubjectbutton' onclick='addSubject();'></button></td>";
-  output += "</form>";
+  output += "<td id='addsubject'>";
+  output += "  <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>";
+  output += "</td>";
   output += "<td class='jegyek' colspan='2'></td>";
   output += "<td class='atlag'></td>";
   output += "<td class='bizonyitvany'></td>";

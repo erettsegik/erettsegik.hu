@@ -28,9 +28,13 @@
   <tbody id='tbody'>
   <tr>
   <td id='ujtantargy' class='tantargy'>
-  <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus></td>
+    <form onsubmit='addSubject(event);' id='newsubjectform'>
+      <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>
+    </form>
+  </td>
   <td id='addsubject'>
-  <button id='addsubjectbutton' onclick='addSubject();'></button></td>
+    <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>
+  </td>
   <td class='jegyek' colspan='2'></td>
   <td class='atlag'></td>
   <td class='bizonyitvany'></td>
