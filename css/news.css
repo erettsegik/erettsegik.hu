@@ -36,8 +36,8 @@ h2 {
   border-bottom: 1px solid #dedede;
 }
 
-#notes-container, .fb-page {
-  margin-top: 12px;
+#events-container, #notes-container {
+  margin-bottom: 12px;
 }
 
 #rightside h6 {

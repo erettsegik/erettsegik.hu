@@ -45,6 +45,7 @@
 
 </div>
 <div id='rightside'>
+{% if current_events|length != 0 or upcoming_events|length != 0 %}
 <div id='events-container'>
   <h2>Események</h2>
 
@@ -77,6 +78,7 @@
 
   <p><a href='/events/'>Összes megtekintése</a></p>
 </div>
+{% endif %}
 <div id='notes-container'>
   <h2>Nemrég módosult</h2>
 
