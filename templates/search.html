@@ -8,6 +8,8 @@
 
 <form onsubmit='searchRedirect(event, "main");'>
   <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required>
+  <input type='checkbox' name='intitle' id='intitle'><label for='intitle'>Keresés címben</label>
+  <input type='checkbox' name='intext' id='intext'><label for='intext'>Keresés szövegben</label>
   <input type='submit' class='submit' value='Keresés'>
 </form>
 
