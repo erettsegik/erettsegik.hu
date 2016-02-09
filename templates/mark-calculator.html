@@ -16,7 +16,7 @@
         Jegyek
       </td>
       <td colspan='2'>
-        <select id='sulyozas' onchange='display();'>
+        <select id='sulyozas' onchange='preventLeaving(); display();'>
           <option value='11111' {% if data.weight == '11111' %}selected{% endif %}>1:1:1:1:1</option>
           <option value='11122' {% if data.weight == '11122' %}selected{% endif %}>1:1:1:2:2</option>
           <option value='12244' {% if data.weight == '12244' %}selected{% endif %}>1:2:2:4:4</option>
@@ -26,19 +26,19 @@
     </tr>
   </thead>
   <tbody id='tbody'>
-  <tr>
-  <td id='ujtantargy' class='tantargy'>
-    <form onsubmit='addSubject(event);' id='newsubjectform'>
-      <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus>
-    </form>
-  </td>
-  <td id='addsubject'>
-    <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>
-  </td>
-  <td class='jegyek' colspan='2'></td>
-  <td class='atlag'></td>
-  <td class='bizonyitvany'></td>
-  </tr>
+    <tr>
+      <td id='ujtantargy' class='tantargy'>
+        <form onsubmit='addSubject(event);' id='newsubjectform'>
+          <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus autocomplete='off'>
+        </form>
+      </td>
+      <td id='addsubject'>
+        <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>
+      </td>
+      <td class='jegyek' colspan='2'></td>
+      <td class='average'></td>
+      <td class='final-grade'></td>
+    </tr>
   </tbody>
   <tfoot>
     <tr>
@@ -52,19 +52,13 @@
     </tr>
   </tfoot>
 </table>
-<div id='jegyszerkesztes'>
+<div id='mark-editing'>
 </div>
-<div id='data'>
-  <fieldset>
-    <legend>Adatkezelés</legend>
-    <form action='/mark-calculator/' method='post'>
-      <input type='hidden' name='exportstring' id='exportstring'>
-      <input type='hidden' name='exportweight' id='exportweight'>
-      <input type='submit' name='save' value='Mentés' onclick='allowLeaving();'>
-    </form>
-  </fieldset>
-</div>
-<p><a href='https://github.com/erettsegik/mark-calculator/blob/gh-pages/README.md' target='_blank'>Súgó</a></p>
+<form action='/mark-calculator/' method='post'>
+  <input type='hidden' name='exportstring' id='exportstring'>
+  <input type='hidden' name='exportweight' id='exportweight'>
+  <input type='submit' name='save' value='Mentés' onclick='allowLeaving();'>
+</form>
 
 <script src='/js/mark-calculator.js'></script>
 

@@ -81,7 +81,7 @@ function newMark(subject) {
   output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
   output += "</fieldset>";
 
-  document.getElementById("jegyszerkesztes").innerHTML = output;
+  document.getElementById("mark-editing").innerHTML = output;
 
 }
 
@@ -95,7 +95,7 @@ function addMark(subject) {
   var markvalue = markvalueselect.options[markvalueselect.selectedIndex].value;
   data[subject].push(marktype + markvalue);
 
-  document.getElementById("jegyszerkesztes").innerHTML = "";
+  document.getElementById("mark-editing").innerHTML = "";
   display();
 
 }
@@ -138,7 +138,7 @@ function openMark(subject, markindex) {
   output += "<input type='button' value='Mégse' onclick='clearDisplay();'>";
   output += "</fieldset>";
 
-  document.getElementById("jegyszerkesztes").innerHTML = output;
+  document.getElementById("mark-editing").innerHTML = output;
 
 }
 
@@ -158,14 +158,14 @@ function modifyMark(subject, markindex) {
     data[subject][markindex] = marktype + markvalue;
   }
 
-  document.getElementById("jegyszerkesztes").innerHTML = "";
+  document.getElementById("mark-editing").innerHTML = "";
   display();
 
 }
 
 function clearDisplay() {
 
-  document.getElementById("jegyszerkesztes").innerHTML = "";
+  document.getElementById("mark-editing").innerHTML = "";
   document.getElementById("outputfield").innerHTML = "";
   display();
 
@@ -231,21 +231,21 @@ function display() {
 
     output += "</td><td id='ujjegy'><button id='ujjegybutton' onclick='newMark(\"";
     output += subject;
-    output += "\");'></button></td><td class='atlag'>";
+    output += "\");'></button></td><td class='average'>";
 
     if (avg != 'NaN')
       output += avg;
 
-    output += "</td><td class='bizonyitvany'>";
+    output += "</td><td class='final-grade'>";
 
     if (avg != 'NaN')
       output += getFinalMark(avg);
 
     output += "</td></tr>";
 
-    saveTextData();
-
   }
+
+  saveTextData();
 
   output += "<tr>";
   output += "<td id='ujtantargy' class='tantargy'>";
@@ -257,8 +257,8 @@ function display() {
   output += "  <input type='submit' id='addsubjectbutton' value='' form='newsubjectform'>";
   output += "</td>";
   output += "<td class='jegyek' colspan='2'></td>";
-  output += "<td class='atlag'></td>";
-  output += "<td class='bizonyitvany'></td>";
+  output += "<td class='average'></td>";
+  output += "<td class='final-grade'></td>";
   output += "</tr>";
 
   document.getElementById("tbody").innerHTML = output;

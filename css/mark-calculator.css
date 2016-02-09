@@ -14,12 +14,6 @@ td {
   padding: 0 5px;
 }
 
-form {
-  height: 25px;
-  margin: 0;
-  padding: 0;
-}
-
 #newsubject {
   background-color: #828C96;
   border: 0;
@@ -117,12 +111,12 @@ td.jegyek {
   width: 25px;
 }
 
-td.atlag {
+td.average {
   background-color: #646482;
   color: #ffffff;
 }
 
-td.bizonyitvany {
+td.final-grade {
   background-color: #446655;
   color: #ffffff;
 }
@@ -149,13 +143,6 @@ span.temazaro {
 
 span.vizsga {
   color: #800080;
-}
-
-blockquote {
-  background-color: #ededed;
-  font-style: italic;
-  margin: auto;
-  width: auto;
 }
 
 fieldset {
