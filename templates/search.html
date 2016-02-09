@@ -6,10 +6,10 @@
 
 {% block content %}
 
-<form onsubmit='searchRedirect(event, "main");'>
-  <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required>
-  <input type='checkbox' name='intitle' id='intitle'><label for='intitle'>Keresés címben</label>
-  <input type='checkbox' name='intext' id='intext'><label for='intext'>Keresés szövegben</label>
+<form onsubmit='searchRedirect("main");' id='search-main' method='post'>
+  <input type='search' id='mainsearch' value='{{ term }}' pattern='.{3,}' title='Legalább három karakter' required><br>
+  <input type='checkbox' name='intitle' id='intitle'{% if intitle %} checked{% endif %}><label for='intitle'>Keresés címben</label><br>
+  <input type='checkbox' name='intext' id='intext'{% if intext %} checked{% endif %}><label for='intext'>Keresés szövegben</label><br>
   <input type='submit' class='submit' value='Keresés'>
 </form>
 

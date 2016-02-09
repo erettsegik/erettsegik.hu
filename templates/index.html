@@ -56,7 +56,9 @@
           </div>
         </div>
         <div id='search'>
-          <form id='search-form' onsubmit='searchRedirect(event);'>
+          <form id='search-form' onsubmit='searchRedirect();' method='post'>
+            <input type='hidden' name='intitle' value='on'>
+            <input type='hidden' name='intext' value='on'>
             <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
           </form>
         </div>

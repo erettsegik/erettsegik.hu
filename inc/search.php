@@ -21,79 +21,91 @@ if (isset($_GET['term']) && isNotEmpty($_GET['term'])) {
 
     $noteResults = array();
 
-    try {
+    $intitle = isset($_POST['intitle']) && $_POST['intitle'] == 'on';
+    $intext = isset($_POST['intext']) && $_POST['intext'] == 'on';
 
-      $titleSearch = $con->prepare('
-        select id
-        from notes
-        where title like :term and live = 1 and incomplete <> 2
-        order by subjectid asc, id asc
-      ');
-      $titleSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
-      $titleSearch->execute();
+    if ($intitle) {
 
-    } catch (PDOException $e) {
-      die($config['errors']['database']);
-    }
+      try {
 
-    try {
+        $titleSearch = $con->prepare('
+          select id
+          from notes
+          where title like :term and live = 1 and incomplete <> 2
+          order by subjectid asc, id asc
+        ');
+        $titleSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
+        $titleSearch->execute();
 
-      $textSearch = $con->prepare('
-        select id
-        from notes
-        where text like :term and live = 1 and incomplete <> 2
-        order by subjectid asc, id asc
-      ');
-      $textSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
-      $textSearch->execute();
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
 
-    } catch (PDOException $e) {
-      die($config['errors']['database']);
-    }
+      while ($titleResult = $titleSearch->fetch()) {
 
-    while ($titleResult = $titleSearch->fetch()) {
+        $note = new note($titleResult['id']);
+        $noteData = $note->getData();
 
-      $note = new note($titleResult['id']);
-      $noteData = $note->getData();
+        $subject = new subject($noteData['subjectid']);
+        $category = new category($noteData['category']);
 
-      $subject = new subject($noteData['subjectid']);
-      $category = new category($noteData['category']);
+        $result = array(
+          'id' => $titleResult['id'],
+          'title' => $noteData['title'],
+          'subject' => $subject->getData()['name'],
+          'category' => $category->getData()['name']
+        );
 
-      $result = array(
-        'id' => $titleResult['id'],
-        'title' => $noteData['title'],
-        'subject' => $subject->getData()['name'],
-        'category' => $category->getData()['name']
-      );
+        if (!in_array($result, $noteResults)) {
+          $noteResults[] = $result;
+        }
 
-      if (!in_array($result, $noteResults)) {
-        $noteResults[] = $result;
       }
 
     }
 
-    while ($textResult = $textSearch->fetch()) {
+    if ($intext) {
 
-      $note = new note($textResult['id']);
-      $noteData = $note->getData();
+      try {
 
-      $subject = new subject($noteData['subjectid']);
-      $category = new category($noteData['category']);
+        $textSearch = $con->prepare('
+          select id
+          from notes
+          where text like :term and live = 1 and incomplete <> 2
+          order by subjectid asc, id asc
+        ');
+        $textSearch->bindValue('term', '%' . $term . '%', PDO::PARAM_STR);
+        $textSearch->execute();
 
-      $result = array(
-        'id' => $textResult['id'],
-        'title' => $noteData['title'],
-        'subject' => $subject->getData()['name'],
-        'category' => $category->getData()['name']
-      );
+      } catch (PDOException $e) {
+        die($config['errors']['database']);
+      }
 
-      if (!in_array($result, $noteResults)) {
-        $noteResults[] = $result;
+      while ($textResult = $textSearch->fetch()) {
+
+        $note = new note($textResult['id']);
+        $noteData = $note->getData();
+
+        $subject = new subject($noteData['subjectid']);
+        $category = new category($noteData['category']);
+
+        $result = array(
+          'id' => $textResult['id'],
+          'title' => $noteData['title'],
+          'subject' => $subject->getData()['name'],
+          'category' => $category->getData()['name']
+        );
+
+        if (!in_array($result, $noteResults)) {
+          $noteResults[] = $result;
+        }
+
       }
 
     }
 
-    $mode = 'results';
+    if ($intitle || $intext)
+      $mode = 'results';
 
   }
 
@@ -108,6 +120,8 @@ echo $twig->render(
     'resultcount' => isset($noteResults) ? count($noteResults) : null,
     'results'     => isset($noteResults) ? $noteResults : null,
     'status'      => $status,
-    'term'        => isset($term) ? $term : null
+    'term'        => isset($term) ? $term : null,
+    'intitle'     => isset($intitle) ? $intitle : null,
+    'intext'     => isset($intext) ? $intext : null,
   )
 );

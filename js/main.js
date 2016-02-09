@@ -62,13 +62,11 @@ $(document).ready(function(){
 
 });
 
-function searchRedirect(event, searchpage) {
+function searchRedirect(searchpage) {
 
-  var term = (arguments.length == 2) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
-
-  window.location = '/search/' + term + '/';
-
-  event.preventDefault(event);
+  var term = (arguments.length == 1) ? document.getElementById('mainsearch').value : document.getElementById('searchbox').value;
+  var form = (arguments.length == 1) ? document.getElementById('search-main') : document.getElementById('search-form');
+  form.action = '/search/' + term + '/';
 
 }
 
