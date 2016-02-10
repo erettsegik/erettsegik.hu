@@ -162,22 +162,21 @@ nav ul li ul li a {
   padding-left: 20px;
   text-align: left;
   vertical-align: middle;
-  width: 780px;
+  width: 756px;
 }
 
 #desktop-buttons {
   display: inline-block;
-  height: 30px;
   line-height: 30px;
-  margin: 10px 0px;
   padding-right: 20px;
   vertical-align: middle;
-  width: 220px;
+  width: 244px;
 }
 
 #desktop-buttons img {
+  vertical-align: middle;
   padding: 0 5px;
-  width: 40px;
+  width: 54px;
 }
 
 #main {
@@ -312,7 +311,6 @@ select {
 
 input.submit {
   cursor: pointer;
-  outline-color: green;
   background-color: #91B3C6;
   color: #fff;
   font-family: 'Roboto', sans-serif;

@@ -21,6 +21,7 @@ div.g-recaptcha {
 
 button.edit-button {
   outline: none;
+  cursor: pointer;
   background-color: #f8f8f8;
   border: 2px solid #d7d7d7;
   color: #424141;

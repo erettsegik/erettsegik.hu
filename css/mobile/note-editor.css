@@ -1,4 +1,8 @@
 @media (max-width: 1000px) {
+  
+  input{
+  	width: 50%;
+  }
 
   #main {
     background-color: #ffffff;
