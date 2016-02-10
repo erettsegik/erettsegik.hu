@@ -69,8 +69,12 @@
     padding: 1vh;
   }
 
-  #mobile-icons {
+  .mobile-button{
     display: block;
+  }
+  .mobile-button img{
+    padding-right: 2px;
+    width: 0.7em;
   }
 
   #wrapper {

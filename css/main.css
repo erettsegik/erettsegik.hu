@@ -361,6 +361,10 @@ hr {
   width: auto;
 }
 
+.mobile-button{
+  display: none;
+}
+
 .vertical-ad {
   margin: auto;
   text-align: center;

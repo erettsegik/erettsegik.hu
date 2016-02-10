@@ -44,15 +44,21 @@
               </li>
             {% endfor %}
             <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
+            
               <ul>
               {% for subject in index_var.othersubjects %}
                 <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
               {% endfor %}
               </ul>
             </li>
+            <li class='mobile-button'><a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Profil' title='Profil'>Profil</a></li>
+            <li class='mobile-button'><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'>Keresés</a></li>
+            <li class='mobile-button'><a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'>GYIK</a></li>
+            <li class='mobile-button'><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'>Rólunk</a></li>
+            <li class='mobile-button'><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'>Új jegyzet</a></li>
           </ul>
           <div id='mobile-icons'>
-            <a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Profil' title='Profil'></a><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a><a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'></a><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+           
           </div>
         </div>
         <div id='search'>
