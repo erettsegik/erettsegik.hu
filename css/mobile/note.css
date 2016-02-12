@@ -27,11 +27,19 @@
     width: 100%;
   }
 
+  #rightside p {
+    text-align: center;
+  }
+
   #collection, #modifications, .vertical-ad, #comments {
     background-color: #ffffff;
     margin-top: 2vh;
     padding: 2.5vh;
     width: 100%;
+  }
+
+  #comments h2 {
+    margin-top: 0;
   }
 
 }
