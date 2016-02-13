@@ -161,7 +161,7 @@ if (isset($_GET['p'])) {
 
 } else {
 
-  if (isset($_COOKIE['getting-started'])) {
+  /* if (isset($_COOKIE['getting-started'])) {
 
     require_once 'inc/news.php';
 
@@ -175,7 +175,9 @@ if (isset($_GET['p'])) {
 
     require_once 'inc/getting-started.php';
 
-  }
+  } */
+
+  require_once 'inc/news.php';
 
 }
 
