@@ -2,48 +2,31 @@ h2 {
   margin-top: 0;
 }
 
+.people-wrapper {
+  text-align: center;
+}
+
 .img-circular {
-  display: inline-block;
-  width: 150px;
-  height: 150px;
-  border-radius: 150px;
-  -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
-}
-
-.left-image {
-  margin-top: 0px;
-  float: left;
-  margin-left: 30px;
-  margin-right: 10px;
-}
-
-.right-image {
-  margin-top: 50px;
-  float: right;
-  margin-right: 30px;
-  margin-left: 10px;
-}
-
-.person-txt {
-  font-size: 18px;
+  -webkit-border-radius: 150px;
+  border-radius: 150px;
   display: flex;
-  align-items: center;
   height: 150px;
+  margin: auto;
 }
 
-.left-txt {
-  margin-top: 0px;
-  float: left;
-  text-align: left;
-}
-
-.right-txt {
-  margin-top: 50px;
-  float: right;
-  text-align: right;
+.person {
+  align-items: center;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  width: 320px;
 }
 
 .name {
   font-weight: bold;
+}
+
+.person p {
+  text-align: center;
 }

@@ -32,6 +32,29 @@ $twig->addExtension(new MarkdownExtension($engine));
 
 $index_var = array();
 
+if (isset($_COOKIE['remember']) && !isset($_SESSION['userid'])) {
+
+  $array = json_decode($_COOKIE['remember'], true);
+
+  try {
+
+    $get = $con->prepare('select * from logins where session = :session');
+    $get->bindValue('session', $array['session'], PDO::PARAM_STR);
+    $get->execute();
+
+  } catch (PDOException $e) {
+    die($config['errors']['database']);
+  }
+
+  while ($session = $get->fetch()) {
+    if ($session['hash'] === hash('sha256', $array['token'])) {
+      $_SESSION['userid'] = $session['userid'];
+      $user = new user($_SESSION['userid']);
+    }
+  }
+
+}
+
 try {
 
   $getSubjects = $con->query('select id, name from subjects where mandatory = 1 order by name asc');
@@ -53,7 +76,7 @@ while ($subject = $getSubjects->fetch()) {
     $getNotesData = $con->prepare('
       select notes.id, categories.name
       from notes
-      left join categories on notes.category = categories.id
+      inner join categories on notes.category = categories.id
       where notes.subjectid = :subjectid and notes.live = 1
       order by category asc, ordernumber asc, id asc
     ');
@@ -93,7 +116,7 @@ while ($subject = $getSubjects->fetch()) {
 
 }
 
-$index_var['location'][] = array('url' => '/', 'name' => 'Főoldal');
+$index_var['location'] = array();
 
 if (isset($_SESSION['userid'])) {
   $user = new user($_SESSION['userid']);
@@ -125,18 +148,6 @@ if (isset($_GET['p'])) {
 
   $p = $_GET['p'];
 
-  if (file_exists('css/' . $p . '.css')) {
-
-    $index_var['css'] = $p;
-
-  }
-
-  if (file_exists('css/mobile/' . $p . '.css')) {
-
-    $index_var['mobilecss'] = $p;
-
-  }
-
   if (file_exists('inc/' . $p . '.php') && $p != 'functions') {
 
     require_once 'inc/' . $p . '.php';
@@ -150,8 +161,21 @@ if (isset($_GET['p'])) {
 
 } else {
 
-  $index_var['css'] = 'news';
-  $index_var['mobilecss'] = 'news';
+  /* if (isset($_COOKIE['getting-started'])) {
+
+    require_once 'inc/news.php';
+
+  } else {
+
+    setcookie(
+      "getting-started",
+      "true",
+      time() + (10 * 365 * 24 * 60 * 60)
+    );
+
+    require_once 'inc/getting-started.php';
+
+  } */
 
   require_once 'inc/news.php';
 

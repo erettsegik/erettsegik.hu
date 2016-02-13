@@ -28,8 +28,7 @@ if (file_exists($config_file)) {
 $config['clearance'] = array(
   'categories'    => 2,
   'events'        => 2,
-  'feedback'      => 2,
-  'logs    '      => 2,
+  'logs'          => 2,
   'modifications' => 1,
   'news'          => 2,
   'notes'         => 1,
@@ -83,7 +82,7 @@ function initTwig() {
 function checkRights($clearance_level = 0) {
 
   if (!isset($_SESSION['userid'])) {
-    header('Location: /user_manage/');
+    header('Location: /user/login/');
     die('Kérlek jelentkezz be.');
   }
 

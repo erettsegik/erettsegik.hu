@@ -78,15 +78,18 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
     $recaptcha = new \ReCaptcha\ReCaptcha($config['recaptcha-key']);
     $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
-    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['new_text']) && $resp->isSuccess() && ($_POST['original_text'] != $_POST['new_text'])) {
+    if (isNotEmpty($_POST['title']) && isNotEmpty($_POST['text']) && $resp->isSuccess() && ($_POST['original_text'] != $_POST['text'])) {
 
       $modification = new modification();
+
+      $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 0;
 
       $modification->insertData(
         $_GET['id'],
         $_POST['title'],
-        $_POST['new_text'],
-        $_POST['comment']
+        $_POST['text'],
+        $_POST['comment'],
+        $userid
       );
 
       $logger = new logger();
@@ -100,7 +103,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
     }
 
-    $saved = array('title' => $_POST['title'], 'new_text' => $_POST['new_text'], 'comment' => $_POST['comment']);
+    $saved = array('title' => $_POST['title'], 'text' => $_POST['text'], 'comment' => $_POST['comment']);
 
     $status = 'error';
     $message = $resp->isSuccess() ? 'Nem küldheted el üresen az űrlapot!' : 'Robot vagy?';

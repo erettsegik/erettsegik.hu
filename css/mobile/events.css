@@ -1,0 +1,11 @@
+@media (max-width: 1000px) {
+
+  .event-column {
+    display: block;
+    margin-top: 2em;
+    padding: 0;
+    vertical-align: top;
+    width: 100%;
+  }
+
+}

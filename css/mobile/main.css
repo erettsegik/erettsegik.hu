@@ -1,37 +1,43 @@
 @media (max-width: 1000px) {
 
-  body {
-    font-size: 1em;
-  }
-
-  div, section {
-    box-sizing: border-box;
+  #fixed-bar {
+    height: 8vh;
+    line-height: 8vh;
   }
 
   nav {
     height: auto;
-    box-sizing: border-box;
+    width: 100%;
   }
 
   #menu-wrapper {
+    background-color: #5C4568;
+    border-top: 1px solid #fff;
     display: none;
-    margin: 8vh 0 0 0;
-    height: auto;
+    margin: 0;
     padding: 0;
     text-align: left;
     width: 100%;
-    border-top: 1px solid #35586e;
+    height: 100vh;
+  }
+
+  #logo {
+    width: 8vh;
+    height: 8vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
 
   nav ul {
-    display: block;
-    height: auto;
     line-height: 8vh;
+    width: 100%;
+    padding: 0;
   }
 
   nav ul li {
     display: block;
-    height: 8vh;
     padding: 0.5vh 0;
   }
 
@@ -40,67 +46,43 @@
   }
 
   nav ul li a {
-    height: 8vh;
     padding: 0 2vh;
     width: 100%;
   }
 
-  #mobile-icons {
-    display: inline;
-    float: left;
-    width: auto;
-    text-align: left;
-    margin: 0;
-    padding: 0;
-    height: 8vh;
-  }
-
-  #mobile-icons a:hover, #more-mobile-icons a:hover {
-    background-color: transparent;
-  }
-
-  #mobile-icons img {
-    height: 6vh;
-    padding: 1vh;
-  }
-
-  #search-form {
+  #search {
     display: none;
   }
 
-  #searchbox {
-    border-width: 2px;
-    height: 15px;
-    margin: auto;
-    padding: 0px 0px 0px 17px;
-    width: 103px;
-    display: inline;
-  }
-
   #dropdown-toggle {
-    display: inline;
-    float: right;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 8vh;
+    line-height: normal;
     margin: 0;
     padding: 0;
-    height: 8vh;
     text-align: right;
-    line-height: normal;
-    cursor: pointer;
   }
 
-  #dropdown-toggle img, #more-mobile-icons img {
-    height: 6vh;
+  #dropdown-toggle img, #mobile-icons img {
+    height: 8vh;
     padding: 1vh;
   }
 
-  #more-mobile-icons {
+  .mobile-button {
     display: block;
+  }
+
+  .mobile-button img {
+    height: 4vh;
+    padding-right: 1vh;
+    vertical-align: middle;
   }
 
   #wrapper {
     margin: 8vh auto auto auto;
     width: 100%;
-    box-sizing: border-box;
   }
 
   #location {
@@ -108,8 +90,8 @@
     line-height: 1.5em;
     margin: 10px auto;
     padding: 0 20px;
-    width: auto;
-    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
   }
 
   #desktop-buttons {
@@ -117,61 +99,27 @@
   }
 
   #main {
-    border: 0px solid #d7d7d7;
-    padding: 20px;
+    border: 0px;
+    padding: 2vh;
     width: 100%;
     text-align: center;
   }
 
   footer {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 2vh auto;
   }
 
   blockquote {
-    padding: 10px;
+    padding: 1vh;
   }
 
-  blockquote p {
-    margin: 0px;
-  }
-
-  input, select, textarea {
-    border: 2px solid #d7d7d7;
-  }
-
-  input {
-    width: 200px;
-  }
-
-  input.submit {
-    border-radius: 3px;
-    margin-top: 5px;
-  }
-
-  select {
-    width: 200px;
+  input[type="text"],input[type="search"], select {
+    width: 50%;
   }
 
   textarea {
-    height: 28vh;
-    margin-top: 5px;
+    height: 50vh;
     width: 100%;
-  }
-
-  .article-meta {
-    font-size: 0.7em;
-    margin: 16px auto;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  hr {
-    height: 1px;
-    margin: 16px auto;
-    width: 98%;
   }
 
   .anchor {
@@ -179,35 +127,12 @@
   }
 
   .top-notice {
-    box-sizing: border-box;
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    width: auto;
+    padding: 2vh 0.5vh;
+    width: 100%;
   }
 
-  .success {
-    border: 2px solid #009900;
-  }
-
-  .success:before {
-    margin-right: 10px;
-  }
-
-  .error {
-    border: 2px solid #990000;
-  }
-
-  .error:before {
-    margin-right: 10px;
-  }
-
-  .notice {
-    border: 2px solid #ffb938;
-  }
-
-  .notice:before {
-    margin-right: 10px;
+  .success:before, .error:before, .notice:before {
+    margin-right: 1vh;
   }
 
   #go-top-desktop {

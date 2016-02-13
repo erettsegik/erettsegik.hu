@@ -1,3 +1,11 @@
+CREATE TABLE IF NOT EXISTS `calculatordata` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` int(11) NOT NULL,
+  `data` text NOT NULL,
+  `weight` varchar(256) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -20,18 +28,18 @@ CREATE TABLE IF NOT EXISTS `events` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS `feedback` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(256) NOT NULL,
-  `text` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `isnew` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
 CREATE TABLE IF NOT EXISTS `happenings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(256) NOT NULL,
+  `date` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` varchar(256) NOT NULL,
+  `session` varchar(256) NOT NULL,
+  `hash` varchar(256) NOT NULL,
   `date` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -49,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `modifications` (
   `updatedate` timestamp NULL DEFAULT NULL,
   `status` int(11) NOT NULL,
   `reply` text NOT NULL,
+  `userid` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -61,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `creatorid` int(11) NOT NULL,
   `live` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `notes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `live` tinyint(1) NOT NULL,
   `incomplete` tinyint(1) NOT NULL,
   `email` varchar(256) NOT NULL,
+  `userid` int(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -83,12 +93,13 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `name` varchar(256) NOT NULL,
   `mandatory` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
   `authority` int(11) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

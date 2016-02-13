@@ -1,5 +1,12 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/modification.css'>
+<link rel='stylesheet' type='text/css' href='/css/note-editor.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/modification.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/note-editor.css'>
+{% endblock %}
+
 {% block content %}
 
 {% if action == 'add' %}
@@ -7,52 +14,56 @@
   <h1>{{ note.title }}</h1>
 
   <form action='/modification/add/{{ note.id }}/' method='post'>
-  Javaslat címe: <input type='text' name='title' class='form-element' value='{{ saved.title }}' required><br>
-  <div class='modification'>Eredeti szöveg:<br>
-  <textarea name='original_text' readonly required>{{ note.text }}</textarea></div>
-  <div class='modification'>Új szöveg:<br>
-  <textarea name='new_text' required>{% if saved.new_text %}{{ saved.new_text }}{% else %}{{ note.text }}{% endif %}</textarea></div><br>
-  Megjegyzés (opcionális): <input type='text' name='comment' value='{{ saved.comment }}'><br>
+  <input type='text' name='title' placeholder='Javaslat címe' value='{{ saved.title }}' required>
+  <br>
+  <input type='hidden' name='original_text' readonly required>
+  {% include 'note-editor.html' %}
+  <br>
+  <input type='text' name='comment' placeholder='Megjegyzés' value='{{ saved.comment }}'><br>
   <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>
+  <br>
   <input type='submit' name='submit' class='submit' value='Elküldés'>
   </form>
 
   <script src='https://www.google.com/recaptcha/api.js'></script>
+
 {% else %}
 
-  {% if modification.status == 0 %}
-    <img src='/img/pending.png' alt='pending' id='modification-status'>
-  {% endif %}
+  <style>
+    #modification-title::before {
+      {% if modification.status == 0 %}
+        content: url(/img/pending.png);
+      {% endif %}
 
-  {% if modification.status == 1 %}
-    <img src='/img/merged.png' alt='merged' id='modification-status'>
-  {% endif %}
+      {% if modification.status == 1 %}
+        content: url(/img/merged.png);
+      {% endif %}
 
-  {% if modification.status == 2 %}
-    <img src='/img/rejected.png' alt='rejected' id='modification-status'>
-  {% endif %}
+      {% if modification.status == 2 %}
+        content: url(/img/rejected.png);
+      {% endif %}
+    }
+  </style>
 
   <h1 id='modification-title'>{{ modification.title }}</h1>
-
-  <br>
 
   <span class='article-meta'>
     Tétel címe: {{ note.title }}
 
     {% if modification.comment != '' %}
-      <br>beküldő megjegyzése: {{ modification.comment }}
+      <br>Beküldő megjegyzése: {{ modification.comment }}
     {% endif %}
 
     <br>
-    beküldve: {{ modification.date }}
+    Beküldve: {{ modification.date }}
 
     {% if modification.updatedate %}
       <br>
-      frissítve: {{ modification.updatedate }}
+      Frissítve: {{ modification.updatedate }}
     {% endif %}
 
     {% if modification.reply != '' %}
-      <br>tanár megjegyzése: {{ modification.reply }}
+      <br>Tanár megjegyzése: {{ modification.reply }}
     {% endif %}
 
   </span>
@@ -62,20 +73,8 @@
 
   <div class='modification-container'><h3>Módosított:</h3><p>{{ modification.start_text }}<span class='difference-modified'>{{ modification.new_text }}</span>{{ modification.end_text }}</p></div>
 
-  <br style='clear: both;'>
-
   <h2>Megjegyzések</h2>
-    <div id='disqus_thread'></div>
-    <script type='text/javascript'>
-      var disqus_shortname = 'erettsegikhu';
-      var disqus_identifier = 'modification-{{ modification.id }}{% if production == false %}-dev{% endif %}';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-  <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
+  <p>Hamarosan!</p>
 
 {% endif %}
 

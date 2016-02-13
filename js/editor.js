@@ -13,6 +13,7 @@ function emphasis() {
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 
 }
 
@@ -31,6 +32,7 @@ function header() {
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 
 }
 
@@ -49,7 +51,7 @@ function image() {
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
-
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 }
 
 function list(type) {
@@ -101,6 +103,7 @@ function list(type) {
   replace = replace.slice(0, -1);
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 
 }
 
@@ -130,6 +133,7 @@ function quote(type) {
   replace = replace.slice(0, -1);
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 
 }
 
@@ -160,6 +164,7 @@ function latex(type) {
   }
 
   textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+  textarea.setSelectionRange(start + replace.length, start + replace.length);
 
 }
 

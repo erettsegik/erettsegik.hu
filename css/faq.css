@@ -1,3 +1,23 @@
 h2 {
+  margin: 0 auto 0.5em;
+  display: inline-block;
+  background-color: #91B3C6;
+  color: #fff;
+  padding: 1px 3px 1px 3px;
+}
+
+p {
   margin-top: 0;
+}
+
+.answer {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.answer:target {
+  margin-top: -110px;
+  padding-top: 110px;
+  height: auto;
 }

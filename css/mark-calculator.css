@@ -1,0 +1,93 @@
+table {
+  margin: auto;
+  width: 100%;
+}
+
+thead {
+  background-color: #5C4568;
+  color: #ffffff;
+}
+
+td {
+  height: 25px;
+  padding: 5px;
+}
+
+tfoot td {
+  font-size: 0.8em;
+  padding: 0;
+}
+
+.button {
+  border: 0px;
+  background-color: #ffffff;
+  height: 25px;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  width: 25px;
+}
+
+.addbutton {
+  background-image: url(/img/mark-calculator/add.png);
+}
+
+.removebutton {
+  background-image: url(/img/mark-calculator/remove.png);
+}
+
+#newsubject {
+  border: 0;
+  color: #555555;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  outline: 0;
+  width: 100%;
+}
+
+.subject {
+  width: 300px;
+}
+
+.average, .final-grade {
+  background-color: #eeeeee;
+}
+
+.average {
+  text-align: center;
+  width: 80px;
+}
+
+.final-grade {
+  width: 150px;
+}
+
+span {
+  margin: 0 2px;
+}
+
+span.kis {
+  color: #0000ff;
+}
+
+span.normal {
+  color: #000000;
+}
+
+span.dolgozat {
+  color: green;
+}
+
+span.temazaro {
+  color: #ff0000;
+}
+
+span.vizsga {
+  color: #800080;
+}
+
+fieldset {
+  margin: 10px auto;
+  width: auto;
+}

@@ -1,6 +1,14 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/event-bar.css'>
+<link rel='stylesheet' type='text/css' href='/css/events.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/events.css'>
+{% endblock %}
+
 {% block content %}
+
+<p class='article-meta'>Pontos időpontokért kattints a szürke szövegre!</p>
 
 <div class='event-column'>
 {% if past_events|length == 0 %}
@@ -54,9 +62,5 @@
   {% endfor %}
 {% endif %}
 </div>
-
-<br style='clear: both;'>
-
-<p class='article-meta' style='text-align: center;'>Pontos időpontokért kattints a szürke szövegre!</p>
 
 {% endblock %}

@@ -29,6 +29,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
 
       $note = new note();
 
+      $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 0;
+
       $note->insertData(
         prepareText($_POST['title']),
         prepareText($_POST['text']),
@@ -37,7 +39,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
         $_POST['category'],
         0,
         1,
-        $_POST['email']
+        $_POST['email'],
+        $userid
       );
 
       $logger = new logger();

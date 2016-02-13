@@ -5,8 +5,11 @@
     padding: 0;
   }
 
-  p {
-    text-align: left;
+  .person {
+    text align: center;
+    width: 100%;
+    padding: 10px;
+    white-space: normal;
   }
 
 }

@@ -2,6 +2,13 @@ h2 {
   margin-top: 0;
 }
 
+#main li a, #main li a:visited {
+  color: #424141;
+  padding: 0;
+  background-color: inherit;;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 #subject-menu {
   -moz-column-count: 4;
   -moz-column-gap: 20px;
@@ -10,15 +17,11 @@ h2 {
   column-count: 4;
   column-gap: 20px;
   list-style-position: inside;
-  line-height: 1.5em;
-}
-
-#subject-menu {
   list-style-type: none;
 }
 
 #subject-menu li:before {
-  content: "\2022";
+  content: '\2022';
   margin-right: 5px;
 }
 
@@ -27,14 +30,13 @@ h2 {
 }
 
 .notes-list li {
-  list-style-image: url("/img/check-mark.png");
-  line-height: 1.5;
+  list-style-image: url('/img/check-mark.png');
 }
 
 li.incomplete {
-  list-style-image: url("/img/exclamation-mark.png");
+  list-style-image: url('/img/exclamation-mark.png');
 }
 
 li.empty {
-  list-style-image: url("/img/empty-set.png");
+  list-style-image: url('/img/empty-set.png');
 }

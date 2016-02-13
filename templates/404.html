@@ -1,10 +1,14 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/404.css'>
+{% endblock %}
+
 {% block content %}
 
 <h1>A keresett oldal nem található</h1>
 
-<p>Valamelyikünk elrontott valamit. Kérjük <a href='/feedback/'>jelezd nekünk</a>, ha szerinted mi voltunk.</p>
+<p>Valamelyikünk elrontott valamit. Kérjük <a href='/about/#contact'>jelezd nekünk</a>, ha szerinted mi voltunk.</p>
 <img src='/img/404.png' alt='Az oldal nem található' id='not-found'>
 
 {% endblock %}

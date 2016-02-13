@@ -1,0 +1,21 @@
+input.login {
+  margin-bottom: 10px;
+  width: 200px;
+  display: block;
+}
+
+input.submit{
+  margin-right: 5px;
+}
+
+.dashboard-item {
+  display: inline-block;
+  width: 240px;
+  height: 300px;
+  padding: 10px;
+  text-align: center;
+}
+
+.dashboard-item p {
+  text-align: center;
+}

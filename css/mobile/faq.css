@@ -1,7 +1,7 @@
 @media (max-width: 1000px) {
 
-  p {
-    text-align: left;
+  h2 {
+    display: block;
   }
 
 }

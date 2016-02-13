@@ -1,5 +1,10 @@
 {% extends 'index.html' %}
 
+{% block stylesheets %}
+<link rel='stylesheet' type='text/css' href='/css/about.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/about.css'>
+{% endblock %}
+
 {% block content %}
 
 <h2>Motiváció</h2>
@@ -10,59 +15,92 @@ az érettségire való felkészüléshez, aminek tartalma folyamatosan ellenőrz
 <p>Bár mindent megteszünk azért, hogy a jegyzetek kifogásolhatatlanak legyenek,
 nem tudjuk garantálni, hogy a tartalmuk megfelel a valóságnak, és nem képezi
 jogtalanul más szellemi tulajdonát. Kérjük, hogy ha ilyen problémád van,
-azt jelezd vagy javaslatként az adott jegyzetnél, vagy küldj nekünk
-egy visszajelzést.</p>
+azt jelezd vagy javaslatként az adott jegyzetnél, vagy üzenj közvetlenül nekünk.</p>
 <p>Ha szeretnél hozzánk csatlakozni, és segíteni a jegyzetek és javaslatok
-ellenőrzésében, írj nekünk egy facebook üzenetet (esetleg egy visszajelzést,
-ha ez nem lehetséges valamilyen okból), és felvesszük veled a kapcsolatot.</p>
+ellenőrzésében, írj nekünk egy facebook üzenetet vagy egy e-mailt, és felvesszük veled a kapcsolatot.</p>
 
 <hr>
+
 <h2>Fejlesztők</h2>
 
-<img src='http://i.imgur.com/E46pMtl.png' alt='Bognár Márton' class='img-circular left-image'>
-  <div class='person-txt left-txt'>
+<div class='people-wrapper'>
+
+<div class='person'>
+  <img src='/img/about/bognar_marton.jpg' alt='Bognár Márton' class='img-circular'>
     <p><span class='name'>Bognár Márton</span><br>
     Budapesti Műszaki Egyetem<br>
-    mérnökinformatikus<br>
-    <a href='mailto:bognarmarci@gmail.com'>bognarmarci@gmail.com</a></p>
+    mérnökinformatikus</p>
 </div>
 
-<img src='http://i.imgur.com/pVuNPYP.png' alt='Tuskó Gergely' class='img-circular right-image'>
-  <div class='person-txt right-txt'>
+<div class='person'>
+  <img src='/img/about/hegedus_daniel.jpg' alt='Hegedüs Dániel' class='img-circular'>
+    <p><span class='name'>Hegedüs Dániel</span><br>
+    Budapesti Műszaki Egyetem<br>
+    mérnökinformatikus</p>
+</div>
+
+<div class='person'>
+  <img src='/img/about/tusko_gergely.jpg' alt='Tuskó Gergely' class='img-circular'>
     <p><span class='name'>Tuskó Gergely</span><br>
     Budapesti Műszaki Egyetem<br>
-    mérnökinformatikus<br>
-    <a href='mailto:t.gergely95@gmail.com'>t.gergely95@gmail.com</a></p>
-</div><br style='clear:both'>
+    mérnökinformatikus</p>
+</div>
+
+</div>
+
 <hr>
 
 <h2>Tanárok</h2>
 
-<img src='http://i.imgur.com/mHMhrjN.png' alt='Madas Pál' class='img-circular left-image'>
-  <div class='person-txt left-txt'>
+<div class='people-wrapper'>
+
+<div class='person'>
+<img src='/img/about/bokor_judit.jpg' alt='Bokor Judit' class='img-circular'>
+    <p><span class='name'>Bokor Judit</span><br>
+    Városmajori Gimnázium<br>
+    történelem/német nyelv<br></p>
+</div>
+
+<div class='person'>
+<img src='/img/about/kertai_helga.jpg' alt='Kertai Helga' class='img-circular'>
+    <p><span class='name'>Kertai Helga</span><br>
+    Városmajori Gimnázium<br>
+    matematika/fizika<br></p>
+</div>
+
+<div class='person'>
+<img src='/img/about/madas_pal.jpg' alt='Madas Pál' class='img-circular'>
     <p><span class='name'>Madas Pál</span><br>
     Városmajori Gimnázium<br>
     matematika/informatika<br></p>
 </div>
 
-<img src='http://i.imgur.com/sEfaIqB.png' alt='Végh Anna' class='img-circular right-image'>
-  <div class='person-txt right-txt'>
+<div class='person'>
+  <img src='/img/about/past_zsuzsanna.jpg' alt='Past Zsuzsanna' class='img-circular'>
+    <p><span class='name'>Past Zsuzsanna</span><br>
+    Városmajori Gimnázium<br>
+    német nyelv</p>
+</div>
+
+<div class='person'>
+  <img src='/img/about/vegh_anna.jpg' alt='Végh Anna' class='img-circular'>
     <p><span class='name'>Végh Anna</span><br>
     Városmajori Gimnázium<br>
-    történelem/angol</p>
+    történelem/angol nyelv</p>
 </div>
 
-<br style='clear:both'>
-
-<img src='http://i.imgur.com/Rv6nxdt.png' alt='Vértes Judit' class='img-circular left-image'>
-  <div class='person-txt left-txt'>
+<div class='person'>
+  <img src='/img/about/vertes_judit.jpg' alt='Vértes Judit' class='img-circular'>
     <p><span class='name'>Vértes Judit</span><br>
     Városmajori Gimnázium<br>
-    magyar nyelv és irodalom/angol</p>
+    magyar nyelv és irodalom/angol nyelv</p>
 </div>
 
-<br style='clear:both'>
+</div>
 
+<hr>
+
+<a class='anchor' id='contact'></a>
 <h2>Elérhetőségek</h2>
 <ul>
   <li>E-mail: <a href='mailto:info@erettsegik.hu'>info@erettsegik.hu</a></li>

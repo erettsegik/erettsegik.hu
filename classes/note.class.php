@@ -15,6 +15,7 @@ class note {
   protected $live        = null;
   protected $incomplete  = null;
   protected $email       = null;
+  protected $userid      = null;
 
   public function __construct($id = null) {
 
@@ -47,12 +48,13 @@ class note {
     $this->live        = $noteData['live'];
     $this->incomplete  = $noteData['incomplete'];
     $this->email       = $noteData['email'];
+    $this->userid      = $noteData['userid'];
 
     $this->updatedate->setTimezone($config['tz']['local']);
 
   }
 
-  public function insertData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete, $email) {
+  public function insertData($title, $text, $footnotes, $subjectid, $category, $live, $incomplete, $email, $userid) {
 
     global $con;
     global $config;
@@ -65,6 +67,7 @@ class note {
     $this->live       = $live;
     $this->incomplete = $incomplete;
     $this->email      = $email;
+    $this->userid     = $userid;
 
     try {
 
@@ -81,7 +84,8 @@ class note {
           0,
           :live,
           :incomplete,
-          :email
+          :email,
+          :userid
         )
       ');
       $insertData->bindValue('title', $this->title, PDO::PARAM_STR);
@@ -92,6 +96,7 @@ class note {
       $insertData->bindValue('live', $this->live, PDO::PARAM_INT);
       $insertData->bindValue('incomplete', $this->incomplete, PDO::PARAM_INT);
       $insertData->bindValue('email', $this->email, PDO::PARAM_STR);
+      $insertData->bindValue('userid', $this->userid, PDO::PARAM_INT);
       $insertData->execute();
 
       $this->id = $con->lastInsertId();
@@ -204,7 +209,8 @@ class note {
       'ordernumber' => $this->ordernumber,
       'live'        => $this->live,
       'incomplete'  => $this->incomplete,
-      'email'       => $this->email
+      'email'       => $this->email,
+      'userid'      => $this->userid,
     );
 
   }

@@ -26,7 +26,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $_POST['category'],
       $live,
       $incomplete,
-      ''
+      '',
+      $_SESSION['userid']
     );
 
     $logger = new logger();
@@ -154,9 +155,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'add') {
       $getNotes = $con->prepare('
         select notes.id, notes.title, notes.ordernumber, notes.live, notes.incomplete, categories.name
         from notes
-        left join categories on notes.category = categories.id
+        inner join categories on notes.category = categories.id
         where notes.subjectid = :subjectid
-        order by notes.ordernumber asc, notes.id asc
+        order by notes.category asc, notes.ordernumber asc, notes.id asc
       ');
       $getNotes->bindValue('subjectid', $_GET['subjectid'], PDO::PARAM_INT);
       $getNotes->execute();

@@ -6,69 +6,67 @@
 
   <div id='leftside'>
     <h1>{{ note.title }}</h1>
-    {% if incollection != -1 %}
-    <form action='/note/{{ note.id }}/' method='post' id='collection-form'>
-      <input type='submit' name='collection' class='collection-button {% if incollection %}collection-remove{% else %}collection-add{% endif %}' value='' title='{% if incollection %}Gyűjteményből kivétel{% else %}Gyűjteményhez hozzáadás{% endif %}'>
-    </form>
-    {% endif %}
     {% include 'note_text.html' %}
     <div id='footnotes'>
       <p>Legutóbb frissítve: {{ note.updatedate }}</p>
       {{ note.footnotes | markdown }}
     </div>
-    {% if incollection == 1 %}
-    <form action='/note/{{ note.id }}/' method='post' id='learned-form'>
-      <input type='hidden' value='off' name='learned'>
-      <input type='checkbox' onchange='$("#learned-form").submit();' name='learned' {% if learned %} checked {% endif %}>
-      <label for='learned'>Megtanultam</label>
-    </form>
-    {% endif %}
+  </div>
+  <div id='rightside'>
+    {% if incollection != -1 %}
+    <div id='collection'>
+      <h2>Gyűjtemény</h2>
+      <form action='/note/{{ note.id }}/' method='post' id='collection-form'>
+        <input type='hidden' value='off' name='collection'>
+        <input type='checkbox' onchange='$("#collection-form").submit();' name='collection' id='collection-checkbox' {% if incollection %} checked {% endif %}>
+        <label for='collection-checkbox'>Gyűjteményemben</label>
+      </form>
+      {% if incollection == 1 %}
+      <form action='/note/{{ note.id }}/' method='post' id='learned-form'>
+        <input type='hidden' value='off' name='learned'>
+        <input type='checkbox' onchange='$("#learned-form").submit();' name='learned' id='learned' {% if learned %} checked {% endif %}>
+        <label for='learned'>Megtanultam</label>
+      </form>
+      {% endif %}
+      <p><a href='/collection/'>Gyűjteményem</a></p>
     </div>
-    <div id='rightside'>
-    <h2>Javaslatok</h2>
-    <ul class='modifications-list'>
-
-    {% for modification in modifications %}
+    {% endif %}
+    <div id='modifications'{% if incollection == -1 %} style='margin-top: 0;'{% endif %}>
+      <h2>Javaslatok</h2>
+      <ul class='modifications-list'>
+      {% for modification in modifications %}
         <li class='status-{{ modification.status }}'>
           <a href='/modification/{{ modification.id }}/' title='{{ modification.comment }}'>{{ modification.title }}</a>
         </li>
-    {% endfor %}
-
-    <li class='add-modification'>
-      <a href='/modification/add/{{ note.id }}/'>új javaslat</a>
-    </li>
-  </ul>
-  <hr>
-  <div class='vertical-ad'>
-    <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-    <!-- erettsegik responsive -->
-    <ins class='adsbygoogle'
-         style='display:block'
-         data-ad-client='ca-pub-5210002685428807'
-         data-ad-slot='5383691773'
-         data-ad-format='auto'></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+      {% endfor %}
+        <li class='add-modification'>
+          <a href='/modification/add/{{ note.id }}/'>új javaslat</a>
+        </li>
+      </ul>
+    </div>
+    <div class='vertical-ad'>
+      <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+      <!-- erettsegik responsive -->
+      <ins class='adsbygoogle'
+           style='display:block'
+           data-ad-client='ca-pub-5210002685428807'
+           data-ad-slot='5383691773'
+           data-ad-format='auto'></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
+  <div id='comments'>
+    <h2>Megjegyzések</h2>
+    <p>Hamarosan!</p>
   </div>
-  <br style='clear: both;'>
-  <h2>Megjegyzések</h2>
-    <div id='disqus_thread'></div>
-    <script type='text/javascript'>
-      var disqus_shortname = 'erettsegikhu';
-      var disqus_identifier = 'note-{{ note.id }}{% if production == false %}-dev{% endif %}';
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-  <noscript>Engedélyezned kell a JavaScriptet a <a href='http://disqus.com/?ref_noscript'>Disqus kommentek</a> megjelenítéséhez.</noscript>
 
 {% else %}
 
   <form action='/note/add/' method='post' onsubmit='allowLeaving();'>
+    {% include 'note-meta.html' %}
+    <hr>
     {% include 'note-editor.html' %}
     <hr>
     <div class='g-recaptcha' data-sitekey='6Ld-cQcTAAAAAJuNjF971FjiSG-UY0MOn4ULUx5g'></div>
@@ -79,4 +77,20 @@
 
 {% endif %}
 
+{% endblock %}
+
+{% block stylesheets %}
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/github.min.css'>
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'>
+<link rel='stylesheet' type='text/css' href='/css/note.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/note.css'>
+{% if mode != 'display' %}
+<link rel='stylesheet' type='text/css' href='/css/note-editor.css'>
+<link rel='stylesheet' type='text/css' href='/css/mobile/note-editor.css'>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script src='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js'></script>
 {% endblock %}

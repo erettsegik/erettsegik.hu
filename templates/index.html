@@ -1,3 +1,4 @@
+{% spaceless %}
 <!doctype html>
 <html>
 <head>
@@ -9,15 +10,9 @@
   <link rel='canonical' href='{{ index_var.canonical }}'>
   <link rel='stylesheet' type='text/css' href='/css/main.css'>
   <link rel='stylesheet' type='text/css' href='/css/mobile/main.css'>
-  {% if index_var.css != '' %}
-    <link rel='stylesheet' type='text/css' href='/css/{{ index_var.css }}.css'>
-  {% endif %}
-  {% if index_var.mobilecss != '' %}
-    <link rel='stylesheet' type='text/css' href='/css/mobile/{{ index_var.css }}.css'>
-  {% endif %}
+  {% block stylesheets %}
+  {% endblock %}
   <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon'>
-  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css'>
-  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css'>
   <link rel='icon' sizes='192x192' href='/touch-icon-192x192.png'>
   <link rel='apple-touch-icon-precomposed' sizes='180x180' href='/apple-touch-icon-180x180-precomposed.png'>
   <link rel='apple-touch-icon-precomposed' sizes='152x152' href='/apple-touch-icon-152x152-precomposed.png'>
@@ -27,85 +22,96 @@
   <link rel='apple-touch-icon-precomposed' sizes='76x76' href='/apple-touch-icon-76x76-precomposed.png'>
   <link rel='apple-touch-icon-precomposed' sizes='72x72' href='/apple-touch-icon-72x72-precomposed.png'>
   <link rel='apple-touch-icon-precomposed' href='/apple-touch-icon-precomposed.png'>
-<title>{{ index_var.title }} - erettsegik.hu</title>
+  <title>{{ index_var.title }} - erettsegik.hu</title>
 </head>
 <body>
-  <nav>
-  <div id='mobile-icons'>
-    <a href='/user_manage/'><img src='/img/login.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/search/'><img src='/img/search.png' alt='Keresés' title='Keresés'></a><a href='#top'><img src='/img/page-up.png' alt='Oldal tetejére' title='Oldal tetejére'></a>
-  </div>
-  <form id='search-form' onsubmit='searchRedirect(event);'>
-    <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
-  </form>
-  <div id='dropdown-toggle'>
-    <img src='/img/menu.png' alt='Menü' title='Menü'>
-  </div>
-  <div id='menu-wrapper'>
-  <ul>
-    {% for subject in index_var.subjects %}
-      <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
-        <ul>
-        {% for category in subject.categories %}
-          <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
-        {% endfor %}
-        </ul>
-      </li>
-    {% endfor %}
-    <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
-      <ul>
-      {% for subject in index_var.othersubjects %}
-        <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+  <div class='container'>
+    <div id='fixed-bar'>
+      <nav>
+        <a href='/'><span id='logo'></span></a>
+        <div id='dropdown-toggle'>
+          <img src='/img/menu-mobile.png' alt='Menü' title='Menü'>
+        </div>
+        <div id='menu-wrapper'>
+          <ul>
+            {% for subject in index_var.subjects %}
+              <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a>
+                <ul>
+                {% for category in subject.categories %}
+                  <li><a href='/subjects/{{ subject.id }}/#{{ category.name }}'>{{ category.name }}</a></li>
+                {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
+            <li class='unique'><a href='/subjects/' class='unique'>Összes tárgy</a>
+              <ul>
+              {% for subject in index_var.othersubjects %}
+                <li><a href='/subjects/{{ subject.id }}/'>{{ subject.name }}</a></li>
+              {% endfor %}
+              </ul>
+            </li>
+            <li class='mobile-button'><a href='/search/'><img src='/img/search-mobile.png' alt='Keresés' title='Keresés'>Keresés</a></li>
+            <li class='mobile-button'><a href='/user/dashboard/'><img src='/img/login-mobile.png' alt='Profil' title='Profil'>Profil</a></li>
+            <li class='mobile-button'><a href='/note/add/'><img src='/img/note-add-mobile.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'>Új jegyzet</a></li>
+            <li class='mobile-button'><a href='/faq/'><img src='/img/faq-mobile.png' alt='GYIK' title='GYIK'>GYIK</a></li>
+            <li class='mobile-button'><a href='/about/'><img src='/img/about-mobile.png' alt='Rólunk' title='Rólunk'>Rólunk</a></li>
+          </ul>
+          <div id='mobile-icons'>
+
+          </div>
+        </div>
+        <div id='search'>
+          <form id='search-form' onsubmit='searchRedirect();' method='post'>
+            <input type='hidden' name='intitle' value='on'>
+            <input type='hidden' name='intext' value='on'>
+            <input type='search' id='searchbox' pattern='.{3,}' title='Legalább három karakter' required>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div id='wrapper'>
+    <section id='location'>
+      <a id='top' class='anchor'></a>
+      {% for element in index_var.location %}
+        &#x276F; <a href='{{ element.url }}'>{{ element.name }}</a>
       {% endfor %}
-      </ul>
-    </li>
-  </ul>
-  <div id='more-mobile-icons'>
-    <a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a><a href='/feedback/'><img src='/img/feedback.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a><a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+    </section>
+    <div id='desktop-buttons'>
+      <a href='/user/dashboard/'><img src='{% if index_var.username == '' %}/img/login.png{% else %}/img/profile.png{% endif %}' alt='Profil' title='Profil'></a>
+      <a href='/note/add/'><img src='/img/note-add.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a>
+      <a href='/faq/'><img src='/img/faq.png' alt='GYIK' title='GYIK'></a>
+      <a href='/about/'><img src='/img/about.png' alt='Rólunk' title='Rólunk'></a>
+    </div>
+    {% if status == 'error' or status == 'success' or status == 'notice' %}
+    <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
+    {% endif %}
+    <section id='main'>
+      {% block content %}
+      {% endblock %}
+    </section>
+    <div class='horizontal-ad'>
+      <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+      <!-- erettsegik responsive -->
+      <ins class='adsbygoogle'
+           style='display:block'
+           data-ad-client='ca-pub-5210002685428807'
+           data-ad-slot='5383691773'
+           data-ad-format='auto'></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    <footer>
+      &copy; 2015&ndash;2016 erettsegik.hu
+    </footer>
+    </div>
+    <a href='#top' id='go-top-desktop'></a>
+
   </div>
-  </div>
-  </nav>
-  <div id='wrapper'>
-  <section id='location'>
-    <a id='top' class='anchor'></a>
-    {% for element in index_var.location %}
-      <a href='{{ element.url }}'>{{ element.name }}</a>
-      {% if not loop.last %}
-        &#x2192;
-      {% endif %}
-    {% endfor %}
-  </section>
-  <div id='desktop-buttons'>
-    <a href='/user_manage/'><img src='/img/login-blue.png' alt='Felhasználói oldal' title='Felhasználói oldal'></a><a href='/faq/'><img src='/img/faq-blue.png' alt='GYIK' title='GYIK'></a><a href='/note/add/'><img src='/img/note-add-blue.png' alt='Jegyzet beküldése' title='Jegyzet beküldése'></a><a href='/feedback/'><img src='/img/feedback-blue.png' alt='Visszajelzés' title='Visszajelzés'></a><a href='/about/'><img src='/img/about-blue.png' alt='Rólunk' title='Rólunk'></a>
-  </div>
-  <br style='clear: both;'>
-  {% if status == 'error' or status == 'success' or status == 'notice' %}
-  <div class='top-notice {{ status }}' onclick='this.style.display = "none";'>{{ message }}</div>
-  {% endif %}
-  <section id='main'>
-    {% block content %}
-    {% endblock %}
-  </section>
-  <div class='horizontal-ad'>
-    <script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-    <!-- erettsegik responsive -->
-    <ins class='adsbygoogle'
-         style='display:block'
-         data-ad-client='ca-pub-5210002685428807'
-         data-ad-slot='5383691773'
-         data-ad-format='auto'></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  <footer>
-    &copy; 2015 erettsegik.hu
-  </footer>
-  </div>
-  <a href='#top' id='go-top-desktop'>Vissza a tetejére</a>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.2.0/katex.min.js'></script>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js'></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
   <script type='text/javascript' src='/js/main.js'></script>
+  {% block javascript %}
+  {% endblock %}
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -117,3 +123,4 @@
   </script>
 </body>
 </html>
+{% endspaceless %}

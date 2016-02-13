@@ -1,0 +1,32 @@
+h2 {
+  margin-top: 0;
+}
+
+#main li a, #main li a:visited {
+  color: #424141;
+  padding: 0;
+  background-color: inherit;;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+li {
+  list-style-image: url('/img/check-mark.png');
+}
+
+li.incomplete {
+  list-style-image: url('/img/exclamation-mark.png');
+}
+
+li.empty {
+  list-style-image: url('/img/empty-set.png');
+}
+
+li.learned-0::before {
+  content: '\2610';
+  margin-right: 5px;
+}
+
+li.learned-1::before {
+  content: '\2611';
+  margin-right: 5px;
+}
