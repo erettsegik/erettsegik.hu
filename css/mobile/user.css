@@ -1,7 +1,12 @@
 @media (max-width: 1000px) {
 
-  input.login{
+  input.login {
+    margin: 0 auto 10px;
     width: 50%;
+  }
+
+  p {
+    text-align: center;
   }
 
 }
