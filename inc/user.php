@@ -72,10 +72,17 @@ if ($action == 'settings') {
 
   if (isset($_POST['submit'])) {
 
-    $user->modifyData($userdata['name'], $_POST['email'], $userdata['authority']);
+    if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
-    $_SESSION['status'] = 'success';
-    $_SESSION['message'] = 'E-mail cím frissítve!';
+      $user->modifyData($userdata['name'], $_POST['email'], $userdata['authority']);
+
+      $_SESSION['status'] = 'success';
+      $_SESSION['message'] = 'E-mail cím frissítve!';
+
+    } else {
+      $_SESSION['status'] = 'error';
+      $_SESSION['message'] = 'Ez nem egy valódi e-mail cím!';
+    }
 
     if (isNotEmpty($_POST['new_password'])) {
 

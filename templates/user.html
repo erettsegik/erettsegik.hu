@@ -51,7 +51,7 @@
 {% if action == 'settings' %}
 
   <form action='/user/settings/' method='post'>
-    <input type='email' name='email' value='{{ userdata.email }}' placeholder='e-mail cím'><br>
+    <input type='email' name='email' value='{{ userdata.email }}' placeholder='e-mail cím' required><br>
     <fieldset>
       <legend>Csak ha jelszót szeretnél változtatani</legend>
       <input class='login' type='password' name='old_password' placeholder='régi jelszó'><br>
