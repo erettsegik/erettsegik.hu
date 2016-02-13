@@ -113,7 +113,7 @@
     padding: 1vh;
   }
 
-  input, select {
+  input[type="text"],input[type="search"], select {
     width: 50%;
   }
 
