@@ -7,64 +7,72 @@
 
 {% block content %}
 
-<table>
-  <thead>
-    <tr>
-      <td colspan='2'>
-        Tantárgyak
-      </td>
-      <td colspan='2'>
-        Jegyek
-      </td>
-      <td colspan='2'>
-        <select id='sulyozas' onchange='preventLeaving(); display();'>
-          <option value='11111' {% if data.weight == '11111' %}selected{% endif %}>1:1:1:1:1</option>
-          <option value='11122' {% if data.weight == '11122' %}selected{% endif %}>1:1:1:2:2</option>
-          <option value='12244' {% if data.weight == '12244' %}selected{% endif %}>1:2:2:4:4</option>
-          <option value='11224' {% if data.weight == '11224' %}selected{% endif %}>1:1:2:2:4</option>
-        </select>
-      </td>
-    </tr>
-  </thead>
-  <tbody id='tbody'>
-    <tr>
-      <td class='subject'>
-        <form onsubmit='addSubject(event);' id='newsubjectform'>
-          <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus autocomplete='off'>
-        </form>
-      </td>
-      <td class='button'>
-        <input type='submit' class='addbutton button' value='' form='newsubjectform'>
-      </td>
-      <td class='jegyek' colspan='2'></td>
-      <td class='average'></td>
-      <td class='final-grade'></td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan='6'>
-        <span class='kis'>kis jegy</span>
-        <span class='normal'>normál jegy</span>
-        <span class='dolgozat'>dolgozat</span>
-        <span class='temazaro'>témazáró</span>
-        <span class='vizsga'>vizsgajegy</span>
-      </td>
-    </tr>
-  </tfoot>
-</table>
-<div id='mark-editing'>
-</div>
-<form action='/mark-calculator/' method='post'>
-  <input type='hidden' name='exportstring' id='exportstring'>
-  <input type='hidden' name='exportweight' id='exportweight'>
-  <input type='submit' name='save' value='Mentés' onclick='allowLeaving();'>
-</form>
+{% if index_var.username != '' %}
 
-<script src='/js/mark-calculator.js'></script>
+  <table>
+    <thead>
+      <tr>
+        <td colspan='2'>
+          Tantárgyak
+        </td>
+        <td colspan='2'>
+          Jegyek
+        </td>
+        <td colspan='2'>
+          <select id='sulyozas' onchange='preventLeaving(); display();'>
+            <option value='11111' {% if data.weight == '11111' %}selected{% endif %}>1:1:1:1:1</option>
+            <option value='11122' {% if data.weight == '11122' %}selected{% endif %}>1:1:1:2:2</option>
+            <option value='12244' {% if data.weight == '12244' %}selected{% endif %}>1:2:2:4:4</option>
+            <option value='11224' {% if data.weight == '11224' %}selected{% endif %}>1:1:2:2:4</option>
+          </select>
+        </td>
+      </tr>
+    </thead>
+    <tbody id='tbody'>
+      <tr>
+        <td class='subject'>
+          <form onsubmit='addSubject(event);' id='newsubjectform'>
+            <input type='text' id='newsubject' placeholder='új tantárgy neve' autofocus autocomplete='off'>
+          </form>
+        </td>
+        <td class='button'>
+          <input type='submit' class='addbutton button' value='' form='newsubjectform'>
+        </td>
+        <td class='jegyek' colspan='2'></td>
+        <td class='average'></td>
+        <td class='final-grade'></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan='6'>
+          <span class='kis'>kis jegy</span>
+          <span class='normal'>normál jegy</span>
+          <span class='dolgozat'>dolgozat</span>
+          <span class='temazaro'>témazáró</span>
+          <span class='vizsga'>vizsgajegy</span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <div id='mark-editing'>
+  </div>
+  <form action='/mark-calculator/' method='post'>
+    <input type='hidden' name='exportstring' id='exportstring'>
+    <input type='hidden' name='exportweight' id='exportweight'>
+    <input type='submit' name='save' value='Mentés' onclick='allowLeaving();'>
+  </form>
 
-<script type='text/javascript'>
-  parseInput("{{ data.data }}");
-</script>
+  <script src='/js/mark-calculator.js'></script>
+
+  <script type='text/javascript'>
+    parseInput("{{ data.data }}");
+  </script>
+
+{% else %}
+
+  <p>A jegyszámítót <a href='/user/login/'>bejelentkezés</a> után használhatod.</p>
+
+{% endif %}
 
 {% endblock %}

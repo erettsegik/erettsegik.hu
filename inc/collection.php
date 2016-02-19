@@ -14,8 +14,6 @@ $index_var['title'] = 'Gyűjteményem';
 
 if (isset($_SESSION['userid'])) {
 
-  $mode = 'list';
-
   $notes = array();
 
   try {
@@ -69,10 +67,6 @@ if (isset($_SESSION['userid'])) {
   }
 
   array_multisort($temp, SORT_ASC, $notes);
-
-} else {
-
-  $mode = 'stranger';
 
 }
 
