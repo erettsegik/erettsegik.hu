@@ -72,7 +72,6 @@ if (isset($_SESSION['userid'])) {
 
 echo $twig->render('collection.html', array(
   'index_var' => $index_var,
-  'mode' => $mode,
   'notes' => isset($notes) ? $notes : null,
   'subjects' => isset($subjects) ? $subjects : null,
 ));
