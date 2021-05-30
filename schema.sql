@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS `collections` (
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
-  `startdate` timestamp NOT NULL,
-  `enddate` timestamp NOT NULL,
+  `startdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `enddate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
